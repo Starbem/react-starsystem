@@ -155,4 +155,4 @@ After P0 complete, extract token definitions from Figma Star System library:
 - Query `search_design_system` + `get_variable_defs` from Figma MCP
 - Populate `src/tokens/colors.ts`, `src/tokens/typography.ts`, `src/tokens/spacing.ts`
 - Update `src/styles/globals.css` `@theme` block with CSS custom properties
-- Generate component storybook tales with token usage examples
+- Generate component storybook stories with token usage examples
