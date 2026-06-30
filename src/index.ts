@@ -6,6 +6,9 @@ export type { ButtonProps } from './components/Button'
 export { Input } from './components/Input'
 export type { InputProps } from './components/Input'
 
+export { Textarea } from './components/Textarea'
+export type { TextareaProps } from './components/Textarea'
+
 // Design tokens
 export { colors } from './tokens/colors'
 export type { Colors } from './tokens/colors'
