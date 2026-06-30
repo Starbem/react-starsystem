@@ -1,7 +1,49 @@
 @import "tailwindcss";
 
-/* Starbem Star System design tokens — to be expanded in P1 */
+/* Starbem Star System design tokens */
 @theme {
-  /* Placeholder: tokens will be populated from Figma in Phase P1 */
   --font-family-display: "Funnel Display", sans-serif;
+
+  /* Primary palette — orange */
+  --color-primary-base:     #FF5100;
+  --color-primary-light:    #FF7A40; /* PLACEHOLDER */
+  --color-primary-lighter:  #FFA880; /* PLACEHOLDER */
+  --color-primary-lightest: #FFD4BF; /* PLACEHOLDER */
+  --color-primary-dark:     #CC4100; /* PLACEHOLDER */
+  --color-primary-darker:   #993100; /* PLACEHOLDER */
+  --color-primary-darkest:  #662000; /* PLACEHOLDER */
+
+  /* Secondary palette — purple/violet */
+  --color-secondary-base:     #8660EC;
+  --color-secondary-light:    #A888F2; /* PLACEHOLDER */
+  --color-secondary-lighter:  #C9B0F7; /* PLACEHOLDER */
+  --color-secondary-lightest: #E4D8FB; /* PLACEHOLDER */
+  --color-secondary-dark:     #6B48D4; /* PLACEHOLDER */
+  --color-secondary-darker:   #461FAE;
+  --color-secondary-darkest:  #2D1070; /* PLACEHOLDER */
+
+  /* Terciary palette — pink/magenta (Figma spelling preserved) */
+  --color-terciary-base:     #ED2E98;
+  --color-terciary-light:    #F268B6; /* PLACEHOLDER */
+  --color-terciary-lighter:  #F7A2D0; /* PLACEHOLDER */
+  --color-terciary-lightest: #FBCFE6; /* PLACEHOLDER */
+  --color-terciary-dark:     #C4207C; /* PLACEHOLDER */
+  --color-terciary-darker:   #9B1562; /* PLACEHOLDER */
+  --color-terciary-darkest:  #6B0D44; /* PLACEHOLDER */
+
+  /* Neutral palette */
+  --color-neutral-white:  #FFFFFF;
+  --color-neutral-25:     #F7F7F7;
+  --color-neutral-50:     #F0F0F0; /* PLACEHOLDER */
+  --color-neutral-100:    #E8E8E8; /* PLACEHOLDER */
+  --color-neutral-200:    #D0D0D0; /* PLACEHOLDER */
+  --color-neutral-300:    #B6B6B6;
+  --color-neutral-400:    #9C9C9C; /* PLACEHOLDER */
+  --color-neutral-500:    #808080; /* PLACEHOLDER */
+  --color-neutral-600:    #626262; /* PLACEHOLDER */
+  --color-neutral-700:    #4E4E4E; /* PLACEHOLDER */
+  --color-neutral-800:    #393939;
+  --color-neutral-900:    #252525; /* PLACEHOLDER */
+  --color-neutral-1000:   #101828;
+  --color-neutral-black:  #000000;
 }
