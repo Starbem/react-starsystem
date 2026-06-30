@@ -2,7 +2,33 @@
 
 /* Starbem Star System design tokens */
 @theme {
-  --font-family-display: "Funnel Display", sans-serif;
+  /* Typography — font family */
+  --font-family-display: "Funnel Display", sans-serif; /* [VERIFIED] — Starbem brand font */
+  --font-family-body:    "Inter", sans-serif;           /* [VERIFIED] — from Figma _Design system header */
+
+  /* Typography — font size */
+  --font-size-display-lg: 3.25rem; /* [VERIFIED] — 52px from Figma Display/LG */
+  --font-size-h1:         2.5rem;  /* PLACEHOLDER — verify Figma Heading/H1 (40px assumed) */
+  --font-size-h2:         2rem;    /* PLACEHOLDER — verify Figma Heading/H2 (32px assumed) */
+  --font-size-h3:         1.5rem;  /* [VERIFIED] — 24px from Figma Heading/H3 */
+  --font-size-h4:         1.25rem; /* PLACEHOLDER — verify Figma Heading/H4 (20px assumed) */
+  --font-size-body-lg:    1.125rem;
+  --font-size-body:       1rem;
+  --font-size-body-sm:    0.875rem;
+  --font-size-caption:    0.75rem;
+
+  /* Typography — font weight */
+  --font-weight-regular:   400; /* [VERIFIED] */
+  --font-weight-medium:    500; /* PLACEHOLDER — numeric weight assumed */
+  --font-weight-semibold:  600; /* [VERIFIED] */
+  --font-weight-bold:      700; /* PLACEHOLDER — numeric weight assumed */
+  --font-weight-extra-bold: 800; /* [VERIFIED] — ExtraBold */
+
+  /* Typography — line height */
+  --line-height-tight:   1.2;
+  --line-height-snug:    1.35;
+  --line-height-base:    1.5;
+  --line-height-relaxed: 1.75;
 
   /* Primary palette — orange */
   --color-primary-base:     #FF5100;
