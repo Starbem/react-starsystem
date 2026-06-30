@@ -144,7 +144,6 @@ Uses **Changesets** for semantic versioning (semver) and release coordination:
 ├── tsconfig.json
 ├── eslint.config.js
 ├── .prettierrc
-├── tailwind.config.js          # (if used separately from vite)
 ├── package.json
 └── CLAUDE.md                   # This file
 ```
