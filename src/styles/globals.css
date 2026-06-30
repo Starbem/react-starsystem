@@ -72,4 +72,23 @@
   --color-neutral-900:    #252525; /* PLACEHOLDER */
   --color-neutral-1000:   #101828;
   --color-neutral-black:  #000000;
+
+  /* Border radius — [VERIFIED] from Figma component code */
+  --radius-none: 0;
+  --radius-sm:   9px;     /* [VERIFIED] — logo card containers (rounded-[9px]) */
+  --radius-md:   16px;    /* [VERIFIED] — _Design system header (rounded-tl-[16px]) */
+  --radius-lg:   32px;    /* [VERIFIED] — _Design system header (rounded-tl-[32px]) */
+  --radius-full: 9999px;  /* PLACEHOLDER — standard convention */
+
+  /* Elevation shadows — PLACEHOLDER: Figma effect styles not extractable via MCP.
+     Verify each value in Figma: open a card/modal component → Effects panel → drop-shadow values. */
+  --shadow-elevation-00: none;                                          /* [VERIFIED] — Elevation/00 = no shadow */
+  --shadow-elevation-01: 0 1px 2px rgba(0,0,0,0.08);                   /* PLACEHOLDER — verify Figma Elevation/01 */
+  --shadow-elevation-02: 0 2px 4px rgba(0,0,0,0.12);                   /* PLACEHOLDER — verify Figma Elevation/02 */
+  --shadow-elevation-03: 0 4px 8px rgba(0,0,0,0.12);                   /* PLACEHOLDER — verify Figma Elevation/03 */
+  --shadow-elevation-04: 0 8px 16px rgba(0,0,0,0.12);                  /* PLACEHOLDER — verify Figma Elevation/04 */
+  --shadow-elevation-05: 0 16px 24px rgba(0,0,0,0.12);                 /* PLACEHOLDER — verify Figma Elevation/05 */
+  --shadow-elevation-06: 0 24px 40px rgba(0,0,0,0.16);                 /* PLACEHOLDER — verify Figma Elevation/06 */
+  --shadow-elevation-secondary: 0 4px 16px rgba(237,46,152,0.32);      /* PLACEHOLDER — verify Figma Elevation/Secondary */
+  --shadow-elevation-hover-secondary: 0 4px 24px rgba(237,46,152,0.48); /* PLACEHOLDER — verify Figma Elevation/Hover/Secondary */
 }
