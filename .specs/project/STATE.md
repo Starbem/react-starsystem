@@ -35,6 +35,11 @@
 - **Rationale:** Design consistency across all Starbem products requires a single source.
 - **Status:** Policy
 
+### D-007: Figma Star System uses styles, not Variables
+- **Date:** 2026-06-30
+- **Decision:** Token values are encoded as fill/text/effect styles in Figma, NOT as Figma Variables. `get_variable_defs` returns nothing. Use `get_design_context` on real components to extract hex/px values.
+- **Status:** Discovered during P1 spec research
+
 ### D-006: Consumers import CSS separately
 - **Date:** 2026-06-30
 - **Decision:** CSS is NOT auto-injected. Consumers must `import '@starbemtech/react-starsystem/style.css'` explicitly.
@@ -67,9 +72,14 @@
 
 ## Todos
 
-- [ ] P1: Extract Figma tokens → src/tokens/ (ID-3164 to ID-3167)
-- [ ] Wrap up P0 branch: finishing-a-development-branch
-- [ ] Transition Jira tasks ID-3157 to ID-3163 → QA Testing
+- [x] P0: Wrap up branch — pushed to origin/main (2026-06-30)
+- [x] P0: Transition Jira tasks ID-3157 to ID-3163 → QA Testing (2026-06-30)
+- [x] P1: Feature spec written → .specs/features/p1-design-tokens/ (2026-06-30)
+- [ ] P1: Implement Task 1 — Figma value extraction
+- [ ] P1: Implement Task 2 — Color tokens (ID-3164)
+- [ ] P1: Implement Task 3 — Typography tokens (ID-3165)
+- [ ] P1: Implement Task 4 — Spacing/radius/shadow tokens (ID-3166)
+- [ ] P1: Implement Task 5 — Barrel exports + Storybook showcase (ID-3167)
 
 ## Deferred Ideas
 
