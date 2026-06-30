@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback, type KeyboardEvent } from 'react'
+import { useEffect, useRef, useState, useCallback, useId, type KeyboardEvent } from 'react'
 import { cn } from '../../utils/cn'
 
 export interface SelectOption {
@@ -62,13 +62,16 @@ export function Select({
   const [focusedIndex, setFocusedIndex] = useState<number>(-1)
   const rootRef = useRef<HTMLDivElement>(null)
   const listboxRef = useRef<HTMLUListElement>(null)
-  const listboxId = id ? `${id}-listbox` : undefined
-  const labelId = id && label ? `${id}-label` : undefined
-  const hintId = (error || hint) && id ? `${id}-hint` : undefined
+  const reactId = useId()
+  const resolvedId = id ?? reactId
+  const listboxId = `${resolvedId}-listbox`
+  const labelId = label ? `${resolvedId}-label` : undefined
+  const hintId = (error || hint) ? `${resolvedId}-hint` : undefined
 
   const isError = Boolean(error)
   const hintText = error ?? hint
   const selectedOption = options.find((o) => o.value === value)
+  const enabledOptions = options.filter((o) => !o.disabled)
 
   const openMenu = useCallback(() => {
     const enabledOptions = options.filter((o) => !o.disabled)
@@ -134,10 +137,10 @@ export function Select({
 
   return (
     <div ref={rootRef} className={cn('flex flex-col gap-[6px] items-start w-full relative', className)}>
-      {label && id && (
+      {label && (
         <label
           id={labelId}
-          htmlFor={id}
+          htmlFor={resolvedId}
           className="font-['Funnel_Display'] text-[12px] leading-[16px] text-[#9C9C9C] select-none"
         >
           {label}
@@ -146,7 +149,7 @@ export function Select({
       {name && <input type="hidden" name={name} value={value ?? ''} />}
       <div className="relative w-full">
         <button
-          id={id}
+          id={resolvedId}
           type="button"
           role="combobox"
           aria-haspopup="listbox"
@@ -168,6 +171,7 @@ export function Select({
           className={cn(
             'flex gap-[8px] items-center w-full h-[56px] px-[16px] py-[8px] rounded-[16px] border text-left',
             'outline-none transition-colors',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-2',
             disabled
               ? 'bg-[#EFEFEF] border-[#B6B6B6] cursor-not-allowed'
               : isError
@@ -178,11 +182,6 @@ export function Select({
           )}
         >
           <span className="flex flex-col flex-1 min-w-0 justify-center">
-            {label && !id && (
-              <span className="font-['Funnel_Display'] text-[12px] leading-[16px] text-[#9C9C9C] shrink-0 select-none">
-                {label}
-              </span>
-            )}
             <span
               className={cn(
                 "font-['Funnel_Display'] text-[16px] leading-[24px] truncate",
@@ -207,6 +206,11 @@ export function Select({
             role="listbox"
             id={listboxId}
             aria-label={label}
+            aria-activedescendant={
+              focusedIndex >= 0 && enabledOptions[focusedIndex]
+                ? `${listboxId}-opt-${enabledOptions[focusedIndex].value}`
+                : undefined
+            }
             tabIndex={-1}
             onKeyDown={handleListKeyDown}
             className="absolute top-full left-0 w-full mt-[8px] bg-[#F7F7F7] border border-[#E2E2E2] rounded-[16px] shadow-[0px_4px_16px_2px_rgba(70,31,174,0.10)] py-[4px] max-h-[320px] overflow-y-auto z-50 outline-none"
@@ -214,17 +218,18 @@ export function Select({
             {options.map((option, idx) => {
               const isSelected = option.value === value
               const isDisabled = Boolean(option.disabled)
-              const isFocused = options.filter((o) => !o.disabled).indexOf(option) === focusedIndex
+              const isFocused = enabledOptions.indexOf(option) === focusedIndex
               return (
                 <li
                   key={option.value}
+                  id={`${listboxId}-opt-${option.value}`}
                   role="option"
                   aria-selected={isSelected}
                   aria-disabled={isDisabled || undefined}
                   data-index={idx}
                   onMouseEnter={() => {
                     if (!isDisabled) {
-                      const enabledIdx = options.filter((o) => !o.disabled).indexOf(option)
+                      const enabledIdx = enabledOptions.indexOf(option)
                       setFocusedIndex(enabledIdx)
                     }
                   }}
