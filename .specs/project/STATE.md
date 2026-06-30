@@ -1,7 +1,7 @@
 # Project State
 
 **Last updated:** 2026-06-30
-**Current phase:** P1 — Design Tokens
+**Current phase:** P2 — Components
 
 ## Decisions
 
@@ -75,11 +75,12 @@
 - [x] P0: Wrap up branch — pushed to origin/main (2026-06-30)
 - [x] P0: Transition Jira tasks ID-3157 to ID-3163 → QA Testing (2026-06-30)
 - [x] P1: Feature spec written → .specs/features/p1-design-tokens/ (2026-06-30)
-- [ ] P1: Implement Task 1 — Figma value extraction
-- [ ] P1: Implement Task 2 — Color tokens (ID-3164)
-- [ ] P1: Implement Task 3 — Typography tokens (ID-3165)
-- [ ] P1: Implement Task 4 — Spacing/radius/shadow tokens (ID-3166)
-- [ ] P1: Implement Task 5 — Barrel exports + Storybook showcase (ID-3167)
+- [x] P1: Implement Task 1 — Figma value extraction (2026-06-30)
+- [x] P1: Implement Task 2 — Color tokens (ID-3164) → QA Testing (2026-06-30, commit bb67dab)
+- [x] P1: Implement Task 3 — Typography tokens (ID-3165) → QA Testing (2026-06-30, commit 892b2fc)
+- [x] P1: Implement Task 4 — Spacing/radius/shadow tokens (ID-3166) → QA Testing (2026-06-30, commit 18ee8b0)
+- [x] P1: Implement Task 5 — Barrel exports + Storybook showcase (ID-3167) → QA Testing (2026-06-30, commit 1485546)
+- [x] P1: Final review + fixes applied (commit e8c837f) — branch pushed to origin/main
 
 ## Deferred Ideas
 

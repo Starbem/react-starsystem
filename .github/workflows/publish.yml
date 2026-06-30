@@ -2,15 +2,16 @@ name: Publish
 
 on:
   push:
-    branches: [main]
-
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+    tags:
+      - 'v*'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: pnpm/action-setup@v4
         with:
@@ -26,12 +27,50 @@ jobs:
 
       - run: pnpm build
 
-      - name: Create Release PR or Publish
-        uses: changesets/action@v1
-        with:
-          publish: pnpm release
-          title: "chore: release packages"
-          commit: "chore: release packages"
+      - run: pnpm release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Build release notes
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          PREV_TAG=$(git tag --sort=-version:refname | grep -E '^v[0-9]' | sed -n '2p')
+          CHANGES=$(awk "/^## ${VERSION}$/{found=1; next} found && /^## /{exit} found{print}" CHANGELOG.md)
+
+          if [ -n "$PREV_TAG" ]; then
+            COMMITS=$(git log "${PREV_TAG}..${GITHUB_REF_NAME}" --no-merges --pretty=format:"- \`%h\` %s")
+            COMPARE_URL="../../compare/${PREV_TAG}...${GITHUB_REF_NAME}"
+          else
+            COMMITS=$(git log "${GITHUB_REF_NAME}" --no-merges --pretty=format:"- \`%h\` %s")
+            COMPARE_URL=""
+          fi
+
+          {
+            printf "## \`@starbemtech/react-starsystem@%s\`\n\n" "$VERSION"
+            if [ -n "$CHANGES" ]; then
+              printf "%s\n\n" "$CHANGES"
+            else
+              printf "> See [CHANGELOG.md](./CHANGELOG.md) for the full history.\n\n"
+            fi
+            printf "---\n\n"
+            printf "### 🔖 Commits\n\n"
+            if [ -n "$PREV_TAG" ]; then
+              printf "_Changes since %s:_\n\n" "$PREV_TAG"
+            fi
+            printf "%s\n\n" "$COMMITS"
+            if [ -n "$COMPARE_URL" ]; then
+              printf "[Full diff](%s)\n\n" "$COMPARE_URL"
+            fi
+            printf "---\n\n"
+            printf "### 📦 Install\n\`\`\`bash\npnpm add @starbemtech/react-starsystem@%s\n\`\`\`\n\n" "$VERSION"
+            printf "### 🚀 Basic usage\n\`\`\`typescript\nimport { Button } from '@starbemtech/react-starsystem'\nimport '@starbemtech/react-starsystem/style.css'\n\`\`\`\n\n"
+            printf "### 🎨 Design Tokens\n\`\`\`typescript\nimport { colors, fontFamily, fontSize, spacing, borderRadius } from '@starbemtech/react-starsystem'\n\n// colors\ncolors.primary.base   // #FF5100\ncolors.secondary.base // #8660EC\ncolors.terciary.base  // #ED2E98\n\`\`\`\n"
+          } > release-body.md
+
+      - name: Create GitHub Release
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --title "react-starsystem $GITHUB_REF_NAME" \
+            --notes-file release-body.md
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
