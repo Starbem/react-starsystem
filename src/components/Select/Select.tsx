@@ -61,6 +61,7 @@ export function Select({
   const [isOpen, setIsOpen] = useState(false)
   const [focusedIndex, setFocusedIndex] = useState<number>(-1)
   const rootRef = useRef<HTMLDivElement>(null)
+  const listboxRef = useRef<HTMLUListElement>(null)
   const listboxId = id ? `${id}-listbox` : undefined
   const labelId = id && label ? `${id}-label` : undefined
   const hintId = (error || hint) && id ? `${id}-hint` : undefined
@@ -74,6 +75,7 @@ export function Select({
     const selectedIdx = enabledOptions.findIndex((o) => o.value === value)
     setFocusedIndex(selectedIdx >= 0 ? selectedIdx : 0)
     setIsOpen(true)
+    setTimeout(() => listboxRef.current?.focus(), 0)
   }, [options, value])
 
   useEffect(() => {
@@ -201,6 +203,7 @@ export function Select({
 
         {isOpen && (
           <ul
+            ref={listboxRef}
             role="listbox"
             id={listboxId}
             aria-label={label}
