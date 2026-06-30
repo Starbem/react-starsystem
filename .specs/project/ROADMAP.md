@@ -40,70 +40,107 @@
 
 ---
 
-## P2 — Foundation Components
+## P2 — Form Primitives
 
-**Goal:** Primitive UI components implementing Star System tokens
+**Goal:** Core form components implementing Star System tokens
 **Target:** TBD
-**Jira:** ID-3168 to ID-3183 (estimated)
+**Jira:** ID-3168 to ID-3175
 
 ### Features
 
-**Primitives** - PLANNED
+**Form Primitives** - PLANNED
 - Button (replace placeholder with Figma-accurate implementation)
-- Input, Textarea
-- Select, Checkbox, Radio
-- Badge, Tag
-- Avatar
-- Spinner / Loading
+- Input
+- Textarea
+- Select
+- Checkbox
+- Radio
+- Toggle
+- FormField (label + error wrapper)
 
 ---
 
-## P3 — Composite Components
+## P3 — Feedback Components
 
-**Goal:** Complex multi-part components
+**Goal:** User feedback and status indicators
 **Target:** TBD
-**Jira:** ID-3184 to ID-3193 (estimated)
+**Jira:** ID-3176 to ID-3181
 
 ### Features
 
-**Composites** - PLANNED
+**Feedback** - PLANNED
+- Badge
+- Alert
+- Toast
+- Skeleton
+- Spinner
+- Empty State
+
+---
+
+## P4 — Overlay Components
+
+**Goal:** Modal dialogs and floating UI patterns
+**Target:** TBD
+**Jira:** ID-3182 to ID-3186
+
+### Features
+
+**Overlay** - PLANNED
 - Modal / Dialog
-- Dropdown / Menu
+- Drawer
 - Tooltip
-- Toast / Alert
+- Popover
+- Dropdown
+
+---
+
+## P5 — Navigation Components
+
+**Goal:** App structure and navigation patterns
+**Target:** TBD
+**Jira:** ID-3188 to ID-3192
+
+### Features
+
+**Navigation** - PLANNED
+- Tabs
+- TopBar
+- Sidebar
+- Breadcrumb
+- Pagination
+
+---
+
+## P6 — Data Display
+
+**Goal:** Data presentation components
+**Target:** TBD
+**Jira:** ID-3193 to ID-3197
+
+### Features
+
+**Data Display** - PLANNED
 - Table
 - Card
+- Avatar
+- Accordion
+- Divider
 
 ---
 
-## P4 — Documentation
-
-**Goal:** Full Storybook docs, usage examples, migration guide
-**Target:** TBD
-**Jira:** ID-3194 to ID-3197 (estimated)
-
-### Features
-
-**Storybook** - PLANNED
-- All components with autodocs
-- Token showcase pages
-- Figma Code Connect mappings
-- Accessibility audit
-
----
-
-## P5 — Publishing & Integration
+## P7 — Publishing & Integration
 
 **Goal:** Consumed by at least one Starbem frontend (partner-portal)
 **Target:** TBD
-**Jira:** ID-3198 to ID-3200 (estimated)
+**Jira:** ID-3198 to ID-3200
 
 ### Features
 
 **Integration** - PLANNED
 - First public npm release (v0.1.0)
-- Integration guide for partner-portal
-- Migration example: replace one replicated component
+- Storybook deployed (Chromatic or static host)
+- Migration guide for partner-portal
 
 ---
 
