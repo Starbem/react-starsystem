@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Starbem Star System design tokens — to be expanded in P1 */
+@theme {
+  /* Placeholder: tokens will be populated from Figma in Phase P1 */
+  --font-family-display: "Funnel Display", sans-serif;
+}
