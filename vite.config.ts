@@ -11,7 +11,6 @@ export default defineConfig({
     dts({
       include: ['src'],
       insertTypesEntry: true,
-      rollupTypes: true,
       tsconfigPath: './tsconfig.build.json',
     }),
   ],
