@@ -31,6 +31,11 @@ describe('borderRadius', () => {
     expect(borderRadius.lg).toBe('32px')   // [VERIFIED] — design system header rounded-tl-[32px]
     expect(borderRadius.full).toBe('9999px')
   })
+
+  it('exports borderRadius with xl and 2xl', () => {
+    expect(borderRadius.xl).toMatch(/^\d+px$/)
+    expect(borderRadius['2xl']).toMatch(/^\d+px$/)
+  })
 })
 
 describe('shadows', () => {

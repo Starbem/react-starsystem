@@ -78,6 +78,8 @@
   --radius-sm:   9px;     /* [VERIFIED] — logo card containers (rounded-[9px]) */
   --radius-md:   16px;    /* [VERIFIED] — _Design system header (rounded-tl-[16px]) */
   --radius-lg:   32px;    /* [VERIFIED] — _Design system header (rounded-tl-[32px]) */
+  --radius-xl:   40px;    /* PLACEHOLDER — verify in Figma (extrapolated from lg=32px) */
+  --radius-2xl:  48px;    /* PLACEHOLDER — verify in Figma */
   --radius-full: 9999px;  /* PLACEHOLDER — standard convention */
 
   /* Elevation shadows — PLACEHOLDER: Figma effect styles not extractable via MCP.

@@ -20,6 +20,8 @@ export const borderRadius = {
   sm:   '9px',    // [VERIFIED] — logo card containers (rounded-[9px])
   md:   '16px',   // [VERIFIED] — _Design system header (rounded-tl-[16px])
   lg:   '32px',   // [VERIFIED] — _Design system header (rounded-tl-[32px], rounded-bl-[32px])
+  xl:   '40px',   // PLACEHOLDER — verify in Figma (extrapolated from lg=32px)
+  '2xl': '48px',  // PLACEHOLDER — verify in Figma
   full: '9999px', // PLACEHOLDER — standard convention
 } as const
 
