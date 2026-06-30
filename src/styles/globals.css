@@ -22,7 +22,7 @@
   --font-weight-medium:    500; /* PLACEHOLDER — numeric weight assumed */
   --font-weight-semibold:  600; /* [VERIFIED] */
   --font-weight-bold:      700; /* PLACEHOLDER — numeric weight assumed */
-  --font-weight-extra-bold: 800; /* [VERIFIED] — ExtraBold */
+  --font-weight-extrabold: 800; /* [VERIFIED] — ExtraBold */
 
   /* Typography — line height */
   --line-height-tight:   1.2;

@@ -50,5 +50,7 @@ describe('shadows', () => {
     expect(shadows.elevation04).toBeDefined()
     expect(shadows.elevation05).toBeDefined()
     expect(shadows.elevation06).toBeDefined()
+    expect(shadows.elevationSecondary).toBeDefined()
+    expect(shadows.elevationHoverSecondary).toBeDefined()
   })
 })

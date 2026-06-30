@@ -11,7 +11,7 @@ export default meta
 
 type Story = StoryObj
 
-const SwatchRow = ({ label, palette }: { label: string; palette: Record<string, string> }) => (
+const SwatchRow = ({ label, palette }: { label: string; palette: Record<string | number, string> }) => (
   <div style={{ marginBottom: 24 }}>
     <h3 style={{ marginBottom: 8, fontSize: 14, fontFamily: 'system-ui' }}>{label}</h3>
     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
