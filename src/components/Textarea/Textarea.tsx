@@ -42,7 +42,7 @@ export function Textarea({
           className={cn(
             "bg-transparent outline-none font-['Funnel_Display'] text-[16px] leading-[24px] w-full resize-y",
             disabled
-              ? 'text-[#808080] cursor-not-allowed'
+              ? 'text-[#808080] cursor-not-allowed placeholder:text-[#808080]'
               : 'text-[#393939] placeholder:text-[#808080]',
           )}
           {...props}
