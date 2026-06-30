@@ -35,83 +35,90 @@ via `get_design_context` on a Star System component (e.g. Header, Button).
 
 ## Requirements
 
-### REQ-01: Color Tokens — Primary Palette
+### REQ-01: Color Tokens — Primary Palette (Orange)
 **Jira:** ID-3164
 
-The Primary color scale exists in Figma as fill styles:
-- `Primary/Base` — the brand orange (reference: `#FF6B19`, verify against Figma)
-- `Primary/Light`
-- `Primary/Lighter`
-- `Primary/Dark`
-- `Primary/Darker`
-- `Primary/Darkest`
+The Primary color scale (orange brand color) exists in Figma as fill styles.
+Confirmed base value: `#FF5100` (verified via `get_design_context`).
+
+Style family: `Primary/` — 7 shades: Base, Light, Lighter, Lightest, Dark, Darker, Darkest
 
 **Deliverables:**
-- [ ] `src/tokens/colors.ts` — exports `colors.primary` object with all 6 shades
+- [ ] `src/tokens/colors.ts` — exports `colors.primary` object with all 7 shades
 - [ ] `src/styles/globals.css` `@theme` block — CSS custom properties `--color-primary-base`, `--color-primary-light`, etc.
-- [ ] Values extracted from Figma via `get_design_context` on a component using Primary fills
 
 **Done when:**
-- `colors.primary.base` exists and exports the correct hex
+- `colors.primary.base === '#FF5100'`
 - `--color-primary-base` is defined in `@theme`
-- Values match Figma (verified via screenshot comparison)
 
 ---
 
-### REQ-02: Color Tokens — Secondary Palette
+### REQ-02: Color Tokens — Secondary Palette (Purple/Violet)
 **Jira:** ID-3164
 
-The Secondary color scale exists in Figma as fill styles:
-- `Secondary/Base` — the brand pink/red (reference: `#FF3F72`, verify against Figma)
-- `Secondary/Light`
-- `Secondary/Lighter`
-- `Secondary/Dark`
-- `Secondary/Darker`
-- `Secondary/Darkest`
+The Secondary color scale in Figma is **purple/violet**, not pink.
+Confirmed values: `secondary.base = #8660EC`, `secondary.darker = #461FAE` (both verified via `get_design_context`).
+
+> **Decision (2026-06-30):** Figma has 3 brand palettes. Previous spec assumed 2. Following Figma exactly.
+
+Style family: `Secondary/` — 7 shades: Base, Light, Lighter, Lightest, Dark, Darker, Darkest
 
 **Deliverables:**
-- [ ] `src/tokens/colors.ts` — exports `colors.secondary` object with all 6 shades
+- [ ] `src/tokens/colors.ts` — exports `colors.secondary` object with all 7 shades
 - [ ] `src/styles/globals.css` `@theme` — `--color-secondary-base`, etc.
+
+---
+
+### REQ-02b: Color Tokens — Terciary Palette (Pink/Magenta)
+**Jira:** ID-3164
+
+The Terciary color scale (pink/magenta) is what was previously assumed to be "secondary".
+Confirmed base value: `#ED2E98` (verified via `get_design_context`).
+
+> **Note:** Figma spells it `Terciary` (not "Tertiary") — match that spelling in CSS custom properties for consistency. TypeScript export can use `terciary` (same spelling).
+
+Style family: `Terciary/` — 7 shades: Base, Light, Lighter, Lightest, Dark, Darker, Darkest
+
+**Deliverables:**
+- [ ] `src/tokens/colors.ts` — exports `colors.terciary` object with all 7 shades
+- [ ] `src/styles/globals.css` `@theme` — `--color-terciary-base`, etc.
 
 ---
 
 ### REQ-03: Color Tokens — Neutral Palette
 **Jira:** ID-3164
 
-Neutral/gray colors are not present as named fill styles in the Figma library search results.
-They must be sourced from:
-1. `get_design_context` on a Star System component with neutral fills (look for text colors,
-   backgrounds, borders in Header or Button components)
-2. If not found: cross-reference with partner-portal Tailwind config (neutral grays there)
+Neutral scale confirmed in Figma: 12 stops — `Neutral/25`, `Neutral/50`, `Neutral/100` through `Neutral/1000`.
+Verified values: white `#FFFFFF`, black `#000000`, Neutral/25 `#F7F7F7`, Neutral/300 `#B6B6B6`, Neutral/800 `#393939`, Neutral/1000 `#101828`.
 
-Minimum required neutrals:
-- `neutral/white` — `#FFFFFF`
-- `neutral/black` — `#000000` or near-black
-- `neutral/100` through `neutral/900` — gray scale
+Minimum required: all 12 stops + white/black exported and in `@theme`. Unverified shades use PLACEHOLDER comments.
 
-**Done when:** At least 5 neutral shades + white/black exported and in `@theme`.
+**Done when:** At least 6 neutral shades (white, 25, 300, 800, 1000, black) exported and in `@theme`.
 
 ---
 
 ### REQ-04: Typography Tokens
 **Jira:** ID-3165
 
-**Font family (confirmed):** Funnel Display — already in `globals.css` as `--font-family-display`.
+**Font families confirmed via Figma:**
+- Display/Heading: `Funnel Display` (already in `globals.css`)
+- Body: `Inter` (verified from `_Design system header` component)
 
-Text styles found in Star System library:
-- `Heading/H1` — Bold, Medium, Regular variants
-- `Heading/H2` — Bold, Medium variants
-- `Heading/H3` — Bold, Medium, Regular variants
-- `Heading/H4` — Bold, Medium, Regular variants
+**Verified typography:**
+- `Heading/H3/Regular` — 24px / 1.5rem, weight 400, lineHeight 32px
+- `Heading/H3/Semibold` — 24px / 1.5rem, weight 600, lineHeight 32px
+- `Display/LG/Regular` — 52px / 3.25rem, weight 400, lineHeight 64px
+- H1/H2/H4 sizes — style names confirmed, px values PLACEHOLDER
 
-Body/Caption styles are NOT in the current Star System library. For P1, define practical defaults
-based on common Starbem UI patterns (verify via `get_design_context` on any form or card component):
-- Body/Large, Body/Base, Body/Small
-- Caption/Regular, Caption/Bold
+**Font weights confirmed:**
+- Regular: 400, Semibold: 600, ExtraBold: 800 — all verified
+- Medium (500) and Bold (700) — style names confirmed, numeric weight PLACEHOLDER
+
+Body/Caption styles NOT in Star System. Define practical defaults.
 
 **Deliverables:**
 - [ ] `src/tokens/typography.ts` — exports:
-  - `fontFamily` — `{ display: 'Funnel Display, sans-serif', body: 'system-ui, sans-serif' }`
+  - `fontFamily` — `{ display: '"Funnel Display", sans-serif', body: '"Inter", sans-serif' }`
   - `fontSize` — scale object (e.g. `{ h1: '2.5rem', h2: '2rem', h3: '1.5rem', h4: '1.25rem', bodyLg: '1.125rem', body: '1rem', bodySm: '0.875rem', caption: '0.75rem' }`)
   - `fontWeight` — `{ regular: '400', medium: '500', bold: '700' }`
   - `lineHeight` — `{ tight: '1.2', base: '1.5', relaxed: '1.75' }`
@@ -199,6 +206,7 @@ Elevation styles confirmed in Star System library:
 Update `src/index.ts` to re-export all token constants:
 ```typescript
 export { colors } from './tokens/colors';
+// colors.primary.base, colors.secondary.base, colors.terciary.base, colors.neutral.*
 export { fontFamily, fontSize, fontWeight, lineHeight } from './tokens/typography';
 export { spacing, borderRadius, shadows } from './tokens/spacing';
 ```

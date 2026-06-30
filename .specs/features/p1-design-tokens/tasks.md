@@ -77,9 +77,14 @@ at least one elevation shadow CSS value.
 **Interfaces:**
 - Depends on: Task 1 (figma-values.md has the hex values)
 - Produces: `colors` object exported from `src/tokens/colors.ts`
-  - `colors.primary.base`, `.light`, `.lighter`, `.dark`, `.darker`, `.darkest` — hex strings
-  - `colors.secondary.base`, `.light`, `.lighter`, `.dark`, `.darker`, `.darkest` — hex strings
-  - `colors.neutral[100..900]`, `.white`, `.black` — hex strings
+  - `colors.primary.base` = `#FF5100`, `.light`, `.lighter`, `.lightest`, `.dark`, `.darker`, `.darkest`
+  - `colors.secondary.base` = `#8660EC`, `.light`, `.lighter`, `.lightest`, `.dark`, `.darker` = `#461FAE`, `.darkest`
+  - `colors.terciary.base` = `#ED2E98`, `.light`, `.lighter`, `.lightest`, `.dark`, `.darker`, `.darkest`
+  - `colors.neutral.white`, `.25` = `#F7F7F7`, `.50`..`.900`, `.1000` = `#101828`, `.black`
+
+> **DECISION (2026-06-30):** Star System has 3 brand palettes, not 2. Follow Figma exactly.
+> Primary = orange (#FF5100), Secondary = purple (#8660EC), Terciary = pink/magenta (#ED2E98).
+> Spelling "Terciary" matches Figma (intentional typo preserved).
 
 - [ ] **Step 1: Write the failing test**
 
@@ -89,22 +94,36 @@ at least one elevation shadow CSS value.
   import { describe, expect, it } from 'vitest'
   import { colors } from './colors'
 
+  const hexPattern = /^#[0-9a-fA-F]{6}$/
+
   describe('colors', () => {
-    it('exports primary palette with 6 shades', () => {
-      expect(colors.primary.base).toMatch(/^#[0-9a-fA-F]{6}$/)
-      expect(colors.primary.light).toMatch(/^#[0-9a-fA-F]{6}$/)
-      expect(colors.primary.lighter).toMatch(/^#[0-9a-fA-F]{6}$/)
-      expect(colors.primary.dark).toMatch(/^#[0-9a-fA-F]{6}$/)
-      expect(colors.primary.darker).toMatch(/^#[0-9a-fA-F]{6}$/)
-      expect(colors.primary.darkest).toMatch(/^#[0-9a-fA-F]{6}$/)
+    it('exports primary palette (orange) with verified base', () => {
+      expect(colors.primary.base).toBe('#FF5100')
+      expect(colors.primary.light).toMatch(hexPattern)
+      expect(colors.primary.lighter).toMatch(hexPattern)
+      expect(colors.primary.lightest).toMatch(hexPattern)
+      expect(colors.primary.dark).toMatch(hexPattern)
+      expect(colors.primary.darker).toMatch(hexPattern)
+      expect(colors.primary.darkest).toMatch(hexPattern)
     })
-    it('exports secondary palette with 6 shades', () => {
-      expect(colors.secondary.base).toMatch(/^#[0-9a-fA-F]{6}$/)
-      expect(colors.secondary.darkest).toMatch(/^#[0-9a-fA-F]{6}$/)
+    it('exports secondary palette (purple) with verified base and darker', () => {
+      expect(colors.secondary.base).toBe('#8660EC')
+      expect(colors.secondary.darker).toBe('#461FAE')
+      expect(colors.secondary.light).toMatch(hexPattern)
+      expect(colors.secondary.darkest).toMatch(hexPattern)
     })
-    it('exports neutral palette', () => {
+    it('exports terciary palette (pink) with verified base', () => {
+      expect(colors.terciary.base).toBe('#ED2E98')
+      expect(colors.terciary.light).toMatch(hexPattern)
+      expect(colors.terciary.darkest).toMatch(hexPattern)
+    })
+    it('exports neutral palette with verified stops', () => {
       expect(colors.neutral.white).toBe('#FFFFFF')
-      expect(colors.neutral[900]).toMatch(/^#[0-9a-fA-F]{6}$/)
+      expect(colors.neutral[25]).toBe('#F7F7F7')
+      expect(colors.neutral[300]).toBe('#B6B6B6')
+      expect(colors.neutral[800]).toBe('#393939')
+      expect(colors.neutral[1000]).toBe('#101828')
+      expect(colors.neutral.black).toBe('#000000')
     })
   })
   ```
@@ -118,85 +137,110 @@ at least one elevation shadow CSS value.
 
 - [ ] **Step 3: Create `src/tokens/colors.ts`**
 
-  Use values from `figma-values.md` (Task 1). Structure:
+  Use verified values from `figma-values.md`. Mark unverified shades with `// PLACEHOLDER`.
 
   ```typescript
   export const colors = {
     primary: {
-      base:    '#FF6B19', // verify against Figma
-      light:   '#FF9A62', // verify against Figma
-      lighter: '#FFCAAA', // verify against Figma
-      dark:    '#E55A0E', // verify against Figma
-      darker:  '#BF4A0A', // verify against Figma
-      darkest: '#7A2F06', // verify against Figma
+      base:     '#FF5100',                          // [VERIFIED]
+      light:    '#FF7A40',                          // PLACEHOLDER — verify in Figma Primary/Light
+      lighter:  '#FFA880',                          // PLACEHOLDER — verify in Figma Primary/Lighter
+      lightest: '#FFD4BF',                          // PLACEHOLDER — verify in Figma Primary/Lightest
+      dark:     '#CC4100',                          // PLACEHOLDER — verify in Figma Primary/Dark
+      darker:   '#993100',                          // PLACEHOLDER — verify in Figma Primary/Darker
+      darkest:  '#662000',                          // PLACEHOLDER — verify in Figma Primary/Darkest
     },
     secondary: {
-      base:    '#FF3F72', // verify against Figma
-      light:   '#FF7DA1', // verify against Figma
-      lighter: '#FFBDCF', // verify against Figma
-      dark:    '#D92E5E', // verify against Figma
-      darker:  '#B32049', // verify against Figma
-      darkest: '#6E1430', // verify against Figma
+      base:     '#8660EC',                          // [VERIFIED]
+      light:    '#A888F2',                          // PLACEHOLDER — verify in Figma Secondary/Light
+      lighter:  '#C9B0F7',                          // PLACEHOLDER — verify in Figma Secondary/Lighter
+      lightest: '#E4D8FB',                          // PLACEHOLDER — verify in Figma Secondary/Lightest
+      dark:     '#6B48D4',                          // PLACEHOLDER — verify in Figma Secondary/Dark
+      darker:   '#461FAE',                          // [VERIFIED]
+      darkest:  '#2D1070',                          // PLACEHOLDER — verify in Figma Secondary/Darkest
+    },
+    terciary: {
+      base:     '#ED2E98',                          // [VERIFIED]
+      light:    '#F268B6',                          // PLACEHOLDER — verify in Figma Terciary/Light
+      lighter:  '#F7A2D0',                          // PLACEHOLDER — verify in Figma Terciary/Lighter
+      lightest: '#FBCFE6',                          // PLACEHOLDER — verify in Figma Terciary/Lightest
+      dark:     '#C4207C',                          // PLACEHOLDER — verify in Figma Terciary/Dark
+      darker:   '#9B1562',                          // PLACEHOLDER — verify in Figma Terciary/Darker
+      darkest:  '#6B0D44',                          // PLACEHOLDER — verify in Figma Terciary/Darkest
     },
     neutral: {
-      white: '#FFFFFF',
-      100:   '#F5F5F5',
-      200:   '#E5E5E5',
-      300:   '#D4D4D4',
-      400:   '#A3A3A3',
-      500:   '#737373',
-      600:   '#525252',
-      700:   '#404040',
-      800:   '#262626',
-      900:   '#171717',
-      black: '#000000',
+      white:  '#FFFFFF',                            // [VERIFIED]
+      25:     '#F7F7F7',                            // [VERIFIED]
+      50:     '#F0F0F0',                            // PLACEHOLDER — verify in Figma Neutral/50
+      100:    '#E8E8E8',                            // PLACEHOLDER — verify in Figma Neutral/100
+      200:    '#D0D0D0',                            // PLACEHOLDER — verify in Figma Neutral/200
+      300:    '#B6B6B6',                            // [VERIFIED]
+      400:    '#9C9C9C',                            // PLACEHOLDER — verify in Figma Neutral/400
+      500:    '#808080',                            // PLACEHOLDER — verify in Figma Neutral/500
+      600:    '#626262',                            // PLACEHOLDER — verify in Figma Neutral/600
+      700:    '#4E4E4E',                            // PLACEHOLDER — verify in Figma Neutral/700
+      800:    '#393939',                            // [VERIFIED]
+      900:    '#252525',                            // PLACEHOLDER — verify in Figma Neutral/900
+      1000:   '#101828',                            // [VERIFIED]
+      black:  '#000000',                            // [VERIFIED]
     },
   } as const
 
   export type Colors = typeof colors
   ```
 
-  > **Important:** Replace placeholder values with the real hex values from `figma-values.md`.
-  > If Figma values differ, use Figma values — not these placeholders.
-
 - [ ] **Step 4: Add color CSS custom properties to `globals.css` `@theme` block**
+
+  Replace the current `@theme {}` contents with the expanded version (keep `--font-family-display`):
 
   ```css
   @theme {
     --font-family-display: "Funnel Display", sans-serif;
 
-    /* Primary palette */
-    --color-primary-base:    #FF6B19;
-    --color-primary-light:   #FF9A62;
-    --color-primary-lighter: #FFCAAA;
-    --color-primary-dark:    #E55A0E;
-    --color-primary-darker:  #BF4A0A;
-    --color-primary-darkest: #7A2F06;
+    /* Primary palette — orange */
+    --color-primary-base:     #FF5100;
+    --color-primary-light:    #FF7A40; /* PLACEHOLDER */
+    --color-primary-lighter:  #FFA880; /* PLACEHOLDER */
+    --color-primary-lightest: #FFD4BF; /* PLACEHOLDER */
+    --color-primary-dark:     #CC4100; /* PLACEHOLDER */
+    --color-primary-darker:   #993100; /* PLACEHOLDER */
+    --color-primary-darkest:  #662000; /* PLACEHOLDER */
 
-    /* Secondary palette */
-    --color-secondary-base:    #FF3F72;
-    --color-secondary-light:   #FF7DA1;
-    --color-secondary-lighter: #FFBDCF;
-    --color-secondary-dark:    #D92E5E;
-    --color-secondary-darker:  #B32049;
-    --color-secondary-darkest: #6E1430;
+    /* Secondary palette — purple/violet */
+    --color-secondary-base:     #8660EC;
+    --color-secondary-light:    #A888F2; /* PLACEHOLDER */
+    --color-secondary-lighter:  #C9B0F7; /* PLACEHOLDER */
+    --color-secondary-lightest: #E4D8FB; /* PLACEHOLDER */
+    --color-secondary-dark:     #6B48D4; /* PLACEHOLDER */
+    --color-secondary-darker:   #461FAE;
+    --color-secondary-darkest:  #2D1070; /* PLACEHOLDER */
 
-    /* Neutral */
-    --color-neutral-white: #FFFFFF;
-    --color-neutral-100:   #F5F5F5;
-    --color-neutral-200:   #E5E5E5;
-    --color-neutral-300:   #D4D4D4;
-    --color-neutral-400:   #A3A3A3;
-    --color-neutral-500:   #737373;
-    --color-neutral-600:   #525252;
-    --color-neutral-700:   #404040;
-    --color-neutral-800:   #262626;
-    --color-neutral-900:   #171717;
-    --color-neutral-black: #000000;
+    /* Terciary palette — pink/magenta (Figma spelling preserved) */
+    --color-terciary-base:     #ED2E98;
+    --color-terciary-light:    #F268B6; /* PLACEHOLDER */
+    --color-terciary-lighter:  #F7A2D0; /* PLACEHOLDER */
+    --color-terciary-lightest: #FBCFE6; /* PLACEHOLDER */
+    --color-terciary-dark:     #C4207C; /* PLACEHOLDER */
+    --color-terciary-darker:   #9B1562; /* PLACEHOLDER */
+    --color-terciary-darkest:  #6B0D44; /* PLACEHOLDER */
+
+    /* Neutral palette */
+    --color-neutral-white:  #FFFFFF;
+    --color-neutral-25:     #F7F7F7;
+    --color-neutral-50:     #F0F0F0; /* PLACEHOLDER */
+    --color-neutral-100:    #E8E8E8; /* PLACEHOLDER */
+    --color-neutral-200:    #D0D0D0; /* PLACEHOLDER */
+    --color-neutral-300:    #B6B6B6;
+    --color-neutral-400:    #9C9C9C; /* PLACEHOLDER */
+    --color-neutral-500:    #808080; /* PLACEHOLDER */
+    --color-neutral-600:    #626262; /* PLACEHOLDER */
+    --color-neutral-700:    #4E4E4E; /* PLACEHOLDER */
+    --color-neutral-800:    #393939;
+    --color-neutral-900:    #252525; /* PLACEHOLDER */
+    --color-neutral-1000:   #101828;
+    --color-neutral-black:  #000000;
   }
   ```
-
-  > Replace hex values with those from `figma-values.md`.
 
 - [ ] **Step 5: Run test — expect PASS**
 
@@ -280,7 +324,7 @@ at least one elevation shadow CSS value.
   ```typescript
   export const fontFamily = {
     display: '"Funnel Display", sans-serif',
-    body: 'system-ui, -apple-system, sans-serif',
+    body: '"Inter", sans-serif',                   // [VERIFIED] — from Figma _Design system header
   } as const
 
   export const fontSize = {
@@ -321,7 +365,7 @@ at least one elevation shadow CSS value.
   ```css
     /* Typography — font family */
     --font-family-display: "Funnel Display", sans-serif;
-    --font-family-body: system-ui, -apple-system, sans-serif;
+    --font-family-body: "Inter", sans-serif;
 
     /* Typography — font size */
     --font-size-h1:      2.5rem;
@@ -531,11 +575,12 @@ at least one elevation shadow CSS value.
 - [ ] **Step 1: Update `src/index.ts` to re-export tokens**
 
   ```typescript
-  // Existing exports
+  // Existing exports (read src/index.ts before editing — don't guess current content)
   export { Button } from './components/Button';
   export type { ButtonProps } from './components/Button';
 
   // Design tokens
+  // colors.primary (orange), colors.secondary (purple), colors.terciary (pink), colors.neutral
   export { colors } from './tokens/colors';
   export type { Colors } from './tokens/colors';
   export { fontFamily, fontSize, fontWeight, lineHeight } from './tokens/typography';
@@ -562,39 +607,28 @@ at least one elevation shadow CSS value.
 
   type Story = StoryObj
 
+  const SwatchRow = ({ label, palette }: { label: string; palette: Record<string, string> }) => (
+    <div style={{ marginBottom: 24 }}>
+      <h3 style={{ marginBottom: 8, fontSize: 14 }}>{label}</h3>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        {(Object.entries(palette) as [string, string][]).map(([name, hex]) => (
+          <div key={name} style={{ textAlign: 'center' }}>
+            <div style={{ width: 64, height: 64, borderRadius: 8, background: hex, border: '1px solid #eee', marginBottom: 4 }} />
+            <div style={{ fontSize: 11 }}>{name}</div>
+            <div style={{ fontSize: 10, color: '#666' }}>{hex}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+
   export const Colors: Story = {
     render: () => (
       <div style={{ fontFamily: 'system-ui', padding: 24 }}>
-        <h2 style={{ marginBottom: 16 }}>Primary</h2>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 24 }}>
-          {(Object.entries(colors.primary) as [string, string][]).map(([name, hex]) => (
-            <div key={name} style={{ textAlign: 'center' }}>
-              <div style={{ width: 64, height: 64, borderRadius: 8, background: hex, marginBottom: 4 }} />
-              <div style={{ fontSize: 11 }}>{name}</div>
-              <div style={{ fontSize: 10, color: '#666' }}>{hex}</div>
-            </div>
-          ))}
-        </div>
-        <h2 style={{ marginBottom: 16 }}>Secondary</h2>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 24 }}>
-          {(Object.entries(colors.secondary) as [string, string][]).map(([name, hex]) => (
-            <div key={name} style={{ textAlign: 'center' }}>
-              <div style={{ width: 64, height: 64, borderRadius: 8, background: hex, marginBottom: 4 }} />
-              <div style={{ fontSize: 11 }}>{name}</div>
-              <div style={{ fontSize: 10, color: '#666' }}>{hex}</div>
-            </div>
-          ))}
-        </div>
-        <h2 style={{ marginBottom: 16 }}>Neutral</h2>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          {(Object.entries(colors.neutral) as [string, string][]).map(([name, hex]) => (
-            <div key={name} style={{ textAlign: 'center' }}>
-              <div style={{ width: 64, height: 64, borderRadius: 8, background: hex, border: '1px solid #eee', marginBottom: 4 }} />
-              <div style={{ fontSize: 11 }}>{name}</div>
-              <div style={{ fontSize: 10, color: '#666' }}>{hex}</div>
-            </div>
-          ))}
-        </div>
+        <SwatchRow label="Primary (Orange)" palette={colors.primary} />
+        <SwatchRow label="Secondary (Purple)" palette={colors.secondary} />
+        <SwatchRow label="Terciary (Pink/Magenta)" palette={colors.terciary} />
+        <SwatchRow label="Neutral" palette={colors.neutral} />
       </div>
     ),
   }
