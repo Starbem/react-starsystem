@@ -18,6 +18,9 @@ export type { CheckboxProps, CheckboxGroupProps } from './components/Checkbox'
 export { Radio, RadioGroup } from './components/Radio'
 export type { RadioProps, RadioGroupProps } from './components/Radio'
 
+export { Toggle } from './components/Toggle'
+export type { ToggleProps } from './components/Toggle'
+
 // Design tokens
 export { colors } from './tokens/colors'
 export type { Colors } from './tokens/colors'
