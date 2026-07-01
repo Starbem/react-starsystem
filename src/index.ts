@@ -12,6 +12,9 @@ export type { TextareaProps } from './components/Textarea'
 export { Select } from './components/Select'
 export type { SelectProps, SelectOption } from './components/Select'
 
+export { Checkbox, CheckboxGroup } from './components/Checkbox'
+export type { CheckboxProps, CheckboxGroupProps } from './components/Checkbox'
+
 // Design tokens
 export { colors } from './tokens/colors'
 export type { Colors } from './tokens/colors'
