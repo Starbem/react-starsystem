@@ -50,7 +50,7 @@ export function App() {
           <>
             <h1 style={{ fontSize: 20, marginBottom: 16 }}>{selected.title}</h1>
             {selected.stories.map((story) => (
-              <StoryRenderer key={story.name} doc={selected} story={story} />
+              <StoryRenderer key={`${selected.title}/${story.name}`} doc={selected} story={story} />
             ))}
           </>
         ) : (

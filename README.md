@@ -191,8 +191,11 @@ All components and tokens are derived from the **Star System DS** Figma library.
 # Install dependencies
 pnpm install
 
-# Start Storybook dev server (localhost:6006)
-pnpm storybook
+# Start the component docs site (localhost:5173)
+pnpm docs:dev
+
+# Build the static docs site → docs-site/dist/
+pnpm docs:build
 
 # Build library → dist/
 pnpm build
