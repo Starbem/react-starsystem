@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
+import { axe } from 'vitest-axe'
 import { Input } from './Input'
 
 describe('Input', () => {
@@ -80,5 +81,11 @@ describe('Input', () => {
   it('forwards id to input element', () => {
     render(<Input id="my-input" />)
     expect(screen.getByRole('textbox')).toHaveAttribute('id', 'my-input')
+  })
+
+  it('has no a11y violations', async () => {
+    const { container } = render(<Input label="Email" placeholder="olivia@untitledui.com" />)
+    // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
+    expect(await axe(container)).toHaveNoViolations()
   })
 })
