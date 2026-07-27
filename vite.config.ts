@@ -23,9 +23,24 @@ export default defineConfig({
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
+        exports: 'named',
         assetFileNames: (assetInfo) => {
           const names = assetInfo.names ?? (assetInfo.name ? [assetInfo.name] : [])
           return names.includes('index.css') ? 'style.css' : '[name][extname]'
+        },
+        manualChunks(id) {
+          if (id.includes('src/components/')) {
+            return 'components'
+          }
+          if (id.includes('src/tokens/')) {
+            return 'tokens'
+          }
+          if (id.includes('src/utils/')) {
+            return 'utils'
+          }
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'react-vendor'
+          }
         },
       },
     },

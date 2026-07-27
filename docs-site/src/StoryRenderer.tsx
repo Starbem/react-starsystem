@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type ComponentType } from 'react'
 import type { LoadedComponentDoc, LoadedStory } from './loadStories'
 
 type Props = {
@@ -14,8 +14,7 @@ export function StoryRenderer({ doc, story }: Props) {
 
   const argTypes = doc.meta.argTypes ?? {}
   const controlKeys = Object.keys(argTypes)
-
-  const Component = doc.meta.component as React.ComponentType<Record<string, unknown>> | undefined
+  const Component = doc.meta.component as ComponentType<Record<string, unknown>>
 
   return (
     <div style={{ marginBottom: 32, padding: 16, border: '1px solid #e5e5e5', borderRadius: 8 }}>
@@ -72,8 +71,12 @@ export function StoryRenderer({ doc, story }: Props) {
         </div>
       )}
 
-      <div>
-        {story.render ? story.render(args) : Component ? <Component {...args} /> : null}
+      <div style={{ padding: 16 }}>
+        {story.render ? (
+          story.render(args)
+        ) : Component ? (
+          <Component {...args} />
+        ) : null}
       </div>
     </div>
   )
