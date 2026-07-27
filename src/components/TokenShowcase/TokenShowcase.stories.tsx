@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '../../docs-types'
 import { colors } from '../../tokens/colors'
 import { fontSize, fontWeight } from '../../tokens/typography'
 import { shadows, borderRadius } from '../../tokens/spacing'
 
 const meta: Meta = {
   title: 'Tokens/Overview',
-  tags: ['autodocs'],
 }
 export default meta
 
