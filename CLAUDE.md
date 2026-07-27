@@ -11,8 +11,8 @@ pnpm dev              # watch mode (incremental rebuild)
 pnpm typecheck        # tsc --noEmit (type validation)
 pnpm lint             # ESLint (code quality)
 pnpm lint:fix         # ESLint --fix (auto-fix violations)
-pnpm storybook        # start Storybook dev server on localhost:6006
-pnpm build-storybook  # build static Storybook site
+pnpm docs:dev         # start the component docs site (localhost:5173)
+pnpm docs:build       # build the static docs site → docs-site/dist/
 pnpm test             # vitest run (unit tests)
 pnpm test:watch       # vitest (interactive test runner)
 pnpm release          # publish (via Changesets)
@@ -24,7 +24,7 @@ pnpm release          # publish (via Changesets)
 - **Styles:** `src/styles/globals.css` — Tailwind CSS v4 base, with `@theme` block for design tokens (colors, typography, spacing, shadows).
 - **Components:** `src/components/<ComponentName>/` — one folder per component. Each component has:
   - `<ComponentName>.tsx` — component implementation
-  - `<ComponentName>.stories.tsx` — Storybook stories
+  - `<ComponentName>.stories.tsx` — component stories
   - `<ComponentName>.test.tsx` — unit tests
   - `index.ts` — re-export component and types
 - **Tokens:** `src/tokens/` — TypeScript design tokens (populated in P1):
@@ -60,9 +60,9 @@ Use the Figma MCP to query component designs and extract token definitions.
    - Use `cn()` utility for safe class merging
    - Keep components focused and composable
 3. **Stories:** `<ComponentName>.stories.tsx`
-   - Use Storybook Meta + Story format
-   - Tag stories with `autodocs` for auto-generated documentation
-   - Include all component variants and use cases
+   - Use `Meta`/`StoryObj` from `src/docs-types.ts` (not `@storybook/react` — the lib no longer uses Storybook)
+   - Include all component variants and use cases as named exports
+   - The docs site (`docs-site/`) auto-discovers this file via glob — no manual registration needed
 4. **Tests:** `<ComponentName>.test.tsx`
    - Use vitest for unit tests
    - Test rendering, props, interactions, accessibility
@@ -101,7 +101,7 @@ Uses **Changesets** for semantic versioning (semver) and release coordination:
 
 - All components must meet **WCAG 2.1 AA** accessibility standards
 - Use semantic HTML and ARIA attributes where needed
-- Test with Storybook A11y addon (included)
+- Test with `vitest-axe` in each component's `.test.tsx` (`axe(container)` + `toHaveNoViolations()`)
 - Reference: https://www.w3.org/WAI/standards-guidelines/wcag/
 
 ## Code Quality
@@ -115,7 +115,7 @@ Uses **Changesets** for semantic versioning (semver) and release coordination:
 
 - **Peer:** React >=18, React DOM >=18
 - **Runtime:** clsx, tailwind-merge
-- **Dev:** Vite, TypeScript, Tailwind CSS v4, Storybook 8, vitest, ESLint
+- **Dev:** Vite, TypeScript, Tailwind CSS v4, vitest, ESLint
 
 ## Directory Structure
 
@@ -136,8 +136,7 @@ Uses **Changesets** for semantic versioning (semver) and release coordination:
 │   ├── vite-env.d.ts
 │   └── index.ts                # Public API barrel export
 ├── dist/                       # Build output (excluded from git)
-├── storybook-static/           # Storybook static build
-├── .storybook/                 # Storybook config
+├── docs-site/                  # Own component docs site (Vite + React), deployed to GitHub Pages
 ├── .changeset/                 # Changesets (version & publishing)
 ├── .github/workflows/          # CI/CD (lint, build, publish)
 ├── vite.config.ts
@@ -154,4 +153,4 @@ After P0 complete, extract token definitions from Figma Star System library:
 - Query `search_design_system` + `get_variable_defs` from Figma MCP
 - Populate `src/tokens/colors.ts`, `src/tokens/typography.ts`, `src/tokens/spacing.ts`
 - Update `src/styles/globals.css` `@theme` block with CSS custom properties
-- Generate component storybook stories with token usage examples
+- Generate component stories with token usage examples
