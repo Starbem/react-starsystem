@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '../../docs-types'
 import { useState } from 'react'
 import { Select } from './Select'
 
@@ -28,7 +28,6 @@ const MANY_OPTIONS = [
 const meta: Meta<typeof Select> = {
   title: 'Components/Select',
   component: Select,
-  tags: ['autodocs'],
   args: {
     options: OPTIONS,
     placeholder: 'Select team member',

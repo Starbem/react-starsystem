@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
+import { axe } from 'vitest-axe'
 import { Select } from './Select'
 
 const OPTIONS = [
@@ -146,5 +147,19 @@ describe('Select', () => {
 
     expect(handleChange).toHaveBeenCalledWith('b')
     expect(screen.queryByRole('listbox')).not.toBeInTheDocument()
+  })
+
+  it('has no a11y violations', async () => {
+    const { container } = render(
+      <Select
+        label="Team member"
+        options={[
+          { value: 'a', label: 'Option A' },
+          { value: 'b', label: 'Option B' },
+        ]}
+      />
+    )
+    // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
+    expect(await axe(container)).toHaveNoViolations()
   })
 })
