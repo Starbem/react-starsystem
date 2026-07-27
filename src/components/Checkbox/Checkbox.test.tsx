@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
+import { axe } from 'vitest-axe'
 import { Checkbox } from './Checkbox'
 import { CheckboxGroup } from './CheckboxGroup'
 
@@ -85,6 +86,12 @@ describe('Checkbox', () => {
     const labelId = checkbox.getAttribute('aria-labelledby')
     expect(labelId).toBeTruthy()
     expect(document.getElementById(labelId!)).toHaveTextContent('Accept terms')
+  })
+
+  it('has no a11y violations', async () => {
+    const { container } = render(<Checkbox label="Remember me" />)
+    // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
+    expect(await axe(container)).toHaveNoViolations()
   })
 })
 

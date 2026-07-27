@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '../../docs-types'
 import { useState } from 'react'
 import { Checkbox } from './Checkbox'
 import { CheckboxGroup } from './CheckboxGroup'
@@ -6,7 +6,6 @@ import { CheckboxGroup } from './CheckboxGroup'
 const meta: Meta<typeof Checkbox> = {
   title: 'Components/Checkbox',
   component: Checkbox,
-  tags: ['autodocs'],
   args: { label: 'Remember me' },
 }
 export default meta
