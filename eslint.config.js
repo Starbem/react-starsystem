@@ -2,12 +2,11 @@ import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
-import storybook from 'eslint-plugin-storybook'
 import tseslint from 'typescript-eslint'
 import prettier from 'eslint-config-prettier'
 
 export default tseslint.config(
-  { ignores: ['dist', 'storybook-static', '*.config.*'] },
+  { ignores: ['dist', 'docs-site/dist', '*.config.*'] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],
@@ -25,11 +24,14 @@ export default tseslint.config(
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
   },
-  ...storybook.configs['flat/recommended'],
   {
+    // Story files use a CSF-style `render: (args) => { ... }` function that
+    // legitimately calls hooks; it isn't a component/hook by naming
+    // convention, so react-hooks/rules-of-hooks doesn't recognize it.
+    // (Previously handled by eslint-plugin-storybook's flat/recommended config.)
     files: ['**/*.stories.{ts,tsx}'],
     rules: {
-      'storybook/no-renderer-packages': 'off',
+      'react-hooks/rules-of-hooks': 'off',
     },
   },
   prettier,
