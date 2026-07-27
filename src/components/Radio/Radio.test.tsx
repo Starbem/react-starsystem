@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import type { ComponentProps } from 'react'
 import { describe, expect, it, vi } from 'vitest'
+import { axe } from 'vitest-axe'
 import { Radio } from './Radio'
 import { RadioGroup } from './RadioGroup'
 
@@ -103,5 +104,16 @@ describe('RadioGroup + Radio', () => {
       </RadioGroup>,
     )
     expect(container.querySelector('[role="radiogroup"]')).toHaveClass('flex-row')
+  })
+
+  it('has no a11y violations', async () => {
+    const { container } = render(
+      <RadioGroup label="Plan" value="basic">
+        <Radio value="basic" label="Basic" />
+        <Radio value="pro" label="Pro" />
+      </RadioGroup>
+    )
+    // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
+    expect(await axe(container)).toHaveNoViolations()
   })
 })

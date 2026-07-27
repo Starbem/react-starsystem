@@ -14,7 +14,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["vitest/globals", "vitest-axe/extend-expect", "@testing-library/jest-dom"]
   },
   "include": ["src", "vite.config.ts", "eslint.config.js", ".storybook"]
 }
