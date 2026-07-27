@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
+import { axe } from 'vitest-axe'
 import { Textarea } from './Textarea'
 
 describe('Textarea', () => {
@@ -75,5 +76,11 @@ describe('Textarea', () => {
   it('applies opacity-60 class when disabled', () => {
     const { container } = render(<Textarea disabled />)
     expect(container.firstChild).toHaveClass('opacity-60')
+  })
+
+  it('has no a11y violations', async () => {
+    const { container } = render(<Textarea label="Description" placeholder="Enter a description..." />)
+    // @ts-expect-error - vitest-axe typing
+    expect(await axe(container)).toHaveNoViolations()
   })
 })
