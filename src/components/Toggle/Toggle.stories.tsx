@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '../../docs-types'
 import { useState } from 'react'
 import { Toggle } from './Toggle'
 
 const meta: Meta<typeof Toggle> = {
   title: 'Components/Toggle',
   component: Toggle,
-  tags: ['autodocs'],
   args: { label: 'Notifications' },
 }
 export default meta

@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
+import { axe } from 'vitest-axe'
 import { Toggle } from './Toggle'
 
 describe('Toggle', () => {
@@ -72,5 +73,11 @@ describe('Toggle', () => {
     const labelId = toggle.getAttribute('aria-labelledby')
     expect(labelId).toBeTruthy()
     expect(document.getElementById(labelId!)).toHaveTextContent('Notifications')
+  })
+
+  it('has no a11y violations', async () => {
+    const { container } = render(<Toggle label="Notifications" />)
+    // @ts-expect-error -- axe() is not typed in the default vitest-axe module
+    expect(await axe(container)).toHaveNoViolations()
   })
 })
