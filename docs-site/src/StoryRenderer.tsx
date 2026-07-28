@@ -1,4 +1,5 @@
 import { useState, type ComponentType } from 'react'
+import { Highlight, themes } from 'prism-react-renderer'
 import type { LoadedComponentDoc, LoadedStory } from './loadStories'
 
 type Props = {
@@ -11,6 +12,7 @@ export function StoryRenderer({ doc, story }: Props) {
     ...doc.meta.args,
     ...story.args,
   })
+  const [showCode, setShowCode] = useState(false)
 
   const argTypes = doc.meta.argTypes ?? {}
   const controlKeys = Object.keys(argTypes)
@@ -78,6 +80,51 @@ export function StoryRenderer({ doc, story }: Props) {
           <Component {...args} />
         ) : null}
       </div>
+
+      {story.code && (
+        <div style={{ marginTop: 8 }}>
+          <button
+            type="button"
+            onClick={() => setShowCode((v) => !v)}
+            style={{
+              fontSize: 12,
+              padding: '4px 10px',
+              borderRadius: 6,
+              border: '1px solid #e5e5e5',
+              background: showCode ? '#f5f5f5' : '#fff',
+              cursor: 'pointer',
+            }}
+          >
+            {showCode ? 'Hide code' : 'Show code'}
+          </button>
+
+          {showCode && (
+            <Highlight theme={themes.oneLight} code={story.code.trim()} language="tsx">
+              {({ style, tokens, getLineProps, getTokenProps }) => (
+                <pre
+                  style={{
+                    ...style,
+                    marginTop: 8,
+                    padding: 16,
+                    borderRadius: 8,
+                    overflowX: 'auto',
+                    fontSize: 13,
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {tokens.map((line, i) => (
+                    <div key={i} {...getLineProps({ line })}>
+                      {line.map((token, tokenIdx) => (
+                        <span key={tokenIdx} {...getTokenProps({ token })} />
+                      ))}
+                    </div>
+                  ))}
+                </pre>
+              )}
+            </Highlight>
+          )}
+        </div>
+      )}
     </div>
   )
 }
