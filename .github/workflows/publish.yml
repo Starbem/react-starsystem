@@ -29,16 +29,22 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      # Trusted Publishing requires npm >= 11.5.1; pin explicitly instead of trusting
-      # whatever version ships bundled with the Node 24 setup-node image.
-      - run: npm install -g npm@latest
-
       - run: pnpm build
 
-      # No NPM_TOKEN / NODE_AUTH_TOKEN: publishes via Trusted Publishing (OIDC).
-      # npm auto-detects the id-token permission above and exchanges it for a
-      # short-lived publish credential — nothing to store as a secret.
-      - run: pnpm release
+      # Publishes via npm directly (not `pnpm release`/`changeset publish`): pnpm's
+      # own OIDC/Trusted Publishing support is still inconsistent across versions
+      # (works on pnpm 10, breaks on pnpm 11 — pnpm/pnpm#11513) and pnpm publish
+      # passes its own `--no-git-checks` flag through in a way that conflicts with
+      # npm once npm is upgraded for OIDC support. npm's own CLI (>=11.5.1) has
+      # solid, documented Trusted Publishing support, so we call it directly.
+      # `changeset version` already bumped package.json/CHANGELOG.md in a separate,
+      # earlier commit — this step only uploads the already-versioned package.
+      #
+      # No NPM_TOKEN / NODE_AUTH_TOKEN: npm auto-detects the id-token permission
+      # above and exchanges it for a short-lived publish credential via OIDC —
+      # nothing to store as a secret.
+      - run: npm install -g npm@11.5.1
+      - run: npm publish --access public
 
       - name: Build release notes
         run: |
