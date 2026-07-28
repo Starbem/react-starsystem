@@ -24,6 +24,9 @@ export type { ToggleProps } from './components/Toggle'
 export { FormField } from './components/FormField'
 export type { FormFieldProps } from './components/FormField'
 
+export { Badge } from './components/Badge'
+export type { BadgeProps } from './components/Badge'
+
 // Design tokens
 export { colors } from './tokens/colors'
 export type { Colors } from './tokens/colors'
