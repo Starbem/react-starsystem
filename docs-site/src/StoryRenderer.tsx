@@ -1,13 +1,15 @@
 import { useState, type ComponentType } from 'react'
 import { Highlight, themes } from 'prism-react-renderer'
 import type { LoadedComponentDoc, LoadedStory } from './loadStories'
+import type { Theme } from './useTheme'
 
 type Props = {
   doc: LoadedComponentDoc
   story: LoadedStory
+  theme: Theme
 }
 
-export function StoryRenderer({ doc, story }: Props) {
+export function StoryRenderer({ doc, story, theme }: Props) {
   const [args, setArgs] = useState<Record<string, unknown>>({
     ...doc.meta.args,
     ...story.args,
@@ -19,31 +21,23 @@ export function StoryRenderer({ doc, story }: Props) {
   const Component = doc.meta.component as ComponentType<Record<string, unknown>>
 
   return (
-    // Fixed light "stage", regardless of the docs-site's own theme: the
-    // library's components have no dark: styling yet, so a dark background
-    // here would break contrast for any component that renders bare text
-    // without its own surface (e.g. Breadcrumb).
-    <div
-      style={{
-        marginBottom: 32,
-        padding: 16,
-        border: '1px solid #e5e5e5',
-        borderRadius: 8,
-        background: '#fff',
-        color: '#101828',
-      }}
-    >
-      <h3 style={{ fontSize: 14, fontWeight: 600, marginBottom: 12 }}>{story.name}</h3>
+    // Follows the docs-site theme (per user request), traded off against a
+    // known gap: library components with no dark: styling of their own
+    // (e.g. Breadcrumb, Accordion, Divider — hardcoded dark-on-transparent
+    // text) will have degraded contrast here in dark mode until those
+    // components get real dark: support (separate, larger effort).
+    <div className="mb-[32px] rounded-[8px] border border-[#e5e5e5] p-[16px] dark:border-[#1F2937] dark:bg-[#151B2C]">
+      <h3 className="mb-[12px] text-[14px] font-semibold text-[#101828] dark:text-white">{story.name}</h3>
 
       {controlKeys.length > 0 && (
-        <div style={{ display: 'flex', gap: 12, marginBottom: 16, flexWrap: 'wrap' }}>
+        <div className="mb-[16px] flex flex-wrap gap-[12px]">
           {controlKeys.map((key) => {
             const argType = argTypes[key]!
             const value = args[key]
 
             if (argType.control === 'boolean') {
               return (
-                <label key={key} style={{ fontSize: 12 }}>
+                <label key={key} className="text-[12px] text-[#101828] dark:text-[#D0D5DD]">
                   <input
                     type="checkbox"
                     checked={Boolean(value)}
@@ -56,11 +50,12 @@ export function StoryRenderer({ doc, story }: Props) {
 
             if (argType.control === 'select') {
               return (
-                <label key={key} style={{ fontSize: 12 }}>
+                <label key={key} className="text-[12px] text-[#101828] dark:text-[#D0D5DD]">
                   {key}{' '}
                   <select
                     value={String(value ?? '')}
                     onChange={(e) => setArgs((a) => ({ ...a, [key]: e.target.value }))}
+                    className="dark:border-[#1F2937] dark:bg-[#0B0F19] dark:text-white"
                   >
                     {argType.options.map((opt) => (
                       <option key={opt} value={opt}>
@@ -73,12 +68,13 @@ export function StoryRenderer({ doc, story }: Props) {
             }
 
             return (
-              <label key={key} style={{ fontSize: 12 }}>
+              <label key={key} className="text-[12px] text-[#101828] dark:text-[#D0D5DD]">
                 {key}{' '}
                 <input
                   type="text"
                   value={String(value ?? '')}
                   onChange={(e) => setArgs((a) => ({ ...a, [key]: e.target.value }))}
+                  className="dark:border-[#1F2937] dark:bg-[#0B0F19] dark:text-white"
                 />
               </label>
             )
@@ -86,7 +82,7 @@ export function StoryRenderer({ doc, story }: Props) {
         </div>
       )}
 
-      <div style={{ padding: 16 }}>
+      <div className="p-[16px]">
         {story.render ? (
           story.render(args)
         ) : Component ? (
@@ -95,24 +91,21 @@ export function StoryRenderer({ doc, story }: Props) {
       </div>
 
       {story.code && (
-        <div style={{ marginTop: 8 }}>
+        <div className="mt-[8px]">
           <button
             type="button"
             onClick={() => setShowCode((v) => !v)}
-            style={{
-              fontSize: 12,
-              padding: '4px 10px',
-              borderRadius: 6,
-              border: '1px solid #e5e5e5',
-              background: showCode ? '#f5f5f5' : '#fff',
-              cursor: 'pointer',
-            }}
+            className={
+              showCode
+                ? 'rounded-[6px] border border-[#e5e5e5] bg-[#f5f5f5] px-[10px] py-[4px] text-[12px] text-[#101828] dark:border-[#1F2937] dark:bg-[#1F2937] dark:text-white'
+                : 'rounded-[6px] border border-[#e5e5e5] bg-white px-[10px] py-[4px] text-[12px] text-[#101828] dark:border-[#1F2937] dark:bg-[#151B2C] dark:text-white'
+            }
           >
             {showCode ? 'Hide code' : 'Show code'}
           </button>
 
           {showCode && (
-            <Highlight theme={themes.oneLight} code={story.code.trim()} language="tsx">
+            <Highlight theme={theme === 'dark' ? themes.vsDark : themes.oneLight} code={story.code.trim()} language="tsx">
               {({ style, tokens, getLineProps, getTokenProps }) => (
                 <pre
                   style={{

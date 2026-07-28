@@ -79,7 +79,7 @@ export function DocsLayout({ onBackToHome, theme, onToggleTheme }: DocsLayoutPro
                 {selected.title}
               </h1>
               {selected.stories.map((story) => (
-                <StoryRenderer key={`${selected.title}/${story.name}`} doc={selected} story={story} />
+                <StoryRenderer key={`${selected.title}/${story.name}`} doc={selected} story={story} theme={theme} />
               ))}
             </>
           ) : (
