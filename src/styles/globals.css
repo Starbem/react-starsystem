@@ -95,3 +95,9 @@
   --shadow-elevation-secondary: 0 4px 16px rgba(237,46,152,0.32);      /* PLACEHOLDER — verify Figma Elevation/Secondary */
   --shadow-elevation-hover-secondary: 0 4px 24px rgba(237,46,152,0.48); /* PLACEHOLDER — verify Figma Elevation/Hover/Secondary */
 }
+
+/* Toast auto-dismiss progress bar */
+@keyframes toast-progress {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0); }
+}

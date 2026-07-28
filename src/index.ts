@@ -30,6 +30,9 @@ export type { BadgeProps } from './components/Badge'
 export { Alert } from './components/Alert'
 export type { AlertProps } from './components/Alert'
 
+export { ToastProvider, toast } from './components/Toast'
+export type { ToastProviderProps, ToastOptions, ToastVariant, ToastPosition } from './components/Toast'
+
 // Design tokens
 export { colors } from './tokens/colors'
 export type { Colors } from './tokens/colors'

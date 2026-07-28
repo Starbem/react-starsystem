@@ -65,6 +65,7 @@
     "vitest-axe": "1.0.0-pre.5"
   },
   "dependencies": {
+    "@radix-ui/react-toast": "^1.2.23",
     "clsx": "^2.1.1",
     "tailwind-merge": "^3.6.0"
   }
