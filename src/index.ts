@@ -39,6 +39,9 @@ export type { SkeletonProps } from './components/Skeleton'
 export { Spinner } from './components/Spinner'
 export type { SpinnerProps } from './components/Spinner'
 
+export { EmptyState } from './components/EmptyState'
+export type { EmptyStateProps } from './components/EmptyState'
+
 // Design tokens
 export { colors } from './tokens/colors'
 export type { Colors } from './tokens/colors'
