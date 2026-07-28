@@ -27,6 +27,9 @@ export type { FormFieldProps } from './components/FormField'
 export { Badge } from './components/Badge'
 export type { BadgeProps } from './components/Badge'
 
+export { Alert } from './components/Alert'
+export type { AlertProps } from './components/Alert'
+
 // Design tokens
 export { colors } from './tokens/colors'
 export type { Colors } from './tokens/colors'
