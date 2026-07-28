@@ -48,6 +48,9 @@ export type { PopoverProps, PopoverSide, PopoverAlign } from './components/Popov
 export { TopBar } from './components/TopBar'
 export type { TopBarProps } from './components/TopBar'
 
+export { Table } from './components/Table'
+export type { TableProps, TableColumn, SortDirection } from './components/Table'
+
 export { Pagination } from './components/Pagination'
 export type { PaginationProps } from './components/Pagination'
 

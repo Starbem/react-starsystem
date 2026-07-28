@@ -13,6 +13,7 @@ export interface CheckboxProps {
   name?: string
   value?: string
   className?: string
+  'aria-label'?: string
 }
 
 const BOX_SIZE = {
@@ -53,6 +54,7 @@ export function Checkbox({
   name,
   value,
   className,
+  'aria-label': ariaLabel,
 }: CheckboxProps) {
   const generatedId = useId()
   const checkboxId = id ?? generatedId
@@ -81,6 +83,7 @@ export function Checkbox({
           role="checkbox"
           aria-checked={indeterminate ? 'mixed' : checked}
           aria-disabled={disabled || undefined}
+          aria-label={labelId ? undefined : ariaLabel}
           aria-labelledby={labelId}
           aria-describedby={descId}
           tabIndex={disabled ? -1 : 0}
