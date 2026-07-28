@@ -45,6 +45,18 @@ export type { TooltipProps, TooltipSide } from './components/Tooltip'
 export { Popover } from './components/Popover'
 export type { PopoverProps, PopoverSide, PopoverAlign } from './components/Popover'
 
+export { DropdownMenu } from './components/DropdownMenu'
+export type {
+  DropdownMenuProps,
+  DropdownMenuAlign,
+  DropdownMenuEntry,
+  DropdownMenuItemConfig,
+  DropdownMenuSeparatorConfig,
+  DropdownMenuLabelConfig,
+  DropdownMenuCheckboxItemConfig,
+  DropdownMenuSubMenuConfig,
+} from './components/DropdownMenu'
+
 export { Skeleton } from './components/Skeleton'
 export type { SkeletonProps } from './components/Skeleton'
 
