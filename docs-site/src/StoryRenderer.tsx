@@ -19,7 +19,20 @@ export function StoryRenderer({ doc, story }: Props) {
   const Component = doc.meta.component as ComponentType<Record<string, unknown>>
 
   return (
-    <div style={{ marginBottom: 32, padding: 16, border: '1px solid #e5e5e5', borderRadius: 8 }}>
+    // Fixed light "stage", regardless of the docs-site's own theme: the
+    // library's components have no dark: styling yet, so a dark background
+    // here would break contrast for any component that renders bare text
+    // without its own surface (e.g. Breadcrumb).
+    <div
+      style={{
+        marginBottom: 32,
+        padding: 16,
+        border: '1px solid #e5e5e5',
+        borderRadius: 8,
+        background: '#fff',
+        color: '#101828',
+      }}
+    >
       <h3 style={{ fontSize: 14, fontWeight: 600, marginBottom: 12 }}>{story.name}</h3>
 
       {controlKeys.length > 0 && (

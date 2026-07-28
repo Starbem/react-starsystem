@@ -120,11 +120,11 @@ export function Home({ onGetStarted, theme, onToggleTheme }: HomeProps) {
 
       <div className="relative z-10 mt-[64px] grid w-full max-w-[960px] grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-4">
         {HIGHLIGHTS.map((item) => (
-          <Card key={item.title} variant="elevated">
+          <Card key={item.title} variant="elevated" className="dark:border-[#1F2937] dark:bg-[#151B2C]">
             <Card.Body>
               <div className="mb-[8px] text-[#FF5100]">{item.icon}</div>
-              <strong className="mb-[4px] block text-[14px] text-[#101828]">{item.title}</strong>
-              <p className="text-[13px] text-[#667085]">{item.description}</p>
+              <strong className="mb-[4px] block text-[14px] text-[#101828] dark:text-white">{item.title}</strong>
+              <p className="text-[13px] text-[#667085] dark:text-[#98A2B3]">{item.description}</p>
             </Card.Body>
           </Card>
         ))}

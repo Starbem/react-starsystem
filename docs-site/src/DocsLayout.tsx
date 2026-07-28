@@ -69,18 +69,21 @@ export function DocsLayout({ onBackToHome, theme, onToggleTheme }: DocsLayoutPro
           ))}
         </nav>
 
-        {/* Canvas stays light regardless of theme: the rendered components below
-            have no dark: styling yet, so a dark canvas would break their contrast. */}
-        <main className="flex-1 overflow-y-auto bg-white p-[24px]">
+        {/* Page background can go dark: each StoryRenderer wraps its example in
+            its own fixed-light card, so components without their own surface
+            (e.g. Breadcrumb's bare text) still get correct contrast. */}
+        <main className="flex-1 overflow-y-auto bg-white p-[24px] dark:bg-[#0B0F19]">
           {selected ? (
             <>
-              <h1 className="mb-[16px] text-[20px] font-semibold text-[#101828]">{selected.title}</h1>
+              <h1 className="mb-[16px] text-[20px] font-semibold text-[#101828] dark:text-white">
+                {selected.title}
+              </h1>
               {selected.stories.map((story) => (
                 <StoryRenderer key={`${selected.title}/${story.name}`} doc={selected} story={story} />
               ))}
             </>
           ) : (
-            <p>No stories found.</p>
+            <p className="dark:text-[#D0D5DD]">No stories found.</p>
           )}
         </main>
       </div>
