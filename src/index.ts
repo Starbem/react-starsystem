@@ -48,6 +48,9 @@ export type { PopoverProps, PopoverSide, PopoverAlign } from './components/Popov
 export { TopBar } from './components/TopBar'
 export type { TopBarProps } from './components/TopBar'
 
+export { Accordion } from './components/Accordion'
+export type { AccordionProps, AccordionItemConfig, AccordionType } from './components/Accordion'
+
 export { Avatar, AvatarGroup } from './components/Avatar'
 export type { AvatarProps, AvatarGroupProps, AvatarGroupItem, AvatarSize, AvatarStatus } from './components/Avatar'
 
