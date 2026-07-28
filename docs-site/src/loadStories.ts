@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import type { Meta, StoryObj } from '../../src/docs-types'
-import { extractStoryCode } from './extractStoryCode'
+import { getStoryUsageCode } from './extractStoryCode'
 
 export type LoadedStory = {
   name: string
@@ -41,12 +41,15 @@ export function loadStories(): LoadedComponentDoc[] {
     const [group, ...rest] = meta.title.split('/')
     const page = rest.length > 0 ? rest.join('/') : meta.title
     const source = sources[path]
+    const componentFn = meta.component as unknown as { displayName?: string; name?: string } | undefined
+    const componentName = componentFn?.displayName || componentFn?.name || page
 
     const stories: LoadedStory[] = Object.entries(mod)
       .filter(([exportName]) => exportName !== 'default')
       .map(([name, story]) => {
         const s = story as StoryObj
-        const code = source ? extractStoryCode(source, name) : undefined
+        const mergedArgs = { ...meta.args, ...s.args }
+        const code = getStoryUsageCode(source, name, componentName, mergedArgs)
         return { name, args: s.args, render: s.render as LoadedStory['render'], code }
       })
 
