@@ -48,6 +48,9 @@ export type { PopoverProps, PopoverSide, PopoverAlign } from './components/Popov
 export { TopBar } from './components/TopBar'
 export type { TopBarProps } from './components/TopBar'
 
+export { Card } from './components/Card'
+export type { CardProps, CardVariant, CardPadding, CardSlotProps } from './components/Card'
+
 export { Table } from './components/Table'
 export type { TableProps, TableColumn, SortDirection } from './components/Table'
 
