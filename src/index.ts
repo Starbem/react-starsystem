@@ -48,6 +48,9 @@ export type { PopoverProps, PopoverSide, PopoverAlign } from './components/Popov
 export { TopBar } from './components/TopBar'
 export type { TopBarProps } from './components/TopBar'
 
+export { Breadcrumb } from './components/Breadcrumb'
+export type { BreadcrumbProps, BreadcrumbItem } from './components/Breadcrumb'
+
 export { Sidebar, NavItem } from './components/Sidebar'
 export type { SidebarProps, NavItemProps, NavItemConfig } from './components/Sidebar'
 
