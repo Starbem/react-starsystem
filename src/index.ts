@@ -33,6 +33,9 @@ export type { AlertProps } from './components/Alert'
 export { ToastProvider, toast } from './components/Toast'
 export type { ToastProviderProps, ToastOptions, ToastVariant, ToastPosition } from './components/Toast'
 
+export { Skeleton } from './components/Skeleton'
+export type { SkeletonProps } from './components/Skeleton'
+
 // Design tokens
 export { colors } from './tokens/colors'
 export type { Colors } from './tokens/colors'
