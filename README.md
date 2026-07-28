@@ -190,7 +190,7 @@ pnpm lint:fix
 2. Add `<ComponentName>.tsx`, `<ComponentName>.stories.tsx`, `<ComponentName>.test.tsx`, `index.ts`
 3. Re-export from `src/index.ts`
 
-See [CLAUDE.md](./CLAUDE.md) for the full contribution guide.
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full contribution guide, and [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) for community expectations. For security issues, see [SECURITY.md](./SECURITY.md) instead of opening a public issue.
 
 ---
 

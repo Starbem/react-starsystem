@@ -1,7 +1,27 @@
 {
   "name": "@starbemtech/react-starsystem",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Starbem Star System — React component library",
+  "license": "MIT",
+  "author": "Starbem",
+  "homepage": "https://github.com/Starbem/react-starsystem#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Starbem/react-starsystem.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Starbem/react-starsystem/issues"
+  },
+  "keywords": [
+    "react",
+    "design-system",
+    "component-library",
+    "starbem",
+    "tailwindcss",
+    "typescript",
+    "accessibility",
+    "radix-ui"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

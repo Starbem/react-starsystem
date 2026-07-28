@@ -1,5 +1,11 @@
 # @starbemtech/react-starsystem
 
+## 0.1.1
+
+### Patch Changes
+
+- Add standard open-source project files: `LICENSE` (MIT), `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md` (Contributor Covenant 2.1), and `SECURITY.md`. Enrich `package.json` with `license`, `author`, `repository`, `homepage`, `bugs`, and `keywords` fields for the npm package page.
+
 ## 0.1.0
 
 ### Minor Changes
