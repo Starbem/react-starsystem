@@ -17,7 +17,7 @@ export const Default: Story = {
       content={
         <div className="flex flex-col gap-[4px]">
           <strong className="text-[14px]">Título</strong>
-          <p className="text-[14px] text-[#667085]">Conteúdo simples do popover.</p>
+          <p className="text-[14px] text-[#667085] dark:text-[#98A2B3]">Conteúdo simples do popover.</p>
         </div>
       }
     />
@@ -47,17 +47,17 @@ export const WithList: Story = {
       content={
         <ul className="flex flex-col gap-[4px] text-[14px]">
           <li>
-            <button type="button" className="w-full text-left px-[8px] py-[4px] rounded-[6px] hover:bg-[#F2F4F7]">
+            <button type="button" className="w-full text-left px-[8px] py-[4px] rounded-[6px] hover:bg-[#F2F4F7] dark:hover:bg-[#1F2937]">
               Editar
             </button>
           </li>
           <li>
-            <button type="button" className="w-full text-left px-[8px] py-[4px] rounded-[6px] hover:bg-[#F2F4F7]">
+            <button type="button" className="w-full text-left px-[8px] py-[4px] rounded-[6px] hover:bg-[#F2F4F7] dark:hover:bg-[#1F2937]">
               Duplicar
             </button>
           </li>
           <li>
-            <button type="button" className="w-full text-left px-[8px] py-[4px] rounded-[6px] hover:bg-[#F2F4F7]">
+            <button type="button" className="w-full text-left px-[8px] py-[4px] rounded-[6px] hover:bg-[#F2F4F7] dark:hover:bg-[#1F2937]">
               Excluir
             </button>
           </li>

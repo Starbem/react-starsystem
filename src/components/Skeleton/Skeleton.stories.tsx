@@ -44,7 +44,7 @@ export const AnimationNone: Story = {
 
 export const CardSkeleton: Story = {
   render: () => (
-    <div className="flex flex-col gap-3 p-4 max-w-xs rounded-[16px] border border-[#E8E8E8]">
+    <div className="flex flex-col gap-3 p-4 max-w-xs rounded-[16px] border border-[#E8E8E8] dark:border-[#1F2937]">
       <Skeleton variant="rectangular" height={140} />
       <Skeleton variant="circular" />
       <Skeleton variant="text" width="70%" />

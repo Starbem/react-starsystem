@@ -67,7 +67,7 @@ function Logo() {
 function UserFooter() {
   return (
     <div className="flex items-center gap-[8px] px-[4px] py-[8px]">
-      <div className="size-[28px] rounded-full bg-[#FFD4BF] flex items-center justify-center text-[11px] font-medium">
+      <div className="size-[28px] rounded-full bg-[#FFD4BF] flex items-center justify-center text-[11px] font-medium text-[#101828]">
         JS
       </div>
       <span className="text-[13px] font-medium truncate">Julio Sousa</span>

@@ -49,7 +49,7 @@ function ControlledDemo() {
   return (
     <div className="flex flex-col gap-[8px]">
       <Tabs variant="filled" items={ITEMS} value={value} onChange={setValue} />
-      <p className="text-[12px] text-[#667085]">Tab ativa: {value}</p>
+      <p className="text-[12px] text-[#667085] dark:text-[#98A2B3]">Tab ativa: {value}</p>
     </div>
   )
 }

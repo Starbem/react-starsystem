@@ -15,7 +15,7 @@ function Logo() {
 
 function Avatar() {
   return (
-    <div className="size-[32px] rounded-full bg-[#FFD4BF] flex items-center justify-center text-[12px] font-medium">
+    <div className="size-[32px] rounded-full bg-[#FFD4BF] flex items-center justify-center text-[12px] font-medium text-[#101828]">
       JS
     </div>
   )
@@ -59,7 +59,7 @@ export const WithBackButton: Story = {
 
 export const Sticky: Story = {
   render: () => (
-    <div className="h-[240px] overflow-y-auto border border-[#EAECF0] rounded-[8px]">
+    <div className="h-[240px] overflow-y-auto border border-[#EAECF0] rounded-[8px] dark:border-[#1F2937]">
       <TopBar sticky bordered start={<Logo />} center="Role a página" end={<Avatar />} />
       <div className="p-[16px] flex flex-col gap-[12px] text-[14px]">
         {Array.from({ length: 20 }, (_, index) => (

@@ -20,7 +20,7 @@ export const Default: Story = {
         </Badge>
       </Card.Header>
       <Card.Body>
-        <p className="text-[14px] text-[#667085]">Telemedicina 24h, nutrição e saúde mental inclusos.</p>
+        <p className="text-[14px] text-[#667085] dark:text-[#98A2B3]">Telemedicina 24h, nutrição e saúde mental inclusos.</p>
       </Card.Body>
       <Card.Footer>
         <Button size="sm" variant="outline">
@@ -57,7 +57,7 @@ export const Clickable: Story = {
     <Card variant="elevated" onClick={() => alert('Card clicado')} className="max-w-[320px]">
       <Card.Body>
         <strong className="text-[14px]">Ver relatório</strong>
-        <p className="text-[14px] text-[#667085]">Clique em qualquer lugar do card.</p>
+        <p className="text-[14px] text-[#667085] dark:text-[#98A2B3]">Clique em qualquer lugar do card.</p>
       </Card.Body>
     </Card>
   ),

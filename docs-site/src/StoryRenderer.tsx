@@ -21,11 +21,6 @@ export function StoryRenderer({ doc, story, theme }: Props) {
   const Component = doc.meta.component as ComponentType<Record<string, unknown>>
 
   return (
-    // Follows the docs-site theme (per user request), traded off against a
-    // known gap: library components with no dark: styling of their own
-    // (e.g. Breadcrumb, Accordion, Divider — hardcoded dark-on-transparent
-    // text) will have degraded contrast here in dark mode until those
-    // components get real dark: support (separate, larger effort).
     <div className="mb-[32px] rounded-[8px] border border-[#e5e5e5] p-[16px] dark:border-[#1F2937] dark:bg-[#151B2C]">
       <h3 className="mb-[12px] text-[14px] font-semibold text-[#101828] dark:text-white">{story.name}</h3>
 
@@ -82,7 +77,7 @@ export function StoryRenderer({ doc, story, theme }: Props) {
         </div>
       )}
 
-      <div className="p-[16px]">
+      <div className="p-[16px] text-[#101828] dark:text-[#F2F4F7]">
         {story.render ? (
           story.render(args)
         ) : Component ? (
