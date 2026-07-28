@@ -95,7 +95,7 @@ export function Home({ onGetStarted }: HomeProps) {
     <div className="relative flex min-h-screen flex-col items-center overflow-hidden bg-white px-[24px] py-[64px]">
       <AuroraBackground />
 
-      <img src="./brand/starbem-logo.svg" alt="Starbem" className="relative z-10 mb-[32px] h-[56px] w-auto" />
+      <img src="./brand/starbem-logo.png" alt="Starbem" className="relative z-10 mb-[32px] h-[56px] w-auto" />
 
       <h1 className="relative z-10 mb-[12px] text-center text-[32px] font-semibold text-[#101828]">Star System</h1>
       <p className="relative z-10 mb-[32px] max-w-[480px] text-center text-[16px] text-[#667085]">

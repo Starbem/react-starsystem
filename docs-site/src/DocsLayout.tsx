@@ -20,7 +20,7 @@ export function DocsLayout({ onBackToHome }: DocsLayoutProps) {
   const selected = docs.find((d) => d.title === selectedTitle)
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex h-screen flex-col overflow-hidden">
       <TopBar
         bordered
         start={
@@ -35,7 +35,7 @@ export function DocsLayout({ onBackToHome }: DocsLayoutProps) {
         center={<span className="text-[16px] font-medium text-[#101828]">Star System</span>}
       />
 
-      <div className="flex flex-1">
+      <div className="flex flex-1 overflow-hidden">
         <nav className="w-[240px] shrink-0 overflow-y-auto border-r border-[#EAECF0] bg-white p-[16px]">
           {Object.entries(groups).map(([group, groupDocs]) => (
             <div key={group} className="mb-[16px]">
