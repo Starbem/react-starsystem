@@ -5,6 +5,8 @@ React component library for [Starbem](https://starbem.app)'s **Star System Desig
 [![npm version](https://img.shields.io/npm/v/@starbemtech/react-starsystem)](https://www.npmjs.com/package/@starbemtech/react-starsystem)
 [![license](https://img.shields.io/npm/l/@starbemtech/react-starsystem)](./LICENSE)
 
+**[📖 Interactive docs & component browser](https://starbem.github.io/react-starsystem/)**
+
 ## Overview
 
 - **Figma-first** — every token and component maps 1:1 to the Star System DS file
@@ -64,7 +66,7 @@ import { Button, Input } from '@starbemtech/react-starsystem'
 <Button variant="primary" size="md">Get started</Button>
 ```
 
-Every component is fully typed — import its prop type alongside the component (`import type { ButtonProps } from '@starbemtech/react-starsystem'`) for the full API, or open its source folder below. Full interactive docs (all variants, live prop controls) run locally via `pnpm docs:dev` — a public deploy is planned (ID-3199), not live yet.
+Every component is fully typed — import its prop type alongside the component (`import type { ButtonProps } from '@starbemtech/react-starsystem'`) for the full API, or open its source folder below. Full interactive docs (all variants, live prop controls) are at **[starbem.github.io/react-starsystem](https://starbem.github.io/react-starsystem/)**, or run locally via `pnpm docs:dev`.
 
 **Form**
 

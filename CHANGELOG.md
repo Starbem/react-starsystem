@@ -1,5 +1,11 @@
 # @starbemtech/react-starsystem
 
+## 0.1.2
+
+### Patch Changes
+
+- Link the live docs-site (https://starbem.github.io/react-starsystem/) from the README and set it as the package's `homepage` field.
+
 ## 0.1.1
 
 ### Patch Changes

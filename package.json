@@ -1,10 +1,10 @@
 {
   "name": "@starbemtech/react-starsystem",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Starbem Star System — React component library",
   "license": "MIT",
   "author": "Starbem",
-  "homepage": "https://github.com/Starbem/react-starsystem#readme",
+  "homepage": "https://starbem.github.io/react-starsystem/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Starbem/react-starsystem.git"
