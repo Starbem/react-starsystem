@@ -36,6 +36,9 @@ export type { ToastProviderProps, ToastOptions, ToastVariant, ToastPosition } fr
 export { Modal } from './components/Modal'
 export type { ModalProps, ModalSize } from './components/Modal'
 
+export { Drawer } from './components/Drawer'
+export type { DrawerProps, DrawerPosition, DrawerSize } from './components/Drawer'
+
 export { Skeleton } from './components/Skeleton'
 export type { SkeletonProps } from './components/Skeleton'
 
