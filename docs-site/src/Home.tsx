@@ -1,8 +1,12 @@
 import { Button } from '../../src/components/Button'
 import { Card } from '../../src/components/Card'
+import { ThemeToggle } from './ThemeToggle'
+import type { Theme } from './useTheme'
 
 export interface HomeProps {
   onGetStarted: () => void
+  theme: Theme
+  onToggleTheme: () => void
 }
 
 function RadixIcon() {
@@ -70,7 +74,7 @@ const HIGHLIGHTS = [
   },
   {
     title: 'Tailwind CSS v4',
-    description: 'Estilização via tokens do design system, com suporte nativo a tema claro e escuro.',
+    description: 'Estilização via tokens do design system — cores, tipografia e espaçamento como CSS custom properties.',
     icon: <TailwindIcon />,
   },
   {
@@ -90,15 +94,21 @@ function AuroraBackground() {
   )
 }
 
-export function Home({ onGetStarted }: HomeProps) {
+export function Home({ onGetStarted, theme, onToggleTheme }: HomeProps) {
   return (
-    <div className="relative flex min-h-screen flex-col items-center overflow-hidden bg-white px-[24px] py-[64px]">
+    <div className="relative flex min-h-screen flex-col items-center overflow-hidden bg-white px-[24px] py-[64px] dark:bg-[#0B0F19]">
       <AuroraBackground />
+
+      <div className="absolute right-[24px] top-[24px] z-20">
+        <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+      </div>
 
       <img src="./brand/starbem-logo.png" alt="Starbem" className="relative z-10 mb-[32px] h-[56px] w-auto" />
 
-      <h1 className="relative z-10 mb-[12px] text-center text-[32px] font-semibold text-[#101828]">Star System</h1>
-      <p className="relative z-10 mb-[32px] max-w-[480px] text-center text-[16px] text-[#667085]">
+      <h1 className="relative z-10 mb-[12px] text-center text-[32px] font-semibold text-[#101828] dark:text-white">
+        Star System
+      </h1>
+      <p className="relative z-10 mb-[32px] max-w-[480px] text-center text-[16px] text-[#667085] dark:text-[#98A2B3]">
         Design system oficial da Starbem: componentes React acessíveis, tipados e prontos pra produção.
       </p>
 

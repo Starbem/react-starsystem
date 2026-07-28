@@ -1,0 +1,9 @@
+/* Docs-site-only entry stylesheet: pulls in the shared design system CSS
+   via a real CSS @import (so Tailwind's compiler processes both files as
+   one graph — a plain JS-level import doesn't work, @custom-variant below
+   would be left unprocessed and choke the minifier) and adds a class-based
+   dark variant scoped to this app only. The library itself has no dark:
+   styles yet — this only affects the docs-site's own chrome. */
+@import '../../src/styles/globals.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
