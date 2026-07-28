@@ -45,6 +45,9 @@ export type { TooltipProps, TooltipSide } from './components/Tooltip'
 export { Popover } from './components/Popover'
 export type { PopoverProps, PopoverSide, PopoverAlign } from './components/Popover'
 
+export { TopBar } from './components/TopBar'
+export type { TopBarProps } from './components/TopBar'
+
 export { Tabs } from './components/Tabs'
 export type { TabsProps, TabItem, TabsVariant, TabsOrientation } from './components/Tabs'
 
