@@ -1,6 +1,6 @@
 {
   "name": "@starbemtech/react-starsystem",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Starbem Star System — React component library",
   "type": "module",
   "main": "./dist/index.js",
