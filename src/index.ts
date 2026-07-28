@@ -42,6 +42,9 @@ export type { DrawerProps, DrawerPosition, DrawerSize } from './components/Drawe
 export { Tooltip } from './components/Tooltip'
 export type { TooltipProps, TooltipSide } from './components/Tooltip'
 
+export { Popover } from './components/Popover'
+export type { PopoverProps, PopoverSide, PopoverAlign } from './components/Popover'
+
 export { Skeleton } from './components/Skeleton'
 export type { SkeletonProps } from './components/Skeleton'
 
