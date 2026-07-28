@@ -48,6 +48,9 @@ export type { PopoverProps, PopoverSide, PopoverAlign } from './components/Popov
 export { TopBar } from './components/TopBar'
 export type { TopBarProps } from './components/TopBar'
 
+export { Divider } from './components/Divider'
+export type { DividerProps, DividerOrientation, DividerVariant } from './components/Divider'
+
 export { Accordion } from './components/Accordion'
 export type { AccordionProps, AccordionItemConfig, AccordionType } from './components/Accordion'
 
