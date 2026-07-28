@@ -55,102 +55,72 @@ The library uses [Funnel Display](https://fonts.google.com/specimen/Funnel+Displ
 
 ## Components
 
-### Button
+Quick example:
 
 ```tsx
-import { Button } from '@starbemtech/react-starsystem'
+import { Button, Input } from '@starbemtech/react-starsystem'
 
-<Button variant="primary" size="md">
-  Get started
-</Button>
+<Input id="email" label="Email" placeholder="olivia@starbem.app" hint="We'll never share your email." />
+<Button variant="primary" size="md">Get started</Button>
 ```
 
-**Props:**
+Every component is fully typed — import its prop type alongside the component (`import type { ButtonProps } from '@starbemtech/react-starsystem'`) for the full API, or open its source folder below. Full interactive docs (all variants, live prop controls) run locally via `pnpm docs:dev` — a public deploy is planned (ID-3199), not live yet.
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `variant` | `'primary' \| 'secondary' \| 'outline' \| 'ghost' \| 'danger'` | `'primary'` | Visual style |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
-| `loading` | `boolean` | `false` | Shows spinner, disables interaction |
-| `iconLeft` | `ReactNode` | — | Icon before label |
-| `iconRight` | `ReactNode` | — | Icon after label |
-| `iconOnly` | `boolean` | `false` | Square padding for icon-only buttons |
+**Form**
 
-Extends all native `<button>` attributes.
+| Component | Source |
+|---|---|
+| `Button` | [`src/components/Button`](./src/components/Button) |
+| `Input` | [`src/components/Input`](./src/components/Input) |
+| `Textarea` | [`src/components/Textarea`](./src/components/Textarea) |
+| `Select` | [`src/components/Select`](./src/components/Select) |
+| `Checkbox`, `CheckboxGroup` | [`src/components/Checkbox`](./src/components/Checkbox) |
+| `Radio`, `RadioGroup` | [`src/components/Radio`](./src/components/Radio) |
+| `Toggle` | [`src/components/Toggle`](./src/components/Toggle) |
+| `FormField` | [`src/components/FormField`](./src/components/FormField) |
 
-```tsx
-// Variants
-<Button variant="primary">Primary</Button>
-<Button variant="secondary">Secondary</Button>
-<Button variant="outline">Outline</Button>
-<Button variant="ghost">Ghost</Button>
-<Button variant="danger">Delete</Button>
+**Feedback**
 
-// Sizes
-<Button size="sm">Small</Button>
-<Button size="md">Medium</Button>
-<Button size="lg">Large</Button>
+| Component | Source |
+|---|---|
+| `Badge` | [`src/components/Badge`](./src/components/Badge) |
+| `Alert` | [`src/components/Alert`](./src/components/Alert) |
+| `ToastProvider`, `toast` | [`src/components/Toast`](./src/components/Toast) |
+| `Skeleton` | [`src/components/Skeleton`](./src/components/Skeleton) |
+| `Spinner` | [`src/components/Spinner`](./src/components/Spinner) |
+| `EmptyState` | [`src/components/EmptyState`](./src/components/EmptyState) |
 
-// States
-<Button loading>Saving…</Button>
-<Button disabled>Unavailable</Button>
+**Overlay**
 
-// With icons
-<Button iconLeft={<SearchIcon />}>Search</Button>
-<Button iconOnly><PlusIcon /></Button>
-```
+| Component | Source |
+|---|---|
+| `Modal` | [`src/components/Modal`](./src/components/Modal) |
+| `Drawer` | [`src/components/Drawer`](./src/components/Drawer) |
+| `Tooltip` | [`src/components/Tooltip`](./src/components/Tooltip) |
+| `Popover` | [`src/components/Popover`](./src/components/Popover) |
+| `DropdownMenu` | [`src/components/DropdownMenu`](./src/components/DropdownMenu) |
 
----
+**Navigation**
 
-### Input
+| Component | Source |
+|---|---|
+| `TopBar` | [`src/components/TopBar`](./src/components/TopBar) |
+| `Sidebar`, `NavItem` | [`src/components/Sidebar`](./src/components/Sidebar) |
+| `Tabs` | [`src/components/Tabs`](./src/components/Tabs) |
+| `Breadcrumb` | [`src/components/Breadcrumb`](./src/components/Breadcrumb) |
+| `Pagination` | [`src/components/Pagination`](./src/components/Pagination) |
 
-```tsx
-import { Input } from '@starbemtech/react-starsystem'
+**Data display**
 
-<Input
-  id="email"
-  label="Email"
-  placeholder="olivia@starbem.app"
-  hint="We'll never share your email."
-/>
-```
+| Component | Source |
+|---|---|
+| `Table` | [`src/components/Table`](./src/components/Table) |
+| `Card` | [`src/components/Card`](./src/components/Card) |
+| `Avatar`, `AvatarGroup` | [`src/components/Avatar`](./src/components/Avatar) |
+| `Accordion` | [`src/components/Accordion`](./src/components/Accordion) |
+| `Divider` | [`src/components/Divider`](./src/components/Divider) |
 
-**Props:**
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `label` | `string` | — | Floating label inside the container (12px) |
-| `hint` | `string` | — | Helper text below the input |
-| `error` | `string` | — | Error message; overrides `hint`, sets error border |
-| `leadingIcon` | `ReactNode` | — | Icon at the leading edge (24×24) |
-| `trailingIcon` | `ReactNode` | — | Icon at the trailing edge (24×24) |
-
-Extends all native `<input>` attributes (`type`, `disabled`, `value`, `onChange`, `id`, `placeholder`, …).
-
-```tsx
-// With label
-<Input id="name" label="Full name" placeholder="Jane Doe" />
-
-// With hint
-<Input id="email" label="Email" hint="We'll never share your email." />
-
-// Error state
-<Input id="email" label="Email" error="This email is already taken." />
-
-// Disabled
-<Input label="Email" placeholder="olivia@starbem.app" disabled />
-
-// With icons
-<Input
-  label="Search"
-  leadingIcon={<SearchIcon />}
-  trailingIcon={<ClearIcon />}
-/>
-```
-
-**Accessibility notes:**
-- Pass `id` to enable `aria-describedby` linking between the input and its hint/error text
-- `aria-invalid="true"` is set automatically when `error` is provided
+**Accessibility:** every component ships a `vitest-axe` test asserting zero WCAG 2.1 AA violations — see each component's `.test.tsx`.
 
 ---
 
@@ -159,18 +129,20 @@ Extends all native `<input>` attributes (`type`, `disabled`, `value`, `onChange`
 Tokens are exported as typed constants and CSS custom properties:
 
 ```tsx
-import { colors, spacing, borderRadius, fontFamily } from '@starbemtech/react-starsystem'
+import { colors, spacing, borderRadius, fontFamily, fontSize, fontWeight, lineHeight, shadows } from '@starbemtech/react-starsystem'
 
-colors.primary[500]    // '#FF5100'
-colors.secondary[500]  // '#8660EC'
+colors.primary.base    // '#FF5100'
+colors.secondary.base  // '#8660EC'
 borderRadius.md        // '16px'
-fontFamily.display     // "'Funnel Display', sans-serif"
+fontFamily.display     // '"Funnel Display", sans-serif'
+fontSize.h1            // '2.5rem'
+shadows.elevation02    // '0 2px 4px rgba(0,0,0,0.12)'
 ```
 
 All tokens are also available as CSS variables (set by the imported stylesheet):
 
 ```css
-color: var(--color-primary-500);   /* #FF5100 */
+color: var(--color-primary-base);  /* #FF5100 */
 border-radius: var(--radius-md);   /* 16px */
 ```
 
