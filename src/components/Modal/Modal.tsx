@@ -59,28 +59,32 @@ export function Modal({
           className={cn(
             'fixed left-1/2 top-1/2 z-[101] flex w-full -translate-x-1/2 -translate-y-1/2 flex-col',
             'rounded-[12px] bg-white p-[24px] shadow-[0px_20px_25px_-5px_rgba(16,24,40,0.1)] outline-none',
+            'dark:bg-[#151B2C]',
             'max-h-[calc(100vh-32px)] transition-opacity duration-200 data-[state=closed]:opacity-0',
             SIZE_CLASSES[size],
             className,
           )}
         >
           {title ? (
-            <Dialog.Title className="text-[18px] font-medium leading-[24px] pr-[32px]">{title}</Dialog.Title>
+            <Dialog.Title className="text-[18px] font-medium leading-[24px] pr-[32px] text-[#101828] dark:text-white">
+              {title}
+            </Dialog.Title>
           ) : (
             <Dialog.Title className="sr-only">Modal</Dialog.Title>
           )}
           {description && (
-            <Dialog.Description className="mt-[4px] text-[14px] leading-[20px] text-[#667085]">
+            <Dialog.Description className="mt-[4px] text-[14px] leading-[20px] text-[#667085] dark:text-[#98A2B3]">
               {description}
             </Dialog.Description>
           )}
-          <div className="mt-[16px] flex-1 overflow-y-auto">{children}</div>
+          <div className="mt-[16px] flex-1 overflow-y-auto text-[#101828] dark:text-white">{children}</div>
           {footer && <div className="mt-[24px] flex justify-end gap-[8px]">{footer}</div>}
           <Dialog.Close
             aria-label="Fechar modal"
             className={cn(
               'absolute right-[16px] top-[16px] inline-flex size-[24px] items-center justify-center rounded-full outline-none',
-              'hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
+              'text-[#101828] hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
+              'dark:text-white',
             )}
           >
             <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-[14px]">

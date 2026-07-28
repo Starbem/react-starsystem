@@ -15,9 +15,10 @@ export interface CardProps {
 }
 
 const VARIANT_CLASSES: Record<CardVariant, string> = {
-  default: 'bg-white border border-[#EAECF0]',
-  outlined: 'bg-white border-2 border-[#D0D5DD]',
-  elevated: 'bg-white border border-[#EAECF0] shadow-[0px_4px_12px_0px_rgba(16,24,40,0.08)]',
+  default: 'bg-white border border-[#EAECF0] dark:bg-[#151B2C] dark:border-[#1F2937]',
+  outlined: 'bg-white border-2 border-[#D0D5DD] dark:bg-[#151B2C] dark:border-[#374151]',
+  elevated:
+    'bg-white border border-[#EAECF0] shadow-[0px_4px_12px_0px_rgba(16,24,40,0.08)] dark:bg-[#151B2C] dark:border-[#1F2937]',
 }
 
 const PADDING_CLASSES: Record<CardPadding, string> = {
@@ -75,7 +76,7 @@ export interface CardSlotProps {
 
 function CardHeader({ children, className }: CardSlotProps) {
   return (
-    <div className={cn('flex items-center justify-between gap-[12px] pb-[16px] border-b border-[#EAECF0] mb-[16px]', className)}>
+    <div className={cn('flex items-center justify-between gap-[12px] pb-[16px] border-b border-[#EAECF0] mb-[16px] dark:border-[#1F2937]', className)}>
       {children}
     </div>
   )
@@ -87,7 +88,7 @@ function CardBody({ children, className }: CardSlotProps) {
 
 function CardFooter({ children, className }: CardSlotProps) {
   return (
-    <div className={cn('flex items-center justify-end gap-[8px] pt-[16px] border-t border-[#EAECF0] mt-[16px]', className)}>
+    <div className={cn('flex items-center justify-end gap-[8px] pt-[16px] border-t border-[#EAECF0] mt-[16px] dark:border-[#1F2937]', className)}>
       {children}
     </div>
   )

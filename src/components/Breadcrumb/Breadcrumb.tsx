@@ -44,10 +44,10 @@ export function Breadcrumb({ items, separator = DEFAULT_SEPARATOR, maxItems, cla
           if (entry === 'ellipsis') {
             return (
               <li key="ellipsis" className="flex items-center gap-[6px]">
-                <span aria-hidden="true" className="text-[#667085] px-[2px]">
+                <span aria-hidden="true" className="text-[#667085] px-[2px] dark:text-[#98A2B3]">
                   …
                 </span>
-                <span className="text-[#98A2B3]">{separator}</span>
+                <span className="text-[#98A2B3] dark:text-[#667085]">{separator}</span>
               </li>
             )
           }
@@ -60,19 +60,22 @@ export function Breadcrumb({ items, separator = DEFAULT_SEPARATOR, maxItems, cla
               {entry.href && !isLast ? (
                 <a
                   href={entry.href}
-                  className="text-[#667085] hover:text-[#344054] hover:underline truncate max-w-[200px]"
+                  className="text-[#667085] hover:text-[#344054] hover:underline truncate max-w-[200px] dark:text-[#98A2B3] dark:hover:text-[#D0D5DD]"
                 >
                   {entry.label}
                 </a>
               ) : (
                 <span
                   aria-current={isLast ? 'page' : undefined}
-                  className={cn('truncate max-w-[200px]', isLast ? 'text-[#101828] font-medium' : 'text-[#667085]')}
+                  className={cn(
+                    'truncate max-w-[200px]',
+                    isLast ? 'text-[#101828] font-medium dark:text-white' : 'text-[#667085] dark:text-[#98A2B3]',
+                  )}
                 >
                   {entry.label}
                 </span>
               )}
-              {!isLast && <span className="text-[#98A2B3]">{separator}</span>}
+              {!isLast && <span className="text-[#98A2B3] dark:text-[#667085]">{separator}</span>}
             </li>
           )
         })}

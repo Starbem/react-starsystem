@@ -29,9 +29,9 @@ export function TopBar({ start, center, end, sticky = false, bordered = false, c
   return (
     <header
       className={cn(
-        'flex h-[64px] w-full items-center gap-[16px] bg-white px-[16px] sm:px-[24px] transition-shadow duration-200',
+        'flex h-[64px] w-full items-center gap-[16px] bg-white px-[16px] sm:px-[24px] transition-shadow duration-200 dark:bg-[#151B2C]',
         sticky && 'sticky top-0 z-[50]',
-        bordered && 'border-b border-[#EAECF0]',
+        bordered && 'border-b border-[#EAECF0] dark:border-[#1F2937]',
         sticky && scrolled && 'shadow-[0px_1px_2px_0px_rgba(16,24,40,0.06)]',
         className,
       )}

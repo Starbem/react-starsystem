@@ -110,10 +110,10 @@ export function Table<T>({
 
   return (
     <div className={cn('flex flex-col gap-[16px]', className)}>
-      <div className="w-full overflow-x-auto rounded-[12px] border border-[#EAECF0]">
+      <div className="w-full overflow-x-auto rounded-[12px] border border-[#EAECF0] dark:border-[#1F2937]">
         <table role="table" className="w-full min-w-[600px] border-collapse text-[14px]">
           <thead>
-            <tr className="border-b border-[#EAECF0] bg-[#F9FAFB]">
+            <tr className="border-b border-[#EAECF0] bg-[#F9FAFB] dark:border-[#1F2937] dark:bg-[#1F2937]">
               {selectable && (
                 <th className="w-[40px] px-[16px] py-[10px]">
                   <Checkbox
@@ -127,7 +127,10 @@ export function Table<T>({
               {columns.map((column) => (
                 <th
                   key={column.id}
-                  className={cn('px-[16px] py-[10px] text-left font-medium text-[#344054]', column.className)}
+                  className={cn(
+                    'px-[16px] py-[10px] text-left font-medium text-[#344054] dark:text-[#D0D5DD]',
+                    column.className,
+                  )}
                 >
                   {column.sortable ? (
                     <button
@@ -148,7 +151,7 @@ export function Table<T>({
           <tbody>
             {loading &&
               Array.from({ length: 5 }, (_, rowIndex) => (
-                <tr key={`skeleton-${rowIndex}`} className="border-b border-[#EAECF0] last:border-0">
+                <tr key={`skeleton-${rowIndex}`} className="border-b border-[#EAECF0] last:border-0 dark:border-[#1F2937]">
                   {selectable && (
                     <td className="px-[16px] py-[12px]">
                       <Skeleton variant="rectangular" width={16} height={16} />
@@ -170,7 +173,10 @@ export function Table<T>({
                 return (
                   <tr
                     key={id}
-                    className={cn('border-b border-[#EAECF0] last:border-0 hover:bg-[#F9FAFB]', isSelected && 'bg-[#FFF1EB]')}
+                    className={cn(
+                      'border-b border-[#EAECF0] last:border-0 hover:bg-[#F9FAFB] dark:border-[#1F2937] dark:hover:bg-[#1F2937]',
+                      isSelected && 'bg-[#FFF1EB] dark:bg-[#3A2418]',
+                    )}
                   >
                     {selectable && (
                       <td className="px-[16px] py-[12px]">
@@ -182,7 +188,10 @@ export function Table<T>({
                       </td>
                     )}
                     {columns.map((column) => (
-                      <td key={column.id} className={cn('px-[16px] py-[12px] text-[#344054]', column.className)}>
+                      <td
+                        key={column.id}
+                        className={cn('px-[16px] py-[12px] text-[#344054] dark:text-[#D0D5DD]', column.className)}
+                      >
                         {column.render ? column.render(row) : String(column.accessor?.(row) ?? '')}
                       </td>
                     ))}

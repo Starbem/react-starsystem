@@ -49,7 +49,8 @@ function NavItemRow({ item, collapsed }: { item: NavItemConfig; collapsed?: bool
       className={cn(
         'flex w-full items-center gap-[8px] rounded-[8px] px-[10px] py-[8px] text-[14px] font-medium outline-none',
         'text-[#344054] hover:bg-[#F2F4F7] focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
-        item.active && 'bg-[#FFF1EB] text-[#FF5100] hover:bg-[#FFF1EB]',
+        'dark:text-[#D0D5DD] dark:hover:bg-[#1F2937]',
+        item.active && 'bg-[#FFF1EB] text-[#FF5100] hover:bg-[#FFF1EB] dark:bg-[#3A2418] dark:hover:bg-[#3A2418]',
         collapsed && 'justify-center px-0',
       )}
     >
@@ -87,6 +88,7 @@ export function NavItem({ item, collapsed = false }: NavItemProps) {
         className={cn(
           'flex w-full items-center gap-[8px] rounded-[8px] px-[10px] py-[8px] text-[14px] font-medium outline-none',
           'text-[#344054] hover:bg-[#F2F4F7] focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
+        'dark:text-[#D0D5DD] dark:hover:bg-[#1F2937]',
         )}
       >
         {item.icon && <span className="shrink-0 inline-flex items-center justify-center size-[20px]">{item.icon}</span>}
@@ -95,7 +97,7 @@ export function NavItem({ item, collapsed = false }: NavItemProps) {
         <ChevronIcon open={open} />
       </button>
       {open && (
-        <div className="mt-[4px] ml-[20px] flex flex-col gap-[2px] border-l border-[#EAECF0] pl-[8px]">
+        <div className="mt-[4px] ml-[20px] flex flex-col gap-[2px] border-l border-[#EAECF0] pl-[8px] dark:border-[#1F2937]">
           {item.children?.map((child, index) => (
             <NavItemRow key={`${child.label}-${index}`} item={child} />
           ))}

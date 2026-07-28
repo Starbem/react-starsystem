@@ -74,7 +74,7 @@ export function Toggle({
           'focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-2',
           TRACK_SIZE[size],
           disabled ? 'cursor-not-allowed' : 'cursor-pointer',
-          checked ? 'bg-[#461FAE]' : 'bg-[#E2E2E2]',
+          checked ? 'bg-[#461FAE]' : 'bg-[#E2E2E2] dark:bg-[#374151]',
         )}
       >
         <span
@@ -94,7 +94,7 @@ export function Toggle({
               id={labelId}
               onClick={toggle}
               className={cn(
-                "font-['Funnel_Display'] font-medium text-[16px] leading-[24px] text-[#4D4D4D] select-none",
+                "font-['Funnel_Display'] font-medium text-[16px] leading-[24px] text-[#4D4D4D] select-none dark:text-[#D1D5DB]",
                 disabled ? 'cursor-not-allowed' : 'cursor-pointer',
               )}
             >
@@ -102,7 +102,7 @@ export function Toggle({
             </span>
           )}
           {supportingText && (
-            <p id={descId} className="font-['Funnel_Display'] text-[16px] leading-[24px] text-[#808080]">
+            <p id={descId} className="font-['Funnel_Display'] text-[16px] leading-[24px] text-[#808080] dark:text-[#9CA3AF]">
               {supportingText}
             </p>
           )}

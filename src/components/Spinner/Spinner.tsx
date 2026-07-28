@@ -16,7 +16,7 @@ const SIZE_CLASSES: Record<NonNullable<SpinnerProps['size']>, string> = {
 const COLOR_CLASSES: Record<NonNullable<SpinnerProps['color']>, string> = {
   brand: 'border-[#FF5100]/25 border-t-[#FF5100]',
   white: 'border-white/30 border-t-white',
-  muted: 'border-[#9C9C9C]/25 border-t-[#9C9C9C]',
+  muted: 'border-[#9C9C9C]/25 border-t-[#9C9C9C] dark:border-[#6B7280]/25 dark:border-t-[#9CA3AF]',
 }
 
 export function Spinner({

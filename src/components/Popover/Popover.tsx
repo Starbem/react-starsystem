@@ -34,12 +34,13 @@ export function Popover({
           sideOffset={8}
           className={cn(
             'z-[100] w-max max-w-[320px] rounded-[12px] bg-white p-[16px] shadow-[0px_20px_25px_-5px_rgba(16,24,40,0.1)] outline-none',
+            'text-[#101828] dark:bg-[#151B2C] dark:text-white',
             'data-[state=closed]:opacity-0',
             className,
           )}
         >
           {content}
-          <RadixPopover.Arrow className="fill-white" />
+          <RadixPopover.Arrow className="fill-white dark:fill-[#151B2C]" />
         </RadixPopover.Content>
       </RadixPopover.Portal>
     </RadixPopover.Root>

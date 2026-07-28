@@ -16,6 +16,7 @@ export function Sidebar({ items, collapsed = false, header, footer, className }:
       aria-label="Menu principal"
       className={cn(
         'flex h-full flex-col gap-[16px] border-r border-[#EAECF0] bg-white p-[12px] transition-[width] duration-200',
+        'dark:border-[#1F2937] dark:bg-[#151B2C]',
         collapsed ? 'w-[72px] items-center' : 'w-[260px]',
         className,
       )}

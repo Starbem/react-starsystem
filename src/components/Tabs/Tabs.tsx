@@ -23,18 +23,20 @@ export interface TabsProps {
 }
 
 const LIST_VARIANT_CLASSES: Record<TabsVariant, string> = {
-  line: 'gap-[24px] border-b border-[#EAECF0]',
-  filled: 'gap-[4px] rounded-[10px] bg-[#F2F4F7] p-[4px]',
+  line: 'gap-[24px] border-b border-[#EAECF0] dark:border-[#1F2937]',
+  filled: 'gap-[4px] rounded-[10px] bg-[#F2F4F7] p-[4px] dark:bg-[#1F2937]',
 }
 
 const TRIGGER_VARIANT_CLASSES: Record<TabsVariant, string> = {
   line: cn(
     'px-[4px] py-[10px] text-[14px] font-medium text-[#667085] border-b-2 border-transparent -mb-px',
     'data-[state=active]:text-[#FF5100] data-[state=active]:border-[#FF5100]',
+    'dark:text-[#98A2B3]',
   ),
   filled: cn(
     'rounded-[8px] px-[12px] py-[6px] text-[14px] font-medium text-[#667085]',
     'data-[state=active]:bg-white data-[state=active]:text-[#101828] data-[state=active]:shadow-[0px_1px_2px_0px_rgba(16,24,40,0.06)]',
+    'dark:text-[#98A2B3] dark:data-[state=active]:bg-[#151B2C] dark:data-[state=active]:text-white',
   ),
 }
 

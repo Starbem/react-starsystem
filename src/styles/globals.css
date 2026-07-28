@@ -1,6 +1,13 @@
 @import "tailwindcss";
 @source "../components";
 
+/* Class-based dark mode (opt-in): consumers toggle it by adding/removing
+   a `.dark` class on <html> (or any ancestor) — not tied to OS/browser
+   `prefers-color-scheme`. This is the same pattern Radix, shadcn/ui, and
+   most component libraries use, so it composes with a consuming app's own
+   theme switcher instead of silently following system preference. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Starbem Star System design tokens */
 @theme {
   /* Typography — font family */

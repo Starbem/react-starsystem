@@ -55,6 +55,26 @@ The library uses [Funnel Display](https://fonts.google.com/specimen/Funnel+Displ
 
 ---
 
+## Dark Mode
+
+All components ship with first-class dark mode support via Tailwind's `dark:` variant. It's opt-in and class-based — not tied to OS/browser `prefers-color-scheme` — so it composes with your own theme switcher instead of silently following system preference.
+
+Enable it by adding the `dark` class to `<html>` (or any ancestor element):
+
+```tsx
+document.documentElement.classList.toggle('dark')
+```
+
+```html
+<html class="dark">
+  <!-- every component under here renders in dark mode -->
+</html>
+```
+
+Brand colors (primary orange) and semantic status colors (Alert, Badge, Toast variants like success/warning/error/info) are intentionally theme-invariant — they stay the same in both themes.
+
+---
+
 ## Components
 
 Quick example:

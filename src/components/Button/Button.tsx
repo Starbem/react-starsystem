@@ -15,8 +15,8 @@ const variantClasses: Record<NonNullable<ButtonProps['variant']>, string> = {
     'bg-[#FF5100] border border-[#FF5100] text-[#F7F7F7] shadow-[0px_1px_2px_0px_rgba(12,17,29,0.10)]',
   secondary: 'bg-transparent border border-[#FF5100] text-[#FF5100]',
   outline:
-    'bg-[#F7F7F7] border border-[#B6B6B6] text-[#393939] shadow-[0px_1px_2px_0px_rgba(12,17,29,0.10)]',
-  ghost: 'bg-[#E2E2E2] border-0 text-[#808080]',
+    'bg-[#F7F7F7] border border-[#B6B6B6] text-[#393939] shadow-[0px_1px_2px_0px_rgba(12,17,29,0.10)] dark:bg-[#1F2937] dark:border-[#374151] dark:text-[#F2F4F7]',
+  ghost: 'bg-[#E2E2E2] border-0 text-[#808080] dark:bg-[#374151] dark:text-[#9CA3AF]',
   danger:
     'bg-[#FF4242] border border-[#FF4242] text-[#F7F7F7] shadow-[0px_1px_2px_0px_rgba(12,17,29,0.10)]',
 }

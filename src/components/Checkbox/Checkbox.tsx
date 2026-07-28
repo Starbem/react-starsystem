@@ -94,14 +94,14 @@ export function Checkbox({
             'focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-2',
             BOX_SIZE[size],
             disabled
-              ? 'bg-[#E2E2E2] border-[#CFCFCF] cursor-not-allowed'
+              ? 'bg-[#E2E2E2] border-[#CFCFCF] cursor-not-allowed dark:bg-[#374151] dark:border-[#2A3441]'
               : isActive
-                ? 'bg-[#F7F7F7] border-[#FF5100] hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer'
-                : 'bg-[#F7F7F7] border-[#B6B6B6] hover:border-[#FF5100] hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer',
+                ? 'bg-[#F7F7F7] border-[#FF5100] hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer dark:bg-[#1F2937]'
+                : 'bg-[#F7F7F7] border-[#B6B6B6] hover:border-[#FF5100] hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer dark:bg-[#1F2937] dark:border-[#374151]',
           )}
         >
           {isActive && (
-            <span className={cn('absolute', ICON_INSET[size], disabled ? 'text-[#CFCFCF]' : 'text-[#FF5100]')}>
+            <span className={cn('absolute', ICON_INSET[size], disabled ? 'text-[#CFCFCF] dark:text-[#4B5563]' : 'text-[#FF5100]')}>
               {indeterminate ? <IndeterminateIcon /> : <CheckIcon />}
             </span>
           )}
@@ -115,7 +115,7 @@ export function Checkbox({
               id={labelId}
               onClick={toggle}
               className={cn(
-                "font-['Funnel_Display'] text-[16px] leading-[24px] text-[#393939] select-none",
+                "font-['Funnel_Display'] text-[16px] leading-[24px] text-[#393939] select-none dark:text-[#F2F4F7]",
                 disabled ? 'cursor-not-allowed' : 'cursor-pointer',
                 isActive ? 'font-medium' : 'font-normal',
               )}
@@ -126,7 +126,7 @@ export function Checkbox({
           {supportingText && (
             <p
               id={descId}
-              className="font-['Funnel_Display'] text-[14px] leading-[20px] tracking-[0.1px] text-[#808080]"
+              className="font-['Funnel_Display'] text-[14px] leading-[20px] tracking-[0.1px] text-[#808080] dark:text-[#9CA3AF]"
             >
               {supportingText}
             </p>

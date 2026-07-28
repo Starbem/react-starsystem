@@ -38,7 +38,7 @@ export function Skeleton({
         ...style,
       }}
       className={cn(
-        'relative overflow-hidden bg-[#E8E8E8] motion-reduce:!animate-none',
+        'relative overflow-hidden bg-[#E8E8E8] motion-reduce:!animate-none dark:bg-[#374151]',
         VARIANT_CLASSES[variant],
         animation === 'pulse' && 'animate-pulse',
         className,

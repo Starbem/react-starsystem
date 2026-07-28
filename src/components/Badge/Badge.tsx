@@ -12,7 +12,7 @@ export interface BadgeProps {
 }
 
 const VARIANT_CLASSES: Record<NonNullable<BadgeProps['variant']>, string> = {
-  default: 'bg-[#E8E8E8] text-[#393939]',
+  default: 'bg-[#E8E8E8] text-[#393939] dark:bg-[#374151] dark:text-[#D1D5DB]',
   success: 'bg-[#D4F4DD] text-[#166534]',
   warning: 'bg-[#FEF3C7] text-[#92400E]',
   error: 'bg-[#FFE1E1] text-[#B42318]',

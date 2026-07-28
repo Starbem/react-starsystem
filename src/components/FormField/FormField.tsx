@@ -39,7 +39,7 @@ export function FormField({
       {label && (
         <label
           htmlFor={fieldId}
-          className="font-['Funnel_Display'] text-[14px] leading-[20px] font-medium text-[#393939] select-none"
+          className="font-['Funnel_Display'] text-[14px] leading-[20px] font-medium text-[#393939] select-none dark:text-[#F2F4F7]"
         >
           {label}
           {required && (
@@ -55,7 +55,7 @@ export function FormField({
           id={messageId}
           className={cn(
             "font-['Funnel_Display'] text-[14px] leading-[20px] tracking-[0.1px] w-full",
-            isError ? 'text-[#FF4242]' : 'text-[#808080]',
+            isError ? 'text-[#FF4242]' : 'text-[#808080] dark:text-[#9CA3AF]',
           )}
         >
           {messageText}

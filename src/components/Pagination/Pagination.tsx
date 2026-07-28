@@ -59,8 +59,9 @@ function PageButton({
       aria-current={active ? 'page' : undefined}
       className={cn(
         'inline-flex size-[36px] items-center justify-center rounded-[8px] text-[14px] font-medium outline-none',
-        'hover:bg-[#F2F4F7] focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
-        active && 'bg-[#FF5100] text-white hover:bg-[#FF5100]',
+        'text-[#101828] hover:bg-[#F2F4F7] focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
+        'dark:text-white dark:hover:bg-[#1F2937]',
+        active && 'bg-[#FF5100] text-white hover:bg-[#FF5100] dark:hover:bg-[#FF5100]',
       )}
     >
       {page}
@@ -87,8 +88,9 @@ function NavButton({
       onClick={onClick}
       className={cn(
         'inline-flex size-[36px] items-center justify-center rounded-[8px] outline-none',
-        'hover:bg-[#F2F4F7] focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
+        'text-[#101828] hover:bg-[#F2F4F7] focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
         'disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent',
+        'dark:text-white dark:hover:bg-[#1F2937]',
       )}
     >
       {children}
@@ -142,7 +144,7 @@ export function Pagination({
         <NavButton label="Página anterior" disabled={!canGoPrev} onClick={() => onPageChange(currentPage - 1)}>
           <ChevronLeft />
         </NavButton>
-        <span className="px-[8px] text-[14px] text-[#344054]">
+        <span className="px-[8px] text-[14px] text-[#344054] dark:text-[#D0D5DD]">
           Página {currentPage} de {totalPages}
         </span>
         <NavButton label="Próxima página" disabled={!canGoNext} onClick={() => onPageChange(currentPage + 1)}>
@@ -161,7 +163,7 @@ export function Pagination({
         </NavButton>
         {entries.map((entry, index) =>
           entry === ELLIPSIS ? (
-            <span key={`ellipsis-${index}`} aria-hidden="true" className="inline-flex size-[36px] items-center justify-center text-[#98A2B3]">
+            <span key={`ellipsis-${index}`} aria-hidden="true" className="inline-flex size-[36px] items-center justify-center text-[#98A2B3] dark:text-[#667085]">
               …
             </span>
           ) : (

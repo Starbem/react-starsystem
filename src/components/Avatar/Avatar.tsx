@@ -75,7 +75,7 @@ export function Avatar({ src, alt, name, size = 'md', status, className }: Avata
       {status && (
         <span
           className={cn(
-            'absolute bottom-0 right-0 rounded-full ring-2 ring-white',
+            'absolute bottom-0 right-0 rounded-full ring-2 ring-white dark:ring-[#151B2C]',
             STATUS_SIZE_CLASSES[size],
             STATUS_COLOR_CLASSES[status],
           )}
@@ -108,15 +108,15 @@ export function AvatarGroup({ avatars, max, size = 'md', className }: AvatarGrou
     <div className={cn('flex items-center -space-x-[8px]', className)}>
       {visible.map((item, index) =>
         item.src ? (
-          <Avatar key={index} src={item.src} alt={item.alt ?? item.name ?? ''} size={size} className="ring-2 ring-white rounded-full" />
+          <Avatar key={index} src={item.src} alt={item.alt ?? item.name ?? ''} size={size} className="ring-2 ring-white rounded-full dark:ring-[#151B2C]" />
         ) : (
-          <Avatar key={index} name={item.name} size={size} className="ring-2 ring-white rounded-full" />
+          <Avatar key={index} name={item.name} size={size} className="ring-2 ring-white rounded-full dark:ring-[#151B2C]" />
         ),
       )}
       {overflow > 0 && (
         <span
           className={cn(
-            'inline-flex items-center justify-center rounded-full bg-[#F2F4F7] font-medium text-[#344054] ring-2 ring-white',
+            'inline-flex items-center justify-center rounded-full bg-[#F2F4F7] font-medium text-[#344054] ring-2 ring-white dark:bg-[#1F2937] dark:text-[#D0D5DD] dark:ring-[#151B2C]',
             SIZE_CLASSES[size],
           )}
         >
