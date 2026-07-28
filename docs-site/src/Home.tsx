@@ -80,21 +80,35 @@ const HIGHLIGHTS = [
   },
 ] as const
 
+function AuroraBackground() {
+  return (
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="absolute -left-[10%] -top-[15%] size-[420px] rounded-full bg-[#FF5100] opacity-30 blur-[120px]" />
+      <div className="absolute -right-[10%] top-[5%] size-[380px] rounded-full bg-[#E81F76] opacity-25 blur-[120px]" />
+      <div className="absolute bottom-[-15%] left-[25%] size-[460px] rounded-full bg-[#FFA947] opacity-30 blur-[120px]" />
+    </div>
+  )
+}
+
 export function Home({ onGetStarted }: HomeProps) {
   return (
-    <div className="flex min-h-screen flex-col items-center bg-white px-[24px] py-[64px]">
-      <img src="./brand/starbem-logo.svg" alt="Starbem" className="mb-[32px] h-[56px] w-auto" />
+    <div className="relative flex min-h-screen flex-col items-center overflow-hidden bg-white px-[24px] py-[64px]">
+      <AuroraBackground />
 
-      <h1 className="mb-[12px] text-center text-[32px] font-semibold text-[#101828]">Star System</h1>
-      <p className="mb-[32px] max-w-[480px] text-center text-[16px] text-[#667085]">
+      <img src="./brand/starbem-logo.svg" alt="Starbem" className="relative z-10 mb-[32px] h-[56px] w-auto" />
+
+      <h1 className="relative z-10 mb-[12px] text-center text-[32px] font-semibold text-[#101828]">Star System</h1>
+      <p className="relative z-10 mb-[32px] max-w-[480px] text-center text-[16px] text-[#667085]">
         Design system oficial da Starbem: componentes React acessíveis, tipados e prontos pra produção.
       </p>
 
-      <Button size="lg" onClick={onGetStarted}>
-        Getting Started
-      </Button>
+      <div className="relative z-10">
+        <Button size="lg" onClick={onGetStarted}>
+          Getting Started
+        </Button>
+      </div>
 
-      <div className="mt-[64px] grid w-full max-w-[960px] grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-4">
+      <div className="relative z-10 mt-[64px] grid w-full max-w-[960px] grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-4">
         {HIGHLIGHTS.map((item) => (
           <Card key={item.title} variant="elevated">
             <Card.Body>
