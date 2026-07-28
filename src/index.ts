@@ -39,6 +39,9 @@ export type { ModalProps, ModalSize } from './components/Modal'
 export { Drawer } from './components/Drawer'
 export type { DrawerProps, DrawerPosition, DrawerSize } from './components/Drawer'
 
+export { Tooltip } from './components/Tooltip'
+export type { TooltipProps, TooltipSide } from './components/Tooltip'
+
 export { Skeleton } from './components/Skeleton'
 export type { SkeletonProps } from './components/Skeleton'
 
