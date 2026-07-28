@@ -48,6 +48,9 @@ export type { PopoverProps, PopoverSide, PopoverAlign } from './components/Popov
 export { TopBar } from './components/TopBar'
 export type { TopBarProps } from './components/TopBar'
 
+export { Avatar, AvatarGroup } from './components/Avatar'
+export type { AvatarProps, AvatarGroupProps, AvatarGroupItem, AvatarSize, AvatarStatus } from './components/Avatar'
+
 export { Card } from './components/Card'
 export type { CardProps, CardVariant, CardPadding, CardSlotProps } from './components/Card'
 
