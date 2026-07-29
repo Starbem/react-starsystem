@@ -90,17 +90,22 @@ export function DateInput({
 }: DateInputProps) {
   const generatedId = useId()
   const fieldId = id ?? generatedId
+  const messageId = useId()
   const isControlled = value !== undefined
   const [internalDate, setInternalDate] = useState<Date | null>(defaultValue ?? null)
   const currentDate = isControlled ? value : internalDate
   const [text, setText] = useState(currentDate ? formatDate(currentDate, format) : '')
+  const [lastFormattedText, setLastFormattedText] = useState(currentDate ? formatDate(currentDate, format) : '')
   const [invalid, setInvalid] = useState(false)
   const [open, setOpen] = useState(false)
   const popoverRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    setText(currentDate ? formatDate(currentDate, format) : '')
-  }, [currentDate, format])
+  // Sync text with currentDate/format on render without useEffect
+  const expectedText = currentDate ? formatDate(currentDate, format) : ''
+  if (expectedText !== lastFormattedText) {
+    setText(expectedText)
+    setLastFormattedText(expectedText)
+  }
 
   useEffect(() => {
     if (!open) return
@@ -164,6 +169,8 @@ export function DateInput({
           value={text}
           placeholder={placeholder}
           disabled={disabled}
+          aria-invalid={showError}
+          aria-describedby={showError || hint ? messageId : undefined}
           onChange={(e) => setText(e.target.value)}
           onBlur={handleBlur}
           className={cn(
@@ -178,6 +185,8 @@ export function DateInput({
         <button
           type="button"
           aria-label="Abrir calendário"
+          aria-expanded={open}
+          aria-haspopup="dialog"
           disabled={disabled}
           onClick={() => setOpen((o) => !o)}
           className="absolute right-[8px] top-1/2 -translate-y-1/2 inline-flex items-center justify-center size-[32px] rounded-full text-[#667085] hover:bg-[#F2F4F7] dark:text-[#98A2B3] dark:hover:bg-[#1F2937]"
@@ -190,9 +199,9 @@ export function DateInput({
           </div>
         )}
       </div>
-      {showError && <span className="text-[12px] text-[#FF4242]">{errorMessage}</span>}
+      {showError && <span id={messageId} className="text-[12px] text-[#FF4242]">{errorMessage}</span>}
       {!showError && success && <span className="text-[12px] text-[#1FBA5D]">{success}</span>}
-      {!showError && !success && hint && <span className="text-[12px] text-[#667085] dark:text-[#98A2B3]">{hint}</span>}
+      {!showError && !success && hint && <span id={messageId} className="text-[12px] text-[#667085] dark:text-[#98A2B3]">{hint}</span>}
     </div>
   )
 }
