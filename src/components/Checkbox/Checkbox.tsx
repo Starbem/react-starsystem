@@ -22,9 +22,9 @@ export interface CheckboxProps {
 }
 
 const BOX_SIZE = {
-  sm: 'size-[16px] rounded-[4px]',
-  md: 'size-[24px] rounded-[6px]',
-  lg: 'size-[32px] rounded-[8px]',
+  sm: 'size-[16px] rounded-xs',
+  md: 'size-[24px] rounded-sm',
+  lg: 'size-[32px] rounded-sm',
 }
 
 const ICON_INSET = {
@@ -34,17 +34,17 @@ const ICON_INSET = {
 }
 
 const TONE_BORDER: Record<CheckboxTone, string> = {
-  primary: 'border-[#FF5100]',
-  success: 'border-[#1FBA5D]',
-  accent: 'border-[#ED2E98]',
+  primary: 'border-primary-base',
+  success: 'border-success-base',
+  accent: 'border-terciary-base',
 }
 
-const ERROR_BORDER = 'border-[#FF4242]'
+const ERROR_BORDER = 'border-error-base'
 
 const TONE_ICON_COLOR: Record<CheckboxTone, string> = {
-  primary: 'text-[#FF5100]',
-  success: 'text-[#1FBA5D]',
-  accent: 'text-[#ED2E98]',
+  primary: 'text-primary-base',
+  success: 'text-success-base',
+  accent: 'text-terciary-base',
 }
 
 function CheckIcon() {
@@ -86,7 +86,7 @@ export function Checkbox({
   const descId = supportingText ? `${checkboxId}-desc` : undefined
   const isActive = checked || indeterminate
   const activeBorder = error ? ERROR_BORDER : TONE_BORDER[tone]
-  const activeIconColor = error ? 'text-[#FF4242]' : TONE_ICON_COLOR[tone]
+  const activeIconColor = error ? 'text-error-base' : TONE_ICON_COLOR[tone]
 
   function toggle() {
     if (disabled) return
@@ -116,19 +116,19 @@ export function Checkbox({
         onKeyDown={handleKeyDown}
         className={cn(
           'relative flex items-center justify-center border outline-none transition-colors',
-          'focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-2',
+          'focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-2',
           BOX_SIZE[size],
           disabled
-            ? 'bg-[#E2E2E2] border-[#CFCFCF] cursor-not-allowed dark:bg-[#374151] dark:border-[#2A3441]'
+            ? 'bg-neutral-100 border-neutral-200 cursor-not-allowed dark:bg-ink-700 dark:border-neutral-800'
             : isActive
-              ? cn('bg-[#F7F7F7] hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer dark:bg-[#1F2937]', activeBorder)
+              ? cn('bg-neutral-25 hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer dark:bg-neutral-900', activeBorder)
               : error
-                ? 'bg-[#F7F7F7] border-[#FF4242] hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer dark:bg-[#1F2937]'
-                : 'bg-[#F7F7F7] border-[#B6B6B6] hover:border-[#FF5100] hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer dark:bg-[#1F2937] dark:border-[#374151]',
+                ? 'bg-neutral-25 border-error-base hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer dark:bg-neutral-900'
+                : 'bg-neutral-25 border-neutral-300 hover:border-primary-base hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer dark:bg-neutral-900 dark:border-ink-700',
         )}
       >
         {isActive && (
-          <span className={cn('absolute', ICON_INSET[size], disabled ? 'text-[#CFCFCF] dark:text-[#4B5563]' : activeIconColor)}>
+          <span className={cn('absolute', ICON_INSET[size], disabled ? 'text-neutral-200 dark:text-ink-600' : activeIconColor)}>
             {indeterminate ? <IndeterminateIcon /> : <CheckIcon />}
           </span>
         )}
@@ -144,7 +144,7 @@ export function Checkbox({
           id={labelId}
           onClick={toggle}
           className={cn(
-            "font-['Funnel_Display'] text-[16px] leading-[24px] text-[#393939] select-none dark:text-[#F2F4F7]",
+            "font-['Funnel_Display'] text-[16px] leading-[24px] text-neutral-800 select-none dark:text-ink-100",
             disabled ? 'cursor-not-allowed' : 'cursor-pointer',
             isActive ? 'font-medium' : 'font-normal',
           )}
@@ -157,7 +157,7 @@ export function Checkbox({
           id={descId}
           className={cn(
             "font-['Funnel_Display'] text-[14px] leading-[20px] tracking-[0.1px]",
-            error ? 'text-[#FF4242]' : 'text-[#808080] dark:text-[#9CA3AF]',
+            error ? 'text-error-base' : 'text-neutral-500 dark:text-neutral-400',
           )}
         >
           {supportingText}
@@ -171,12 +171,12 @@ export function Checkbox({
       <div
         data-checkbox-card
         className={cn(
-          'flex items-start gap-[12px] rounded-[12px] border p-[16px] transition-colors',
+          'flex items-start gap-[12px] rounded-md border p-[16px] transition-colors',
           isActive
-            ? cn('bg-[#F7F7F7] dark:bg-[#1F2937]', activeBorder)
+            ? cn('bg-neutral-25 dark:bg-neutral-900', activeBorder)
             : error
-              ? 'border-[#FF4242]'
-              : 'border-[#E2E2E2] dark:border-[#374151]',
+              ? 'border-error-base'
+              : 'border-neutral-100 dark:border-ink-700',
           className,
         )}
       >
