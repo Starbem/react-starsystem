@@ -141,4 +141,9 @@ describe('RadioGroup + Radio', () => {
     render(<Radio value="a" error label="Errored" supportingText="Required" onSelect={() => {}} />)
     expect(screen.getByRole('radio')).toHaveClass('border-[#FF4242]')
   })
+
+  it('renders card variant wrapper in error color when unchecked and errored', () => {
+    render(<Radio value="a" variant="card" error label="Errored card" onSelect={() => {}} />)
+    expect(screen.getByText('Errored card').closest('[data-radio-card]')).toHaveClass('border-[#FF4242]')
+  })
 })
