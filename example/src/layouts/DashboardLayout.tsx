@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import {
   Avatar,
   Badge,
@@ -23,10 +23,11 @@ const ROUTES: Array<{ label: string; href: string }> = [
 
 function useNavItems(): NavItemConfig[] {
   const location = useLocation()
+  const navigate = useNavigate()
   return ROUTES.map((route) => ({
     label: route.label,
-    href: route.href,
     active: location.pathname === route.href,
+    onClick: () => navigate(route.href),
   }))
 }
 
