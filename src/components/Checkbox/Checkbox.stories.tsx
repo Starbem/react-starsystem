@@ -55,6 +55,26 @@ export const Small: Story = {
   args: { size: 'sm' },
 }
 
+export const Large: Story = {
+  args: { size: 'lg', label: 'Large checkbox', checked: true },
+}
+
+export const ToneSuccess: Story = {
+  args: { tone: 'success', label: 'Success tone', checked: true },
+}
+
+export const ToneAccent: Story = {
+  args: { tone: 'accent', label: 'Accent tone', checked: true },
+}
+
+export const CardVariant: Story = {
+  args: { variant: 'card', label: 'Card checkbox', supportingText: 'Tile-style selectable card' },
+}
+
+export const ErrorState: Story = {
+  args: { error: true, label: 'Errored checkbox', supportingText: 'This field is required' },
+}
+
 export const Group: Story = {
   render: () => {
     const [values, setValues] = useState({ email: true, sms: false, push: false })

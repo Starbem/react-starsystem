@@ -93,6 +93,31 @@ describe('Checkbox', () => {
     // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
     expect(await axe(container)).toHaveNoViolations()
   })
+
+  it('renders size lg', () => {
+    render(<Checkbox size="lg" label="Large" checked onChange={() => {}} />)
+    expect(screen.getByRole('checkbox')).toHaveClass('size-[32px]')
+  })
+
+  it('applies success tone border color when checked', () => {
+    render(<Checkbox tone="success" checked label="Success" onChange={() => {}} />)
+    expect(screen.getByRole('checkbox')).toHaveClass('border-[#1FBA5D]')
+  })
+
+  it('applies accent tone border color when checked', () => {
+    render(<Checkbox tone="accent" checked label="Accent" onChange={() => {}} />)
+    expect(screen.getByRole('checkbox')).toHaveClass('border-[#ED2E98]')
+  })
+
+  it('renders card variant with a bordered wrapper', () => {
+    render(<Checkbox variant="card" label="Card" onChange={() => {}} />)
+    expect(screen.getByText('Card').closest('[data-checkbox-card]')).toBeInTheDocument()
+  })
+
+  it('renders error state in error color regardless of tone', () => {
+    render(<Checkbox error label="Errored" supportingText="Required" onChange={() => {}} />)
+    expect(screen.getByRole('checkbox')).toHaveClass('border-[#FF4242]')
+  })
 })
 
 describe('CheckboxGroup', () => {
