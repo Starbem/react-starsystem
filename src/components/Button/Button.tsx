@@ -132,10 +132,10 @@ export function Button(props: ButtonProps) {
   )
 
   if (as === 'a') {
-    const { ...anchorRest } = rest as Omit<ButtonAsAnchor, keyof ButtonSharedProps | 'as'>
+    const anchorRest = rest as Omit<ButtonAsAnchor, keyof ButtonSharedProps | 'as'>
     return (
       <a
-        className={cn(sharedClassName, loading && 'pointer-events-none')}
+        className={cn(sharedClassName, loading && 'pointer-events-none opacity-50')}
         aria-disabled={loading || undefined}
         {...anchorRest}
       >

@@ -150,5 +150,6 @@ describe('Button', () => {
     const link = screen.getByRole('link', { name: 'Loading link' })
     expect(link).toHaveAttribute('aria-disabled', 'true')
     expect(link).toHaveClass('pointer-events-none')
+    expect(link).toHaveClass('opacity-50')
   })
 })
