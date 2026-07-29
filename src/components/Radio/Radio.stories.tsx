@@ -92,3 +92,23 @@ export const AllStates: Story = {
     </div>
   ),
 }
+
+export const Large: Story = {
+  render: () => <Radio value="a" size="lg" label="Large radio" checked />,
+}
+
+export const ToneSuccess: Story = {
+  render: () => <Radio value="a" tone="success" label="Success tone" checked />,
+}
+
+export const ToneAccent: Story = {
+  render: () => <Radio value="a" tone="accent" label="Accent tone" checked />,
+}
+
+export const CardVariant: Story = {
+  render: () => <Radio value="a" variant="card" label="Card radio" supportingText="Tile-style selectable card" />,
+}
+
+export const ErrorState: Story = {
+  render: () => <Radio value="a" error label="Errored radio" supportingText="This field is required" />,
+}

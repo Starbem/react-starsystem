@@ -116,4 +116,29 @@ describe('RadioGroup + Radio', () => {
     // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
     expect(await axe(container)).toHaveNoViolations()
   })
+
+  it('renders size lg', () => {
+    render(<Radio value="a" size="lg" label="Large" checked onSelect={() => {}} />)
+    expect(screen.getByRole('radio')).toHaveClass('size-[32px]')
+  })
+
+  it('applies success tone border color when checked', () => {
+    render(<Radio value="a" tone="success" checked label="Success" onSelect={() => {}} />)
+    expect(screen.getByRole('radio')).toHaveClass('border-[#1FBA5D]')
+  })
+
+  it('applies accent tone border color when checked', () => {
+    render(<Radio value="a" tone="accent" checked label="Accent" onSelect={() => {}} />)
+    expect(screen.getByRole('radio')).toHaveClass('border-[#ED2E98]')
+  })
+
+  it('renders card variant with a bordered wrapper', () => {
+    render(<Radio value="a" variant="card" label="Card" onSelect={() => {}} />)
+    expect(screen.getByText('Card').closest('[data-radio-card]')).toBeInTheDocument()
+  })
+
+  it('renders error state in error color regardless of tone', () => {
+    render(<Radio value="a" error label="Errored" supportingText="Required" onSelect={() => {}} />)
+    expect(screen.getByRole('radio')).toHaveClass('border-[#FF4242]')
+  })
 })
