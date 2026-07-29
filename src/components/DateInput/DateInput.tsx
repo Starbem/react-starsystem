@@ -34,8 +34,8 @@ const SIZE_CLASSES: Record<NonNullable<DateInputProps['size']>, string> = {
 }
 
 const VARIANT_CLASSES: Record<NonNullable<DateInputProps['variant']>, string> = {
-  outline: 'bg-white border border-[#D0D5DD] dark:bg-[#151B2C] dark:border-[#374151]',
-  filled: 'bg-[#F7F7F7] border border-transparent dark:bg-[#1F2937]',
+  outline: 'bg-white border border-ink-300 dark:bg-ink-900 dark:border-ink-700',
+  filled: 'bg-neutral-25 border border-transparent dark:bg-neutral-900',
 }
 
 function pad2(n: number): string {
@@ -157,9 +157,9 @@ export function DateInput({
   return (
     <div className={cn('flex flex-col gap-[4px]', className)}>
       {label && (
-        <label htmlFor={fieldId} className="text-[14px] font-medium text-[#344054] dark:text-[#D0D5DD]">
+        <label htmlFor={fieldId} className="text-[14px] font-medium text-ink-700 dark:text-ink-300">
           {label}
-          {required && <span className="text-[#FF4242]"> *</span>}
+          {required && <span className="text-error-base"> *</span>}
         </label>
       )}
       <div className="relative" ref={popoverRef}>
@@ -174,11 +174,11 @@ export function DateInput({
           onChange={(e) => setText(e.target.value)}
           onBlur={handleBlur}
           className={cn(
-            'w-full rounded-[12px] pr-[40px] outline-none text-[#101828] placeholder:text-[#98A2B3] dark:text-white',
+            'w-full rounded-md pr-[40px] outline-none text-ink-900 placeholder:text-neutral-400 dark:text-white',
             SIZE_CLASSES[size],
             VARIANT_CLASSES[variant],
-            showError && 'border-[#FF4242]',
-            success && !showError && 'border-[#1FBA5D]',
+            showError && 'border-error-base',
+            success && !showError && 'border-success-base',
             disabled && 'opacity-50 cursor-not-allowed',
           )}
         />
@@ -189,7 +189,7 @@ export function DateInput({
           aria-haspopup="dialog"
           disabled={disabled}
           onClick={() => setOpen((o) => !o)}
-          className="absolute right-[8px] top-1/2 -translate-y-1/2 inline-flex items-center justify-center size-[32px] rounded-full text-[#667085] hover:bg-[#F2F4F7] dark:text-[#98A2B3] dark:hover:bg-[#1F2937]"
+          className="absolute right-[8px] top-1/2 -translate-y-1/2 inline-flex items-center justify-center size-[32px] rounded-full text-ink-500 hover:bg-ink-100 dark:text-neutral-400 dark:hover:bg-neutral-900"
         >
           <Icon name="calendar_today" size={18} />
         </button>
@@ -199,9 +199,9 @@ export function DateInput({
           </div>
         )}
       </div>
-      {showError && <span id={messageId} className="text-[12px] text-[#FF4242]">{errorMessage}</span>}
-      {!showError && success && <span className="text-[12px] text-[#1FBA5D]">{success}</span>}
-      {!showError && !success && hint && <span id={messageId} className="text-[12px] text-[#667085] dark:text-[#98A2B3]">{hint}</span>}
+      {showError && <span id={messageId} className="text-[12px] text-error-base">{errorMessage}</span>}
+      {!showError && success && <span className="text-[12px] text-success-base">{success}</span>}
+      {!showError && !success && hint && <span id={messageId} className="text-[12px] text-ink-500 dark:text-neutral-400">{hint}</span>}
     </div>
   )
 }
