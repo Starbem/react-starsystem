@@ -96,4 +96,51 @@ describe('Modal', () => {
     // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
     expect(await axe(container)).toHaveNoViolations()
   })
+
+  it('renders sheet layout classes when present="sheet"', () => {
+    render(
+      <Modal open onClose={() => {}} present="sheet" title="Sheet">
+        Body
+      </Modal>,
+    )
+    expect(screen.getByRole('dialog')).toHaveClass('rounded-b-none')
+  })
+
+  it('renders centered layout classes when present="center"', () => {
+    render(
+      <Modal open onClose={() => {}} present="center" title="Centered">
+        Body
+      </Modal>,
+    )
+    const dialog = screen.getByRole('dialog')
+    expect(dialog).toHaveClass('top-1/2')
+    expect(dialog).not.toHaveClass('rounded-b-none')
+  })
+
+  it('renders a tone badge with the icon when tone is set', () => {
+    render(
+      <Modal open onClose={() => {}} tone="success" icon={<span data-testid="tone-icon" />} title="Success">
+        Body
+      </Modal>,
+    )
+    expect(screen.getByTestId('tone-icon')).toBeInTheDocument()
+  })
+
+  it('accepts ReactNode as title', () => {
+    render(
+      <Modal open onClose={() => {}} title={<span data-testid="rich-title">Rich</span>}>
+        Body
+      </Modal>,
+    )
+    expect(screen.getByTestId('rich-title')).toBeInTheDocument()
+  })
+
+  it('center-aligns title and body when align="center"', () => {
+    render(
+      <Modal open onClose={() => {}} align="center" title="Centered align">
+        Body
+      </Modal>,
+    )
+    expect(screen.getByText('Centered align')).toHaveClass('text-center')
+  })
 })

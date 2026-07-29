@@ -106,3 +106,43 @@ function NoOverlayCloseDemo() {
 export const DisableOverlayClose: Story = {
   render: () => <NoOverlayCloseDemo />,
 }
+
+export const SheetPresent: Story = {
+  render: () => {
+    const [open, setOpen] = useState(true)
+    return (
+      <Modal open={open} onClose={() => setOpen(false)} present="sheet" title="Sheet modal">
+        Always renders as a bottom sheet, regardless of viewport width.
+      </Modal>
+    )
+  },
+}
+
+export const CenterPresent: Story = {
+  render: () => {
+    const [open, setOpen] = useState(true)
+    return (
+      <Modal open={open} onClose={() => setOpen(false)} present="center" title="Centered modal">
+        Always renders centered, regardless of viewport width.
+      </Modal>
+    )
+  },
+}
+
+export const WithTone: Story = {
+  render: () => {
+    const [open, setOpen] = useState(true)
+    return (
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        tone="success"
+        icon={<span>✓</span>}
+        title="Payment confirmed"
+        align="center"
+      >
+        Your payment was processed successfully.
+      </Modal>
+    )
+  },
+}
