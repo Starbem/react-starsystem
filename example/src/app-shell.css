@@ -16,6 +16,13 @@ body {
     'Segoe UI',
     Roboto,
     sans-serif;
+  background: #fff;
+  color: #101828;
+}
+
+html.dark body {
+  background: #0b0f19;
+  color: #d0d5dd;
 }
 
 .shell {
