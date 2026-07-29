@@ -9,6 +9,7 @@ export type ArgType =
 export type Meta<T extends ComponentType<any> = ComponentType<any>> = {
   title: string
   component?: T
+  description?: ReactNode
   args?: Partial<ComponentProps<T>>
   argTypes?: Partial<Record<keyof ComponentProps<T>, ArgType>>
 }

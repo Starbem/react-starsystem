@@ -75,9 +75,14 @@ export function DocsLayout({ onBackToHome, theme, onToggleTheme }: DocsLayoutPro
         <main className="flex-1 overflow-y-auto bg-white p-[24px] dark:bg-[#0B0F19]">
           {selected ? (
             <>
-              <h1 className="mb-[16px] text-[20px] font-semibold text-[#101828] dark:text-white">
+              <h1 className="mb-[8px] text-[20px] font-semibold text-[#101828] dark:text-white">
                 {selected.title}
               </h1>
+              {selected.meta.description && (
+                <p className="mb-[16px] text-[13px] text-[#667085] dark:text-[#9CA3AF]">
+                  {selected.meta.description}
+                </p>
+              )}
               {selected.stories.map((story) => (
                 <StoryRenderer key={`${selected.title}/${story.name}`} doc={selected} story={story} theme={theme} />
               ))}

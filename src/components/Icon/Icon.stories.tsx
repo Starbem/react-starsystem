@@ -4,6 +4,22 @@ import { Icon } from './Icon'
 const meta: Meta<typeof Icon> = {
   title: 'Components/Icon',
   component: Icon,
+  description: (
+    <>
+      Renderiza ícones do{' '}
+      <a
+        href="https://fonts.google.com/icons?icon.set=Material+Symbols&icon.style=Outlined"
+        target="_blank"
+        rel="noreferrer"
+        className="text-[#FF5100] underline"
+      >
+        Material Symbols
+      </a>{' '}
+      (variante Outlined, sempre em espessura 200). O link acima mostra todos os nomes de ícone
+      disponíveis para uso — qualquer nome de lá funciona no componente <code>Icon</code>. Um
+      subset curado também pode ser explorado em <strong>Icons/Gallery</strong> no menu ao lado.
+    </>
+  ),
   args: { name: 'home' },
 }
 export default meta
