@@ -102,6 +102,18 @@ export type { EmptyStateProps } from './components/EmptyState'
 export { Calendar } from './components/Calendar'
 export type { CalendarProps } from './components/Calendar'
 
+export { DateInput } from './components/DateInput'
+export type { DateInputProps } from './components/DateInput'
+
+export { Schedule } from './components/Schedule'
+export type { ScheduleProps, ScheduleEvent } from './components/Schedule'
+
+export { Message, TypingMessage, MessageDay, SystemMessage, MessageList } from './components/Message'
+export type { MessageProps } from './components/Message'
+
+export { VideoCall } from './components/VideoCall'
+export type { VideoCallProps } from './components/VideoCall'
+
 // Design tokens
 export { colors } from './tokens/colors'
 export type { Colors } from './tokens/colors'
