@@ -147,4 +147,16 @@ describe('AvatarGroup', () => {
     )
     expect(screen.getByText('+1')).toBeInTheDocument()
   })
+
+  it('renders a non-Avatar child as-is, without cloning size/ring props onto it', () => {
+    render(
+      <AvatarGroup size="lg">
+        <span data-testid="custom-child">not an avatar</span>
+      </AvatarGroup>,
+    )
+    const child = screen.getByTestId('custom-child')
+    expect(child).toBeInTheDocument()
+    expect(child).not.toHaveClass('size-[48px]')
+    expect(child).not.toHaveClass('ring-2')
+  })
 })

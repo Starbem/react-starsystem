@@ -120,7 +120,7 @@ export function AvatarGroup({ children, max, size = 'md', className }: AvatarGro
   return (
     <div className={cn('flex items-center -space-x-[8px]', className)}>
       {visible.map((child, index) =>
-        isValidElement<AvatarProps>(child)
+        isValidElement<AvatarProps>(child) && child.type === Avatar
           ? cloneElement(child, { key: index, size, ring: true })
           : child,
       )}
