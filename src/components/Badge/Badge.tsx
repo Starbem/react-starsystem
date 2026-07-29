@@ -15,14 +15,14 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const VARIANT_CLASSES: Record<BadgeVariant, string> = {
-  neutral: 'bg-[#F2F4F7] text-[#344054] dark:bg-[#374151] dark:text-[#D1D5DB]',
-  primary: 'bg-[#F3E9FC] text-[#461FAE]',
-  accent: 'bg-[#FFF1E0] text-[#A31B00]',
-  success: 'bg-[#D4F4DD] text-[#166534]',
-  warning: 'bg-[#FEF3C7] text-[#92400E]',
-  error: 'bg-[#FFE1E1] text-[#B42318]',
-  solid: 'bg-[#7F56D9] text-white',
-  info: 'bg-[#DBEAFE] text-[#1E40AF]',
+  neutral: 'bg-ink-100 text-ink-700 dark:bg-ink-700 dark:text-ink-300',
+  primary: 'bg-secondary-lightest text-secondary-darker',
+  accent: 'bg-primary-lightest text-primary-darker',
+  success: 'bg-success-lightest text-success-darker',
+  warning: 'bg-warning-lightest text-warning-darkest',
+  error: 'bg-error-lightest text-error-darker',
+  solid: 'bg-secondary-base text-white',
+  info: 'bg-secondary-lightest text-secondary-darker',
 }
 
 const SIZE_CLASSES: Record<NonNullable<BadgeProps['size']>, string> = {
@@ -75,7 +75,7 @@ export function Badge({
           aria-label={`Remover ${typeof children === 'string' ? children : 'tag'}`}
           className={cn(
             'shrink-0 inline-flex items-center justify-center rounded-full outline-none',
-            'hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
+            'hover:opacity-70 focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
             REMOVE_ICON_SIZE[size],
           )}
         >
