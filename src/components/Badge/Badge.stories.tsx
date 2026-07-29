@@ -53,14 +53,33 @@ export const WithIcon: Story = {
   },
 }
 
+export const Primary: Story = {
+  args: { variant: 'primary', children: 'Primary' },
+}
+
+export const Accent: Story = {
+  args: { variant: 'accent', children: 'Accent' },
+}
+
+export const Solid: Story = {
+  args: { variant: 'solid', children: 'Solid' },
+}
+
+export const WithDot: Story = {
+  args: { dot: true, variant: 'success', children: 'Active' },
+}
+
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-4 p-4">
       <div className="flex gap-2 items-center">
-        <Badge variant="default">Default</Badge>
+        <Badge variant="neutral">Neutral</Badge>
+        <Badge variant="primary">Primary</Badge>
+        <Badge variant="accent">Accent</Badge>
         <Badge variant="success">Success</Badge>
         <Badge variant="warning">Warning</Badge>
         <Badge variant="error">Error</Badge>
+        <Badge variant="solid">Solid</Badge>
         <Badge variant="info">Info</Badge>
       </div>
       <div className="flex gap-2 items-center">

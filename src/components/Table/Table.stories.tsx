@@ -26,7 +26,7 @@ const COLUMNS: TableColumn<Employee>[] = [
     header: 'Status',
     accessor: (row) => row.status,
     render: (row) => (
-      <Badge variant={row.status === 'active' ? 'success' : 'default'} size="sm">
+      <Badge variant={row.status === 'active' ? 'success' : 'neutral'} size="sm">
         {row.status === 'active' ? 'Ativo' : 'Inativo'}
       </Badge>
     ),
