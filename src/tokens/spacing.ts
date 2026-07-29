@@ -1,40 +1,50 @@
+// Source of truth: Starbem Design System reference kit (tokens/spacing.css,
+// tokens/shadows.css).
 export const spacing = {
   0:  '0px',
-  1:  '4px',   // PLACEHOLDER — standard 4px base unit
-  2:  '8px',   // [VERIFIED] — gap-[8px] in header section title
+  1:  '4px',
+  2:  '8px',
   3:  '12px',
-  4:  '16px',  // [VERIFIED] — gap-[16px] in logo+title group
-  5:  '20px',  // [VERIFIED] — gap-[20px] in heading group
+  4:  '16px',
+  5:  '20px',
   6:  '24px',
-  8:  '32px',  // [VERIFIED] — gap-[32px] in Cover subtitle
-  10: '40px',  // [VERIFIED] — gap-[40px], p-[40px] in Card containers
+  8:  '32px',
+  10: '40px',
   12: '48px',
-  16: '64px',  // [VERIFIED] — pt-[64px] in _Design system header
-  20: '80px',  // [VERIFIED] — px-[80px] in _Design system header content
-  24: '96px',  // [VERIFIED] — pb-[96px] in _Design system header content
-  32: '128px', // [VERIFIED] — gap-[128px] in _Design system header sections
+  16: '64px',
+  20: '80px',
+  24: '96px',
+  32: '128px',
+  40: '160px',
 } as const
 
 export const borderRadius = {
   none: '0',
-  sm:   '9px',    // [VERIFIED] — logo card containers (rounded-[9px])
-  md:   '16px',   // [VERIFIED] — _Design system header (rounded-tl-[16px])
-  lg:   '32px',   // [VERIFIED] — _Design system header (rounded-tl-[32px], rounded-bl-[32px])
-  xl:   '40px',   // PLACEHOLDER — verify in Figma (extrapolated from lg=32px)
-  '2xl': '48px',  // PLACEHOLDER — verify in Figma
-  full: '9999px', // PLACEHOLDER — standard convention
+  xs:   '4px',
+  sm:   '8px',
+  md:   '12px',
+  lg:   '16px',   // default button/control radius
+  xl:   '24px',
+  '2xl': '32px',
+  full: '9999px',
 } as const
 
 export const shadows = {
-  elevation00: 'none',                                        // [VERIFIED] — Elevation/00 = no shadow
-  elevation01: '0 1px 2px rgba(0,0,0,0.08)',                  // PLACEHOLDER — verify in Figma Elevation/01
-  elevation02: '0 2px 4px rgba(0,0,0,0.12)',                  // PLACEHOLDER — verify in Figma Elevation/02
-  elevation03: '0 4px 8px rgba(0,0,0,0.12)',                  // PLACEHOLDER — verify in Figma Elevation/03
-  elevation04: '0 8px 16px rgba(0,0,0,0.12)',                 // PLACEHOLDER — verify in Figma Elevation/04
-  elevation05: '0 16px 24px rgba(0,0,0,0.12)',                // PLACEHOLDER — verify in Figma Elevation/05
-  elevation06: '0 24px 40px rgba(0,0,0,0.16)',                // PLACEHOLDER — verify in Figma Elevation/06
-  elevationSecondary: '0 4px 16px rgba(237,46,152,0.32)',     // PLACEHOLDER — verify in Figma Elevation/Secondary (Terciary/Base: #ED2E98)
-  elevationHoverSecondary: '0 4px 24px rgba(237,46,152,0.48)', // PLACEHOLDER — verify in Figma Elevation/Hover/Secondary
+  elevation00: 'none',
+  elevation01: '0px 1px 2px 0px rgba(16,24,40,0.05)',
+  elevation02: '0px 1px 3px 0px rgba(16,24,40,0.10), 0px 1px 2px 0px rgba(16,24,40,0.06)',
+  elevation03: '0px 4px 8px -2px rgba(16,24,40,0.10), 0px 2px 4px -2px rgba(16,24,40,0.06)',
+  elevation04: '0px 12px 16px -4px rgba(16,24,40,0.08), 0px 4px 6px -2px rgba(16,24,40,0.03)',
+  elevation05: '0px 20px 24px -4px rgba(16,24,40,0.08), 0px 8px 8px -4px rgba(16,24,40,0.03)',
+  elevation06: '0px 24px 48px -12px rgba(12,17,29,0.18)',
+  elevation07: '0px 32px 64px -12px rgba(12,17,29,0.14)',
+  // Lib-only extensions — no DS equivalent, kept as-is (may already be in use).
+  elevationSecondary: '0 4px 16px rgba(237,46,152,0.32)',
+  elevationHoverSecondary: '0 4px 24px rgba(237,46,152,0.48)',
+  // Soft brand glow — highlighted/focused surfaces.
+  shadowBrand: '0px 1px 8px 0px rgba(21,55,96,0.10)',
+  // Focus ring — orange, matches the principal interactive color.
+  ringFocus: '0px 0px 0px 4px rgba(255,81,0,0.20)',
 } as const
 
 export type Spacing = typeof spacing

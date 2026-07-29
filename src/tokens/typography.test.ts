@@ -4,7 +4,7 @@ import { fontFamily, fontSize, fontWeight, lineHeight } from './typography'
 describe('typography', () => {
   it('exports fontFamily with display and body', () => {
     expect(fontFamily.display).toContain('Funnel Display')
-    expect(fontFamily.body).toContain('Inter')
+    expect(fontFamily.body).toContain('Funnel Display')
   })
 
   it('exports fontSize scale with heading and body sizes', () => {
