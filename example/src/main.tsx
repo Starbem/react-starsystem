@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router'
 import '@starbemtech/react-starsystem/style.css'
 import 'material-symbols/rounded.css'
 import './app-shell.css'
