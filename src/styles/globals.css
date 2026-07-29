@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 @source "../components";
 
@@ -8,29 +9,33 @@
    theme switcher instead of silently following system preference. */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Starbem Star System design tokens */
+/* Starbem Star System design tokens — source of truth: Starbem Design
+   System reference kit (tokens/*.css). ONE typeface (Funnel Display) across
+   display, headings, UI, body, labels and captions. */
 @theme {
   /* Typography — font family */
-  --font-family-display: "Funnel Display", sans-serif; /* [VERIFIED] — Starbem brand font */
-  --font-family-body:    "Inter", sans-serif;           /* [VERIFIED] — from Figma _Design system header */
+  --font-family-display: "Funnel Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family-body:    "Funnel Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   /* Typography — font size */
-  --font-size-display-lg: 3.25rem; /* [VERIFIED] — 52px from Figma Display/LG */
-  --font-size-h1:         2.5rem;  /* PLACEHOLDER — verify Figma Heading/H1 (40px assumed) */
-  --font-size-h2:         2rem;    /* PLACEHOLDER — verify Figma Heading/H2 (32px assumed) */
-  --font-size-h3:         1.5rem;  /* [VERIFIED] — 24px from Figma Heading/H3 */
-  --font-size-h4:         1.25rem; /* PLACEHOLDER — verify Figma Heading/H4 (20px assumed) */
-  --font-size-body-lg:    1.125rem;
-  --font-size-body:       1rem;
-  --font-size-body-sm:    0.875rem;
-  --font-size-caption:    0.75rem;
+  --font-size-display-lg: 3.25rem;  /* 52px */
+  --font-size-h1:         2.25rem;  /* 36px */
+  --font-size-h2:         1.875rem; /* 30px */
+  --font-size-h3:         1.5rem;   /* 24px */
+  --font-size-h4:         1.375rem; /* 22px */
+  --font-size-body-lg:    1.125rem; /* 18px — DS "subtitle-lg" */
+  --font-size-body:       1rem;     /* 16px — DS "subtitle-md" */
+  --font-size-body-sm:    0.875rem; /* 14px — DS "subtitle-sm" */
+  --font-size-caption:    0.75rem;  /* 12px */
+  --font-size-overline:   0.625rem; /* 10px */
 
   /* Typography — font weight */
-  --font-weight-regular:   400; /* [VERIFIED] */
-  --font-weight-medium:    500; /* PLACEHOLDER — numeric weight assumed */
-  --font-weight-semibold:  600; /* [VERIFIED] */
-  --font-weight-bold:      700; /* PLACEHOLDER — numeric weight assumed */
-  --font-weight-extrabold: 800; /* [VERIFIED] — ExtraBold */
+  --font-weight-light:     300;
+  --font-weight-regular:   400;
+  --font-weight-medium:    500;
+  --font-weight-semibold:  600;
+  --font-weight-bold:      700;
+  --font-weight-extrabold: 800;
 
   /* Typography — line height */
   --line-height-tight:   1.2;
@@ -38,69 +43,148 @@
   --line-height-base:    1.5;
   --line-height-relaxed: 1.75;
 
-  /* Primary palette — orange */
-  --color-primary-base:     #FF5100;
-  --color-primary-light:    #FF7A40; /* PLACEHOLDER */
-  --color-primary-lighter:  #FFA880; /* PLACEHOLDER */
-  --color-primary-lightest: #FFD4BF; /* PLACEHOLDER */
-  --color-primary-dark:     #CC4100; /* PLACEHOLDER */
-  --color-primary-darker:   #993100; /* PLACEHOLDER */
-  --color-primary-darkest:  #662000; /* PLACEHOLDER */
+  /* Brand anchors */
+  --color-brand-orange: #FF5100;
+  --color-brand-purple: #7F56D9;
+  --color-brand-pink:   #ED2E98;
+  --color-brand-yellow: #FFDA44;
 
-  /* Secondary palette — purple/violet */
-  --color-secondary-base:     #8660EC;
-  --color-secondary-light:    #A888F2; /* PLACEHOLDER */
-  --color-secondary-lighter:  #C9B0F7; /* PLACEHOLDER */
-  --color-secondary-lightest: #E4D8FB; /* PLACEHOLDER */
-  --color-secondary-dark:     #6B48D4; /* PLACEHOLDER */
+  /* Primary palette — orange (principal brand & UI color) */
+  --color-primary-base:     #FF5100;
+  --color-primary-light:    #FF9353;
+  --color-primary-lighter:  #FFC992;
+  --color-primary-lightest: #FFF1E0;
+  --color-primary-dark:     #D03700;
+  --color-primary-darker:   #A31B00;
+  --color-primary-darkest:  #900700;
+
+  /* Secondary palette — purple (the interactive color) */
+  --color-secondary-base:     #7F56D9;
+  --color-secondary-light:    #AE8EF1;
+  --color-secondary-lighter:  #D1B4F6;
+  --color-secondary-lightest: #F3E9FC;
+  --color-secondary-dark:     #5A40B5;
   --color-secondary-darker:   #461FAE;
-  --color-secondary-darkest:  #2D1070; /* PLACEHOLDER */
+  --color-secondary-darkest:  #18176B;
 
   /* Terciary palette — pink/magenta (Figma spelling preserved) */
   --color-terciary-base:     #ED2E98;
-  --color-terciary-light:    #F268B6; /* PLACEHOLDER */
-  --color-terciary-lighter:  #F7A2D0; /* PLACEHOLDER */
-  --color-terciary-lightest: #FBCFE6; /* PLACEHOLDER */
-  --color-terciary-dark:     #C4207C; /* PLACEHOLDER */
-  --color-terciary-darker:   #9B1562; /* PLACEHOLDER */
-  --color-terciary-darkest:  #6B0D44; /* PLACEHOLDER */
+  --color-terciary-light:    #F263A6;
+  --color-terciary-lighter:  #F68FAF;
+  --color-terciary-lightest: #FFF3E3;
+  --color-terciary-dark:     #C01857;
+  --color-terciary-darker:   #930620;
+  --color-terciary-darkest:  #7C0008;
 
   /* Neutral palette */
   --color-neutral-white:  #FFFFFF;
   --color-neutral-25:     #F7F7F7;
-  --color-neutral-50:     #F0F0F0; /* PLACEHOLDER */
-  --color-neutral-100:    #E8E8E8; /* PLACEHOLDER */
-  --color-neutral-200:    #D0D0D0; /* PLACEHOLDER */
+  --color-neutral-50:     #EFEFEF;
+  --color-neutral-100:    #E2E2E2;
+  --color-neutral-200:    #CFCFCF;
   --color-neutral-300:    #B6B6B6;
-  --color-neutral-400:    #9C9C9C; /* PLACEHOLDER */
-  --color-neutral-500:    #808080; /* PLACEHOLDER */
-  --color-neutral-600:    #626262; /* PLACEHOLDER */
-  --color-neutral-700:    #4E4E4E; /* PLACEHOLDER */
+  --color-neutral-400:    #9C9C9C;
+  --color-neutral-500:    #808080;
+  --color-neutral-600:    #656565;
+  --color-neutral-700:    #4D4D4D;
   --color-neutral-800:    #393939;
-  --color-neutral-900:    #252525; /* PLACEHOLDER */
-  --color-neutral-1000:   #101828;
+  --color-neutral-900:    #2C2C2C;
+  --color-neutral-1000:   #272727;
   --color-neutral-black:  #000000;
 
-  /* Border radius — [VERIFIED] from Figma component code */
-  --radius-none: 0;
-  --radius-sm:   9px;     /* [VERIFIED] — logo card containers (rounded-[9px]) */
-  --radius-md:   16px;    /* [VERIFIED] — _Design system header (rounded-tl-[16px]) */
-  --radius-lg:   32px;    /* [VERIFIED] — _Design system header (rounded-tl-[32px]) */
-  --radius-xl:   40px;    /* PLACEHOLDER — verify in Figma (extrapolated from lg=32px) */
-  --radius-2xl:  48px;    /* PLACEHOLDER — verify in Figma */
-  --radius-full: 9999px;  /* PLACEHOLDER — standard convention */
+  /* Ink — cool near-blacks used for text & UI chrome */
+  --color-ink-900: #101828;
+  --color-ink-800: #1C1B1F;
+  --color-ink-700: #344054;
+  --color-ink-600: #475467;
+  --color-ink-500: #667085;
+  --color-ink-300: #D0D5DD;
+  --color-ink-200: #EAECF0;
+  --color-ink-100: #F2F4F7;
+  --color-ink-50:  #F9FAFB;
 
-  /* Elevation shadows — PLACEHOLDER: Figma effect styles not extractable via MCP.
-     Verify each value in Figma: open a card/modal component → Effects panel → drop-shadow values. */
-  --shadow-elevation-00: none;                                          /* [VERIFIED] — Elevation/00 = no shadow */
-  --shadow-elevation-01: 0 1px 2px rgba(0,0,0,0.08);                   /* PLACEHOLDER — verify Figma Elevation/01 */
-  --shadow-elevation-02: 0 2px 4px rgba(0,0,0,0.12);                   /* PLACEHOLDER — verify Figma Elevation/02 */
-  --shadow-elevation-03: 0 4px 8px rgba(0,0,0,0.12);                   /* PLACEHOLDER — verify Figma Elevation/03 */
-  --shadow-elevation-04: 0 8px 16px rgba(0,0,0,0.12);                  /* PLACEHOLDER — verify Figma Elevation/04 */
-  --shadow-elevation-05: 0 16px 24px rgba(0,0,0,0.12);                 /* PLACEHOLDER — verify Figma Elevation/05 */
-  --shadow-elevation-06: 0 24px 40px rgba(0,0,0,0.16);                 /* PLACEHOLDER — verify Figma Elevation/06 */
-  --shadow-elevation-secondary: 0 4px 16px rgba(237,46,152,0.32);      /* PLACEHOLDER — verify Figma Elevation/Secondary */
-  --shadow-elevation-hover-secondary: 0 4px 24px rgba(237,46,152,0.48); /* PLACEHOLDER — verify Figma Elevation/Hover/Secondary */
+  /* Semantic states */
+  --color-error-lightest: #FFEDE7;
+  --color-error-lighter:  #FFBDAE;
+  --color-error-light:    #FF867E;
+  --color-error-base:     #FF4242;
+  --color-error-dark:     #CE2329;
+  --color-error-darker:   #9A0912;
+  --color-error-darkest:  #7E0108;
+
+  --color-warning-lightest: #FEF8E9;
+  --color-warning-lighter:  #FBE3B3;
+  --color-warning-light:    #F9C486;
+  --color-warning-base:     #F8A04D;
+  --color-warning-dark:     #CE7734;
+  --color-warning-darker:   #A2491A;
+  --color-warning-darkest:  #8D2B0E;
+
+  --color-success-lightest: #E3F6EF;
+  --color-success-lighter:  #9FE1C5;
+  --color-success-light:    #67D097;
+  --color-success-base:     #1FBA5D;
+  --color-success-dark:     #189443;
+  --color-success-darker:   #116D28;
+  --color-success-darkest:  #0E5A19;
+
+  /* Semantic aliases — use these in product UI over raw scale steps */
+  --color-primary:        var(--color-primary-base);
+  --color-primary-hover:  var(--color-primary-dark);
+  --color-primary-press:  var(--color-primary-darker);
+  --color-primary-subtle: var(--color-primary-lightest);
+
+  --color-secondary:        var(--color-secondary-base);
+  --color-secondary-hover:  var(--color-secondary-dark);
+  --color-secondary-press:  var(--color-secondary-darker);
+  --color-secondary-subtle: var(--color-secondary-lightest);
+
+  --color-accent:        var(--color-brand-pink);
+  --color-accent-subtle: var(--color-terciary-lightest);
+
+  --text-primary:   var(--color-ink-900);
+  --text-secondary: var(--color-ink-600);
+  --text-tertiary:  var(--color-ink-500);
+  --text-on-brand:  #FFFFFF;
+  --text-disabled:  var(--color-neutral-400);
+  --text-link:      var(--color-secondary-base);
+
+  --surface-page:    var(--color-ink-50);
+  --surface-card:    #FFFFFF;
+  --surface-sunken:  var(--color-ink-100);
+  --surface-inverse: var(--color-ink-800);
+
+  --border-subtle:  var(--color-ink-200);
+  --border-default: var(--color-ink-300);
+  --border-strong:  var(--color-neutral-400);
+  --border-focus:   var(--color-primary-base);
+
+  /* Border radius */
+  --radius-none: 0;
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;   /* default button/control radius */
+  --radius-xl:   24px;
+  --radius-2xl:  32px;
+  --radius-full: 9999px;
+
+  /* Elevation shadows */
+  --shadow-elevation-00: none;
+  --shadow-elevation-01: 0px 1px 2px 0px rgba(16,24,40,0.05);
+  --shadow-elevation-02: 0px 1px 3px 0px rgba(16,24,40,0.10), 0px 1px 2px 0px rgba(16,24,40,0.06);
+  --shadow-elevation-03: 0px 4px 8px -2px rgba(16,24,40,0.10), 0px 2px 4px -2px rgba(16,24,40,0.06);
+  --shadow-elevation-04: 0px 12px 16px -4px rgba(16,24,40,0.08), 0px 4px 6px -2px rgba(16,24,40,0.03);
+  --shadow-elevation-05: 0px 20px 24px -4px rgba(16,24,40,0.08), 0px 8px 8px -4px rgba(16,24,40,0.03);
+  --shadow-elevation-06: 0px 24px 48px -12px rgba(12,17,29,0.18);
+  --shadow-elevation-07: 0px 32px 64px -12px rgba(12,17,29,0.14);
+  /* Lib-only extensions — no DS equivalent, kept as-is (may already be in use) */
+  --shadow-elevation-secondary: 0 4px 16px rgba(237,46,152,0.32);
+  --shadow-elevation-hover-secondary: 0 4px 24px rgba(237,46,152,0.48);
+  /* Soft brand glow — highlighted/focused surfaces */
+  --shadow-brand: 0px 1px 8px 0px rgba(21,55,96,0.10);
+  /* Focus ring — orange, matches the principal interactive color */
+  --ring-focus: 0px 0px 0px 4px rgba(255,81,0,0.20);
 }
 
 /* Toast auto-dismiss progress bar */

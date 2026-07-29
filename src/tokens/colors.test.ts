@@ -14,7 +14,7 @@ describe('colors', () => {
     expect(colors.primary.darkest).toMatch(hexPattern)
   })
   it('exports secondary palette (purple) with verified base and darker', () => {
-    expect(colors.secondary.base).toBe('#8660EC')
+    expect(colors.secondary.base).toBe('#7F56D9')
     expect(colors.secondary.darker).toBe('#461FAE')
     expect(colors.secondary.light).toMatch(hexPattern)
     expect(colors.secondary.darkest).toMatch(hexPattern)
@@ -29,7 +29,7 @@ describe('colors', () => {
     expect(colors.neutral[25]).toBe('#F7F7F7')
     expect(colors.neutral[300]).toBe('#B6B6B6')
     expect(colors.neutral[800]).toBe('#393939')
-    expect(colors.neutral[1000]).toBe('#101828')
+    expect(colors.neutral[1000]).toBe('#272727')
     expect(colors.neutral.black).toBe('#000000')
   })
 })

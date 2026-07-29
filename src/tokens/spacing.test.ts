@@ -24,11 +24,11 @@ describe('spacing', () => {
 })
 
 describe('borderRadius', () => {
-  it('exports borderRadius with Figma-verified values', () => {
+  it('exports borderRadius with DS-verified values', () => {
     expect(borderRadius.none).toBe('0')
-    expect(borderRadius.sm).toBe('9px')    // [VERIFIED] — logo card containers rounded-[9px]
-    expect(borderRadius.md).toBe('16px')   // [VERIFIED] — design system header rounded-tl-[16px]
-    expect(borderRadius.lg).toBe('32px')   // [VERIFIED] — design system header rounded-tl-[32px]
+    expect(borderRadius.sm).toBe('8px')
+    expect(borderRadius.md).toBe('12px')
+    expect(borderRadius.lg).toBe('16px')
     expect(borderRadius.full).toBe('9999px')
   })
 
