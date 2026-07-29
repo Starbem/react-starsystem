@@ -5,6 +5,7 @@ import {
   Button,
   Drawer,
   FormField,
+  Icon,
   Input,
   Modal,
   Select,
@@ -62,11 +63,16 @@ export function Employees() {
       header: '',
       render: (row) => (
         <div style={{ display: 'flex', gap: 8 }}>
-          <Button variant="ghost" size="sm" onClick={() => { setEditing(row); setNameError(undefined) }}>
-            Editar
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => { setEditing(row); setNameError(undefined) }}
+            aria-label={`Editar ${row.name}`}
+          >
+            <Icon name="edit" size={18} />
           </Button>
-          <Button variant="ghost" size="sm" onClick={() => setDeleting(row)}>
-            Excluir
+          <Button variant="ghost" size="sm" onClick={() => setDeleting(row)} aria-label={`Excluir ${row.name}`}>
+            <Icon name="delete" size={18} />
           </Button>
         </div>
       ),
@@ -128,7 +134,10 @@ export function Employees() {
                 onChange={(value) => setEditing({ ...editing, department: value as Employee['department'] })}
               />
             </FormField>
-            <Button onClick={saveEdit}>Salvar</Button>
+            <Button onClick={saveEdit} style={{ display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'center' }}>
+              <Icon name="check" size={18} />
+              Salvar
+            </Button>
           </div>
         )}
       </Drawer>
@@ -141,7 +150,14 @@ export function Employees() {
         footer={
           <>
             <Button variant="ghost" onClick={() => setDeleting(null)}>Cancelar</Button>
-            <Button variant="danger" onClick={confirmDelete}>Remover</Button>
+            <Button
+              variant="danger"
+              onClick={confirmDelete}
+              style={{ display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'center' }}
+            >
+              <Icon name="delete" size={18} />
+              Remover
+            </Button>
           </>
         }
       />

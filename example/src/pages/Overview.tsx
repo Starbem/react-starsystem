@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Badge, Card, EmptyState, Skeleton, Table, type TableColumn } from '@starbemtech/react-starsystem'
+import { Badge, Card, EmptyState, Icon, Skeleton, Table, type TableColumn } from '@starbemtech/react-starsystem'
 import { employees, type Employee } from '../mocks/employees'
 
 const METRICS = [
-  { label: 'Colaboradores ativos', value: '128', trend: '+4 este mês' },
-  { label: 'Benefícios ativos', value: '6', trend: 'estável' },
-  { label: 'Solicitações pendentes', value: '0', trend: 'em dia' },
+  { label: 'Colaboradores ativos', value: '128', trend: '+4 este mês', icon: 'group' },
+  { label: 'Benefícios ativos', value: '6', trend: 'estável', icon: 'favorite' },
+  { label: 'Solicitações pendentes', value: '0', trend: 'em dia', icon: 'task' },
 ]
 
 const STATUS_VARIANT: Record<Employee['status'], 'success' | 'warning' | 'error'> = {
@@ -41,7 +41,10 @@ export function Overview() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16 }}>
         {METRICS.map((metric) => (
           <Card key={metric.label} variant="outlined">
-            <p style={{ margin: 0, fontSize: 13, color: '#667085' }}>{metric.label}</p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#667085' }}>
+              <Icon name={metric.icon} size={18} />
+              <p style={{ margin: 0, fontSize: 13 }}>{metric.label}</p>
+            </div>
             <p style={{ margin: '4px 0', fontSize: 28, fontWeight: 600 }}>{metric.value}</p>
             <Badge variant="default" size="sm">
               {metric.trend}
@@ -66,6 +69,7 @@ export function Overview() {
       <Card variant="default">
         <h2 style={{ marginTop: 0 }}>Solicitações pendentes</h2>
         <EmptyState
+          icon={<Icon name="task_alt" size={32} />}
           title="Nenhuma solicitação pendente"
           description="Todas as solicitações de benefícios foram processadas."
         />

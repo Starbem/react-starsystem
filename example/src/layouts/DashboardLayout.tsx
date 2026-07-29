@@ -6,6 +6,7 @@ import {
   Button,
   Drawer,
   DropdownMenu,
+  Icon,
   Sidebar,
   TopBar,
   ToastProvider,
@@ -15,11 +16,11 @@ import {
 import { useLocalStorageState } from '../hooks/useLocalStorageState'
 import { useTheme } from '../hooks/useTheme'
 
-const ROUTES: Array<{ label: string; href: string }> = [
-  { label: 'Visão geral', href: '/' },
-  { label: 'Colaboradores', href: '/employees' },
-  { label: 'Benefícios', href: '/benefits' },
-  { label: 'Configurações', href: '/settings' },
+const ROUTES: Array<{ label: string; href: string; icon: string }> = [
+  { label: 'Visão geral', href: '/', icon: 'dashboard' },
+  { label: 'Colaboradores', href: '/employees', icon: 'group' },
+  { label: 'Benefícios', href: '/benefits', icon: 'favorite' },
+  { label: 'Configurações', href: '/settings', icon: 'settings' },
 ]
 
 function useNavItems(): NavItemConfig[] {
@@ -29,6 +30,7 @@ function useNavItems(): NavItemConfig[] {
     label: route.label,
     active: location.pathname === route.href,
     onClick: () => navigate(route.href),
+    icon: <Icon name={route.icon} size={20} />,
   }))
 }
 
@@ -36,7 +38,7 @@ function ThemeToggleButton() {
   const { theme, toggleTheme } = useTheme()
   return (
     <Button variant="ghost" size="sm" onClick={toggleTheme} aria-label="Alternar tema">
-      {theme === 'dark' ? '☀️ Claro' : '🌙 Escuro'}
+      <Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} size={18} />
     </Button>
   )
 }
@@ -45,8 +47,8 @@ function ProfileMenu() {
   const items: DropdownMenuEntry[] = [
     { type: 'label', label: 'Julia Fernandes' },
     { type: 'separator' },
-    { type: 'item', label: 'Meu perfil', value: 'profile' },
-    { type: 'item', label: 'Sair', value: 'logout' },
+    { type: 'item', label: 'Meu perfil', value: 'profile', icon: <Icon name="person" size={18} /> },
+    { type: 'item', label: 'Sair', value: 'logout', icon: <Icon name="logout" size={18} /> },
   ]
   return (
     <DropdownMenu
@@ -70,10 +72,16 @@ export function DashboardLayout() {
           <Sidebar
             items={navItems}
             collapsed={collapsed}
-            header={<strong>{collapsed ? 'SS' : 'Star System'}</strong>}
+            header={
+              <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <Icon name="star" fill size={20} />
+                {!collapsed && <strong>Star System</strong>}
+              </span>
+            }
             footer={
               <Button variant="ghost" size="sm" onClick={() => setCollapsed(!collapsed)}>
-                {collapsed ? '»' : '« Recolher'}
+                <Icon name={collapsed ? 'chevron_right' : 'chevron_left'} size={18} />
+                {!collapsed && 'Recolher'}
               </Button>
             }
           />
@@ -101,14 +109,17 @@ export function DashboardLayout() {
                   onClick={() => setMobileNavOpen(true)}
                   aria-label="Abrir menu"
                 >
-                  ☰
+                  <Icon name="menu" />
                 </button>
-                <NavLink to="/">Dashboard RH</NavLink>
+                <NavLink to="/" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <Icon name="dashboard" size={18} />
+                  Dashboard RH
+                </NavLink>
               </>
             }
             end={
               <>
-                <Badge variant="info" size="sm">
+                <Badge variant="info" size="sm" icon={<Icon name="notifications" size={14} />}>
                   3 pendências
                 </Badge>
                 <ThemeToggleButton />

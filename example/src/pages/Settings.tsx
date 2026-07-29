@@ -6,6 +6,7 @@ import {
   Checkbox,
   Divider,
   FormField,
+  Icon,
   Radio,
   Spinner,
   Textarea,
@@ -70,8 +71,13 @@ export function Settings() {
       <Checkbox checked={betaFeatures} onChange={setBetaFeatures} label="Participar do programa beta" />
 
       <div>
-        <Button onClick={handleSave} disabled={saving}>
-          {saving ? <Spinner size="sm" label="Salvando" /> : 'Salvar alterações'}
+        <Button
+          onClick={handleSave}
+          disabled={saving}
+          style={{ display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'center' }}
+        >
+          {saving ? <Spinner size="sm" label="Salvando" /> : <Icon name="save" size={18} />}
+          {saving ? 'Salvando' : 'Salvar alterações'}
         </Button>
       </div>
     </div>

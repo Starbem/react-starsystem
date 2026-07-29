@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Accordion, Card, Popover, Tabs, Tooltip } from '@starbemtech/react-starsystem'
+import { Accordion, Card, Icon, Popover, Tabs, Tooltip } from '@starbemtech/react-starsystem'
 import { benefitFaqs, benefits, type Benefit } from '../mocks/benefits'
 
 const CATEGORIES = ['Saúde', 'Bem-estar', 'Financeiro'] as const
@@ -12,14 +12,29 @@ function BenefitGrid({ items }: { items: Benefit[] }) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <h3 style={{ margin: 0 }}>{benefit.name}</h3>
             <Tooltip content={benefit.description}>
-              <span aria-label="Detalhes" style={{ cursor: 'help' }}>ⓘ</span>
+              <span aria-label="Detalhes" style={{ cursor: 'help', color: '#667085' }}>
+                <Icon name="info" size={18} />
+              </span>
             </Tooltip>
           </div>
           <p style={{ color: '#667085' }}>{benefit.description}</p>
           <Popover
             content={<span>Adesão de {benefit.adherence}% dos colaboradores.</span>}
             trigger={
-              <button type="button" style={{ background: 'none', border: 'none', color: '#FF5100', cursor: 'pointer', padding: 0 }}>
+              <button
+                type="button"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 4,
+                  background: 'none',
+                  border: 'none',
+                  color: '#FF5100',
+                  cursor: 'pointer',
+                  padding: 0,
+                }}
+              >
+                <Icon name="compare_arrows" size={16} />
                 Comparar planos
               </button>
             }
