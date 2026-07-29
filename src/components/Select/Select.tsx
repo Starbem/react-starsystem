@@ -147,7 +147,7 @@ export function Select({
         <label
           id={labelId}
           htmlFor={resolvedId}
-          className="font-['Funnel_Display'] text-[12px] leading-[16px] text-[#9C9C9C] select-none dark:text-[#6B7280]"
+          className="font-['Funnel_Display'] text-[12px] leading-[16px] text-neutral-400 select-none dark:text-ink-500"
         >
           {label}
         </label>
@@ -175,16 +175,16 @@ export function Select({
           }}
           onKeyDown={handleTriggerKeyDown}
           className={cn(
-            'flex gap-[8px] items-center w-full h-[56px] px-[16px] py-[8px] rounded-[16px] border text-left',
+            'flex gap-[8px] items-center w-full h-[56px] px-[16px] py-[8px] rounded-lg border text-left',
             'outline-none transition-colors',
-            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-2',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-2',
             disabled
-              ? 'bg-[#EFEFEF] border-[#B6B6B6] cursor-not-allowed dark:bg-[#1F2937] dark:border-[#374151]'
+              ? 'bg-neutral-50 border-neutral-300 cursor-not-allowed dark:bg-neutral-900 dark:border-ink-700'
               : isError
-                ? 'bg-[#F7F7F7] border-[#FF4242] shadow-[0px_1px_2px_0px_rgba(12,17,29,0.10)] dark:bg-[#1F2937]'
+                ? 'bg-neutral-25 border-error-base shadow-elevation-01 dark:bg-neutral-900'
                 : isOpen
-                  ? 'bg-[#F7F7F7] border-[#D1B4F6] shadow-[0px_1px_2px_0px_rgba(12,17,29,0.10)] dark:bg-[#1F2937]'
-                  : 'bg-[#F7F7F7] border-[#B6B6B6] shadow-[0px_1px_2px_0px_rgba(12,17,29,0.10)] dark:bg-[#1F2937] dark:border-[#374151]',
+                  ? 'bg-neutral-25 border-secondary-lighter shadow-elevation-01 dark:bg-neutral-900'
+                  : 'bg-neutral-25 border-neutral-300 shadow-elevation-01 dark:bg-neutral-900 dark:border-ink-700',
           )}
         >
           <span className="flex flex-col flex-1 min-w-0 justify-center">
@@ -192,16 +192,16 @@ export function Select({
               className={cn(
                 "font-['Funnel_Display'] text-[16px] leading-[24px] truncate",
                 disabled
-                  ? 'text-[#B6B6B6] dark:text-[#4B5563]'
+                  ? 'text-neutral-300 dark:text-ink-600'
                   : selectedOption
-                    ? 'text-[#393939] font-medium dark:text-[#F2F4F7]'
-                    : 'text-[#9C9C9C] dark:text-[#6B7280]',
+                    ? 'text-neutral-800 font-medium dark:text-ink-100'
+                    : 'text-neutral-400 dark:text-ink-500',
               )}
             >
               {selectedOption ? selectedOption.label : placeholder}
             </span>
           </span>
-          <span className={cn('shrink-0 text-[#808080] dark:text-[#9CA3AF]', disabled && 'text-[#B6B6B6] dark:text-[#4B5563]')}>
+          <span className={cn('shrink-0 text-neutral-500 dark:text-neutral-400', disabled && 'text-neutral-300 dark:text-ink-600')}>
             {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
           </span>
         </button>
@@ -219,7 +219,7 @@ export function Select({
             }
             tabIndex={-1}
             onKeyDown={handleListKeyDown}
-            className="absolute top-full left-0 w-full mt-[8px] bg-[#F7F7F7] border border-[#E2E2E2] rounded-[16px] shadow-[0px_4px_16px_2px_rgba(70,31,174,0.10)] py-[4px] max-h-[320px] overflow-y-auto z-50 outline-none dark:bg-[#1F2937] dark:border-[#374151]"
+            className="absolute top-full left-0 w-full mt-[8px] bg-neutral-25 border border-neutral-100 rounded-lg shadow-[0px_4px_16px_2px_rgba(70,31,174,0.10)] py-[4px] max-h-[320px] overflow-y-auto z-50 outline-none dark:bg-neutral-900 dark:border-ink-700"
           >
             {options.map((option, idx) => {
               const isSelected = option.value === value
@@ -246,15 +246,15 @@ export function Select({
                   className={cn(
                     "flex items-center gap-[8px] px-[16px] py-[8px] font-['Funnel_Display'] text-[16px] font-medium leading-[24px]",
                     isDisabled
-                      ? 'text-[#B6B6B6] cursor-not-allowed dark:text-[#4B5563]'
+                      ? 'text-neutral-300 cursor-not-allowed dark:text-ink-600'
                       : isSelected || isFocused
-                        ? 'bg-[#EFEFEF] text-[#393939] cursor-pointer dark:bg-[#374151] dark:text-[#F2F4F7]'
-                        : 'text-[#393939] cursor-pointer hover:bg-[#EFEFEF] dark:text-[#F2F4F7] dark:hover:bg-[#374151]',
+                        ? 'bg-neutral-50 text-neutral-800 cursor-pointer dark:bg-ink-700 dark:text-ink-100'
+                        : 'text-neutral-800 cursor-pointer hover:bg-neutral-50 dark:text-ink-100 dark:hover:bg-ink-700',
                   )}
                 >
                   <span className="flex-1 truncate">{option.label}</span>
                   {isSelected && (
-                    <span className="shrink-0 text-[#393939] dark:text-[#F2F4F7]">
+                    <span className="shrink-0 text-neutral-800 dark:text-ink-100">
                       <CheckIcon />
                     </span>
                   )}
@@ -269,7 +269,7 @@ export function Select({
           id={hintId}
           className={cn(
             "font-['Funnel_Display'] text-[14px] leading-[20px] tracking-[0.1px] w-full",
-            isError ? 'text-[#FF4242]' : 'text-[#808080] dark:text-[#9CA3AF]',
+            isError ? 'text-error-base' : 'text-neutral-500 dark:text-neutral-400',
           )}
         >
           {hintText}
