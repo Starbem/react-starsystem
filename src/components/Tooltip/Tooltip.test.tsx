@@ -113,7 +113,7 @@ describe('Tooltip', () => {
     )
     await user.hover(screen.getByRole('button', { name: 'Trigger' }))
     const tooltip = await screen.findByText('Brand tooltip')
-    expect(tooltip.closest('[role="tooltip"]')).toHaveClass('bg-[#FF5100]')
+    expect(tooltip.closest('[role="tooltip"]')).toHaveClass('bg-primary-base')
   })
 
   it('renders a rich tooltip with title and content', async () => {
