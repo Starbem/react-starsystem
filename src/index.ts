@@ -99,6 +99,9 @@ export type { SpinnerProps } from './components/Spinner'
 export { EmptyState } from './components/EmptyState'
 export type { EmptyStateProps } from './components/EmptyState'
 
+export { Calendar } from './components/Calendar'
+export type { CalendarProps } from './components/Calendar'
+
 // Design tokens
 export { colors } from './tokens/colors'
 export type { Colors } from './tokens/colors'
