@@ -63,62 +63,64 @@ export function DashboardLayout() {
   const navItems = useNavItems()
 
   return (
-    <div className="shell">
+    <>
       <ToastProvider />
-      <div className="shell__sidebar">
-        <Sidebar
-          items={navItems}
-          collapsed={collapsed}
-          header={<strong>{collapsed ? 'SS' : 'Star System'}</strong>}
-          footer={
-            <Button variant="ghost" size="sm" onClick={() => setCollapsed(!collapsed)}>
-              {collapsed ? '»' : '« Recolher'}
-            </Button>
-          }
-        />
-      </div>
+      <div className="shell">
+        <div className="shell__sidebar">
+          <Sidebar
+            items={navItems}
+            collapsed={collapsed}
+            header={<strong>{collapsed ? 'SS' : 'Star System'}</strong>}
+            footer={
+              <Button variant="ghost" size="sm" onClick={() => setCollapsed(!collapsed)}>
+                {collapsed ? '»' : '« Recolher'}
+              </Button>
+            }
+          />
+        </div>
 
-      <Drawer
-        open={mobileNavOpen}
-        onClose={() => setMobileNavOpen(false)}
-        position="left"
-        size="sm"
-        title="Menu"
-      >
-        <Sidebar items={navItems} />
-      </Drawer>
+        <Drawer
+          open={mobileNavOpen}
+          onClose={() => setMobileNavOpen(false)}
+          position="left"
+          size="sm"
+          title="Menu"
+        >
+          <Sidebar items={navItems} />
+        </Drawer>
 
-      <div className="shell__main">
-        <TopBar
-          sticky
-          bordered
-          start={
-            <>
-              <button
-                type="button"
-                className="shell__hamburger"
-                onClick={() => setMobileNavOpen(true)}
-                aria-label="Abrir menu"
-              >
-                ☰
-              </button>
-              <NavLink to="/">Dashboard RH</NavLink>
-            </>
-          }
-          end={
-            <>
-              <Badge variant="info" size="sm">
-                3 pendências
-              </Badge>
-              <ThemeToggleButton />
-              <ProfileMenu />
-            </>
-          }
-        />
-        <div className="shell__content">
-          <Outlet />
+        <div className="shell__main">
+          <TopBar
+            sticky
+            bordered
+            start={
+              <>
+                <button
+                  type="button"
+                  className="shell__hamburger"
+                  onClick={() => setMobileNavOpen(true)}
+                  aria-label="Abrir menu"
+                >
+                  ☰
+                </button>
+                <NavLink to="/">Dashboard RH</NavLink>
+              </>
+            }
+            end={
+              <>
+                <Badge variant="info" size="sm">
+                  3 pendências
+                </Badge>
+                <ThemeToggleButton />
+                <ProfileMenu />
+              </>
+            }
+          />
+          <div className="shell__content">
+            <Outlet />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
