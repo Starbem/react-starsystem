@@ -70,8 +70,8 @@ export function Drawer({
             if (!closeOnOverlayClick) event.preventDefault()
           }}
           className={cn(
-            'fixed z-[101] flex flex-col bg-white p-[24px] shadow-[0px_20px_25px_-5px_rgba(16,24,40,0.1)] outline-none',
-            'dark:bg-[#151B2C]',
+            'fixed z-[101] flex flex-col bg-white p-[24px] shadow-elevation-05 outline-none',
+            'dark:bg-ink-900',
             'transition-transform duration-300 ease-out',
             POSITION_CLASSES[position],
             sizeClass,
@@ -79,20 +79,20 @@ export function Drawer({
           )}
         >
           {title ? (
-            <Dialog.Title className="text-[18px] font-medium leading-[24px] pr-[32px] text-[#101828] dark:text-white">
+            <Dialog.Title className="text-[18px] font-medium leading-[24px] pr-[32px] text-ink-900 dark:text-white">
               {title}
             </Dialog.Title>
           ) : (
             <Dialog.Title className="sr-only">Drawer</Dialog.Title>
           )}
-          <div className={cn('flex-1 overflow-y-auto text-[#101828] dark:text-white', title && 'mt-[16px]')}>
+          <div className={cn('flex-1 overflow-y-auto text-ink-900 dark:text-white', title && 'mt-[16px]')}>
             {children}
           </div>
           <Dialog.Close
             aria-label="Fechar"
             className={cn(
               'absolute right-[16px] top-[16px] inline-flex size-[24px] items-center justify-center rounded-full outline-none',
-              'text-[#101828] hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
+              'text-ink-900 hover:opacity-70 focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
               'dark:text-white',
             )}
           >
