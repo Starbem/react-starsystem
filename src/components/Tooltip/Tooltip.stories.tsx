@@ -71,3 +71,27 @@ export const CustomDelay: Story = {
     </Tooltip>
   ),
 }
+
+export const LightTone: Story = {
+  render: () => (
+    <Tooltip content="Light tooltip" tone="light">
+      <button type="button">Hover me</button>
+    </Tooltip>
+  ),
+}
+
+export const BrandTone: Story = {
+  render: () => (
+    <Tooltip content="Brand tooltip" tone="brand">
+      <button type="button">Hover me</button>
+    </Tooltip>
+  ),
+}
+
+export const Rich: Story = {
+  render: () => (
+    <Tooltip title="Keyboard shortcut" content="Press Cmd+K to open the command palette">
+      <button type="button">Hover me</button>
+    </Tooltip>
+  ),
+}

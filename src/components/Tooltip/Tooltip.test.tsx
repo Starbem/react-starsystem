@@ -91,4 +91,40 @@ describe('Tooltip', () => {
     // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
     expect(await axe(container)).toHaveNoViolations()
   })
+
+  it('renders light tone with a border', async () => {
+    const user = userEvent.setup()
+    render(
+      <Tooltip content="Light tooltip" tone="light" delay={0}>
+        <button type="button">Trigger</button>
+      </Tooltip>,
+    )
+    await user.hover(screen.getByRole('button', { name: 'Trigger' }))
+    const tooltip = await screen.findByText('Light tooltip')
+    expect(tooltip.closest('[role="tooltip"]')).toHaveClass('bg-white')
+  })
+
+  it('renders brand tone', async () => {
+    const user = userEvent.setup()
+    render(
+      <Tooltip content="Brand tooltip" tone="brand" delay={0}>
+        <button type="button">Trigger</button>
+      </Tooltip>,
+    )
+    await user.hover(screen.getByRole('button', { name: 'Trigger' }))
+    const tooltip = await screen.findByText('Brand tooltip')
+    expect(tooltip.closest('[role="tooltip"]')).toHaveClass('bg-[#FF5100]')
+  })
+
+  it('renders a rich tooltip with title and content', async () => {
+    const user = userEvent.setup()
+    render(
+      <Tooltip content="Details here" title="Heads up" delay={0}>
+        <button type="button">Trigger</button>
+      </Tooltip>,
+    )
+    await user.hover(screen.getByRole('button', { name: 'Trigger' }))
+    expect(await screen.findByText('Heads up')).toBeInTheDocument()
+    expect(await screen.findByText('Details here')).toBeInTheDocument()
+  })
 })
