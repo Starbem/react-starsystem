@@ -44,10 +44,10 @@ export function Breadcrumb({ items, separator = DEFAULT_SEPARATOR, maxItems, cla
           if (entry === 'ellipsis') {
             return (
               <li key="ellipsis" className="flex items-center gap-[6px]">
-                <span aria-hidden="true" className="text-[#667085] px-[2px] dark:text-[#98A2B3]">
+                <span aria-hidden="true" className="text-ink-500 px-[2px] dark:text-neutral-400">
                   …
                 </span>
-                <span className="text-[#98A2B3] dark:text-[#667085]">{separator}</span>
+                <span className="text-neutral-400 dark:text-ink-500">{separator}</span>
               </li>
             )
           }
@@ -60,7 +60,7 @@ export function Breadcrumb({ items, separator = DEFAULT_SEPARATOR, maxItems, cla
               {entry.href && !isLast ? (
                 <a
                   href={entry.href}
-                  className="text-[#667085] hover:text-[#344054] hover:underline truncate max-w-[200px] dark:text-[#98A2B3] dark:hover:text-[#D0D5DD]"
+                  className="text-ink-500 hover:text-ink-700 hover:underline truncate max-w-[200px] dark:text-neutral-400 dark:hover:text-ink-300"
                 >
                   {entry.label}
                 </a>
@@ -69,13 +69,13 @@ export function Breadcrumb({ items, separator = DEFAULT_SEPARATOR, maxItems, cla
                   aria-current={isLast ? 'page' : undefined}
                   className={cn(
                     'truncate max-w-[200px]',
-                    isLast ? 'text-[#101828] font-medium dark:text-white' : 'text-[#667085] dark:text-[#98A2B3]',
+                    isLast ? 'text-ink-900 font-medium dark:text-white' : 'text-ink-500 dark:text-neutral-400',
                   )}
                 >
                   {entry.label}
                 </span>
               )}
-              {!isLast && <span className="text-[#98A2B3] dark:text-[#667085]">{separator}</span>}
+              {!isLast && <span className="text-neutral-400 dark:text-ink-500">{separator}</span>}
             </li>
           )
         })}
