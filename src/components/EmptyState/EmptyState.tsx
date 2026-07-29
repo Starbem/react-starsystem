@@ -61,7 +61,7 @@ export function EmptyState({
         <div
           aria-hidden="true"
           className={cn(
-            'flex items-center justify-center rounded-full bg-[#F0F0F0] text-[#808080] dark:bg-[#1F2937] dark:text-[#9CA3AF]',
+            'flex items-center justify-center rounded-full bg-neutral-50 text-neutral-500 dark:bg-neutral-900 dark:text-neutral-400',
             MEDIA_SIZE_CLASSES[size],
           )}
         >
@@ -69,10 +69,10 @@ export function EmptyState({
         </div>
       ) : null}
 
-      <h3 className={cn('text-[#252525] dark:text-white', TITLE_SIZE_CLASSES[size])}>{title}</h3>
+      <h3 className={cn('text-neutral-1000 dark:text-white', TITLE_SIZE_CLASSES[size])}>{title}</h3>
 
       {description && (
-        <p className={cn('max-w-sm text-[#626262] dark:text-[#9CA3AF]', DESCRIPTION_SIZE_CLASSES[size])}>
+        <p className={cn('max-w-sm text-neutral-600 dark:text-neutral-400', DESCRIPTION_SIZE_CLASSES[size])}>
           {description}
         </p>
       )}
