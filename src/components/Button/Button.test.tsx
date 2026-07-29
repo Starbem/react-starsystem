@@ -99,7 +99,7 @@ describe('Button', () => {
 
   it('renders new DS-aligned variants', () => {
     const { rerender } = render(<Button variant="tertiary">Tertiary</Button>)
-    expect(screen.getByRole('button')).toHaveClass('text-[#D03700]')
+    expect(screen.getByRole('button')).toHaveClass('text-primary-dark')
 
     rerender(<Button variant="link">Link</Button>)
     expect(screen.getByRole('button')).toHaveClass('underline-offset-4')

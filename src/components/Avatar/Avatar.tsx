@@ -36,14 +36,14 @@ const STATUS_SIZE_CLASSES: Record<AvatarSize, string> = {
 }
 
 const STATUS_COLOR_CLASSES: Record<'online' | 'offline' | 'away', string> = {
-  online: 'bg-[#12B76A]',
-  offline: 'bg-[#98A2B3]',
-  away: 'bg-[#F79009]',
+  online: 'bg-success-base',
+  offline: 'bg-neutral-400',
+  away: 'bg-warning-base',
 }
 
 const SHAPE_CLASSES: Record<AvatarShape, string> = {
   circle: 'rounded-full',
-  rounded: 'rounded-[12px]',
+  rounded: 'rounded-md',
   square: 'rounded-none',
 }
 
@@ -74,10 +74,10 @@ export function Avatar({ src, alt, name, size = 'md', status, shape = 'circle', 
     <span className={cn('relative inline-flex shrink-0', className)}>
       <span
         className={cn(
-          'inline-flex items-center justify-center overflow-hidden bg-[#FFD4BF] font-medium text-[#B42318] select-none',
+          'inline-flex items-center justify-center overflow-hidden bg-warning-lighter font-medium text-error-darker select-none',
           SIZE_CLASSES[size],
           SHAPE_CLASSES[shape],
-          ring && 'ring-2 ring-white dark:ring-[#151B2C]',
+          ring && 'ring-2 ring-white dark:ring-ink-900',
         )}
       >
         {showImage ? (
@@ -93,7 +93,7 @@ export function Avatar({ src, alt, name, size = 'md', status, shape = 'circle', 
       {statusKind && (
         <span
           className={cn(
-            'absolute bottom-0 right-0 rounded-full ring-2 ring-white dark:ring-[#151B2C]',
+            'absolute bottom-0 right-0 rounded-full ring-2 ring-white dark:ring-ink-900',
             STATUS_SIZE_CLASSES[size],
             STATUS_COLOR_CLASSES[statusKind],
           )}
@@ -127,7 +127,7 @@ export function AvatarGroup({ children, max, size = 'md', className }: AvatarGro
       {overflow > 0 && (
         <span
           className={cn(
-            'inline-flex items-center justify-center rounded-full bg-[#F2F4F7] font-medium text-[#344054] ring-2 ring-white dark:bg-[#1F2937] dark:text-[#D0D5DD] dark:ring-[#151B2C]',
+            'inline-flex items-center justify-center rounded-full bg-ink-100 font-medium text-ink-700 ring-2 ring-white dark:bg-neutral-900 dark:text-ink-300 dark:ring-ink-900',
             SIZE_CLASSES[size],
           )}
         >

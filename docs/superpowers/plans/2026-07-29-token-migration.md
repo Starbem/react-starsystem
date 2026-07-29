@@ -275,6 +275,7 @@
 | `bg-[#E2E2E2]` | `bg-neutral-100` |
 | `border-[#CFCFCF]` | `border-neutral-200` |
 | `bg-[#374151]` | `bg-ink-700` |
+| `border-[#374151]` | `border-ink-700` |
 | `border-[#2A3441]` | `border-neutral-800` |
 | `bg-[#F7F7F7]` | `bg-neutral-25` |
 | `shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)]` | KEEP hardcoded — glow âmbar de foco, sem elevação equivalente |

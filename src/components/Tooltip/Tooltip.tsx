@@ -17,16 +17,16 @@ export interface TooltipProps {
 }
 
 const TONE_CLASSES: Record<TooltipTone, string> = {
-  dark: 'bg-[#101828] text-white',
+  dark: 'bg-ink-900 text-white',
   light:
-    'bg-white text-[#101828] border border-[#EAECF0] shadow-[0px_4px_12px_0px_rgba(16,24,40,0.10)] dark:bg-[#151B2C] dark:text-white dark:border-[#1F2937]',
-  brand: 'bg-[#FF5100] text-white',
+    'bg-white text-ink-900 border border-ink-200 shadow-elevation-04 dark:bg-ink-900 dark:text-white dark:border-neutral-900',
+  brand: 'bg-primary-base text-white',
 }
 
 const ARROW_FILL_CLASSES: Record<TooltipTone, string> = {
-  dark: 'fill-[#101828]',
-  light: 'fill-white dark:fill-[#151B2C]',
-  brand: 'fill-[#FF5100]',
+  dark: 'fill-ink-900',
+  light: 'fill-white dark:fill-ink-900',
+  brand: 'fill-primary-base',
 }
 
 export function Tooltip({
@@ -50,7 +50,7 @@ export function Tooltip({
             side={side}
             sideOffset={6}
             className={cn(
-              'z-[100] max-w-[280px] rounded-[8px] px-[12px] py-[8px] text-[12px] leading-[16px] shadow-[0px_4px_12px_0px_rgba(16,24,40,0.16)]',
+              'z-[100] max-w-[280px] rounded-sm px-[12px] py-[8px] text-[12px] leading-[16px] shadow-elevation-04',
               'transition-opacity duration-150 data-[state=delayed-open]:opacity-100 data-[state=closed]:opacity-0',
               TONE_CLASSES[tone],
               className,

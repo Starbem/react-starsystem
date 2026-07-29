@@ -41,7 +41,7 @@ describe('Calendar', () => {
 
   it('marks the selected day', () => {
     render(<Calendar initialMonth={6} initialYear={2026} selected={new Date(2026, 6, 15)} />)
-    expect(screen.getByRole('button', { name: '15' })).toHaveClass('bg-[#FF5100]')
+    expect(screen.getByRole('button', { name: '15' })).toHaveClass('bg-primary-base')
   })
 
   it('renders a dot indicator for marked days', () => {

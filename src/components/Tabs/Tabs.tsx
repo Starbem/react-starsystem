@@ -28,27 +28,27 @@ export interface TabsProps {
 }
 
 const LIST_VARIANT_CLASSES: Record<TabsVariant, string> = {
-  line: 'gap-[24px] border-b border-[#EAECF0] dark:border-[#1F2937]',
-  filled: 'gap-[4px] rounded-[10px] bg-[#F2F4F7] p-[4px] dark:bg-[#1F2937]',
+  line: 'gap-[24px] border-b border-ink-200 dark:border-neutral-900',
+  filled: 'gap-[4px] rounded-md bg-ink-100 p-[4px] dark:bg-neutral-900',
   enclosed: 'gap-[8px]',
 }
 
 const TRIGGER_VARIANT_CLASSES: Record<TabsVariant, string> = {
   line: cn(
-    'px-[4px] py-[10px] font-medium text-[#667085] border-b-2 border-transparent -mb-px',
-    'data-[state=active]:text-[#FF5100] data-[state=active]:border-[#FF5100]',
-    'dark:text-[#98A2B3]',
+    'px-[4px] py-[10px] font-medium text-ink-500 border-b-2 border-transparent -mb-px',
+    'data-[state=active]:text-primary-base data-[state=active]:border-primary-base',
+    'dark:text-neutral-400',
   ),
   filled: cn(
-    'rounded-[8px] px-[12px] py-[6px] font-medium text-[#667085]',
-    'data-[state=active]:bg-white data-[state=active]:text-[#101828] data-[state=active]:shadow-[0px_1px_2px_0px_rgba(16,24,40,0.06)]',
-    'dark:text-[#98A2B3] dark:data-[state=active]:bg-[#151B2C] dark:data-[state=active]:text-white',
+    'rounded-sm px-[12px] py-[6px] font-medium text-ink-500',
+    'data-[state=active]:bg-white data-[state=active]:text-ink-900 data-[state=active]:shadow-elevation-01',
+    'dark:text-neutral-400 dark:data-[state=active]:bg-ink-900 dark:data-[state=active]:text-white',
   ),
   enclosed: cn(
-    'rounded-full px-[16px] py-[8px] font-medium text-[#667085] border border-[#D0D5DD] bg-white',
-    'hover:bg-[#F9FAFB]',
-    'data-[state=active]:bg-[#FF5100] data-[state=active]:border-[#FF5100] data-[state=active]:text-white',
-    'dark:bg-[#151B2C] dark:text-[#98A2B3] dark:border-[#374151]',
+    'rounded-full px-[16px] py-[8px] font-medium text-ink-500 border border-ink-300 bg-white',
+    'hover:bg-ink-50',
+    'data-[state=active]:bg-primary-base data-[state=active]:border-primary-base data-[state=active]:text-white',
+    'dark:bg-ink-900 dark:text-neutral-400 dark:border-ink-700',
   ),
 }
 
@@ -59,7 +59,7 @@ const SIZE_CLASSES: Record<TabsSize, string> = {
 }
 
 const COUNT_BADGE_CLASSES =
-  'inline-flex items-center justify-center rounded-full bg-[#F2F4F7] px-[7px] text-[11px] font-bold text-[#667085] dark:bg-[#374151] dark:text-[#98A2B3]'
+  'inline-flex items-center justify-center rounded-full bg-ink-100 px-[7px] text-[11px] font-bold text-ink-500 dark:bg-ink-700 dark:text-neutral-400'
 
 export function Tabs({
   items,
@@ -99,7 +99,7 @@ export function Tabs({
             className={cn(
               'outline-none cursor-pointer disabled:cursor-not-allowed disabled:opacity-50',
               'inline-flex items-center gap-[6px]',
-              'focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
+              'focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
               TRIGGER_VARIANT_CLASSES[variant],
               SIZE_CLASSES[size],
               block && orientation === 'horizontal' && 'flex-1 justify-center',

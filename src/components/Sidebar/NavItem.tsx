@@ -47,10 +47,10 @@ function NavItemRow({ item, collapsed }: { item: NavItemConfig; collapsed?: bool
       onClick={item.onClick}
       aria-current={item.active ? 'page' : undefined}
       className={cn(
-        'flex w-full items-center gap-[8px] rounded-[8px] px-[10px] py-[8px] text-[14px] font-medium outline-none',
-        'text-[#344054] hover:bg-[#F2F4F7] focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
-        'dark:text-[#D0D5DD] dark:hover:bg-[#1F2937]',
-        item.active && 'bg-[#FFF1EB] text-[#FF5100] hover:bg-[#FFF1EB] dark:bg-[#3A2418] dark:hover:bg-[#3A2418]',
+        'flex w-full items-center gap-[8px] rounded-sm px-[10px] py-[8px] text-[14px] font-medium outline-none',
+        'text-ink-700 hover:bg-ink-100 focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
+        'dark:text-ink-300 dark:hover:bg-neutral-900',
+        item.active && 'bg-primary-lightest text-primary-base hover:bg-primary-lightest dark:bg-neutral-1000 dark:hover:bg-neutral-1000',
         collapsed && 'justify-center px-0',
       )}
     >
@@ -86,9 +86,9 @@ export function NavItem({ item, collapsed = false }: NavItemProps) {
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
         className={cn(
-          'flex w-full items-center gap-[8px] rounded-[8px] px-[10px] py-[8px] text-[14px] font-medium outline-none',
-          'text-[#344054] hover:bg-[#F2F4F7] focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
-        'dark:text-[#D0D5DD] dark:hover:bg-[#1F2937]',
+          'flex w-full items-center gap-[8px] rounded-sm px-[10px] py-[8px] text-[14px] font-medium outline-none',
+          'text-ink-700 hover:bg-ink-100 focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
+        'dark:text-ink-300 dark:hover:bg-neutral-900',
         )}
       >
         {item.icon && <span className="shrink-0 inline-flex items-center justify-center size-[20px]">{item.icon}</span>}
@@ -97,7 +97,7 @@ export function NavItem({ item, collapsed = false }: NavItemProps) {
         <ChevronIcon open={open} />
       </button>
       {open && (
-        <div className="mt-[4px] ml-[20px] flex flex-col gap-[2px] border-l border-[#EAECF0] pl-[8px] dark:border-[#1F2937]">
+        <div className="mt-[4px] ml-[20px] flex flex-col gap-[2px] border-l border-ink-200 pl-[8px] dark:border-neutral-900">
           {item.children?.map((child, index) => (
             <NavItemRow key={`${child.label}-${index}`} item={child} />
           ))}

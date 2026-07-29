@@ -28,23 +28,23 @@ export function Input({
     <div className={cn('flex flex-col gap-[6px] items-start w-full', className)}>
       <div
         className={cn(
-          'flex gap-[8px] items-center overflow-hidden px-[16px] py-[8px] rounded-[16px] w-full border',
-          'focus-within:outline-none focus-within:ring-2 focus-within:ring-[#FF5100] focus-within:ring-offset-2',
+          'flex gap-[8px] items-center overflow-hidden px-[16px] py-[8px] rounded-lg w-full border',
+          'focus-within:outline-none focus-within:ring-2 focus-within:ring-primary-base focus-within:ring-offset-2',
           disabled
-            ? 'bg-[#EFEFEF] border-[#B6B6B6] cursor-not-allowed dark:bg-[#1F2937] dark:border-[#374151]'
+            ? 'bg-neutral-50 border-neutral-300 cursor-not-allowed dark:bg-neutral-900 dark:border-ink-700'
             : isError
-              ? 'bg-[#F7F7F7] border-[#FF4242] shadow-[0px_1px_2px_0px_rgba(12,17,29,0.10)] dark:bg-[#1F2937]'
-              : 'bg-[#F7F7F7] border-[#B6B6B6] shadow-[0px_1px_2px_0px_rgba(12,17,29,0.10)] dark:bg-[#1F2937] dark:border-[#374151]',
+              ? 'bg-neutral-25 border-error-base shadow-elevation-01 dark:bg-neutral-900'
+              : 'bg-neutral-25 border-neutral-300 shadow-elevation-01 dark:bg-neutral-900 dark:border-ink-700',
         )}
       >
         {leadingIcon && (
-          <span className="shrink-0 size-[24px] flex items-center justify-center text-[#808080] dark:text-[#9CA3AF]">
+          <span className="shrink-0 size-[24px] flex items-center justify-center text-neutral-500 dark:text-neutral-400">
             {leadingIcon}
           </span>
         )}
         <div className="flex flex-col flex-1 min-w-0 h-[40px] justify-center">
           {label && (
-            <span className="font-['Funnel_Display'] text-[12px] leading-[16px] text-[#9C9C9C] shrink-0 select-none dark:text-[#6B7280]">
+            <span className="font-['Funnel_Display'] text-[12px] leading-[16px] text-neutral-400 shrink-0 select-none dark:text-ink-500">
               {label}
             </span>
           )}
@@ -56,16 +56,16 @@ export function Input({
             className={cn(
               "bg-transparent outline-none font-['Funnel_Display'] text-[16px] leading-[24px] w-full",
               disabled
-                ? 'text-[#B6B6B6] cursor-not-allowed placeholder:text-[#B6B6B6] dark:text-[#4B5563] dark:placeholder:text-[#4B5563]'
+                ? 'text-neutral-300 cursor-not-allowed placeholder:text-neutral-300 dark:text-ink-600 dark:placeholder:text-ink-600'
                 : label
-                  ? 'text-[#393939] placeholder:text-[#808080] dark:text-[#F2F4F7] dark:placeholder:text-[#9CA3AF]'
-                  : 'text-[#393939] placeholder:text-[#9C9C9C] dark:text-[#F2F4F7] dark:placeholder:text-[#6B7280]',
+                  ? 'text-neutral-800 placeholder:text-neutral-500 dark:text-ink-100 dark:placeholder:text-neutral-400'
+                  : 'text-neutral-800 placeholder:text-neutral-400 dark:text-ink-100 dark:placeholder:text-ink-500',
             )}
             {...props}
           />
         </div>
         {trailingIcon && (
-          <span className="shrink-0 size-[24px] flex items-center justify-center text-[#808080] dark:text-[#9CA3AF]">
+          <span className="shrink-0 size-[24px] flex items-center justify-center text-neutral-500 dark:text-neutral-400">
             {trailingIcon}
           </span>
         )}
@@ -75,7 +75,7 @@ export function Input({
           id={hintId}
           className={cn(
             "font-['Funnel_Display'] text-[14px] leading-[20px] tracking-[0.1px] w-full",
-            isError ? 'text-[#FF4242]' : 'text-[#808080] dark:text-[#9CA3AF]',
+            isError ? 'text-error-base' : 'text-neutral-500 dark:text-neutral-400',
           )}
         >
           {hintText}

@@ -31,7 +31,7 @@ describe('Spinner', () => {
 
   it('applies brand color classes by default', () => {
     const { container } = render(<Spinner label="Carregando" />)
-    expect(container.firstChild).toHaveClass('border-t-[#FF5100]')
+    expect(container.firstChild).toHaveClass('border-t-primary-base')
   })
 
   it('applies white color classes', () => {
@@ -41,7 +41,7 @@ describe('Spinner', () => {
 
   it('applies muted color classes', () => {
     const { container } = render(<Spinner label="Carregando" color="muted" />)
-    expect(container.firstChild).toHaveClass('border-t-[#9C9C9C]')
+    expect(container.firstChild).toHaveClass('border-t-neutral-400')
   })
 
   it('applies animate-spin', () => {

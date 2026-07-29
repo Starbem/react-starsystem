@@ -101,12 +101,12 @@ export function Schedule({
         type="button"
         onClick={() => onEventClick?.(event)}
         style={{ top, height, backgroundColor: event.bg ?? '#FFF1E0', borderColor: event.color ?? '#FF5100' }}
-        className="absolute left-[4px] right-[4px] rounded-[8px] border-l-4 px-[8px] py-[4px] text-left overflow-hidden"
+        className="absolute left-[4px] right-[4px] rounded-sm border-l-4 px-[8px] py-[4px] text-left overflow-hidden"
       >
-        <p className="text-[12px] font-medium text-[#101828] truncate">{event.title}</p>
-        {event.subtitle && <p className="text-[11px] text-[#667085] truncate">{event.subtitle}</p>}
+        <p className="text-[12px] font-medium text-ink-900 truncate">{event.title}</p>
+        {event.subtitle && <p className="text-[11px] text-ink-500 truncate">{event.subtitle}</p>}
         {event.meet && (
-          <span className="inline-flex items-center gap-[4px] text-[11px] text-[#FF5100] mt-[2px]">
+          <span className="inline-flex items-center gap-[4px] text-[11px] text-primary-base mt-[2px]">
             <Icon name="videocam" size={14} />
             Entrar com vídeo
           </span>
@@ -128,7 +128,7 @@ export function Schedule({
     return (
       <div className="relative" style={{ height: hours.length * hourHeight }}>
         {hours.map((h) => (
-          <div key={h} className="absolute left-0 right-0 border-t border-[#EAECF0] dark:border-[#1F2937] text-[11px] text-[#98A2B3] pl-[4px]" style={{ top: (h - startHour) * hourHeight }}>
+          <div key={h} className="absolute left-0 right-0 border-t border-ink-200 dark:border-neutral-900 text-[11px] text-neutral-400 pl-[4px]" style={{ top: (h - startHour) * hourHeight }}>
             {String(h).padStart(2, '0')}:00
           </div>
         ))}
@@ -138,16 +138,16 @@ export function Schedule({
   }
 
   return (
-    <div className={cn('flex flex-col gap-[12px] rounded-[16px] bg-white border border-[#EAECF0] p-[16px] dark:bg-[#151B2C] dark:border-[#1F2937]', className)}>
+    <div className={cn('flex flex-col gap-[12px] rounded-lg bg-white border border-ink-200 p-[16px] dark:bg-ink-900 dark:border-neutral-900', className)}>
       <div className="flex items-center justify-between">
-        <button type="button" aria-label={navLabels.prev} onClick={() => navigate(-1)} className="inline-flex items-center justify-center size-[32px] rounded-full hover:bg-[#F2F4F7] dark:hover:bg-[#1F2937]">
+        <button type="button" aria-label={navLabels.prev} onClick={() => navigate(-1)} className="inline-flex items-center justify-center size-[32px] rounded-full hover:bg-ink-100 dark:hover:bg-neutral-900">
           <Icon name="chevron_left" size={20} />
         </button>
-        <span className="inline-flex items-center gap-[6px] font-medium text-[14px] text-[#101828] dark:text-white">
+        <span className="inline-flex items-center gap-[6px] font-medium text-[14px] text-ink-900 dark:text-white">
           <Icon name="schedule" size={18} />
           {headerTitle()}
         </span>
-        <button type="button" aria-label={navLabels.next} onClick={() => navigate(1)} className="inline-flex items-center justify-center size-[32px] rounded-full hover:bg-[#F2F4F7] dark:hover:bg-[#1F2937]">
+        <button type="button" aria-label={navLabels.next} onClick={() => navigate(1)} className="inline-flex items-center justify-center size-[32px] rounded-full hover:bg-ink-100 dark:hover:bg-neutral-900">
           <Icon name="chevron_right" size={20} />
         </button>
       </div>
@@ -158,7 +158,7 @@ export function Schedule({
             key={v}
             type="button"
             onClick={() => onViewChange?.(v)}
-            className={cn('px-[10px] py-[4px] rounded-[8px]', view === v ? 'bg-[#FF5100] text-white' : 'text-[#667085] hover:bg-[#F2F4F7] dark:text-[#98A2B3] dark:hover:bg-[#1F2937]')}
+            className={cn('px-[10px] py-[4px] rounded-sm', view === v ? 'bg-primary-base text-white' : 'text-ink-500 hover:bg-ink-100 dark:text-neutral-400 dark:hover:bg-neutral-900')}
           >
             {v === 'day' ? 'Dia' : v === 'week' ? 'Semana' : 'Mês'}
           </button>
@@ -182,7 +182,7 @@ export function Schedule({
             <div className="flex gap-[8px] overflow-x-auto">
               {weekDays.map((d) => (
                 <div key={d.toISOString()} className="flex-1 min-w-[120px]">
-                  <p className="text-[11px] text-center text-[#667085] dark:text-[#98A2B3] mb-[4px]">
+                  <p className="text-[11px] text-center text-ink-500 dark:text-neutral-400 mb-[4px]">
                     {DOW_PT[d.getDay()]} {d.getDate()}
                   </p>
                   {renderHourGrid(toISODate(d))}
@@ -205,7 +205,7 @@ export function Schedule({
           return (
             <div className="grid grid-cols-7 gap-[4px]">
               {DOW_PT.map((d) => (
-                <span key={d} className="text-center text-[11px] text-[#667085] dark:text-[#98A2B3]">
+                <span key={d} className="text-center text-[11px] text-ink-500 dark:text-neutral-400">
                   {d}
                 </span>
               ))}
@@ -214,14 +214,14 @@ export function Schedule({
                 const iso = toISODate(new Date(year, month, day))
                 const dayEvents = events.filter((e) => e.date === iso)
                 return (
-                  <div key={day} className="min-h-[64px] rounded-[8px] border border-[#EAECF0] dark:border-[#1F2937] p-[4px] text-[11px]">
-                    <span className="text-[#101828] dark:text-white">{day}</span>
+                  <div key={day} className="min-h-[64px] rounded-sm border border-ink-200 dark:border-neutral-900 p-[4px] text-[11px]">
+                    <span className="text-ink-900 dark:text-white">{day}</span>
                     {dayEvents.slice(0, 2).map((e) => (
-                      <p key={e.id} className="truncate text-[#FF5100]">
+                      <p key={e.id} className="truncate text-primary-base">
                         • {e.title}
                       </p>
                     ))}
-                    {dayEvents.length > 2 && <p className="text-[#98A2B3]">+{dayEvents.length - 2}</p>}
+                    {dayEvents.length > 2 && <p className="text-neutral-400">+{dayEvents.length - 2}</p>}
                   </div>
                 )
               })}

@@ -43,14 +43,14 @@ const SIZE_CLASSES_SM: Record<ModalSize, string> = {
 }
 
 const TONE_BADGE_CLASSES: Record<Exclude<ModalTone, 'default'>, string> = {
-  success: 'bg-[#E3F6EF] text-[#1FBA5D]',
-  error: 'bg-[#FFEDE7] text-[#FF4242]',
-  warning: 'bg-[#FEF8E9] text-[#CE7734]',
-  info: 'bg-[#F3E9FC] text-[#7F56D9]',
+  success: 'bg-success-lightest text-success-base',
+  error: 'bg-error-lightest text-error-base',
+  warning: 'bg-warning-lightest text-warning-dark',
+  info: 'bg-secondary-lightest text-secondary-base',
 }
 
 const CENTER_LAYOUT =
-  'left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[12px] max-h-[calc(100vh-32px)]'
+  'left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md max-h-[calc(100vh-32px)]'
 
 const SHEET_LAYOUT =
   'left-0 right-0 bottom-0 top-auto translate-x-0 translate-y-0 rounded-t-[16px] rounded-b-none max-h-[92vh] w-full max-w-full'
@@ -77,14 +77,14 @@ export function Modal({
         ? CENTER_LAYOUT
         : cn(
             'left-0 right-0 bottom-0 top-auto translate-x-0 translate-y-0 rounded-t-[16px] rounded-b-none max-h-[92vh] w-full max-w-full',
-            'sm:left-1/2 sm:top-1/2 sm:right-auto sm:bottom-auto sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-[12px] sm:rounded-t-[12px] sm:max-h-[calc(100vh-32px)] sm:w-full',
+            'sm:left-1/2 sm:top-1/2 sm:right-auto sm:bottom-auto sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md sm:rounded-t-md sm:max-h-[calc(100vh-32px)] sm:w-full',
           )
 
   const sizeClasses =
     present === 'sheet' ? undefined : present === 'center' ? SIZE_CLASSES[size] : SIZE_CLASSES_SM[size]
 
   const showBadge = tone !== 'default' || Boolean(icon)
-  const badgeClasses = tone !== 'default' ? TONE_BADGE_CLASSES[tone] : 'bg-[#F9FAFB] text-[#475467]'
+  const badgeClasses = tone !== 'default' ? TONE_BADGE_CLASSES[tone] : 'bg-ink-50 text-ink-600'
 
   return (
     <Dialog.Root
@@ -109,8 +109,8 @@ export function Modal({
           }}
           className={cn(
             'fixed z-[101] flex w-full flex-col',
-            'bg-white p-[24px] shadow-[0px_20px_25px_-5px_rgba(16,24,40,0.1)] outline-none',
-            'dark:bg-[#151B2C]',
+            'bg-white p-[24px] shadow-elevation-05 outline-none',
+            'dark:bg-ink-900',
             'transition-opacity duration-200 data-[state=closed]:opacity-0',
             layoutClasses,
             sizeClasses,
@@ -127,7 +127,7 @@ export function Modal({
               {title ? (
                 <Dialog.Title
                   className={cn(
-                    'flex-1 text-[18px] font-medium leading-[24px] pr-[32px] text-[#101828] dark:text-white',
+                    'flex-1 text-[18px] font-medium leading-[24px] pr-[32px] text-ink-900 dark:text-white',
                     align === 'center' && 'flex-none text-center pr-0',
                   )}
                 >
@@ -142,20 +142,20 @@ export function Modal({
           {description && (
             <Dialog.Description
               className={cn(
-                'mt-[4px] text-[14px] leading-[20px] text-[#667085] dark:text-[#98A2B3]',
+                'mt-[4px] text-[14px] leading-[20px] text-ink-500 dark:text-neutral-400',
                 align === 'center' && 'text-center',
               )}
             >
               {description}
             </Dialog.Description>
           )}
-          <div className="mt-[16px] flex-1 overflow-y-auto text-[#101828] dark:text-white">{children}</div>
+          <div className="mt-[16px] flex-1 overflow-y-auto text-ink-900 dark:text-white">{children}</div>
           {footer && <div className="mt-[24px] flex justify-end gap-[8px]">{footer}</div>}
           <Dialog.Close
             aria-label="Fechar modal"
             className={cn(
               'absolute right-[16px] top-[16px] inline-flex size-[24px] items-center justify-center rounded-full outline-none',
-              'text-[#101828] hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
+              'text-ink-900 hover:opacity-70 focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
               'dark:text-white',
             )}
           >

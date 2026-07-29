@@ -124,12 +124,12 @@ describe('RadioGroup + Radio', () => {
 
   it('applies success tone border color when checked', () => {
     render(<Radio value="a" tone="success" checked label="Success" onSelect={() => {}} />)
-    expect(screen.getByRole('radio')).toHaveClass('border-[#1FBA5D]')
+    expect(screen.getByRole('radio')).toHaveClass('border-success-base')
   })
 
   it('applies accent tone border color when checked', () => {
     render(<Radio value="a" tone="accent" checked label="Accent" onSelect={() => {}} />)
-    expect(screen.getByRole('radio')).toHaveClass('border-[#ED2E98]')
+    expect(screen.getByRole('radio')).toHaveClass('border-terciary-base')
   })
 
   it('renders card variant with a bordered wrapper', () => {
@@ -139,11 +139,11 @@ describe('RadioGroup + Radio', () => {
 
   it('renders error state in error color regardless of tone', () => {
     render(<Radio value="a" error label="Errored" supportingText="Required" onSelect={() => {}} />)
-    expect(screen.getByRole('radio')).toHaveClass('border-[#FF4242]')
+    expect(screen.getByRole('radio')).toHaveClass('border-error-base')
   })
 
   it('renders card variant wrapper in error color when unchecked and errored', () => {
     render(<Radio value="a" variant="card" error label="Errored card" onSelect={() => {}} />)
-    expect(screen.getByText('Errored card').closest('[data-radio-card]')).toHaveClass('border-[#FF4242]')
+    expect(screen.getByText('Errored card').closest('[data-radio-card]')).toHaveClass('border-error-base')
   })
 })

@@ -101,12 +101,12 @@ describe('Checkbox', () => {
 
   it('applies success tone border color when checked', () => {
     render(<Checkbox tone="success" checked label="Success" onChange={() => {}} />)
-    expect(screen.getByRole('checkbox')).toHaveClass('border-[#1FBA5D]')
+    expect(screen.getByRole('checkbox')).toHaveClass('border-success-base')
   })
 
   it('applies accent tone border color when checked', () => {
     render(<Checkbox tone="accent" checked label="Accent" onChange={() => {}} />)
-    expect(screen.getByRole('checkbox')).toHaveClass('border-[#ED2E98]')
+    expect(screen.getByRole('checkbox')).toHaveClass('border-terciary-base')
   })
 
   it('renders card variant with a bordered wrapper', () => {
@@ -116,12 +116,12 @@ describe('Checkbox', () => {
 
   it('renders error state in error color regardless of tone', () => {
     render(<Checkbox error label="Errored" supportingText="Required" onChange={() => {}} />)
-    expect(screen.getByRole('checkbox')).toHaveClass('border-[#FF4242]')
+    expect(screen.getByRole('checkbox')).toHaveClass('border-error-base')
   })
 
   it('renders card variant wrapper in error color when unchecked and errored', () => {
     render(<Checkbox variant="card" error label="Errored card" onChange={() => {}} />)
-    expect(screen.getByText('Errored card').closest('[data-checkbox-card]')).toHaveClass('border-[#FF4242]')
+    expect(screen.getByText('Errored card').closest('[data-checkbox-card]')).toHaveClass('border-error-base')
   })
 })
 

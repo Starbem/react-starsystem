@@ -28,7 +28,7 @@ const THUMB_TRAVEL = {
   md: 'translate-x-[20px]',
 }
 
-const THUMB_SHADOW = 'shadow-[0px_1px_2px_0px_rgba(16,24,40,0.06),0px_1px_3px_0px_rgba(16,24,40,0.10)]'
+const THUMB_SHADOW = 'shadow-elevation-02'
 
 export function Toggle({
   checked = false,
@@ -71,15 +71,15 @@ export function Toggle({
         onKeyDown={handleKeyDown}
         className={cn(
           'relative flex items-center rounded-full p-[2px] outline-none transition-colors shrink-0',
-          'focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-2',
+          'focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-2',
           TRACK_SIZE[size],
           disabled ? 'cursor-not-allowed' : 'cursor-pointer',
-          checked ? 'bg-[#461FAE]' : 'bg-[#E2E2E2] dark:bg-[#374151]',
+          checked ? 'bg-secondary-darker' : 'bg-neutral-100 dark:bg-ink-700',
         )}
       >
         <span
           className={cn(
-            'rounded-full bg-[#F7F7F7] transition-transform',
+            'rounded-full bg-neutral-25 transition-transform',
             THUMB_SIZE[size],
             THUMB_SHADOW,
             checked && THUMB_TRAVEL[size],
@@ -94,7 +94,7 @@ export function Toggle({
               id={labelId}
               onClick={toggle}
               className={cn(
-                "font-['Funnel_Display'] font-medium text-[16px] leading-[24px] text-[#4D4D4D] select-none dark:text-[#D1D5DB]",
+                "font-['Funnel_Display'] font-medium text-[16px] leading-[24px] text-neutral-700 select-none dark:text-ink-300",
                 disabled ? 'cursor-not-allowed' : 'cursor-pointer',
               )}
             >
@@ -102,7 +102,7 @@ export function Toggle({
             </span>
           )}
           {supportingText && (
-            <p id={descId} className="font-['Funnel_Display'] text-[16px] leading-[24px] text-[#808080] dark:text-[#9CA3AF]">
+            <p id={descId} className="font-['Funnel_Display'] text-[16px] leading-[24px] text-neutral-500 dark:text-neutral-400">
               {supportingText}
             </p>
           )}

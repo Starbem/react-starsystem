@@ -67,22 +67,22 @@ describe('Badge', () => {
 
   it('renders the neutral variant (replaces the old default variant)', () => {
     render(<Badge variant="neutral">Neutral</Badge>)
-    expect(screen.getByText('Neutral')).toHaveClass('bg-[#F2F4F7]')
+    expect(screen.getByText('Neutral')).toHaveClass('bg-ink-100')
   })
 
   it('renders the primary variant (purple)', () => {
     render(<Badge variant="primary">Primary</Badge>)
-    expect(screen.getByText('Primary')).toHaveClass('bg-[#F3E9FC]')
+    expect(screen.getByText('Primary')).toHaveClass('bg-secondary-lightest')
   })
 
   it('renders the accent variant (orange)', () => {
     render(<Badge variant="accent">Accent</Badge>)
-    expect(screen.getByText('Accent')).toHaveClass('bg-[#FFF1E0]')
+    expect(screen.getByText('Accent')).toHaveClass('bg-primary-lightest')
   })
 
   it('renders the solid variant', () => {
     render(<Badge variant="solid">Solid</Badge>)
-    expect(screen.getByText('Solid')).toHaveClass('bg-[#7F56D9]')
+    expect(screen.getByText('Solid')).toHaveClass('bg-secondary-base')
   })
 
   it('renders a status dot when dot is true', () => {

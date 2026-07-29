@@ -58,10 +58,10 @@ export interface DropdownMenuProps {
 }
 
 const ITEM_CLASSES = cn(
-  'flex items-center gap-[8px] rounded-[6px] px-[8px] py-[6px] text-[14px] leading-[20px] outline-none cursor-pointer',
-  'text-[#101828] dark:text-white',
-  'data-[highlighted]:bg-[#F2F4F7] data-[disabled]:opacity-50 data-[disabled]:cursor-not-allowed',
-  'dark:data-[highlighted]:bg-[#1F2937]',
+  'flex items-center gap-[8px] rounded-sm px-[8px] py-[6px] text-[14px] leading-[20px] outline-none cursor-pointer',
+  'text-ink-900 dark:text-white',
+  'data-[highlighted]:bg-ink-100 data-[disabled]:opacity-50 data-[disabled]:cursor-not-allowed',
+  'dark:data-[highlighted]:bg-neutral-900',
 )
 
 function renderEntries(
@@ -73,12 +73,12 @@ function renderEntries(
     const key = `${keyPrefix}-${index}`
 
     if (entry.type === 'separator') {
-      return <RadixDropdownMenu.Separator key={key} className="my-[4px] h-px bg-[#EAECF0] dark:bg-[#1F2937]" />
+      return <RadixDropdownMenu.Separator key={key} className="my-[4px] h-px bg-ink-200 dark:bg-neutral-900" />
     }
 
     if (entry.type === 'label') {
       return (
-        <RadixDropdownMenu.Label key={key} className="px-[8px] py-[4px] text-[12px] font-medium text-[#667085] dark:text-[#98A2B3]">
+        <RadixDropdownMenu.Label key={key} className="px-[8px] py-[4px] text-[12px] font-medium text-ink-500 dark:text-neutral-400">
           {entry.label}
         </RadixDropdownMenu.Label>
       )
@@ -131,7 +131,7 @@ function renderEntries(
           <RadixDropdownMenu.Portal>
             <RadixDropdownMenu.SubContent
               sideOffset={4}
-              className="z-[100] min-w-[180px] rounded-[12px] bg-white p-[6px] shadow-[0px_20px_25px_-5px_rgba(16,24,40,0.1)] outline-none dark:bg-[#151B2C]"
+              className="z-[100] min-w-[180px] rounded-md bg-white p-[6px] shadow-elevation-05 outline-none dark:bg-ink-900"
             >
               {renderEntries(entry.items, onSelect, key)}
             </RadixDropdownMenu.SubContent>
@@ -175,7 +175,7 @@ export function DropdownMenu({
           align={align}
           sideOffset={6}
           className={cn(
-            'z-[100] min-w-[180px] rounded-[12px] bg-white p-[6px] shadow-[0px_20px_25px_-5px_rgba(16,24,40,0.1)] outline-none dark:bg-[#151B2C]',
+            'z-[100] min-w-[180px] rounded-md bg-white p-[6px] shadow-elevation-05 outline-none dark:bg-ink-900',
             'data-[state=closed]:opacity-0',
             className,
           )}
