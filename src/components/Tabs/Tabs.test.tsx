@@ -64,7 +64,7 @@ describe('Tabs', () => {
 
   it('renders the filled variant', () => {
     render(<Tabs items={ITEMS} variant="filled" />)
-    expect(screen.getByRole('tablist')).toHaveClass('bg-[#F2F4F7]')
+    expect(screen.getByRole('tablist')).toHaveClass('bg-ink-100')
   })
 
   it('supports vertical orientation', () => {
