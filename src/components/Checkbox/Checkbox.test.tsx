@@ -118,6 +118,11 @@ describe('Checkbox', () => {
     render(<Checkbox error label="Errored" supportingText="Required" onChange={() => {}} />)
     expect(screen.getByRole('checkbox')).toHaveClass('border-[#FF4242]')
   })
+
+  it('renders card variant wrapper in error color when unchecked and errored', () => {
+    render(<Checkbox variant="card" error label="Errored card" onChange={() => {}} />)
+    expect(screen.getByText('Errored card').closest('[data-checkbox-card]')).toHaveClass('border-[#FF4242]')
+  })
 })
 
 describe('CheckboxGroup', () => {

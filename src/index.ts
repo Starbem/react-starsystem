@@ -4,7 +4,7 @@ export { Icon } from './components/Icon'
 export type { IconProps } from './components/Icon'
 
 export { Button } from './components/Button'
-export type { ButtonProps } from './components/Button'
+export type { ButtonProps, ButtonVariant, ButtonSize } from './components/Button'
 
 export { Input } from './components/Input'
 export type { InputProps } from './components/Input'
@@ -16,10 +16,10 @@ export { Select } from './components/Select'
 export type { SelectProps, SelectOption } from './components/Select'
 
 export { Checkbox, CheckboxGroup } from './components/Checkbox'
-export type { CheckboxProps, CheckboxGroupProps } from './components/Checkbox'
+export type { CheckboxProps, CheckboxGroupProps, CheckboxTone } from './components/Checkbox'
 
 export { Radio, RadioGroup } from './components/Radio'
-export type { RadioProps, RadioGroupProps } from './components/Radio'
+export type { RadioProps, RadioGroupProps, RadioTone } from './components/Radio'
 
 export { Toggle } from './components/Toggle'
 export type { ToggleProps } from './components/Toggle'
@@ -28,7 +28,7 @@ export { FormField } from './components/FormField'
 export type { FormFieldProps } from './components/FormField'
 
 export { Badge } from './components/Badge'
-export type { BadgeProps } from './components/Badge'
+export type { BadgeProps, BadgeVariant } from './components/Badge'
 
 export { Alert } from './components/Alert'
 export type { AlertProps } from './components/Alert'
@@ -37,13 +37,13 @@ export { ToastProvider, toast } from './components/Toast'
 export type { ToastProviderProps, ToastOptions, ToastVariant, ToastPosition } from './components/Toast'
 
 export { Modal } from './components/Modal'
-export type { ModalProps, ModalSize } from './components/Modal'
+export type { ModalProps, ModalSize, ModalPresent, ModalTone, ModalAlign } from './components/Modal'
 
 export { Drawer } from './components/Drawer'
 export type { DrawerProps, DrawerPosition, DrawerSize } from './components/Drawer'
 
 export { Tooltip } from './components/Tooltip'
-export type { TooltipProps, TooltipSide } from './components/Tooltip'
+export type { TooltipProps, TooltipSide, TooltipTone } from './components/Tooltip'
 
 export { Popover } from './components/Popover'
 export type { PopoverProps, PopoverSide, PopoverAlign } from './components/Popover'
@@ -76,7 +76,7 @@ export { Sidebar, NavItem } from './components/Sidebar'
 export type { SidebarProps, NavItemProps, NavItemConfig } from './components/Sidebar'
 
 export { Tabs } from './components/Tabs'
-export type { TabsProps, TabItem, TabsVariant, TabsOrientation } from './components/Tabs'
+export type { TabsProps, TabItem, TabsVariant, TabsOrientation, TabsSize } from './components/Tabs'
 
 export { DropdownMenu } from './components/DropdownMenu'
 export type {

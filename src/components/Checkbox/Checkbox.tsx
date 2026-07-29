@@ -172,7 +172,11 @@ export function Checkbox({
         data-checkbox-card
         className={cn(
           'flex items-start gap-[12px] rounded-[12px] border p-[16px] transition-colors',
-          isActive ? cn('bg-[#F7F7F7] dark:bg-[#1F2937]', activeBorder) : 'border-[#E2E2E2] dark:border-[#374151]',
+          isActive
+            ? cn('bg-[#F7F7F7] dark:bg-[#1F2937]', activeBorder)
+            : error
+              ? 'border-[#FF4242]'
+              : 'border-[#E2E2E2] dark:border-[#374151]',
           className,
         )}
       >
