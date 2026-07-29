@@ -9,9 +9,9 @@ describe('Icon', () => {
     expect(screen.getByText('home')).toBeInTheDocument()
   })
 
-  it('applies the material-symbols-outlined class', () => {
+  it('applies the material-symbols-rounded class', () => {
     render(<Icon name="home" />)
-    expect(screen.getByText('home')).toHaveClass('material-symbols-outlined')
+    expect(screen.getByText('home')).toHaveClass('material-symbols-rounded')
   })
 
   it('always renders at weight 200', () => {

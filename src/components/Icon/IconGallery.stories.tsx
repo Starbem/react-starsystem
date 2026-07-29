@@ -10,7 +10,7 @@ const meta: Meta = {
 export default meta
 type Story = StoryObj
 
-// Curated set of Material Symbols Outlined names commonly used across Starbem
+// Curated set of Material Symbols Rounded names commonly used across Starbem
 // products (nav, actions, status, health). Full catalog: fonts.google.com/icons
 const ICON_NAMES = [
   'dashboard',

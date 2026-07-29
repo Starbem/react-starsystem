@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import '../../src/styles/globals.css'
-import 'material-symbols/outlined.css'
+import 'material-symbols/rounded.css'
 import { App } from './App'
 
 createRoot(document.getElementById('root')!).render(

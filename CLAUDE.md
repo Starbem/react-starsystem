@@ -113,7 +113,7 @@ Uses **Changesets** for semantic versioning (semver) and release coordination:
 
 ## Dependencies
 
-- **Peer:** React >=18, React DOM >=18, material-symbols >=0.45.0 (required by the `Icon` component — consumers must import the font CSS themselves, e.g. `import 'material-symbols/outlined.css'`)
+- **Peer:** React >=18, React DOM >=18, material-symbols >=0.45.0 (required by the `Icon` component — consumers must import the font CSS themselves, e.g. `import 'material-symbols/rounded.css'`)
 - **Runtime:** clsx, tailwind-merge
 - **Dev:** Vite, TypeScript, Tailwind CSS v4, vitest, ESLint
 
