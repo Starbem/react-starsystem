@@ -31,6 +31,17 @@ const SIZE_CLASSES: Record<ModalSize, string> = {
   full: 'max-w-[calc(100vw-32px)] h-[calc(100vh-32px)]',
 }
 
+// `present="auto"` renders full-width below the `sm:` breakpoint (bottom sheet) and only
+// caps to the size preset once the layout switches to the centered dialog at `sm:` and up.
+// These MUST stay static literal strings — see the `sm:` note on `layoutClasses` below.
+const SIZE_CLASSES_SM: Record<ModalSize, string> = {
+  sm: 'sm:max-w-[400px]',
+  md: 'sm:max-w-[560px]',
+  lg: 'sm:max-w-[720px]',
+  xl: 'sm:max-w-[960px]',
+  full: 'sm:max-w-[calc(100vw-32px)] sm:h-[calc(100vh-32px)]',
+}
+
 const TONE_BADGE_CLASSES: Record<Exclude<ModalTone, 'default'>, string> = {
   success: 'bg-[#E3F6EF] text-[#1FBA5D]',
   error: 'bg-[#FFEDE7] text-[#FF4242]',
@@ -54,7 +65,7 @@ export function Modal({
   present = 'auto',
   tone = 'default',
   icon,
-  align = 'center',
+  align = 'start',
   closeOnOverlayClick = true,
   children,
   className,
@@ -68,6 +79,9 @@ export function Modal({
             'left-0 right-0 bottom-0 top-auto translate-x-0 translate-y-0 rounded-t-[16px] rounded-b-none max-h-[92vh] w-full max-w-full',
             'sm:left-1/2 sm:top-1/2 sm:right-auto sm:bottom-auto sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-[12px] sm:rounded-t-[12px] sm:max-h-[calc(100vh-32px)] sm:w-full',
           )
+
+  const sizeClasses =
+    present === 'sheet' ? undefined : present === 'center' ? SIZE_CLASSES[size] : SIZE_CLASSES_SM[size]
 
   const showBadge = tone !== 'default' || Boolean(icon)
   const badgeClasses = tone !== 'default' ? TONE_BADGE_CLASSES[tone] : 'bg-[#F9FAFB] text-[#475467]'
@@ -99,7 +113,7 @@ export function Modal({
             'dark:bg-[#151B2C]',
             'transition-opacity duration-200 data-[state=closed]:opacity-0',
             layoutClasses,
-            present !== 'sheet' && SIZE_CLASSES[size],
+            sizeClasses,
             className,
           )}
         >

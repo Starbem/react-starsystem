@@ -74,7 +74,7 @@ describe('Modal', () => {
 
   it('applies size classes', () => {
     render(
-      <Modal open onClose={() => {}} size="lg" title="Título">
+      <Modal open onClose={() => {}} present="center" size="lg" title="Título">
         <p>Conteúdo</p>
       </Modal>,
     )
@@ -142,5 +142,28 @@ describe('Modal', () => {
       </Modal>,
     )
     expect(screen.getByText('Centered align')).toHaveClass('text-center')
+  })
+
+  it('defaults align to "start" and keeps the pre-existing left-aligned title layout', () => {
+    render(
+      <Modal open onClose={() => {}} title="Default align">
+        Body
+      </Modal>,
+    )
+    const title = screen.getByText('Default align')
+    expect(title).toHaveClass('pr-[32px]')
+    expect(title).not.toHaveClass('text-center')
+    expect(title).not.toHaveClass('flex-none')
+  })
+
+  it('does not cap width below the sm breakpoint when present="auto" (default)', () => {
+    render(
+      <Modal open onClose={() => {}} size="md" title="Auto size">
+        Body
+      </Modal>,
+    )
+    const dialog = screen.getByRole('dialog')
+    expect(dialog).not.toHaveClass('max-w-[560px]')
+    expect(dialog).toHaveClass('sm:max-w-[560px]')
   })
 })
