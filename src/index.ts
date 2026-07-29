@@ -93,8 +93,8 @@ export type {
 export { Skeleton } from './components/Skeleton'
 export type { SkeletonProps } from './components/Skeleton'
 
-export { Spinner } from './components/Spinner'
-export type { SpinnerProps } from './components/Spinner'
+export { Spinner, Dots } from './components/Spinner'
+export type { SpinnerProps, DotsProps } from './components/Spinner'
 
 export { EmptyState } from './components/EmptyState'
 export type { EmptyStateProps } from './components/EmptyState'

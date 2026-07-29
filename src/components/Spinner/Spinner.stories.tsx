@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '../../docs-types'
-import { Spinner } from './Spinner'
+import { Spinner, Dots } from './Spinner'
 
 const meta: Meta<typeof Spinner> = {
   title: 'Components/Spinner',
@@ -61,4 +61,16 @@ export const AllSizes: Story = {
       <Spinner label="Carregando" size="lg" />
     </div>
   ),
+}
+
+export const NumericSize: Story = {
+  args: { size: 48, label: 'Loading' },
+}
+
+export const CustomThickness: Story = {
+  args: { thickness: 6, label: 'Loading' },
+}
+
+export const InlineDots: StoryObj<typeof Dots> = {
+  render: () => <Dots />,
 }
