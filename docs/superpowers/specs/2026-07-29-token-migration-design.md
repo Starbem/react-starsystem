@@ -48,6 +48,7 @@ Bordas, fundos dark-mode, texto secundário/desabilitado. Match por menor distâ
 | `#1F2937` | `neutral-900` (dist 299) — mesma ressalva |
 | `#3A2418` | `neutral-1000` (dist 595) — mesma ressalva, usado só em nav-item ativo dark-mode |
 | `#98A2B3` / `#9CA3AF` | `neutral-400` |
+| `#4D4D4D` | `neutral-700` (exato) |
 
 **Nota sobre dark-mode surfaces** (`#151B2C`, `#1F2937`, `#2A3441`, `#3A2418`): o DS de referência não define uma escala própria pra superfícies dark-mode — esses hex vieram da sessão de dark mode (`47ea71a`), não do kit de design. O mapeamento pra `neutral-900`/`neutral-1000`/`ink-900` é o mais próximo disponível, mas é uma aproximação squarely fora do escopo do DS. Registrar como débito técnico: se o DS ganhar uma escala dark-surface oficial no futuro, esses tokens trocam de novo.
 
@@ -74,13 +75,15 @@ Fundos/textos de variantes success/warning/error/info em `Alert`, `Badge`, `Toas
 
 ## Radius e sombras
 
-Radius: `rounded-[4px]`→`rounded-xs`, `[8px]`→`rounded-sm`, `[10px]`/`[12px]`→`rounded-md`, `[16px]`→`rounded-lg`, `[24px]`→`rounded-xl`, `[32px]`→`rounded-2xl`. (`10px` não tem token exato — cai em `rounded-md`, 2px de diferença visualmente imperceptível; registrar como aproximação.)
+Radius: `rounded-[4px]`→`rounded-xs`, `[8px]`→`rounded-sm`, `[10px]`/`[12px]`→`rounded-md`, `[16px]`→`rounded-lg`, `[24px]`→`rounded-xl`, `[32px]`→`rounded-2xl`. (`10px` não tem token exato — cai em `rounded-md`, 2px de diferença visualmente imperceptível; registrar como aproximação. `6px` — usado em `Checkbox`/`DropdownMenu` — também sem token exato, fica entre `xs`(4) e `sm`(8); mapear pra `rounded-sm`, mesma aproximação.)
 
-Sombras: cada `shadow-[valor arbitrário]` compara com as 8 elevações (`shadow-elevation-00`..`07`) e o `shadow-brand`/`shadow-elevation-secondary`/`shadow-elevation-hover-secondary` (extensões só-da-lib, já existentes, mantidas como estão). Onde a sombra hardcoded não bater com nenhuma elevação (ex: `shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)]` em Checkbox/Radio — glow amarelo-alaranjado de foco, sem equivalente nas elevações neutras), manter hardcoded e sinalizar como débito técnico — não inventar uma elevação nova fora do que a sessão 2 já corrigiu.
+Sombras: cada `shadow-[valor arbitrário]` compara com as 8 elevações (`shadow-elevation-00`..`07`) e o `shadow-brand`/`shadow-elevation-secondary`/`shadow-elevation-hover-secondary` (extensões só-da-lib, já existentes, mantidas como estão). Onde a sombra hardcoded não bater com nenhuma elevação (ex: `shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)]` em Checkbox/Radio — glow amarelo-alaranjado de foco; `shadow-[0px_4px_16px_2px_rgba(70,31,174,0.10)]` em Select — glow roxo de foco; `shadow-[0_6px_20px_-8px_rgba(0,0,0,0.45)]` e `shadow-[0_6px_20px_-8px_rgba(208,55,0,0.5)]` em Button — glows preto/laranja de variantes glass — todos sem equivalente nas elevações neutras), manter hardcoded e sinalizar como débito técnico — não inventar uma elevação nova fora do que a sessão 2 já corrigiu.
 
 ## Ring de foco
 
 `ring-[#FF5100]` (cor do ring do Tailwind, mecanismo diferente do `--ring-focus` que é um `box-shadow` completo) vira `ring-primary-base` — troca só o valor da cor, mantém o mesmo mecanismo de ring já usado no componente. Não migra pro token `--ring-focus` (que é uma sombra composta, não uma cor de ring) — isso mudaria a técnica de implementação do foco, fora do escopo desta migração.
+
+`Spinner.tsx` usa `border-t-[#HEX]` (borda só no topo, técnica de rotação do spinner) — mesma lógica do ring: troca só o hex por token (`border-t-primary-base`, `border-t-neutral-400`), mantém a técnica.
 
 ## Versionamento
 
