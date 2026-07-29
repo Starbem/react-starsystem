@@ -21,7 +21,7 @@ export interface MessageProps extends Omit<HTMLAttributes<HTMLDivElement>, 'chil
 
 function Ticks({ status, testId }: { status: NonNullable<MessageProps['status']>; testId?: string }) {
   return (
-    <span data-testid={testId ? `${testId}-tick` : undefined} className={cn('inline-flex', status === 'read' ? 'text-[#FF5100]' : 'text-[#98A2B3]')}>
+    <span data-testid={testId ? `${testId}-tick` : undefined} className={cn('inline-flex', status === 'read' ? 'text-primary-base' : 'text-neutral-400')}>
       <Icon name={status === 'sent' ? 'check' : 'done_all'} size={14} />
     </span>
   )
@@ -49,18 +49,18 @@ export function Message({
     <div className={cn('flex items-end gap-[8px]', isOut ? 'justify-end' : 'justify-start', className)} {...props}>
       {!isOut && (avatarSrc || avatarName) && (avatarSrc ? <Avatar src={avatarSrc} alt={avatarName ?? ''} size="sm" /> : <Avatar name={avatarName} size="sm" />)}
       <div className="max-w-[320px] flex flex-col gap-[4px]">
-        {author && <span className="text-[12px] font-medium text-[#667085] dark:text-[#98A2B3]">{author}</span>}
+        {author && <span className="text-[12px] font-medium text-ink-500 dark:text-neutral-400">{author}</span>}
         <div
           className={cn(
-            'rounded-[16px] px-[12px] py-[8px] text-[14px]',
-            isOut ? 'bg-[#FF5100] text-white rounded-br-[4px]' : 'bg-[#F2F4F7] text-[#101828] rounded-bl-[4px] dark:bg-[#1F2937] dark:text-white',
+            'rounded-lg px-[12px] py-[8px] text-[14px]',
+            isOut ? 'bg-primary-base text-white rounded-br-[4px]' : 'bg-ink-100 text-ink-900 rounded-bl-[4px] dark:bg-neutral-900 dark:text-white',
           )}
         >
           {attachment === 'image' && imageSrc && (
-            <img src={imageSrc} alt="Anexo de imagem" className="rounded-[8px] mb-[6px] max-w-[240px]" />
+            <img src={imageSrc} alt="Anexo de imagem" className="rounded-sm mb-[6px] max-w-[240px]" />
           )}
           {attachment === 'file' && (
-            <div className="flex items-center gap-[8px] mb-[6px] rounded-[8px] bg-white/20 p-[8px]">
+            <div className="flex items-center gap-[8px] mb-[6px] rounded-sm bg-white/20 p-[8px]">
               <Icon name="description" size={20} />
               <div className="flex flex-col">
                 <span className="text-[13px]">{fileName}</span>
@@ -84,14 +84,14 @@ export function Message({
         {reactions && reactions.length > 0 && (
           <div className="flex gap-[4px]">
             {reactions.map((r, i) => (
-              <span key={i} className="rounded-full bg-[#F2F4F7] px-[6px] py-[2px] text-[12px] dark:bg-[#1F2937]">
+              <span key={i} className="rounded-full bg-ink-100 px-[6px] py-[2px] text-[12px] dark:bg-neutral-900">
                 {r.emoji} {r.count ?? 1}
               </span>
             ))}
           </div>
         )}
         {(time || (isOut && status)) && (
-          <div className={cn('flex items-center gap-[4px] text-[11px] text-[#98A2B3]', isOut ? 'justify-end' : 'justify-start')}>
+          <div className={cn('flex items-center gap-[4px] text-[11px] text-neutral-400', isOut ? 'justify-end' : 'justify-start')}>
             {time && <span>{time}</span>}
             {isOut && status && <Ticks status={status} testId={testId} />}
           </div>
@@ -105,9 +105,9 @@ export function TypingMessage({ avatarSrc, avatarName, className }: { avatarSrc?
   return (
     <div className={cn('flex items-end gap-[8px] justify-start', className)}>
       {(avatarSrc || avatarName) && (avatarSrc ? <Avatar src={avatarSrc} alt={avatarName ?? ''} size="sm" /> : <Avatar name={avatarName} size="sm" />)}
-      <div className="flex gap-[3px] rounded-[16px] rounded-bl-[4px] bg-[#F2F4F7] px-[14px] py-[10px] dark:bg-[#1F2937]">
+      <div className="flex gap-[3px] rounded-lg rounded-bl-[4px] bg-ink-100 px-[14px] py-[10px] dark:bg-neutral-900">
         {[0, 1, 2].map((i) => (
-          <span key={i} className="size-[6px] rounded-full bg-[#98A2B3] animate-bounce motion-reduce:!animate-none" style={{ animationDelay: `${i * 0.15}s` }} />
+          <span key={i} className="size-[6px] rounded-full bg-neutral-400 animate-bounce motion-reduce:!animate-none" style={{ animationDelay: `${i * 0.15}s` }} />
         ))}
       </div>
     </div>
@@ -117,7 +117,7 @@ export function TypingMessage({ avatarSrc, avatarName, className }: { avatarSrc?
 export function MessageDay({ children }: { children: ReactNode }) {
   return (
     <div className="flex justify-center py-[8px]">
-      <span className="rounded-full bg-[#F2F4F7] px-[10px] py-[4px] text-[12px] text-[#667085] dark:bg-[#1F2937] dark:text-[#98A2B3]">{children}</span>
+      <span className="rounded-full bg-ink-100 px-[10px] py-[4px] text-[12px] text-ink-500 dark:bg-neutral-900 dark:text-neutral-400">{children}</span>
     </div>
   )
 }
@@ -125,7 +125,7 @@ export function MessageDay({ children }: { children: ReactNode }) {
 export function SystemMessage({ children }: { children: ReactNode }) {
   return (
     <div className="flex justify-center py-[4px]">
-      <span className="text-[12px] text-[#98A2B3] text-center">{children}</span>
+      <span className="text-[12px] text-neutral-400 text-center">{children}</span>
     </div>
   )
 }
