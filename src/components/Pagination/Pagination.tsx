@@ -63,10 +63,10 @@ function PageButton({
       aria-current={active ? 'page' : undefined}
       className={cn(
         'inline-flex size-[36px] items-center justify-center text-[14px] font-medium outline-none',
-        pill ? 'rounded-full' : 'rounded-[8px]',
-        'text-[#101828] hover:bg-[#F2F4F7] focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
-        'dark:text-white dark:hover:bg-[#1F2937]',
-        active && 'bg-[#FF5100] text-white hover:bg-[#FF5100] dark:hover:bg-[#FF5100]',
+        pill ? 'rounded-full' : 'rounded-sm',
+        'text-ink-900 hover:bg-ink-100 focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
+        'dark:text-white dark:hover:bg-neutral-900',
+        active && 'bg-primary-base text-white hover:bg-primary-base dark:hover:bg-primary-base',
       )}
     >
       {page}
@@ -95,10 +95,10 @@ function NavButton({
       onClick={onClick}
       className={cn(
         'inline-flex size-[36px] items-center justify-center outline-none',
-        pill ? 'rounded-full' : 'rounded-[8px]',
-        'text-[#101828] hover:bg-[#F2F4F7] focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
+        pill ? 'rounded-full' : 'rounded-sm',
+        'text-ink-900 hover:bg-ink-100 focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
         'disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent',
-        'dark:text-white dark:hover:bg-[#1F2937]',
+        'dark:text-white dark:hover:bg-neutral-900',
       )}
     >
       {children}
@@ -154,7 +154,7 @@ export function Pagination({
         <NavButton label="Página anterior" disabled={!canGoPrev} pill={pill} onClick={() => onChange(page - 1)}>
           <ChevronLeft />
         </NavButton>
-        <span className="px-[8px] text-[14px] text-[#344054] dark:text-[#D0D5DD]">
+        <span className="px-[8px] text-[14px] text-ink-700 dark:text-ink-300">
           Página {page} de {total}
         </span>
         <NavButton label="Próxima página" disabled={!canGoNext} pill={pill} onClick={() => onChange(page + 1)}>
@@ -173,7 +173,7 @@ export function Pagination({
         </NavButton>
         {entries.map((entry, index) =>
           entry === ELLIPSIS ? (
-            <span key={`ellipsis-${index}`} aria-hidden="true" className="inline-flex size-[36px] items-center justify-center text-[#98A2B3] dark:text-[#667085]">
+            <span key={`ellipsis-${index}`} aria-hidden="true" className="inline-flex size-[36px] items-center justify-center text-neutral-400 dark:text-ink-500">
               …
             </span>
           ) : (
