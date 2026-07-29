@@ -17,15 +17,15 @@ const SIZE_CLASSES: Record<'sm' | 'md' | 'lg', string> = {
 }
 
 const COLOR_CLASSES: Record<SpinnerColor, string> = {
-  brand: 'border-[#FF5100]/25 border-t-[#FF5100]',
+  brand: 'border-primary-base/25 border-t-primary-base',
   white: 'border-white/30 border-t-white',
-  muted: 'border-[#9C9C9C]/25 border-t-[#9C9C9C] dark:border-[#6B7280]/25 dark:border-t-[#9CA3AF]',
+  muted: 'border-neutral-400/25 border-t-neutral-400 dark:border-ink-500/25 dark:border-t-neutral-400',
 }
 
 const COLOR_FILL_CLASSES: Record<SpinnerColor, string> = {
-  brand: 'bg-[#FF5100]',
+  brand: 'bg-primary-base',
   white: 'bg-white',
-  muted: 'bg-[#9C9C9C] dark:bg-[#9CA3AF]',
+  muted: 'bg-neutral-400 dark:bg-neutral-400',
 }
 
 export function Spinner({
