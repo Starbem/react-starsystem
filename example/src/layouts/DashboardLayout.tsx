@@ -8,6 +8,7 @@ import {
   DropdownMenu,
   Sidebar,
   TopBar,
+  ToastProvider,
   type DropdownMenuEntry,
   type NavItemConfig,
 } from '@starbemtech/react-starsystem'
@@ -63,6 +64,7 @@ export function DashboardLayout() {
 
   return (
     <div className="shell">
+      <ToastProvider />
       <div className="shell__sidebar">
         <Sidebar
           items={navItems}

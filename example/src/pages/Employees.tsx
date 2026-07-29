@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   Avatar,
   Badge,
@@ -10,7 +10,6 @@ import {
   Select,
   Table,
   toast,
-  ToastProvider,
   type TableColumn,
 } from '@starbemtech/react-starsystem'
 import { departmentOptions, employees as initialEmployees, type Employee } from '../mocks/employees'
@@ -29,6 +28,10 @@ export function Employees() {
     () => rows.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
     [rows, page],
   )
+
+  useEffect(() => {
+    if (page > totalPages) setPage(totalPages)
+  }, [page, totalPages])
 
   const columns: TableColumn<Employee>[] = [
     {
@@ -90,7 +93,6 @@ export function Employees() {
 
   return (
     <div>
-      <ToastProvider />
       <h1>Colaboradores</h1>
       <Table
         columns={columns}
@@ -146,5 +148,3 @@ export function Employees() {
     </div>
   )
 }
-
-export default Employees
