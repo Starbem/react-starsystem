@@ -60,20 +60,20 @@ export function Calendar({ initialMonth, initialYear, selected, markedDays = [],
   const days = Array.from({ length: total }, (_, i) => i + 1)
 
   return (
-    <div className={cn('inline-flex flex-col gap-[12px] p-[16px] rounded-[16px] bg-white border border-[#EAECF0] dark:bg-[#151B2C] dark:border-[#1F2937]', className)}>
+    <div className={cn('inline-flex flex-col gap-[12px] p-[16px] rounded-lg bg-white border border-ink-200 dark:bg-ink-900 dark:border-neutral-900', className)}>
       <div className="flex items-center justify-between">
         <button
           type="button"
           aria-label={mode === 'days' ? 'Mês anterior' : mode === 'months' ? 'Ano anterior' : 'Década anterior'}
           onClick={() => (mode === 'days' ? goToMonth(-1) : mode === 'months' ? setViewYear(viewYear - 1) : goToYearBlock(-1))}
-          className="inline-flex items-center justify-center size-[32px] rounded-full text-[#344054] hover:bg-[#F2F4F7] dark:text-[#D0D5DD] dark:hover:bg-[#1F2937]"
+          className="inline-flex items-center justify-center size-[32px] rounded-full text-ink-700 hover:bg-ink-100 dark:text-ink-300 dark:hover:bg-neutral-900"
         >
           <Icon name="chevron_left" size={20} />
         </button>
         <button
           type="button"
           onClick={() => setMode(mode === 'days' ? 'months' : mode === 'months' ? 'years' : 'days')}
-          className="inline-flex items-center gap-[4px] font-medium text-[14px] text-[#101828] dark:text-white"
+          className="inline-flex items-center gap-[4px] font-medium text-[14px] text-ink-900 dark:text-white"
         >
           {mode === 'days' && `${MONTHS_PT[viewMonth]} ${viewYear}`}
           {mode === 'months' && `${viewYear}`}
@@ -84,7 +84,7 @@ export function Calendar({ initialMonth, initialYear, selected, markedDays = [],
           type="button"
           aria-label={mode === 'days' ? 'Próximo mês' : mode === 'months' ? 'Próximo ano' : 'Próxima década'}
           onClick={() => (mode === 'days' ? goToMonth(1) : mode === 'months' ? setViewYear(viewYear + 1) : goToYearBlock(1))}
-          className="inline-flex items-center justify-center size-[32px] rounded-full text-[#344054] hover:bg-[#F2F4F7] dark:text-[#D0D5DD] dark:hover:bg-[#1F2937]"
+          className="inline-flex items-center justify-center size-[32px] rounded-full text-ink-700 hover:bg-ink-100 dark:text-ink-300 dark:hover:bg-neutral-900"
         >
           <Icon name="chevron_right" size={20} />
         </button>
@@ -92,7 +92,7 @@ export function Calendar({ initialMonth, initialYear, selected, markedDays = [],
 
       {mode === 'days' && (
         <>
-          <div className="grid grid-cols-7 gap-[4px] text-center text-[12px] text-[#667085] dark:text-[#98A2B3]">
+          <div className="grid grid-cols-7 gap-[4px] text-center text-[12px] text-ink-500 dark:text-neutral-400">
             {WEEKDAYS_PT.map((w, i) => (
               <span key={i}>{w}</span>
             ))}
@@ -112,16 +112,16 @@ export function Calendar({ initialMonth, initialYear, selected, markedDays = [],
                   type="button"
                   onClick={() => onSelect?.(date)}
                   className={cn(
-                    'relative inline-flex items-center justify-center size-[32px] rounded-full text-[14px] text-[#101828] hover:bg-[#F2F4F7] dark:text-white dark:hover:bg-[#1F2937]',
-                    isToday && !isSelected && 'ring-1 ring-[#FF5100]',
-                    isSelected && 'bg-[#FF5100] text-white hover:bg-[#FF5100]',
+                    'relative inline-flex items-center justify-center size-[32px] rounded-full text-[14px] text-ink-900 hover:bg-ink-100 dark:text-white dark:hover:bg-neutral-900',
+                    isToday && !isSelected && 'ring-1 ring-primary-base',
+                    isSelected && 'bg-primary-base text-white hover:bg-primary-base',
                   )}
                 >
                   {day}
                   {isMarked && (
                     <span
                       data-marked="true"
-                      className={cn('absolute bottom-[2px] size-[4px] rounded-full', isSelected ? 'bg-white' : 'bg-[#FF5100]')}
+                      className={cn('absolute bottom-[2px] size-[4px] rounded-full', isSelected ? 'bg-white' : 'bg-primary-base')}
                     />
                   )}
                 </button>
@@ -142,8 +142,8 @@ export function Calendar({ initialMonth, initialYear, selected, markedDays = [],
                 setMode('days')
               }}
               className={cn(
-                'rounded-[8px] py-[8px] text-[14px] text-[#101828] hover:bg-[#F2F4F7] dark:text-white dark:hover:bg-[#1F2937]',
-                i === viewMonth && 'bg-[#FF5100] text-white hover:bg-[#FF5100]',
+                'rounded-sm py-[8px] text-[14px] text-ink-900 hover:bg-ink-100 dark:text-white dark:hover:bg-neutral-900',
+                i === viewMonth && 'bg-primary-base text-white hover:bg-primary-base',
               )}
             >
               {m}
@@ -163,8 +163,8 @@ export function Calendar({ initialMonth, initialYear, selected, markedDays = [],
                 setMode('months')
               }}
               className={cn(
-                'rounded-[8px] py-[8px] text-[14px] text-[#101828] hover:bg-[#F2F4F7] dark:text-white dark:hover:bg-[#1F2937]',
-                y === viewYear && 'bg-[#FF5100] text-white hover:bg-[#FF5100]',
+                'rounded-sm py-[8px] text-[14px] text-ink-900 hover:bg-ink-100 dark:text-white dark:hover:bg-neutral-900',
+                y === viewYear && 'bg-primary-base text-white hover:bg-primary-base',
               )}
             >
               {y}
