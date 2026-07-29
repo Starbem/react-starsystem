@@ -1,7 +1,7 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { axe } from 'vitest-axe'
-import { Spinner } from './Spinner'
+import { Spinner, Dots } from './Spinner'
 
 describe('Spinner', () => {
   it('renders with role status', () => {
@@ -58,5 +58,37 @@ describe('Spinner', () => {
     const { container } = render(<Spinner label="Carregando" />)
     // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
     expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('renders without a label prop using the default', () => {
+    render(<Spinner />)
+    expect(screen.getByRole('status')).toHaveAttribute('aria-label', 'Carregando')
+  })
+
+  it('accepts a numeric size in pixels', () => {
+    render(<Spinner size={40} label="Loading" />)
+    const el = screen.getByRole('status')
+    expect(el).toHaveStyle({ width: '40px', height: '40px' })
+  })
+
+  it('accepts a thickness override', () => {
+    render(<Spinner thickness={6} label="Loading" />)
+    expect(screen.getByRole('status')).toHaveStyle({ borderWidth: '6px' })
+  })
+})
+
+describe('Dots', () => {
+  it('renders three dots with staggered animation delays', () => {
+    const { container } = render(<Dots />)
+    const dots = container.querySelectorAll('[data-dot]')
+    expect(dots).toHaveLength(3)
+    expect(dots[0]).toHaveStyle({ animationDelay: '0ms' })
+    expect(dots[1]).toHaveStyle({ animationDelay: '150ms' })
+    expect(dots[2]).toHaveStyle({ animationDelay: '300ms' })
+  })
+
+  it('has an accessible status role and label', () => {
+    render(<Dots />)
+    expect(screen.getByRole('status')).toHaveAttribute('aria-label', 'Carregando')
   })
 })

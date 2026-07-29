@@ -10,12 +10,12 @@ export default meta
 type Story = StoryObj<typeof Pagination>
 
 function PaginationDemo({
-  totalPages,
+  total,
   siblingCount,
   showFirstLast,
   initialPage = 1,
 }: {
-  totalPages: number
+  total: number
   siblingCount?: number
   showFirstLast?: boolean
   initialPage?: number
@@ -24,9 +24,9 @@ function PaginationDemo({
 
   return (
     <Pagination
-      currentPage={page}
-      totalPages={totalPages}
-      onPageChange={setPage}
+      page={page}
+      total={total}
+      onChange={setPage}
       siblingCount={siblingCount}
       showFirstLast={showFirstLast}
     />
@@ -34,25 +34,29 @@ function PaginationDemo({
 }
 
 export const FewPages: Story = {
-  render: () => <PaginationDemo totalPages={5} />,
+  render: () => <PaginationDemo total={5} />,
 }
 
 export const ManyPagesMiddle: Story = {
-  render: () => <PaginationDemo totalPages={20} initialPage={10} />,
+  render: () => <PaginationDemo total={20} initialPage={10} />,
 }
 
 export const ManyPagesStart: Story = {
-  render: () => <PaginationDemo totalPages={20} initialPage={1} />,
+  render: () => <PaginationDemo total={20} initialPage={1} />,
 }
 
 export const ManyPagesEnd: Story = {
-  render: () => <PaginationDemo totalPages={20} initialPage={20} />,
+  render: () => <PaginationDemo total={20} initialPage={20} />,
 }
 
 export const WithFirstLast: Story = {
-  render: () => <PaginationDemo totalPages={20} initialPage={10} showFirstLast />,
+  render: () => <PaginationDemo total={20} initialPage={10} showFirstLast />,
 }
 
 export const WiderSiblingRange: Story = {
-  render: () => <PaginationDemo totalPages={20} initialPage={10} siblingCount={2} />,
+  render: () => <PaginationDemo total={20} initialPage={10} siblingCount={2} />,
+}
+
+export const Pill: Story = {
+  args: { page: 3, total: 10, pill: true },
 }

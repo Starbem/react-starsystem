@@ -1,21 +1,27 @@
-import { type ReactNode } from 'react'
+import { type HTMLAttributes, type ReactNode } from 'react'
 import { cn } from '../../utils/cn'
 
-export interface BadgeProps {
+export type BadgeVariant = 'neutral' | 'primary' | 'accent' | 'success' | 'warning' | 'error' | 'solid' | 'info'
+
+export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   children: ReactNode
-  variant?: 'default' | 'success' | 'warning' | 'error' | 'info'
+  variant?: BadgeVariant
   size?: 'sm' | 'md'
   removable?: boolean
   onRemove?: () => void
   icon?: ReactNode
+  dot?: boolean
   className?: string
 }
 
-const VARIANT_CLASSES: Record<NonNullable<BadgeProps['variant']>, string> = {
-  default: 'bg-[#E8E8E8] text-[#393939] dark:bg-[#374151] dark:text-[#D1D5DB]',
+const VARIANT_CLASSES: Record<BadgeVariant, string> = {
+  neutral: 'bg-[#F2F4F7] text-[#344054] dark:bg-[#374151] dark:text-[#D1D5DB]',
+  primary: 'bg-[#F3E9FC] text-[#461FAE]',
+  accent: 'bg-[#FFF1E0] text-[#A31B00]',
   success: 'bg-[#D4F4DD] text-[#166534]',
   warning: 'bg-[#FEF3C7] text-[#92400E]',
   error: 'bg-[#FFE1E1] text-[#B42318]',
+  solid: 'bg-[#7F56D9] text-white',
   info: 'bg-[#DBEAFE] text-[#1E40AF]',
 }
 
@@ -29,14 +35,21 @@ const REMOVE_ICON_SIZE: Record<NonNullable<BadgeProps['size']>, string> = {
   md: 'size-[14px]',
 }
 
+const DOT_SIZE: Record<NonNullable<BadgeProps['size']>, string> = {
+  sm: 'size-[5px]',
+  md: 'size-[6px]',
+}
+
 export function Badge({
   children,
-  variant = 'default',
+  variant = 'neutral',
   size = 'md',
   removable = false,
   onRemove,
   icon,
+  dot = false,
   className,
+  ...rest
 }: BadgeProps) {
   return (
     <span
@@ -46,7 +59,9 @@ export function Badge({
         SIZE_CLASSES[size],
         className,
       )}
+      {...rest}
     >
+      {dot && <span data-badge-dot className={cn('shrink-0 rounded-full bg-current', DOT_SIZE[size])} aria-hidden="true" />}
       {icon && (
         <span className="shrink-0" aria-hidden="true">
           {icon}

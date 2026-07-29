@@ -52,18 +52,48 @@ describe('Avatar', () => {
     // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
     expect(await axe(container)).toHaveNoViolations()
   })
+
+  it('renders size 2xl', () => {
+    render(<Avatar name="Jane Doe" size="2xl" />)
+    expect(screen.getByText('JD').parentElement).toHaveClass('size-[72px]')
+  })
+
+  it('accepts a boolean status and renders a plain indicator', () => {
+    render(<Avatar name="Jane Doe" status />)
+    expect(screen.getByLabelText('status indicator')).toBeInTheDocument()
+  })
+
+  it('does not require alt when src is provided', () => {
+    render(<Avatar src="/a.png" name="Jane Doe" />)
+    expect(screen.getByRole('img')).toHaveAttribute('alt', 'Jane Doe')
+  })
+
+  it('renders shape square', () => {
+    render(<Avatar name="Jane Doe" shape="square" />)
+    expect(screen.getByText('JD').parentElement).toHaveClass('rounded-none')
+  })
+
+  it('renders a custom fallback icon when provided and there is no name', () => {
+    render(<Avatar icon={<span data-testid="custom-icon" />} />)
+    expect(screen.getByTestId('custom-icon')).toBeInTheDocument()
+  })
+
+  it('applies ring classes when ring is true', () => {
+    render(<Avatar name="Jane Doe" ring />)
+    expect(screen.getByText('JD').parentElement).toHaveClass('ring-2')
+  })
 })
 
 describe('AvatarGroup', () => {
-  const AVATARS = [
-    { name: 'Julio Sousa' },
-    { name: 'Bárbara Koch' },
-    { name: 'José Tenório' },
-    { name: 'João Dias' },
-  ]
-
   it('renders all avatars when there is no max', () => {
-    render(<AvatarGroup avatars={AVATARS} />)
+    render(
+      <AvatarGroup>
+        <Avatar name="Julio Sousa" />
+        <Avatar name="Bárbara Koch" />
+        <Avatar name="José Tenório" />
+        <Avatar name="João Dias" />
+      </AvatarGroup>,
+    )
     expect(screen.getByText('JS')).toBeInTheDocument()
     expect(screen.getByText('BK')).toBeInTheDocument()
     expect(screen.getByText('JT')).toBeInTheDocument()
@@ -71,7 +101,14 @@ describe('AvatarGroup', () => {
   })
 
   it('truncates and shows a +N overflow indicator when max is set', () => {
-    render(<AvatarGroup avatars={AVATARS} max={2} />)
+    render(
+      <AvatarGroup max={2}>
+        <Avatar name="Julio Sousa" />
+        <Avatar name="Bárbara Koch" />
+        <Avatar name="José Tenório" />
+        <Avatar name="João Dias" />
+      </AvatarGroup>,
+    )
     expect(screen.getByText('JS')).toBeInTheDocument()
     expect(screen.getByText('BK')).toBeInTheDocument()
     expect(screen.queryByText('JT')).not.toBeInTheDocument()
@@ -79,7 +116,47 @@ describe('AvatarGroup', () => {
   })
 
   it('does not show an overflow indicator when max fits all avatars', () => {
-    render(<AvatarGroup avatars={AVATARS} max={10} />)
+    render(
+      <AvatarGroup max={10}>
+        <Avatar name="Julio Sousa" />
+        <Avatar name="Bárbara Koch" />
+        <Avatar name="José Tenório" />
+      </AvatarGroup>,
+    )
     expect(screen.queryByText(/^\+/)).not.toBeInTheDocument()
+  })
+
+  it('renders Avatar children and forwards size to each', () => {
+    render(
+      <AvatarGroup size="sm">
+        <Avatar name="Ann Lee" />
+        <Avatar name="Bo Kim" />
+      </AvatarGroup>,
+    )
+    expect(screen.getByText('AL').parentElement).toHaveClass('size-[28px]')
+    expect(screen.getByText('BK').parentElement).toHaveClass('size-[28px]')
+  })
+
+  it('shows an overflow count beyond max', () => {
+    render(
+      <AvatarGroup max={2}>
+        <Avatar name="Ann Lee" />
+        <Avatar name="Bo Kim" />
+        <Avatar name="Cy Ora" />
+      </AvatarGroup>,
+    )
+    expect(screen.getByText('+1')).toBeInTheDocument()
+  })
+
+  it('renders a non-Avatar child as-is, without cloning size/ring props onto it', () => {
+    render(
+      <AvatarGroup size="lg">
+        <span data-testid="custom-child">not an avatar</span>
+      </AvatarGroup>,
+    )
+    const child = screen.getByTestId('custom-child')
+    expect(child).toBeInTheDocument()
+    expect(child).not.toHaveClass('size-[48px]')
+    expect(child).not.toHaveClass('ring-2')
   })
 })

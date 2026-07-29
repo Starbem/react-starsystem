@@ -96,4 +96,60 @@ describe('Button', () => {
     const button = screen.getByRole('button')
     expect(button).toBeInTheDocument()
   })
+
+  it('renders new DS-aligned variants', () => {
+    const { rerender } = render(<Button variant="tertiary">Tertiary</Button>)
+    expect(screen.getByRole('button')).toHaveClass('text-[#D03700]')
+
+    rerender(<Button variant="link">Link</Button>)
+    expect(screen.getByRole('button')).toHaveClass('underline-offset-4')
+
+    rerender(<Button variant="glass">Glass</Button>)
+    expect(screen.getByRole('button')).toHaveClass('backdrop-blur-[12px]')
+
+    rerender(<Button variant="glass-dark">Glass dark</Button>)
+    expect(screen.getByRole('button')).toHaveClass('text-white')
+
+    rerender(<Button variant="glass-brand">Glass brand</Button>)
+    expect(screen.getByRole('button')).toHaveClass('text-white')
+  })
+
+  it('renders size xl', () => {
+    render(<Button size="xl">XL</Button>)
+    expect(screen.getByRole('button')).toHaveClass('text-[16px]')
+  })
+
+  it('applies pill radius when pill is true', () => {
+    render(<Button pill>Pill</Button>)
+    expect(screen.getByRole('button')).toHaveClass('rounded-full')
+  })
+
+  it('stretches full width when block is true', () => {
+    render(<Button block>Block</Button>)
+    expect(screen.getByRole('button')).toHaveClass('w-full')
+  })
+
+  it('renders as an anchor when as="a" is passed, with href and no disabled attribute', () => {
+    render(
+      <Button as="a" href="/somewhere">
+        Link button
+      </Button>,
+    )
+    const link = screen.getByRole('link', { name: 'Link button' })
+    expect(link.tagName).toBe('A')
+    expect(link).toHaveAttribute('href', '/somewhere')
+    expect(link).not.toHaveAttribute('disabled')
+  })
+
+  it('applies aria-disabled instead of disabled when as="a" and loading is true', () => {
+    render(
+      <Button as="a" href="/x" loading>
+        Loading link
+      </Button>,
+    )
+    const link = screen.getByRole('link', { name: 'Loading link' })
+    expect(link).toHaveAttribute('aria-disabled', 'true')
+    expect(link).toHaveClass('pointer-events-none')
+    expect(link).toHaveClass('opacity-50')
+  })
 })

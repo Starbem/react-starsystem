@@ -101,3 +101,39 @@ export const AllSizes: Story = {
     </div>
   ),
 }
+
+export const Tertiary: Story = {
+  args: { variant: 'tertiary', children: 'Tertiary' },
+}
+
+export const Link: Story = {
+  args: { variant: 'link', children: 'Link' },
+}
+
+export const Glass: Story = {
+  args: { variant: 'glass', children: 'Glass' },
+}
+
+export const GlassDark: Story = {
+  args: { variant: 'glass-dark', children: 'Glass dark' },
+}
+
+export const GlassBrand: Story = {
+  args: { variant: 'glass-brand', children: 'Glass brand' },
+}
+
+export const ExtraLarge: Story = {
+  args: { size: 'xl', children: 'Extra large' },
+}
+
+export const Pill: Story = {
+  args: { pill: true, children: 'Pill button' },
+}
+
+export const Block: Story = {
+  args: { block: true, children: 'Block button' },
+}
+
+export const AsLink: Story = {
+  args: { as: 'a', href: '#', children: 'As anchor' },
+}

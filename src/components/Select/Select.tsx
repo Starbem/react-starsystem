@@ -10,6 +10,12 @@ export interface SelectOption {
 export interface SelectProps {
   options: SelectOption[]
   value?: string
+  /**
+   * Called with the newly selected option's value. This is a value
+   * callback, not a native change event handler — Select is an ARIA
+   * combobox widget, not a wrapped <select>, so there is no ChangeEvent
+   * to forward.
+   */
   onChange?: (value: string) => void
   placeholder?: string
   label?: string

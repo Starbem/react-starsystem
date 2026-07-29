@@ -26,7 +26,7 @@ const COLUMNS: TableColumn<Employee>[] = [
     header: 'Status',
     accessor: (row) => row.status,
     render: (row) => (
-      <Badge variant={row.status === 'active' ? 'success' : 'default'} size="sm">
+      <Badge variant={row.status === 'active' ? 'success' : 'neutral'} size="sm">
         {row.status === 'active' ? 'Ativo' : 'Inativo'}
       </Badge>
     ),
@@ -82,7 +82,7 @@ function WithPaginationDemo() {
       columns={COLUMNS}
       data={DATA}
       getRowId={(row) => row.id}
-      pagination={{ currentPage: page, totalPages: 4, onPageChange: setPage }}
+      pagination={{ page, total: 4, onChange: setPage }}
     />
   )
 }

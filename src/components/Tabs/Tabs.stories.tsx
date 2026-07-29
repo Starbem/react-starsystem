@@ -57,3 +57,62 @@ function ControlledDemo() {
 export const Controlled: Story = {
   render: () => <ControlledDemo />,
 }
+
+export const TabBarOnly: Story = {
+  args: {
+    items: [
+      { value: 'a', label: 'Overview' },
+      { value: 'b', label: 'Details' },
+      { value: 'c', label: 'History' },
+    ],
+  },
+}
+
+export const WithIconsAndCounts: Story = {
+  args: {
+    items: [
+      { value: 'inbox', label: 'Inbox', icon: <span>📥</span>, count: 4, content: 'Inbox content' },
+      { value: 'sent', label: 'Sent', icon: <span>📤</span>, content: 'Sent content' },
+    ],
+  },
+}
+
+export const Enclosed: Story = {
+  args: {
+    variant: 'enclosed',
+    items: [
+      { value: 'a', label: 'Overview', content: 'Overview content' },
+      { value: 'b', label: 'Details', content: 'Details content' },
+    ],
+  },
+}
+
+export const Small: Story = {
+  args: {
+    size: 'sm',
+    items: [
+      { value: 'a', label: 'Overview', content: 'Overview content' },
+      { value: 'b', label: 'Details', content: 'Details content' },
+    ],
+  },
+}
+
+export const Large: Story = {
+  args: {
+    size: 'lg',
+    items: [
+      { value: 'a', label: 'Overview', content: 'Overview content' },
+      { value: 'b', label: 'Details', content: 'Details content' },
+    ],
+  },
+}
+
+export const Block: Story = {
+  args: {
+    block: true,
+    items: [
+      { value: 'a', label: 'Overview', content: 'Overview content' },
+      { value: 'b', label: 'Details', content: 'Details content' },
+    ],
+  },
+}
