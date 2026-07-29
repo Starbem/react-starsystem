@@ -21,9 +21,9 @@ export function Divider({ orientation = 'horizontal', label, variant = 'solid', 
   if (label && orientation === 'horizontal') {
     return (
       <div role="separator" aria-orientation="horizontal" className={cn('flex items-center gap-[12px]', className)}>
-        <span aria-hidden="true" className={cn('flex-1 border-t border-[#EAECF0] dark:border-[#1F2937]', BORDER_STYLE[variant])} />
-        <span className="text-[13px] text-[#667085] shrink-0 dark:text-[#98A2B3]">{label}</span>
-        <span aria-hidden="true" className={cn('flex-1 border-t border-[#EAECF0] dark:border-[#1F2937]', BORDER_STYLE[variant])} />
+        <span aria-hidden="true" className={cn('flex-1 border-t border-ink-200 dark:border-neutral-900', BORDER_STYLE[variant])} />
+        <span className="text-[13px] text-ink-500 shrink-0 dark:text-neutral-400">{label}</span>
+        <span aria-hidden="true" className={cn('flex-1 border-t border-ink-200 dark:border-neutral-900', BORDER_STYLE[variant])} />
       </div>
     )
   }
@@ -33,7 +33,7 @@ export function Divider({ orientation = 'horizontal', label, variant = 'solid', 
       orientation={orientation}
       className={cn(
         orientation === 'horizontal' ? cn('w-full border-t', BORDER_STYLE[variant]) : cn('h-full border-l', BORDER_STYLE[variant]),
-        'border-[#EAECF0] dark:border-[#1F2937]',
+        'border-ink-200 dark:border-neutral-900',
         className,
       )}
     />
