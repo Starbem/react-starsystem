@@ -12,10 +12,10 @@ export interface AlertProps {
 }
 
 const VARIANT_CLASSES: Record<NonNullable<AlertProps['variant']>, string> = {
-  info: 'bg-[#DBEAFE] text-[#1E40AF]',
-  success: 'bg-[#D4F4DD] text-[#166534]',
-  warning: 'bg-[#FEF3C7] text-[#92400E]',
-  error: 'bg-[#FFE1E1] text-[#B42318]',
+  info: 'bg-secondary-lightest text-secondary-darker',
+  success: 'bg-success-lightest text-success-darker',
+  warning: 'bg-warning-lightest text-warning-darkest',
+  error: 'bg-error-lightest text-error-darker',
 }
 
 export function Alert({ variant = 'info', title, description, icon, onClose, action, className }: AlertProps) {
@@ -40,7 +40,7 @@ export function Alert({ variant = 'info', title, description, icon, onClose, act
       aria-live="polite"
       onTransitionEnd={handleTransitionEnd}
       className={cn(
-        'flex items-start gap-[12px] rounded-[12px] p-[16px] transition-all duration-200 ease-in',
+        'flex items-start gap-[12px] rounded-md p-[16px] transition-all duration-200 ease-in',
         closing ? 'opacity-0 -translate-y-1' : 'opacity-100 translate-y-0',
         VARIANT_CLASSES[variant],
         className,
@@ -63,7 +63,7 @@ export function Alert({ variant = 'info', title, description, icon, onClose, act
           aria-label="Fechar alerta"
           className={cn(
             'shrink-0 inline-flex items-center justify-center size-[20px] rounded-full outline-none',
-            'hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
+            'hover:opacity-70 focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
           )}
         >
           <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
