@@ -109,7 +109,7 @@ describe('Table', () => {
         columns={COLUMNS}
         data={DATA}
         getRowId={(row) => row.id}
-        pagination={{ currentPage: 1, totalPages: 3, onPageChange: () => {} }}
+        pagination={{ page: 1, total: 3, onChange: () => {} }}
       />,
     )
     expect(screen.getByRole('navigation', { name: 'pagination' })).toBeInTheDocument()

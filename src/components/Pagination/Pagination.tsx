@@ -1,11 +1,13 @@
+import { type HTMLAttributes } from 'react'
 import { cn } from '../../utils/cn'
 
-export interface PaginationProps {
-  currentPage: number
-  totalPages: number
-  onPageChange: (page: number) => void
+export interface PaginationProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
+  page: number
+  total: number
+  onChange: (page: number) => void
   siblingCount?: number
   showFirstLast?: boolean
+  pill?: boolean
   className?: string
 }
 
@@ -19,37 +21,39 @@ function range(start: number, end: number): number[] {
   return result
 }
 
-function buildPageEntries(currentPage: number, totalPages: number, siblingCount: number): PageEntry[] {
+function buildPageEntries(page: number, total: number, siblingCount: number): PageEntry[] {
   const totalSlots = siblingCount * 2 + 5
 
-  if (totalPages <= totalSlots) return range(1, totalPages)
+  if (total <= totalSlots) return range(1, total)
 
-  const leftSiblingIndex = Math.max(currentPage - siblingCount, 1)
-  const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPages)
+  const leftSiblingIndex = Math.max(page - siblingCount, 1)
+  const rightSiblingIndex = Math.min(page + siblingCount, total)
 
   const showLeftEllipsis = leftSiblingIndex > 2
-  const showRightEllipsis = rightSiblingIndex < totalPages - 1
+  const showRightEllipsis = rightSiblingIndex < total - 1
 
   if (!showLeftEllipsis && showRightEllipsis) {
     const leftRange = range(1, siblingCount * 2 + 3)
-    return [...leftRange, ELLIPSIS, totalPages]
+    return [...leftRange, ELLIPSIS, total]
   }
 
   if (showLeftEllipsis && !showRightEllipsis) {
-    const rightRange = range(totalPages - (siblingCount * 2 + 2), totalPages)
+    const rightRange = range(total - (siblingCount * 2 + 2), total)
     return [1, ELLIPSIS, ...rightRange]
   }
 
-  return [1, ELLIPSIS, ...range(leftSiblingIndex, rightSiblingIndex), ELLIPSIS, totalPages]
+  return [1, ELLIPSIS, ...range(leftSiblingIndex, rightSiblingIndex), ELLIPSIS, total]
 }
 
 function PageButton({
   page,
   active,
+  pill,
   onClick,
 }: {
   page: number
   active: boolean
+  pill: boolean
   onClick: () => void
 }) {
   return (
@@ -58,7 +62,8 @@ function PageButton({
       onClick={onClick}
       aria-current={active ? 'page' : undefined}
       className={cn(
-        'inline-flex size-[36px] items-center justify-center rounded-[8px] text-[14px] font-medium outline-none',
+        'inline-flex size-[36px] items-center justify-center text-[14px] font-medium outline-none',
+        pill ? 'rounded-full' : 'rounded-[8px]',
         'text-[#101828] hover:bg-[#F2F4F7] focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
         'dark:text-white dark:hover:bg-[#1F2937]',
         active && 'bg-[#FF5100] text-white hover:bg-[#FF5100] dark:hover:bg-[#FF5100]',
@@ -72,11 +77,13 @@ function PageButton({
 function NavButton({
   label,
   disabled,
+  pill,
   onClick,
   children,
 }: {
   label: string
   disabled: boolean
+  pill: boolean
   onClick: () => void
   children: React.ReactNode
 }) {
@@ -87,7 +94,8 @@ function NavButton({
       disabled={disabled}
       onClick={onClick}
       className={cn(
-        'inline-flex size-[36px] items-center justify-center rounded-[8px] outline-none',
+        'inline-flex size-[36px] items-center justify-center outline-none',
+        pill ? 'rounded-full' : 'rounded-[8px]',
         'text-[#101828] hover:bg-[#F2F4F7] focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
         'disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent',
         'dark:text-white dark:hover:bg-[#1F2937]',
@@ -127,38 +135,40 @@ function ChevronRight() {
 }
 
 export function Pagination({
-  currentPage,
-  totalPages,
-  onPageChange,
+  page,
+  total,
+  onChange,
   siblingCount = 1,
   showFirstLast = false,
+  pill = false,
   className,
+  ...rest
 }: PaginationProps) {
-  const entries = buildPageEntries(currentPage, totalPages, siblingCount)
-  const canGoPrev = currentPage > 1
-  const canGoNext = currentPage < totalPages
+  const entries = buildPageEntries(page, total, siblingCount)
+  const canGoPrev = page > 1
+  const canGoNext = page < total
 
   return (
-    <nav aria-label="pagination" className={cn('flex items-center', className)}>
+    <nav aria-label="pagination" className={cn('flex items-center', className)} {...rest}>
       <div data-testid="pagination-compact" className="flex items-center gap-[4px] sm:hidden">
-        <NavButton label="Página anterior" disabled={!canGoPrev} onClick={() => onPageChange(currentPage - 1)}>
+        <NavButton label="Página anterior" disabled={!canGoPrev} pill={pill} onClick={() => onChange(page - 1)}>
           <ChevronLeft />
         </NavButton>
         <span className="px-[8px] text-[14px] text-[#344054] dark:text-[#D0D5DD]">
-          Página {currentPage} de {totalPages}
+          Página {page} de {total}
         </span>
-        <NavButton label="Próxima página" disabled={!canGoNext} onClick={() => onPageChange(currentPage + 1)}>
+        <NavButton label="Próxima página" disabled={!canGoNext} pill={pill} onClick={() => onChange(page + 1)}>
           <ChevronRight />
         </NavButton>
       </div>
 
       <div data-testid="pagination-full" className="hidden items-center gap-[4px] sm:flex">
         {showFirstLast && (
-          <NavButton label="Primeira página" disabled={!canGoPrev} onClick={() => onPageChange(1)}>
+          <NavButton label="Primeira página" disabled={!canGoPrev} pill={pill} onClick={() => onChange(1)}>
             «
           </NavButton>
         )}
-        <NavButton label="Página anterior" disabled={!canGoPrev} onClick={() => onPageChange(currentPage - 1)}>
+        <NavButton label="Página anterior" disabled={!canGoPrev} pill={pill} onClick={() => onChange(page - 1)}>
           <ChevronLeft />
         </NavButton>
         {entries.map((entry, index) =>
@@ -167,14 +177,14 @@ export function Pagination({
               …
             </span>
           ) : (
-            <PageButton key={entry} page={entry} active={entry === currentPage} onClick={() => onPageChange(entry)} />
+            <PageButton key={entry} page={entry} active={entry === page} pill={pill} onClick={() => onChange(entry)} />
           ),
         )}
-        <NavButton label="Próxima página" disabled={!canGoNext} onClick={() => onPageChange(currentPage + 1)}>
+        <NavButton label="Próxima página" disabled={!canGoNext} pill={pill} onClick={() => onChange(page + 1)}>
           <ChevronRight />
         </NavButton>
         {showFirstLast && (
-          <NavButton label="Última página" disabled={!canGoNext} onClick={() => onPageChange(totalPages)}>
+          <NavButton label="Última página" disabled={!canGoNext} pill={pill} onClick={() => onChange(total)}>
             »
           </NavButton>
         )}

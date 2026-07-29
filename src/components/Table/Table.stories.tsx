@@ -82,7 +82,7 @@ function WithPaginationDemo() {
       columns={COLUMNS}
       data={DATA}
       getRowId={(row) => row.id}
-      pagination={{ currentPage: page, totalPages: 4, onPageChange: setPage }}
+      pagination={{ page, total: 4, onChange: setPage }}
     />
   )
 }
