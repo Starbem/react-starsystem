@@ -68,10 +68,10 @@ function useToasts() {
 }
 
 const VARIANT_CLASSES: Record<ToastVariant, string> = {
-  info: 'bg-[#DBEAFE] text-[#1E40AF]',
-  success: 'bg-[#D4F4DD] text-[#166534]',
-  warning: 'bg-[#FEF3C7] text-[#92400E]',
-  error: 'bg-[#FFE1E1] text-[#B42318]',
+  info: 'bg-secondary-lightest text-secondary-darker',
+  success: 'bg-success-lightest text-success-darker',
+  warning: 'bg-warning-lightest text-warning-darkest',
+  error: 'bg-error-lightest text-error-darker',
 }
 
 const POSITION_CLASSES: Record<ToastPosition, string> = {
@@ -116,7 +116,7 @@ function ToastRoot({ item }: { item: ToastItem }) {
       }}
       aria-live={variant === 'error' ? 'assertive' : 'polite'}
       className={cn(
-        'relative overflow-hidden rounded-[12px] p-[16px] pr-[36px] shadow-[0px_4px_12px_0px_rgba(16,24,40,0.12)]',
+        'relative overflow-hidden rounded-md p-[16px] pr-[36px] shadow-elevation-04',
         'transition-opacity duration-200 data-[state=closed]:opacity-0',
         VARIANT_CLASSES[variant],
       )}
@@ -131,7 +131,7 @@ function ToastRoot({ item }: { item: ToastItem }) {
         aria-label="Fechar notificação"
         className={cn(
           'absolute top-[8px] right-[8px] size-[20px] inline-flex items-center justify-center rounded-full outline-none',
-          'hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
+          'hover:opacity-70 focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
         )}
       >
         <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-[14px]">
