@@ -77,4 +77,57 @@ describe('Tabs', () => {
     // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
     expect(await axe(container)).toHaveNoViolations()
   })
+
+  it('renders without a content panel when every item omits content', () => {
+    render(
+      <Tabs
+        items={[
+          { value: 'a', label: 'A' },
+          { value: 'b', label: 'B' },
+        ]}
+      />,
+    )
+    expect(screen.queryByRole('tabpanel')).not.toBeInTheDocument()
+  })
+
+  it('still renders a content panel for items that provide content', () => {
+    render(
+      <Tabs
+        items={[
+          { value: 'a', label: 'A', content: 'Panel A' },
+          { value: 'b', label: 'B', content: 'Panel B' },
+        ]}
+      />,
+    )
+    expect(screen.getByText('Panel A')).toBeInTheDocument()
+  })
+
+  it('renders item icon and count', () => {
+    render(
+      <Tabs
+        items={[
+          { value: 'a', label: 'Inbox', icon: <span data-testid="tab-icon" />, count: 3, content: 'x' },
+        ]}
+      />,
+    )
+    expect(screen.getByTestId('tab-icon')).toBeInTheDocument()
+    expect(screen.getByText('3')).toBeInTheDocument()
+  })
+
+  it('renders enclosed variant', () => {
+    render(
+      <Tabs variant="enclosed" items={[{ value: 'a', label: 'A', content: 'x' }]} />,
+    )
+    expect(screen.getByRole('tab')).toHaveClass('rounded-full')
+  })
+
+  it('renders size lg', () => {
+    render(<Tabs size="lg" items={[{ value: 'a', label: 'A', content: 'x' }]} />)
+    expect(screen.getByRole('tab')).toHaveClass('text-[16px]')
+  })
+
+  it('renders block layout with equal-width triggers', () => {
+    render(<Tabs block items={[{ value: 'a', label: 'A', content: 'x' }]} />)
+    expect(screen.getByRole('tab')).toHaveClass('flex-1')
+  })
 })
