@@ -9,10 +9,10 @@ export interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const VARIANT_CLASSES: Record<NonNullable<SkeletonProps['variant']>, string> = {
-  text: 'rounded-[4px] w-full h-[1em]',
+  text: 'rounded-xs w-full h-[1em]',
   circular: 'rounded-full size-[40px]',
-  rectangular: 'rounded-[8px] w-full h-[120px]',
-  card: 'rounded-[16px] w-full h-[200px]',
+  rectangular: 'rounded-sm w-full h-[120px]',
+  card: 'rounded-lg w-full h-[200px]',
 }
 
 function toDimension(value: string | number | undefined) {
@@ -38,7 +38,7 @@ export function Skeleton({
         ...style,
       }}
       className={cn(
-        'relative overflow-hidden bg-[#E8E8E8] motion-reduce:!animate-none dark:bg-[#374151]',
+        'relative overflow-hidden bg-ink-200 motion-reduce:!animate-none dark:bg-ink-700',
         VARIANT_CLASSES[variant],
         animation === 'pulse' && 'animate-pulse',
         className,

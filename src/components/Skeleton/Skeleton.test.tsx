@@ -13,7 +13,7 @@ describe('Skeleton', () => {
 
   it('applies text variant classes by default', () => {
     const { container } = render(<Skeleton />)
-    expect(container.firstChild).toHaveClass('rounded-[4px]')
+    expect(container.firstChild).toHaveClass('rounded-xs')
   })
 
   it('applies circular variant classes', () => {
@@ -23,12 +23,12 @@ describe('Skeleton', () => {
 
   it('applies rectangular variant classes', () => {
     const { container } = render(<Skeleton variant="rectangular" />)
-    expect(container.firstChild).toHaveClass('rounded-[8px]')
+    expect(container.firstChild).toHaveClass('rounded-sm')
   })
 
   it('applies card variant classes', () => {
     const { container } = render(<Skeleton variant="card" />)
-    expect(container.firstChild).toHaveClass('rounded-[16px]')
+    expect(container.firstChild).toHaveClass('rounded-lg')
   })
 
   it('applies numeric width/height as pixel dimensions', () => {
