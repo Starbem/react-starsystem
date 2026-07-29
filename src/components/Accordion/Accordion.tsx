@@ -46,14 +46,14 @@ function AccordionItems({ items }: { items: AccordionItemConfig[] }) {
           key={item.value}
           value={item.value}
           disabled={item.disabled}
-          className="border-b border-[#EAECF0] last:border-0 dark:border-[#1F2937]"
+          className="border-b border-ink-200 last:border-0 dark:border-neutral-900"
         >
           <RadixAccordion.Header>
             <RadixAccordion.Trigger
               className={cn(
                 'group flex w-full items-center justify-between gap-[12px] py-[16px] text-left text-[14px] font-medium outline-none',
-                'text-[#101828] hover:text-[#FF5100] focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1 rounded-[4px]',
-                'disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:text-[#101828]',
+                'text-ink-900 hover:text-primary-base focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1 rounded-xs',
+                'disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:text-ink-900',
                 'dark:text-white dark:disabled:hover:text-white',
               )}
             >
@@ -63,7 +63,7 @@ function AccordionItems({ items }: { items: AccordionItemConfig[] }) {
           </RadixAccordion.Header>
           <RadixAccordion.Content
             className={cn(
-              'overflow-hidden text-[14px] text-[#475467] dark:text-[#98A2B3]',
+              'overflow-hidden text-[14px] text-ink-600 dark:text-neutral-400',
               'data-[state=open]:animate-[accordion-expand_200ms_ease-out]',
               'data-[state=closed]:animate-[accordion-collapse_200ms_ease-out]',
             )}
