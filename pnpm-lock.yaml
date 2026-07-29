@@ -90,6 +90,9 @@ importers:
       jsdom:
         specifier: ^29.1.1
         version: 29.1.1
+      material-symbols:
+        specifier: ^0.45.9
+        version: 0.45.9
       prettier:
         specifier: ^3.9.4
         version: 3.9.4
@@ -2284,6 +2287,9 @@ packages:
   make-dir@4.0.0:
     resolution: {integrity: sha512-hXdUTZYIVOt1Ex//jAQi+wTZZpUpwBj/0QsOzqegb3rGMMeJiSEu5xLHnYfBrRV4RH2+OCSOO95Is/7x1WJ4bw==}
     engines: {node: '>=10'}
+
+  material-symbols@0.45.9:
+    resolution: {integrity: sha512-CuNJwHm/c13L2NDGvap4k90iFBZFoMQrjBU+GHO/9bh9sUOe5tm3WHFPLa3BEWukMw6dAxwu5PvtlfWh3NppYA==}
 
   mdn-data@2.27.1:
     resolution: {integrity: sha512-9Yubnt3e8A0OKwxYSXyhLymGW4sCufcLG6VdiDdUGVkPhpqLxlvP5vl1983gQjJl3tqbrM731mjaZaP68AgosQ==}
@@ -5082,6 +5088,8 @@ snapshots:
   make-dir@4.0.0:
     dependencies:
       semver: 7.8.5
+
+  material-symbols@0.45.9: {}
 
   mdn-data@2.27.1: {}
 

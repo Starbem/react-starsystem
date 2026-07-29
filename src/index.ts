@@ -1,5 +1,8 @@
 import './styles/globals.css'
 
+export { Icon } from './components/Icon'
+export type { IconProps } from './components/Icon'
+
 export { Button } from './components/Button'
 export type { ButtonProps } from './components/Button'
 
