@@ -170,7 +170,7 @@ export function DateInput({
           placeholder={placeholder}
           disabled={disabled}
           aria-invalid={showError}
-          aria-describedby={showError || hint ? messageId : undefined}
+          aria-describedby={showError || (!success && hint) ? messageId : undefined}
           onChange={(e) => setText(e.target.value)}
           onBlur={handleBlur}
           className={cn(
