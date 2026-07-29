@@ -46,7 +46,7 @@ export function Overview() {
               <p style={{ margin: 0, fontSize: 13 }}>{metric.label}</p>
             </div>
             <p style={{ margin: '4px 0', fontSize: 28, fontWeight: 600 }}>{metric.value}</p>
-            <Badge variant="default" size="sm">
+            <Badge variant="neutral" size="sm">
               {metric.trend}
             </Badge>
           </Card>

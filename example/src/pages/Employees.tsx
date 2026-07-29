@@ -53,7 +53,7 @@ export function Employees() {
       id: 'status',
       header: 'Status',
       render: (row) => (
-        <Badge variant={row.status === 'Ativo' ? 'success' : row.status === 'Férias' ? 'warning' : 'default'} size="sm">
+        <Badge variant={row.status === 'Ativo' ? 'success' : row.status === 'Férias' ? 'warning' : 'neutral'} size="sm">
           {row.status}
         </Badge>
       ),
@@ -103,7 +103,7 @@ export function Employees() {
       <Table
         columns={columns}
         data={pageRows}
-        pagination={{ currentPage: page, totalPages, onPageChange: setPage }}
+        pagination={{ page, total: totalPages, onChange: setPage }}
       />
 
       <Drawer
