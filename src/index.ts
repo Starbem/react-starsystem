@@ -58,7 +58,7 @@ export { Accordion } from './components/Accordion'
 export type { AccordionProps, AccordionItemConfig, AccordionType } from './components/Accordion'
 
 export { Avatar, AvatarGroup } from './components/Avatar'
-export type { AvatarProps, AvatarGroupProps, AvatarGroupItem, AvatarSize, AvatarStatus } from './components/Avatar'
+export type { AvatarProps, AvatarGroupProps, AvatarSize, AvatarStatus, AvatarShape } from './components/Avatar'
 
 export { Card } from './components/Card'
 export type { CardProps, CardVariant, CardPadding, CardSlotProps } from './components/Card'

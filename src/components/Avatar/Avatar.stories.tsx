@@ -48,21 +48,46 @@ export const WithStatus: Story = {
 
 export const Group: Story = {
   render: () => (
-    <AvatarGroup
-      avatars={[
-        { name: 'Julio Sousa' },
-        { name: 'Bárbara Koch' },
-        { name: 'José Tenório' },
-        { name: 'João Dias' },
-        { name: 'Felipe Camargo' },
-      ]}
-      max={4}
-    />
+    <AvatarGroup max={4}>
+      <Avatar name="Julio Sousa" />
+      <Avatar name="Bárbara Koch" />
+      <Avatar name="José Tenório" />
+      <Avatar name="João Dias" />
+      <Avatar name="Felipe Camargo" />
+    </AvatarGroup>
   ),
 }
 
 export const GroupNoOverflow: Story = {
   render: () => (
-    <AvatarGroup avatars={[{ name: 'Julio Sousa' }, { name: 'Bárbara Koch' }, { name: 'José Tenório' }]} />
+    <AvatarGroup>
+      <Avatar name="Julio Sousa" />
+      <Avatar name="Bárbara Koch" />
+      <Avatar name="José Tenório" />
+    </AvatarGroup>
   ),
+}
+
+export const ExtraLarge2xl: Story = {
+  args: { name: 'Jane Doe', size: '2xl' },
+}
+
+export const BooleanStatus: Story = {
+  args: { name: 'Jane Doe', status: true },
+}
+
+export const ShapeSquare: Story = {
+  args: { name: 'Jane Doe', shape: 'square' },
+}
+
+export const ShapeRounded: Story = {
+  args: { name: 'Jane Doe', shape: 'rounded' },
+}
+
+export const CustomFallbackIcon: Story = {
+  args: { icon: <span>👤</span> },
+}
+
+export const WithRing: Story = {
+  args: { name: 'Jane Doe', ring: true },
 }

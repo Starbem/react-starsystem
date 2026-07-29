@@ -1,17 +1,21 @@
-import { useState } from 'react'
+import { useState, Children, cloneElement, isValidElement, type ReactNode } from 'react'
 import { cn } from '../../utils/cn'
 
-export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-export type AvatarStatus = 'online' | 'offline' | 'away'
+export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+export type AvatarStatus = boolean | 'online' | 'offline' | 'away'
+export type AvatarShape = 'circle' | 'rounded' | 'square'
 
-interface AvatarBaseProps {
+export interface AvatarProps {
+  src?: string
+  alt?: string
   name?: string
   size?: AvatarSize
   status?: AvatarStatus
+  shape?: AvatarShape
+  icon?: ReactNode
+  ring?: boolean
   className?: string
 }
-
-export type AvatarProps = AvatarBaseProps & ({ src: string; alt: string } | { src?: undefined; alt?: undefined })
 
 const SIZE_CLASSES: Record<AvatarSize, string> = {
   xs: 'size-[20px] text-[10px]',
@@ -19,6 +23,7 @@ const SIZE_CLASSES: Record<AvatarSize, string> = {
   md: 'size-[36px] text-[14px]',
   lg: 'size-[48px] text-[16px]',
   xl: 'size-[64px] text-[20px]',
+  '2xl': 'size-[72px] text-[24px]',
 }
 
 const STATUS_SIZE_CLASSES: Record<AvatarSize, string> = {
@@ -27,12 +32,19 @@ const STATUS_SIZE_CLASSES: Record<AvatarSize, string> = {
   md: 'size-[10px]',
   lg: 'size-[12px]',
   xl: 'size-[14px]',
+  '2xl': 'size-[16px]',
 }
 
-const STATUS_COLOR_CLASSES: Record<AvatarStatus, string> = {
+const STATUS_COLOR_CLASSES: Record<'online' | 'offline' | 'away', string> = {
   online: 'bg-[#12B76A]',
   offline: 'bg-[#98A2B3]',
   away: 'bg-[#F79009]',
+}
+
+const SHAPE_CLASSES: Record<AvatarShape, string> = {
+  circle: 'rounded-full',
+  rounded: 'rounded-[12px]',
+  square: 'rounded-none',
 }
 
 function getInitials(name: string): string {
@@ -51,35 +63,41 @@ function FallbackIcon() {
   )
 }
 
-export function Avatar({ src, alt, name, size = 'md', status, className }: AvatarProps) {
+export function Avatar({ src, alt, name, size = 'md', status, shape = 'circle', icon, ring = false, className }: AvatarProps) {
   const [imageError, setImageError] = useState(false)
   const initials = name ? getInitials(name) : ''
   const showImage = Boolean(src) && !imageError
+  const resolvedAlt = alt ?? name ?? ''
+  const statusKind = typeof status === 'string' ? status : status === true ? 'online' : undefined
 
   return (
     <span className={cn('relative inline-flex shrink-0', className)}>
       <span
         className={cn(
-          'inline-flex items-center justify-center overflow-hidden rounded-full bg-[#FFD4BF] font-medium text-[#B42318] select-none',
+          'inline-flex items-center justify-center overflow-hidden bg-[#FFD4BF] font-medium text-[#B42318] select-none',
           SIZE_CLASSES[size],
+          SHAPE_CLASSES[shape],
+          ring && 'ring-2 ring-white dark:ring-[#151B2C]',
         )}
       >
         {showImage ? (
-          <img src={src} alt={alt} className="size-full object-cover" onError={() => setImageError(true)} />
+          <img src={src} alt={resolvedAlt} className="size-full object-cover" onError={() => setImageError(true)} />
         ) : initials ? (
           <span>{initials}</span>
+        ) : icon ? (
+          icon
         ) : (
           <FallbackIcon />
         )}
       </span>
-      {status && (
+      {statusKind && (
         <span
           className={cn(
             'absolute bottom-0 right-0 rounded-full ring-2 ring-white dark:ring-[#151B2C]',
             STATUS_SIZE_CLASSES[size],
-            STATUS_COLOR_CLASSES[status],
+            STATUS_COLOR_CLASSES[statusKind],
           )}
-          aria-label={`status: ${status}`}
+          aria-label={typeof status === 'string' ? `status: ${status}` : 'status indicator'}
           role="img"
         />
       )}
@@ -87,31 +105,24 @@ export function Avatar({ src, alt, name, size = 'md', status, className }: Avata
   )
 }
 
-export interface AvatarGroupItem {
-  src?: string
-  alt?: string
-  name?: string
-}
-
 export interface AvatarGroupProps {
-  avatars: AvatarGroupItem[]
+  children: ReactNode
   max?: number
   size?: AvatarSize
   className?: string
 }
 
-export function AvatarGroup({ avatars, max, size = 'md', className }: AvatarGroupProps) {
-  const visible = max ? avatars.slice(0, max) : avatars
-  const overflow = max && avatars.length > max ? avatars.length - max : 0
+export function AvatarGroup({ children, max, size = 'md', className }: AvatarGroupProps) {
+  const items = Children.toArray(children)
+  const visible = max ? items.slice(0, max) : items
+  const overflow = max && items.length > max ? items.length - max : 0
 
   return (
     <div className={cn('flex items-center -space-x-[8px]', className)}>
-      {visible.map((item, index) =>
-        item.src ? (
-          <Avatar key={index} src={item.src} alt={item.alt ?? item.name ?? ''} size={size} className="ring-2 ring-white rounded-full dark:ring-[#151B2C]" />
-        ) : (
-          <Avatar key={index} name={item.name} size={size} className="ring-2 ring-white rounded-full dark:ring-[#151B2C]" />
-        ),
+      {visible.map((child, index) =>
+        isValidElement<AvatarProps>(child)
+          ? cloneElement(child, { key: index, size, ring: true })
+          : child,
       )}
       {overflow > 0 && (
         <span
