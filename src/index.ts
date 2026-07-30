@@ -3,6 +3,9 @@ import './styles/globals.css'
 export { Icon } from './components/Icon'
 export type { IconProps } from './components/Icon'
 
+export { IconButton } from './components/IconButton'
+export type { IconButtonProps, IconButtonVariant, IconButtonSize } from './components/IconButton'
+
 export { Button } from './components/Button'
 export type { ButtonProps, ButtonVariant, ButtonSize } from './components/Button'
 
@@ -29,6 +32,9 @@ export type { FormFieldProps } from './components/FormField'
 
 export { Badge } from './components/Badge'
 export type { BadgeProps, BadgeVariant } from './components/Badge'
+
+export { Tag } from './components/Tag'
+export type { TagProps } from './components/Tag'
 
 export { Alert } from './components/Alert'
 export type { AlertProps } from './components/Alert'
@@ -113,6 +119,29 @@ export type { MessageProps } from './components/Message'
 
 export { VideoCall } from './components/VideoCall'
 export type { VideoCallProps } from './components/VideoCall'
+
+export { Progress, ProgressCircle } from './components/Progress'
+export type { ProgressProps, ProgressCircleProps, ProgressTone } from './components/Progress'
+
+export { FilterBar, FilterChip } from './components/FilterBar'
+export type { FilterBarProps, FilterChipProps, FilterOption, FilterTone } from './components/FilterBar'
+
+export { FileItem, FileUploader } from './components/FileUploader'
+export type { FileItemProps, FileUploaderProps, UploadFile } from './components/FileUploader'
+
+export { ListItem } from './components/ListItem'
+export type { ListItemProps } from './components/ListItem'
+
+export { BarChart, Chart, DonutChart, LineChart, Sparkline } from './components/Chart'
+export type {
+  BarChartProps,
+  BarDatum,
+  ChartProps,
+  DonutChartProps,
+  DonutSegment,
+  LineChartProps,
+  SparklineProps,
+} from './components/Chart'
 
 // Design tokens
 export { colors } from './tokens/colors'

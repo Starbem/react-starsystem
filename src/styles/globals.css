@@ -199,6 +199,13 @@
   to   { transform: translateX(100%); }
 }
 
+/* Progress linear bar — indeterminate slide */
+@keyframes progress-indeterminate {
+  0%   { transform: translateX(-60%) scaleX(0.4); }
+  50%  { transform: translateX(20%) scaleX(0.6); }
+  100% { transform: translateX(100%) scaleX(0.4); }
+}
+
 /* Accordion expand/collapse */
 @keyframes accordion-expand {
   from { height: 0; }
