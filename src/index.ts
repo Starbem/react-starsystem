@@ -114,6 +114,9 @@ export type { MessageProps } from './components/Message'
 export { VideoCall } from './components/VideoCall'
 export type { VideoCallProps } from './components/VideoCall'
 
+export { Progress, ProgressCircle } from './components/Progress'
+export type { ProgressProps, ProgressCircleProps, ProgressTone } from './components/Progress'
+
 // Design tokens
 export { colors } from './tokens/colors'
 export type { Colors } from './tokens/colors'
