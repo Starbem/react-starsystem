@@ -132,6 +132,17 @@ export type { FileItemProps, FileUploaderProps, UploadFile } from './components/
 export { ListItem } from './components/ListItem'
 export type { ListItemProps } from './components/ListItem'
 
+export { BarChart, Chart, DonutChart, LineChart, Sparkline } from './components/Chart'
+export type {
+  BarChartProps,
+  BarDatum,
+  ChartProps,
+  DonutChartProps,
+  DonutSegment,
+  LineChartProps,
+  SparklineProps,
+} from './components/Chart'
+
 // Design tokens
 export { colors } from './tokens/colors'
 export type { Colors } from './tokens/colors'
