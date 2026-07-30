@@ -64,7 +64,7 @@ export function Textarea({
   const isUnderlineShape = variant === 'underline' && !disabled
 
   return (
-    <div className={cn('flex flex-col gap-[6px] items-start w-full', disabled && 'opacity-60', className)}>
+    <div className={cn('flex flex-col gap-[6px] items-start w-full', className)}>
       {label && (
         <label
           htmlFor={id}
