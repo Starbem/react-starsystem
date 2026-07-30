@@ -97,6 +97,71 @@ export const WithTrailingIcon: Story = {
   },
 }
 
+export const OutlineVariant: Story = {
+  args: {
+    label: 'Outline',
+    placeholder: 'voce@email.com',
+    variant: 'outline',
+    id: 'variant-outline',
+  },
+}
+
+export const FilledVariant: Story = {
+  args: {
+    label: 'Filled',
+    placeholder: 'Buscar especialidade',
+    variant: 'filled',
+    id: 'variant-filled',
+  },
+}
+
+export const UnderlineVariant: Story = {
+  args: {
+    label: 'Underline',
+    placeholder: 'Nome completo',
+    variant: 'underline',
+    id: 'variant-underline',
+  },
+}
+
+export const SmallSize: Story = {
+  args: {
+    label: 'Pequeno',
+    placeholder: 'sm',
+    size: 'sm',
+    id: 'size-sm',
+  },
+}
+
+export const LargeSize: Story = {
+  args: {
+    label: 'Grande',
+    placeholder: 'lg',
+    size: 'lg',
+    id: 'size-lg',
+  },
+}
+
+export const WithSuccess: Story = {
+  args: {
+    label: 'Email',
+    placeholder: 'ana@email.com',
+    defaultValue: 'ana@email.com',
+    success: 'E-mail disponível',
+    id: 'email-with-success',
+  },
+}
+
+export const WithPrefixSuffix: Story = {
+  args: {
+    label: 'Valor',
+    placeholder: '0,00',
+    prefix: 'R$',
+    suffix: 'BRL',
+    id: 'with-prefix-suffix',
+  },
+}
+
 export const NoLabel: Story = {
   args: {
     placeholder: 'Email address',
@@ -120,7 +185,17 @@ export const AllStates: Story = {
         error="This email is already taken."
         id="all-error"
       />
+      <Input
+        label="Email"
+        placeholder="ana@email.com"
+        defaultValue="ana@email.com"
+        success="E-mail disponível"
+        id="all-success"
+      />
       <Input label="Email" placeholder="olivia@untitledui.com" disabled />
+      <Input label="Filled" placeholder="Buscar" variant="filled" id="all-filled" />
+      <Input label="Underline" placeholder="Nome completo" variant="underline" id="all-underline" />
+      <Input label="Valor" placeholder="0,00" prefix="R$" suffix="BRL" id="all-affix" />
     </div>
   ),
 }

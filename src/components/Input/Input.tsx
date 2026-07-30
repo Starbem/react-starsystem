@@ -1,51 +1,151 @@
 import { type InputHTMLAttributes, type ReactNode } from 'react'
 import { cn } from '../../utils/cn'
+import { Icon } from '../Icon'
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export type InputVariant = 'outline' | 'filled' | 'underline'
+export type InputSize = 'sm' | 'md' | 'lg'
+
+export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix' | 'suffix'> {
   label?: string
   hint?: string
   error?: string
+  success?: string
+  variant?: InputVariant
+  size?: InputSize
   leadingIcon?: ReactNode
   trailingIcon?: ReactNode
+  prefix?: ReactNode
+  suffix?: ReactNode
+}
+
+const SIZE_TEXT_CLASSES: Record<InputSize, string> = {
+  sm: 'text-[14px] leading-[20px]',
+  md: 'text-[16px] leading-[24px]',
+  lg: 'text-[17px] leading-[26px]',
+}
+
+const SIZE_PADDING_Y_CLASSES: Record<InputSize, string> = {
+  sm: 'py-[7px]',
+  md: 'py-[10px]',
+  lg: 'py-[13px]',
+}
+
+const SIZE_PADDING_X_CLASSES: Record<InputSize, string> = {
+  sm: 'px-[12px]',
+  md: 'px-[14px]',
+  lg: 'px-[16px]',
+}
+
+const SIZE_RADIUS_CLASSES: Record<InputSize, string> = {
+  sm: 'rounded-sm',
+  md: 'rounded-md',
+  lg: 'rounded-lg',
+}
+
+function InputAffix({ children, side }: { children: ReactNode; side: 'prefix' | 'suffix' }) {
+  return (
+    <span
+      className={cn(
+        'shrink-0 flex items-center px-[12px] bg-neutral-50 text-neutral-600 text-[14px] font-medium border-neutral-200 dark:bg-ink-800 dark:text-ink-300 dark:border-ink-700 select-none',
+        side === 'prefix' ? 'border-r' : 'border-l',
+      )}
+    >
+      {children}
+    </span>
+  )
+}
+
+function getFieldColorClasses(
+  variant: InputVariant,
+  disabled: boolean,
+  state: 'error' | 'success' | null,
+) {
+  if (disabled) {
+    return 'border bg-neutral-50 border-neutral-300 cursor-not-allowed dark:bg-neutral-900 dark:border-ink-700'
+  }
+
+  if (variant === 'underline') {
+    return cn(
+      'border-0 border-b bg-transparent',
+      'border-b-neutral-300 hover:border-b-neutral-400 dark:border-b-ink-700 dark:hover:border-b-ink-600',
+      'focus-within:border-b-primary-base',
+      state === 'error' && 'border-b-error-base focus-within:border-b-error-base',
+      state === 'success' && 'border-b-success-base focus-within:border-b-success-base',
+    )
+  }
+
+  if (variant === 'filled') {
+    return cn(
+      'border border-transparent bg-ink-100 hover:bg-ink-50 dark:bg-ink-700 dark:hover:bg-ink-600',
+      'focus-within:bg-neutral-25 focus-within:border-primary-base focus-within:shadow-[0_0_0_4px_rgba(255,81,0,0.2)] dark:focus-within:bg-neutral-900',
+      state === 'error' &&
+        'border-error-base focus-within:border-error-base focus-within:shadow-[0_0_0_4px_rgba(255,66,66,0.2)]',
+      state === 'success' &&
+        'border-success-base focus-within:border-success-base focus-within:shadow-[0_0_0_4px_rgba(31,186,93,0.2)]',
+    )
+  }
+
+  return cn(
+    'border bg-neutral-25 border-neutral-300 hover:border-neutral-400 shadow-elevation-01 dark:bg-neutral-900 dark:border-ink-700 dark:hover:border-ink-600',
+    'focus-within:border-primary-base focus-within:shadow-[0_0_0_4px_rgba(255,81,0,0.2)]',
+    state === 'error' &&
+      'border-error-base focus-within:border-error-base focus-within:shadow-[0_0_0_4px_rgba(255,66,66,0.2)]',
+    state === 'success' &&
+      'border-success-base focus-within:border-success-base focus-within:shadow-[0_0_0_4px_rgba(31,186,93,0.2)]',
+  )
 }
 
 export function Input({
   label,
   hint,
   error,
+  success,
+  variant = 'outline',
+  size = 'md',
   leadingIcon,
   trailingIcon,
+  prefix,
+  suffix,
   className,
   disabled,
   id,
   ...props
 }: InputProps) {
   const isError = Boolean(error)
-  const hintText = error ?? hint
+  const isSuccess = !isError && Boolean(success)
+  const state: 'error' | 'success' | null = isError ? 'error' : isSuccess ? 'success' : null
+  const hintText = error ?? success ?? hint
   const hintId = hintText && id ? `${id}-hint` : undefined
+  const isUnderlineShape = variant === 'underline' && !disabled
 
   return (
     <div className={cn('flex flex-col gap-[6px] items-start w-full', className)}>
+      {label && (
+        <label
+          htmlFor={id}
+          className="font-['Funnel_Display'] text-[14px] leading-[20px] font-medium text-neutral-800 select-none dark:text-ink-100"
+        >
+          {label}
+        </label>
+      )}
       <div
         className={cn(
-          'flex gap-[8px] items-center overflow-hidden px-[16px] py-[8px] rounded-lg w-full border',
-          'focus-within:outline-none focus-within:ring-2 focus-within:ring-primary-base focus-within:ring-offset-2',
-          disabled
-            ? 'bg-neutral-50 border-neutral-300 cursor-not-allowed dark:bg-neutral-900 dark:border-ink-700'
-            : isError
-              ? 'bg-neutral-25 border-error-base shadow-elevation-01 dark:bg-neutral-900'
-              : 'bg-neutral-25 border-neutral-300 shadow-elevation-01 dark:bg-neutral-900 dark:border-ink-700',
+          'flex items-stretch w-full overflow-hidden',
+          !isUnderlineShape && SIZE_RADIUS_CLASSES[size],
+          getFieldColorClasses(variant, Boolean(disabled), state),
         )}
       >
-        {leadingIcon && (
-          <span className="shrink-0 size-[24px] flex items-center justify-center text-neutral-500 dark:text-neutral-400">
-            {leadingIcon}
-          </span>
-        )}
-        <div className="flex flex-col flex-1 min-w-0 h-[40px] justify-center">
-          {label && (
-            <span className="font-['Funnel_Display'] text-[12px] leading-[16px] text-neutral-400 shrink-0 select-none dark:text-ink-500">
-              {label}
+        {prefix && <InputAffix side="prefix">{prefix}</InputAffix>}
+        <div
+          className={cn(
+            'flex flex-1 min-w-0 items-center gap-[8px]',
+            SIZE_PADDING_Y_CLASSES[size],
+            !isUnderlineShape && SIZE_PADDING_X_CLASSES[size],
+          )}
+        >
+          {leadingIcon && (
+            <span className="shrink-0 size-[24px] flex items-center justify-center text-neutral-500 dark:text-neutral-400">
+              {leadingIcon}
             </span>
           )}
           <input
@@ -54,30 +154,36 @@ export function Input({
             aria-invalid={isError || undefined}
             aria-describedby={hintId}
             className={cn(
-              "bg-transparent outline-none font-['Funnel_Display'] text-[16px] leading-[24px] w-full",
+              "bg-transparent outline-none font-['Funnel_Display'] w-full",
+              SIZE_TEXT_CLASSES[size],
               disabled
                 ? 'text-neutral-300 cursor-not-allowed placeholder:text-neutral-300 dark:text-ink-600 dark:placeholder:text-ink-600'
-                : label
-                  ? 'text-neutral-800 placeholder:text-neutral-500 dark:text-ink-100 dark:placeholder:text-neutral-400'
-                  : 'text-neutral-800 placeholder:text-neutral-400 dark:text-ink-100 dark:placeholder:text-ink-500',
+                : 'text-neutral-800 placeholder:text-neutral-500 dark:text-ink-100 dark:placeholder:text-neutral-400',
             )}
             {...props}
           />
+          {trailingIcon && (
+            <span className="shrink-0 size-[24px] flex items-center justify-center text-neutral-500 dark:text-neutral-400">
+              {trailingIcon}
+            </span>
+          )}
         </div>
-        {trailingIcon && (
-          <span className="shrink-0 size-[24px] flex items-center justify-center text-neutral-500 dark:text-neutral-400">
-            {trailingIcon}
-          </span>
-        )}
+        {suffix && <InputAffix side="suffix">{suffix}</InputAffix>}
       </div>
       {hintText && (
         <p
           id={hintId}
           className={cn(
-            "font-['Funnel_Display'] text-[14px] leading-[20px] tracking-[0.1px] w-full",
-            isError ? 'text-error-base' : 'text-neutral-500 dark:text-neutral-400',
+            "font-['Funnel_Display'] text-[14px] leading-[20px] tracking-[0.1px] w-full flex items-center gap-[4px]",
+            isError
+              ? 'text-error-base'
+              : isSuccess
+                ? 'text-success-dark dark:text-success-light'
+                : 'text-neutral-500 dark:text-neutral-400',
           )}
         >
+          {isError && <Icon name="error" size={15} />}
+          {isSuccess && <Icon name="check_circle" size={15} />}
           {hintText}
         </p>
       )}
