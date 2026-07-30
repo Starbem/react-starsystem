@@ -147,7 +147,13 @@ export const AllStates: Story = {
 
         <div>
           <h3 className="text-sm font-semibold mb-2">With Success</h3>
-          <Select {...args} id="all-success" label="Team member" success="Great choice." value="olivia" />
+          <Select
+            {...args}
+            id="all-success"
+            label="Team member"
+            success="Great choice."
+            value="olivia"
+          />
         </div>
 
         <div>

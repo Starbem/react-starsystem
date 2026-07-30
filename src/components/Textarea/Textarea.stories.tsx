@@ -107,14 +107,13 @@ export const AllStates: Story = {
       />
       <Textarea label="Description" placeholder="Enter a description..." disabled />
       <Textarea label="Filled" placeholder="Filled variant" variant="filled" id="all-filled" />
-      <Textarea label="Underline" placeholder="Underline variant" variant="underline" id="all-underline" />
       <Textarea
-        label="Bio"
-        placeholder="With counter"
-        showCount
-        maxLength={80}
-        id="all-counter"
+        label="Underline"
+        placeholder="Underline variant"
+        variant="underline"
+        id="all-underline"
       />
+      <Textarea label="Bio" placeholder="With counter" showCount maxLength={80} id="all-counter" />
     </div>
   ),
 }

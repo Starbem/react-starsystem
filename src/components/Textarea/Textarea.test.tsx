@@ -196,7 +196,9 @@ describe('Textarea', () => {
   })
 
   it('renders both hint and counter together', () => {
-    render(<Textarea showCount maxLength={10} defaultValue="ab" hint="Keep it short" placeholder="x" />)
+    render(
+      <Textarea showCount maxLength={10} defaultValue="ab" hint="Keep it short" placeholder="x" />,
+    )
     expect(screen.getByText('Keep it short')).toBeInTheDocument()
     expect(screen.getByText('2/10')).toBeInTheDocument()
   })

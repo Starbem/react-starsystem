@@ -91,7 +91,9 @@ export function Avatar({
       <span
         className={cn(
           'inline-flex items-center justify-center overflow-hidden font-medium select-none',
-          showImage ? 'bg-warning-lighter text-error-darker' : 'bg-gradient-to-br from-primary-base to-primary-light text-white',
+          showImage
+            ? 'bg-warning-lighter text-error-darker'
+            : 'bg-gradient-to-br from-primary-base to-primary-light text-white',
           SIZE_CLASSES[size],
           SHAPE_CLASSES[shape],
           ring && 'ring-2 ring-white dark:ring-ink-900',

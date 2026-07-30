@@ -85,7 +85,9 @@ export const Expanded: Story = {
 }
 
 export const Collapsed: Story = {
-  render: () => <Sidebar collapsed items={ITEMS} header={<Logo />} footer={<UserFooter collapsed />} />,
+  render: () => (
+    <Sidebar collapsed items={ITEMS} header={<Logo />} footer={<UserFooter collapsed />} />
+  ),
 }
 
 export const WithSubMenuOpenByDefault: Story = {

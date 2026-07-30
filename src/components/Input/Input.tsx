@@ -14,7 +14,10 @@ import {
 export type InputVariant = FieldVariant
 export type InputSize = FieldSize
 
-export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix' | 'suffix'> {
+export interface InputProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'size' | 'prefix' | 'suffix'
+> {
   label?: string
   hint?: string
   error?: string
