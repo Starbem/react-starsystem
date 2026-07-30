@@ -22,14 +22,18 @@ describe('ListItem', () => {
   })
 
   it('renders trailing content and trailing icon', () => {
-    render(<ListItem title="Dra. Ana Lima" trailing={<span>Confirmada</span>} trailingIcon="chevron_right" />)
+    render(
+      <ListItem
+        title="Dra. Ana Lima"
+        trailing={<span>Confirmada</span>}
+        trailingIcon="chevron_right"
+      />,
+    )
     expect(screen.getByText('Confirmada')).toBeInTheDocument()
   })
 
   it('renders as an anchor when as="a"', () => {
-    render(
-      <ListItem as="a" href="/patients/1" title="Dra. Ana Lima" />,
-    )
+    render(<ListItem as="a" href="/patients/1" title="Dra. Ana Lima" />)
     expect(screen.getByRole('link')).toHaveAttribute('href', '/patients/1')
   })
 

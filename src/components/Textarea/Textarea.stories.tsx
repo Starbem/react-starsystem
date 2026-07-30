@@ -42,8 +42,18 @@ export const AllStates: Story = {
     <div className="flex flex-col gap-6 p-4 max-w-sm">
       <Textarea placeholder="Placeholder (no label)" />
       <Textarea label="Description" placeholder="Enter a description..." />
-      <Textarea label="Description" placeholder="Enter a description..." hint="Max 500 characters." id="all-hint" />
-      <Textarea label="Description" placeholder="Enter a description..." error="This field is required." id="all-error" />
+      <Textarea
+        label="Description"
+        placeholder="Enter a description..."
+        hint="Max 500 characters."
+        id="all-hint"
+      />
+      <Textarea
+        label="Description"
+        placeholder="Enter a description..."
+        error="This field is required."
+        id="all-error"
+      />
       <Textarea label="Description" placeholder="Enter a description..." disabled />
     </div>
   ),

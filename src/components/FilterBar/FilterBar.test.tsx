@@ -37,7 +37,9 @@ describe('FilterChip', () => {
   it('calls onRemove when the remove button is clicked, without toggling selection', async () => {
     const handleRemove = vi.fn()
     const handleClick = vi.fn()
-    render(<FilterChip label="Dermatologia" removable onRemove={handleRemove} onClick={handleClick} />)
+    render(
+      <FilterChip label="Dermatologia" removable onRemove={handleRemove} onClick={handleClick} />,
+    )
     await userEvent.click(screen.getByRole('button', { name: 'Remover filtro' }))
     expect(handleRemove).toHaveBeenCalledTimes(1)
     expect(handleClick).not.toHaveBeenCalled()
@@ -124,7 +126,14 @@ describe('FilterBar', () => {
 
   it('deselects the active chip when re-clicked in segmented mode', async () => {
     const handleChange = vi.fn()
-    render(<FilterBar variant="segmented" options={OPTIONS} defaultValue="online" onChange={handleChange} />)
+    render(
+      <FilterBar
+        variant="segmented"
+        options={OPTIONS}
+        defaultValue="online"
+        onChange={handleChange}
+      />,
+    )
     await userEvent.click(screen.getByText('Online'))
     expect(handleChange).toHaveBeenCalledWith(null)
   })

@@ -27,7 +27,12 @@ function UsersIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
       <circle cx="9" cy="6" r="3" stroke="currentColor" strokeWidth="1.3" />
-      <path d="M3 15c0-2.5 2.7-4.5 6-4.5s6 2 6 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <path
+        d="M3 15c0-2.5 2.7-4.5 6-4.5s6 2 6 4.5"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+      />
     </svg>
   )
 }

@@ -89,14 +89,23 @@ export function Radio({
           disabled
             ? 'bg-neutral-100 border-neutral-200 cursor-not-allowed dark:bg-ink-700 dark:border-neutral-800'
             : checked
-              ? cn('bg-neutral-25 hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer dark:bg-neutral-900', activeBorder)
+              ? cn(
+                  'bg-neutral-25 hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer dark:bg-neutral-900',
+                  activeBorder,
+                )
               : error
                 ? 'bg-neutral-25 border-error-base hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer dark:bg-neutral-900'
                 : 'bg-neutral-25 border-neutral-300 hover:border-primary-base hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer dark:bg-neutral-900 dark:border-ink-700',
         )}
       >
         {checked && (
-          <span className={cn('rounded-full', DOT_SIZE[size], disabled ? 'bg-neutral-200 dark:bg-ink-600' : activeDot)} />
+          <span
+            className={cn(
+              'rounded-full',
+              DOT_SIZE[size],
+              disabled ? 'bg-neutral-200 dark:bg-ink-600' : activeDot,
+            )}
+          />
         )}
       </span>
     </span>

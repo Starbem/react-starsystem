@@ -26,34 +26,57 @@ describe('LineChart', () => {
 describe('BarChart', () => {
   it('renders one bar rect per datum', () => {
     const { container } = render(
-      <BarChart data={[{ label: 'Jan', value: 8 }, { label: 'Fev', value: 14 }]} />,
+      <BarChart
+        data={[
+          { label: 'Jan', value: 8 },
+          { label: 'Fev', value: 14 },
+        ]}
+      />,
     )
     expect(container.querySelectorAll('rect').length).toBe(2)
   })
 
   it('renders each bar label', () => {
-    render(<BarChart data={[{ label: 'Jan', value: 8 }, { label: 'Fev', value: 14 }]} />)
+    render(
+      <BarChart
+        data={[
+          { label: 'Jan', value: 8 },
+          { label: 'Fev', value: 14 },
+        ]}
+      />,
+    )
     expect(screen.getByText('Jan')).toBeInTheDocument()
     expect(screen.getByText('Fev')).toBeInTheDocument()
   })
 
   it('does not leak the tooltip prop onto the root DOM element', () => {
-    const { container } = render(
-      <BarChart data={[{ label: 'Jan', value: 8 }]} tooltip={false} />,
-    )
+    const { container } = render(<BarChart data={[{ label: 'Jan', value: 8 }]} tooltip={false} />)
     expect(container.firstChild).not.toHaveAttribute('tooltip')
   })
 
   it('shows a hover tooltip with the bar value and label on mouse move', () => {
     const { container } = render(
       <BarChart
-        data={[{ label: 'Jan', value: 8 }, { label: 'Fev', value: 14 }]}
+        data={[
+          { label: 'Jan', value: 8 },
+          { label: 'Fev', value: 14 },
+        ]}
         showValues={false}
       />,
     )
     const hoverArea = container.querySelector('.relative.flex-1') as HTMLElement
     hoverArea.getBoundingClientRect = () =>
-      ({ left: 0, top: 0, right: 360, bottom: 200, width: 360, height: 200, x: 0, y: 0, toJSON: () => {} }) as DOMRect
+      ({
+        left: 0,
+        top: 0,
+        right: 360,
+        bottom: 200,
+        width: 360,
+        height: 200,
+        x: 0,
+        y: 0,
+        toJSON: () => {},
+      }) as DOMRect
     fireEvent.mouseMove(hoverArea, { clientX: 300 })
     expect(screen.getByText('14')).toBeInTheDocument()
     expect(screen.getAllByText('Fev').length).toBeGreaterThan(0)
@@ -63,19 +86,33 @@ describe('BarChart', () => {
 describe('DonutChart', () => {
   it('renders one arc circle per segment plus the background circle', () => {
     const { container } = render(
-      <DonutChart segments={[{ label: 'Concluídas', value: 78 }, { label: 'Pendentes', value: 22 }]} />,
+      <DonutChart
+        segments={[
+          { label: 'Concluídas', value: 78 },
+          { label: 'Pendentes', value: 22 },
+        ]}
+      />,
     )
     expect(container.querySelectorAll('circle').length).toBe(3)
   })
 
   it('renders the center value and label', () => {
-    render(<DonutChart segments={[{ label: 'A', value: 1 }]} centerValue="78%" centerLabel="Adesão" />)
+    render(
+      <DonutChart segments={[{ label: 'A', value: 1 }]} centerValue="78%" centerLabel="Adesão" />,
+    )
     expect(screen.getByText('78%')).toBeInTheDocument()
     expect(screen.getByText('Adesão')).toBeInTheDocument()
   })
 
   it('renders the legend with percentages', () => {
-    render(<DonutChart segments={[{ label: 'Concluídas', value: 78 }, { label: 'Pendentes', value: 22 }]} />)
+    render(
+      <DonutChart
+        segments={[
+          { label: 'Concluídas', value: 78 },
+          { label: 'Pendentes', value: 22 },
+        ]}
+      />,
+    )
     expect(screen.getByText('78%')).toBeInTheDocument()
   })
 

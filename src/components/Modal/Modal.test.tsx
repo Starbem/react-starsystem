@@ -67,7 +67,9 @@ describe('Modal', () => {
         <p>Conteúdo</p>
       </Modal>,
     )
-    const overlay = container.ownerDocument.querySelector('[data-radix-popper-content-wrapper], .fixed.inset-0')
+    const overlay = container.ownerDocument.querySelector(
+      '[data-radix-popper-content-wrapper], .fixed.inset-0',
+    )
     if (overlay) await user.click(overlay as Element)
     expect(onClose).not.toHaveBeenCalled()
   })
@@ -119,7 +121,13 @@ describe('Modal', () => {
 
   it('renders a tone badge with the icon when tone is set', () => {
     render(
-      <Modal open onClose={() => {}} tone="success" icon={<span data-testid="tone-icon" />} title="Success">
+      <Modal
+        open
+        onClose={() => {}}
+        tone="success"
+        icon={<span data-testid="tone-icon" />}
+        title="Success"
+      >
         Body
       </Modal>,
     )

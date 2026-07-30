@@ -65,7 +65,9 @@ function SelectableDemo() {
         selectedRowIds={selected}
         onSelectionChange={setSelected}
       />
-      <p className="text-[12px] text-[#667085] dark:text-[#98A2B3]">Selecionados: {selected.join(', ') || 'nenhum'}</p>
+      <p className="text-[12px] text-[#667085] dark:text-[#98A2B3]">
+        Selecionados: {selected.join(', ') || 'nenhum'}
+      </p>
     </div>
   )
 }

@@ -5,7 +5,13 @@ import { TopBar } from './TopBar'
 
 describe('TopBar', () => {
   it('renders start, center and end slots', () => {
-    render(<TopBar start={<span>Logo</span>} center="Título" end={<button type="button">Ação</button>} />)
+    render(
+      <TopBar
+        start={<span>Logo</span>}
+        center="Título"
+        end={<button type="button">Ação</button>}
+      />,
+    )
     expect(screen.getByText('Logo')).toBeInTheDocument()
     expect(screen.getByText('Título')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Ação' })).toBeInTheDocument()
@@ -43,7 +49,12 @@ describe('TopBar', () => {
 
   it('has no a11y violations', async () => {
     const { container } = render(
-      <TopBar bordered start={<span>Logo</span>} center="Título" end={<button type="button">Ação</button>} />,
+      <TopBar
+        bordered
+        start={<span>Logo</span>}
+        center="Título"
+        end={<button type="button">Ação</button>}
+      />,
     )
     // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
     expect(await axe(container)).toHaveNoViolations()

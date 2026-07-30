@@ -73,15 +73,17 @@ export const LoadingError: Story = {
       icon={<ErrorIcon />}
       title="Erro ao carregar os dados"
       description="Não foi possível carregar as informações. Tente novamente."
-      action={<Button size="sm" variant="outline">Tentar novamente</Button>}
+      action={
+        <Button size="sm" variant="outline">
+          Tentar novamente
+        </Button>
+      }
     />
   ),
 }
 
 export const Small: Story = {
-  render: () => (
-    <EmptyState size="sm" icon={<InboxIcon />} title="Sem registros" />
-  ),
+  render: () => <EmptyState size="sm" icon={<InboxIcon />} title="Sem registros" />,
 }
 
 export const Medium: Story = {

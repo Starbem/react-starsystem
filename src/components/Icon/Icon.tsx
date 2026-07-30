@@ -13,7 +13,15 @@ export interface IconProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'childr
 // (e.g. `import 'material-symbols/rounded.css'`).
 const WEIGHT = 200
 
-export function Icon({ name, size = 24, fill = false, label, className, style, ...props }: IconProps) {
+export function Icon({
+  name,
+  size = 24,
+  fill = false,
+  label,
+  className,
+  style,
+  ...props
+}: IconProps) {
   return (
     <span
       aria-hidden={label ? undefined : true}

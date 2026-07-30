@@ -39,8 +39,16 @@ export function ListItem({
     >
       {leading}
       <span className="min-w-0 flex-1">
-        {title && <p className="truncate text-[14px] leading-[20px] font-medium text-ink-900 dark:text-ink-100">{title}</p>}
-        {subtitle && <p className="truncate text-[13px] leading-[18px] text-ink-500 dark:text-ink-300">{subtitle}</p>}
+        {title && (
+          <p className="truncate text-[14px] leading-[20px] font-medium text-ink-900 dark:text-ink-100">
+            {title}
+          </p>
+        )}
+        {subtitle && (
+          <p className="truncate text-[13px] leading-[18px] text-ink-500 dark:text-ink-300">
+            {subtitle}
+          </p>
+        )}
       </span>
       {(trailing || trailingIcon) && (
         <span className="flex shrink-0 items-center gap-2">

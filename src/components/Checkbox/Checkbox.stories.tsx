@@ -80,9 +80,21 @@ export const Group: Story = {
     const [values, setValues] = useState({ email: true, sms: false, push: false })
     return (
       <CheckboxGroup label="Notification preferences">
-        <Checkbox label="Email" checked={values.email} onChange={(c) => setValues((v) => ({ ...v, email: c }))} />
-        <Checkbox label="SMS" checked={values.sms} onChange={(c) => setValues((v) => ({ ...v, sms: c }))} />
-        <Checkbox label="Push" checked={values.push} onChange={(c) => setValues((v) => ({ ...v, push: c }))} />
+        <Checkbox
+          label="Email"
+          checked={values.email}
+          onChange={(c) => setValues((v) => ({ ...v, email: c }))}
+        />
+        <Checkbox
+          label="SMS"
+          checked={values.sms}
+          onChange={(c) => setValues((v) => ({ ...v, sms: c }))}
+        />
+        <Checkbox
+          label="Push"
+          checked={values.push}
+          onChange={(c) => setValues((v) => ({ ...v, push: c }))}
+        />
       </CheckboxGroup>
     )
   },

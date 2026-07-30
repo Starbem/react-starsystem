@@ -30,11 +30,18 @@ export const WithError: Story = {
 
 export const Interactive: Story = {
   render: () => {
-    const [files, setFiles] = useState<UploadFile[]>([{ name: 'exame-sangue.pdf', size: 248000, done: true }])
+    const [files, setFiles] = useState<UploadFile[]>([
+      { name: 'exame-sangue.pdf', size: 248000, done: true },
+    ])
     return (
       <FileUploader
         files={files}
-        onFiles={(list) => setFiles((prev) => [...prev, ...Array.from(list).map((f) => ({ name: f.name, size: f.size, done: true }))])}
+        onFiles={(list) =>
+          setFiles((prev) => [
+            ...prev,
+            ...Array.from(list).map((f) => ({ name: f.name, size: f.size, done: true })),
+          ])
+        }
         onRemove={(_, i) => setFiles((prev) => prev.filter((_, x) => x !== i))}
       />
     )

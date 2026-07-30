@@ -1,7 +1,8 @@
 import { type HTMLAttributes, type ReactNode } from 'react'
 import { cn } from '../../utils/cn'
 
-export type BadgeVariant = 'neutral' | 'primary' | 'accent' | 'success' | 'warning' | 'error' | 'solid' | 'info'
+export type BadgeVariant =
+  'neutral' | 'primary' | 'accent' | 'success' | 'warning' | 'error' | 'solid' | 'info'
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   children: ReactNode
@@ -61,7 +62,13 @@ export function Badge({
       )}
       {...rest}
     >
-      {dot && <span data-badge-dot className={cn('shrink-0 rounded-full bg-current', DOT_SIZE[size])} aria-hidden="true" />}
+      {dot && (
+        <span
+          data-badge-dot
+          className={cn('shrink-0 rounded-full bg-current', DOT_SIZE[size])}
+          aria-hidden="true"
+        />
+      )}
       {icon && (
         <span className="shrink-0" aria-hidden="true">
           {icon}
@@ -79,7 +86,12 @@ export function Badge({
             REMOVE_ICON_SIZE[size],
           )}
         >
-          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+          <svg
+            viewBox="0 0 14 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-full"
+          >
             <path
               d="M10.5 3.5L3.5 10.5M3.5 3.5L10.5 10.5"
               stroke="currentColor"

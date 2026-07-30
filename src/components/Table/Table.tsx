@@ -80,7 +80,9 @@ export function Table<T>({
     if (!sort) return data
     const column = columns.find((col) => col.id === sort.columnId)
     if (!column?.accessor) return data
-    const sorted = [...data].sort((a, b) => compareValues(column.accessor?.(a), column.accessor?.(b)))
+    const sorted = [...data].sort((a, b) =>
+      compareValues(column.accessor?.(a), column.accessor?.(b)),
+    )
     return sort.direction === 'desc' ? sorted.reverse() : sorted
   }, [data, sort, columns])
 
@@ -151,7 +153,10 @@ export function Table<T>({
           <tbody>
             {loading &&
               Array.from({ length: 5 }, (_, rowIndex) => (
-                <tr key={`skeleton-${rowIndex}`} className="border-b border-ink-200 last:border-0 dark:border-neutral-900">
+                <tr
+                  key={`skeleton-${rowIndex}`}
+                  className="border-b border-ink-200 last:border-0 dark:border-neutral-900"
+                >
                   {selectable && (
                     <td className="px-[16px] py-[12px]">
                       <Skeleton variant="rectangular" width={16} height={16} />
@@ -190,7 +195,10 @@ export function Table<T>({
                     {columns.map((column) => (
                       <td
                         key={column.id}
-                        className={cn('px-[16px] py-[12px] text-ink-700 dark:text-ink-300', column.className)}
+                        className={cn(
+                          'px-[16px] py-[12px] text-ink-700 dark:text-ink-300',
+                          column.className,
+                        )}
                       >
                         {column.render ? column.render(row) : String(column.accessor?.(row) ?? '')}
                       </td>
@@ -202,7 +210,9 @@ export function Table<T>({
         </table>
       </div>
 
-      {!loading && data.length === 0 && (emptyState ?? <EmptyState title="Nenhum registro encontrado" />)}
+      {!loading &&
+        data.length === 0 &&
+        (emptyState ?? <EmptyState title="Nenhum registro encontrado" />)}
 
       {pagination && !loading && data.length > 0 && <Pagination {...pagination} />}
     </div>

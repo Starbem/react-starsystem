@@ -10,13 +10,25 @@ const meta: Meta<typeof Drawer> = {
 export default meta
 type Story = StoryObj<typeof Drawer>
 
-function DrawerDemo({ position, size }: { position?: 'left' | 'right' | 'bottom'; size?: 'sm' | 'md' | 'lg' | 'full' }) {
+function DrawerDemo({
+  position,
+  size,
+}: {
+  position?: 'left' | 'right' | 'bottom'
+  size?: 'sm' | 'md' | 'lg' | 'full'
+}) {
   const [open, setOpen] = useState(false)
 
   return (
     <>
       <Button onClick={() => setOpen(true)}>Abrir drawer</Button>
-      <Drawer open={open} onClose={() => setOpen(false)} position={position} size={size} title="Detalhes">
+      <Drawer
+        open={open}
+        onClose={() => setOpen(false)}
+        position={position}
+        size={size}
+        title="Detalhes"
+      >
         <p className="text-[14px] leading-[20px]">Conteúdo do drawer vai aqui.</p>
       </Drawer>
     </>

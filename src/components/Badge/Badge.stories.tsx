@@ -40,7 +40,12 @@ export const WithIcon: Story = {
     children: 'Verificado',
     variant: 'success',
     icon: (
-      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-[14px]">
+      <svg
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="size-[14px]"
+      >
         <path
           d="M13.5 4L6 11.5L2.5 8"
           stroke="currentColor"

@@ -71,7 +71,9 @@ function LongContentDemo() {
       >
         <div className="flex flex-col gap-[12px] text-[14px] leading-[20px]">
           {Array.from({ length: 20 }, (_, index) => (
-            <p key={index}>Parágrafo {index + 1} de conteúdo longo para testar o scroll interno do modal.</p>
+            <p key={index}>
+              Parágrafo {index + 1} de conteúdo longo para testar o scroll interno do modal.
+            </p>
           ))}
         </div>
       </Modal>

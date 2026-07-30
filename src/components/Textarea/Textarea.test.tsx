@@ -79,7 +79,9 @@ describe('Textarea', () => {
   })
 
   it('has no a11y violations', async () => {
-    const { container } = render(<Textarea label="Description" placeholder="Enter a description..." />)
+    const { container } = render(
+      <Textarea label="Description" placeholder="Enter a description..." />,
+    )
     // @ts-expect-error - vitest-axe typing
     expect(await axe(container)).toHaveNoViolations()
   })

@@ -1,14 +1,14 @@
 // Source of truth: Starbem Design System reference kit (tokens/spacing.css,
 // tokens/shadows.css).
 export const spacing = {
-  0:  '0px',
-  1:  '4px',
-  2:  '8px',
-  3:  '12px',
-  4:  '16px',
-  5:  '20px',
-  6:  '24px',
-  8:  '32px',
+  0: '0px',
+  1: '4px',
+  2: '8px',
+  3: '12px',
+  4: '16px',
+  5: '20px',
+  6: '24px',
+  8: '32px',
   10: '40px',
   12: '48px',
   16: '64px',
@@ -20,11 +20,11 @@ export const spacing = {
 
 export const borderRadius = {
   none: '0',
-  xs:   '4px',
-  sm:   '8px',
-  md:   '12px',
-  lg:   '16px',   // default button/control radius
-  xl:   '24px',
+  xs: '4px',
+  sm: '8px',
+  md: '12px',
+  lg: '16px', // default button/control radius
+  xl: '24px',
   '2xl': '32px',
   full: '9999px',
 } as const

@@ -111,7 +111,7 @@ describe('RadioGroup + Radio', () => {
       <RadioGroup label="Plan" value="basic">
         <Radio value="basic" label="Basic" />
         <Radio value="pro" label="Pro" />
-      </RadioGroup>
+      </RadioGroup>,
     )
     // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
     expect(await axe(container)).toHaveNoViolations()
@@ -144,6 +144,8 @@ describe('RadioGroup + Radio', () => {
 
   it('renders card variant wrapper in error color when unchecked and errored', () => {
     render(<Radio value="a" variant="card" error label="Errored card" onSelect={() => {}} />)
-    expect(screen.getByText('Errored card').closest('[data-radio-card]')).toHaveClass('border-error-base')
+    expect(screen.getByText('Errored card').closest('[data-radio-card]')).toHaveClass(
+      'border-error-base',
+    )
   })
 })

@@ -18,7 +18,14 @@ export const Conversation: Story = {
       <Message side="out" status="read" time="09:13">
         Bom dia, doutora! Bem melhor, obrigado.
       </Message>
-      <Message side="in" avatarName="Dra. Ana Costa" attachment="file" fileName="receita.pdf" fileSize="340 KB" time="09:14">
+      <Message
+        side="in"
+        avatarName="Dra. Ana Costa"
+        attachment="file"
+        fileName="receita.pdf"
+        fileSize="340 KB"
+        time="09:14"
+      >
         Segue a receita atualizada.
       </Message>
       <SystemMessage>Consulta encerrada</SystemMessage>

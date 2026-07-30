@@ -12,7 +12,8 @@ const ITEMS = [
   {
     value: 'plans',
     trigger: 'Como funcionam os planos?',
-    content: 'Cada plano inclui telemedicina 24h, nutrição e saúde mental, com limites variando por nível.',
+    content:
+      'Cada plano inclui telemedicina 24h, nutrição e saúde mental, com limites variando por nível.',
   },
   {
     value: 'billing',
@@ -41,7 +42,10 @@ export const Multiple: Story = {
 export const WithDisabledItem: Story = {
   render: () => (
     <Accordion
-      items={[...ITEMS.slice(0, 2), { value: 'legacy', trigger: 'Item legado (desabilitado)', content: '—', disabled: true }]}
+      items={[
+        ...ITEMS.slice(0, 2),
+        { value: 'legacy', trigger: 'Item legado (desabilitado)', content: '—', disabled: true },
+      ]}
     />
   ),
 }

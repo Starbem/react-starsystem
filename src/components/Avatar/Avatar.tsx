@@ -56,14 +56,30 @@ function getInitials(name: string): string {
 
 function FallbackIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-[60%]" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="size-[60%]"
+      aria-hidden="true"
+    >
       <circle cx="12" cy="8" r="4" fill="currentColor" />
       <path d="M4 20c0-4 3.5-7 8-7s8 3 8 7" fill="currentColor" />
     </svg>
   )
 }
 
-export function Avatar({ src, alt, name, size = 'md', status, shape = 'circle', icon, ring = false, className }: AvatarProps) {
+export function Avatar({
+  src,
+  alt,
+  name,
+  size = 'md',
+  status,
+  shape = 'circle',
+  icon,
+  ring = false,
+  className,
+}: AvatarProps) {
   const [imageError, setImageError] = useState(false)
   const initials = name ? getInitials(name) : ''
   const showImage = Boolean(src) && !imageError
@@ -81,7 +97,12 @@ export function Avatar({ src, alt, name, size = 'md', status, shape = 'circle', 
         )}
       >
         {showImage ? (
-          <img src={src} alt={resolvedAlt} className="size-full object-cover" onError={() => setImageError(true)} />
+          <img
+            src={src}
+            alt={resolvedAlt}
+            className="size-full object-cover"
+            onError={() => setImageError(true)}
+          />
         ) : initials ? (
           <span>{initials}</span>
         ) : icon ? (

@@ -81,7 +81,11 @@ export function Modal({
           )
 
   const sizeClasses =
-    present === 'sheet' ? undefined : present === 'center' ? SIZE_CLASSES[size] : SIZE_CLASSES_SM[size]
+    present === 'sheet'
+      ? undefined
+      : present === 'center'
+        ? SIZE_CLASSES[size]
+        : SIZE_CLASSES_SM[size]
 
   const showBadge = tone !== 'default' || Boolean(icon)
   const badgeClasses = tone !== 'default' ? TONE_BADGE_CLASSES[tone] : 'bg-ink-50 text-ink-600'
@@ -118,9 +122,19 @@ export function Modal({
           )}
         >
           {(title || showBadge) && (
-            <div className={cn('flex items-center gap-[12px]', align === 'center' && 'flex-col justify-center text-center')}>
+            <div
+              className={cn(
+                'flex items-center gap-[12px]',
+                align === 'center' && 'flex-col justify-center text-center',
+              )}
+            >
               {showBadge && (
-                <span className={cn('flex size-[36px] shrink-0 items-center justify-center rounded-full', badgeClasses)}>
+                <span
+                  className={cn(
+                    'flex size-[36px] shrink-0 items-center justify-center rounded-full',
+                    badgeClasses,
+                  )}
+                >
                   {icon}
                 </span>
               )}
@@ -149,7 +163,9 @@ export function Modal({
               {description}
             </Dialog.Description>
           )}
-          <div className="mt-[16px] flex-1 overflow-y-auto text-ink-900 dark:text-white">{children}</div>
+          <div className="mt-[16px] flex-1 overflow-y-auto text-ink-900 dark:text-white">
+            {children}
+          </div>
           {footer && <div className="mt-[24px] flex justify-end gap-[8px]">{footer}</div>}
           <Dialog.Close
             aria-label="Fechar modal"
@@ -159,7 +175,12 @@ export function Modal({
               'dark:text-white',
             )}
           >
-            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-[14px]">
+            <svg
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-[14px]"
+            >
               <path
                 d="M10.5 3.5L3.5 10.5M3.5 3.5L10.5 10.5"
                 stroke="currentColor"

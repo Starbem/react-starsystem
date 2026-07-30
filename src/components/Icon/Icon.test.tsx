@@ -16,7 +16,9 @@ describe('Icon', () => {
 
   it('always renders at weight 200', () => {
     render(<Icon name="home" />)
-    expect(screen.getByText('home')).toHaveStyle({ fontVariationSettings: "'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24" })
+    expect(screen.getByText('home')).toHaveStyle({
+      fontVariationSettings: "'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24",
+    })
   })
 
   it('applies a custom size to font-size and optical size', () => {
@@ -28,7 +30,9 @@ describe('Icon', () => {
 
   it('sets the FILL axis when fill is true', () => {
     render(<Icon name="favorite" fill />)
-    expect(screen.getByText('favorite')).toHaveStyle({ fontVariationSettings: "'FILL' 1, 'wght' 200, 'GRAD' 0, 'opsz' 24" })
+    expect(screen.getByText('favorite')).toHaveStyle({
+      fontVariationSettings: "'FILL' 1, 'wght' 200, 'GRAD' 0, 'opsz' 24",
+    })
   })
 
   it('is decorative (aria-hidden) by default', () => {

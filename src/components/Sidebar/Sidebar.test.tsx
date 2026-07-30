@@ -50,7 +50,12 @@ describe('Sidebar', () => {
   })
 
   it('hides labels and shows only icons when collapsed', () => {
-    render(<Sidebar items={[{ icon: <svg data-testid="icon" />, label: 'Início', href: '#' }]} collapsed />)
+    render(
+      <Sidebar
+        items={[{ icon: <svg data-testid="icon" />, label: 'Início', href: '#' }]}
+        collapsed
+      />,
+    )
     expect(screen.getByTestId('icon')).toBeInTheDocument()
     expect(screen.queryByText('Início')).not.toBeInTheDocument()
   })

@@ -38,7 +38,14 @@ function CardSkeleton() {
   )
 }
 
-export function Card({ variant = 'default', padding = 'md', onClick, loading = false, children, className }: CardProps) {
+export function Card({
+  variant = 'default',
+  padding = 'md',
+  onClick,
+  loading = false,
+  children,
+  className,
+}: CardProps) {
   const clickable = Boolean(onClick)
 
   function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
@@ -76,7 +83,12 @@ export interface CardSlotProps {
 
 function CardHeader({ children, className }: CardSlotProps) {
   return (
-    <div className={cn('flex items-center justify-between gap-[12px] pb-[16px] border-b border-ink-200 mb-[16px] dark:border-neutral-900', className)}>
+    <div
+      className={cn(
+        'flex items-center justify-between gap-[12px] pb-[16px] border-b border-ink-200 mb-[16px] dark:border-neutral-900',
+        className,
+      )}
+    >
       {children}
     </div>
   )
@@ -88,7 +100,12 @@ function CardBody({ children, className }: CardSlotProps) {
 
 function CardFooter({ children, className }: CardSlotProps) {
   return (
-    <div className={cn('flex items-center justify-end gap-[8px] pt-[16px] border-t border-ink-200 mt-[16px] dark:border-neutral-900', className)}>
+    <div
+      className={cn(
+        'flex items-center justify-end gap-[8px] pt-[16px] border-t border-ink-200 mt-[16px] dark:border-neutral-900',
+        className,
+      )}
+    >
       {children}
     </div>
   )

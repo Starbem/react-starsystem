@@ -75,7 +75,10 @@ describe('Popover', () => {
   it('has no a11y violations', async () => {
     const user = userEvent.setup()
     const { container } = render(
-      <Popover trigger={<button type="button">Abrir</button>} content={<p>Conteúdo acessível</p>} />,
+      <Popover
+        trigger={<button type="button">Abrir</button>}
+        content={<p>Conteúdo acessível</p>}
+      />,
     )
     await user.click(screen.getByRole('button', { name: 'Abrir' }))
     await screen.findByText('Conteúdo acessível')

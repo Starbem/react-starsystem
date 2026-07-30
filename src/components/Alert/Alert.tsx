@@ -18,7 +18,15 @@ const VARIANT_CLASSES: Record<NonNullable<AlertProps['variant']>, string> = {
   error: 'bg-error-lightest text-error-darker',
 }
 
-export function Alert({ variant = 'info', title, description, icon, onClose, action, className }: AlertProps) {
+export function Alert({
+  variant = 'info',
+  title,
+  description,
+  icon,
+  onClose,
+  action,
+  className,
+}: AlertProps) {
   const [closing, setClosing] = useState(false)
   const [hidden, setHidden] = useState(false)
 
@@ -66,7 +74,12 @@ export function Alert({ variant = 'info', title, description, icon, onClose, act
             'hover:opacity-70 focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
           )}
         >
-          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+          <svg
+            viewBox="0 0 14 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-full"
+          >
             <path
               d="M10.5 3.5L3.5 10.5M3.5 3.5L10.5 10.5"
               stroke="currentColor"

@@ -76,7 +76,13 @@ function AccordionItems({ items }: { items: AccordionItemConfig[] }) {
   )
 }
 
-export function Accordion({ items, type = 'single', defaultValue, collapsible = true, className }: AccordionProps) {
+export function Accordion({
+  items,
+  type = 'single',
+  defaultValue,
+  collapsible = true,
+  className,
+}: AccordionProps) {
   if (type === 'multiple') {
     return (
       <RadixAccordion.Root

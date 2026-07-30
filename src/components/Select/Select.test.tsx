@@ -157,7 +157,7 @@ describe('Select', () => {
           { value: 'a', label: 'Option A' },
           { value: 'b', label: 'Option B' },
         ]}
-      />
+      />,
     )
     // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
     expect(await axe(container)).toHaveNoViolations()

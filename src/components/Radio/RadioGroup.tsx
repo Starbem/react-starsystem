@@ -69,7 +69,11 @@ export function RadioGroup({
       role="radiogroup"
       aria-label={label}
       onKeyDown={handleKeyDown}
-      className={cn('flex', orientation === 'vertical' ? 'flex-col gap-[12px]' : 'flex-row gap-[24px]', className)}
+      className={cn(
+        'flex',
+        orientation === 'vertical' ? 'flex-col gap-[12px]' : 'flex-row gap-[24px]',
+        className,
+      )}
     >
       {items.map((item, index) =>
         cloneElement(item, {

@@ -67,7 +67,9 @@ describe('Menu — sidebar', () => {
   })
 
   it('has no a11y violations', async () => {
-    const { container } = render(<Menu present="sidebar" items={ITEMS} value="home" user={{ name: 'Ana' }} />)
+    const { container } = render(
+      <Menu present="sidebar" items={ITEMS} value="home" user={{ name: 'Ana' }} />,
+    )
     // @ts-expect-error -- axe() is not typed in the default vitest-axe module
     expect(await axe(container)).toHaveNoViolations()
   })

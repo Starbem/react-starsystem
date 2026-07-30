@@ -18,7 +18,11 @@ export const Success: Story = {
 }
 
 export const Warning: Story = {
-  args: { variant: 'warning', title: 'Atenção', description: 'Verifique os dados antes de continuar.' },
+  args: {
+    variant: 'warning',
+    title: 'Atenção',
+    description: 'Verifique os dados antes de continuar.',
+  },
 }
 
 export const ErrorVariant: Story = {

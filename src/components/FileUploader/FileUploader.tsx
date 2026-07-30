@@ -52,7 +52,9 @@ export function FileItem({ name, size, progress, done, error, thumb, onRemove }:
         )}
       </span>
       <div className="min-w-0 flex-1">
-        <p className="truncate text-[14px] leading-[20px] font-medium text-ink-900 dark:text-ink-100">{name}</p>
+        <p className="truncate text-[14px] leading-[20px] font-medium text-ink-900 dark:text-ink-100">
+          {name}
+        </p>
         <p className="flex items-center gap-1 text-[12px] leading-[16px] text-ink-600 dark:text-ink-300">
           {error ? (
             <span className="text-error-base">{error}</span>
@@ -186,7 +188,11 @@ export function FileUploader({
       {files.length > 0 && (
         <div className="mt-3 flex flex-col gap-2">
           {files.map((f, i) => (
-            <FileItem key={f.id ?? i} {...f} onRemove={onRemove ? () => onRemove(f, i) : undefined} />
+            <FileItem
+              key={f.id ?? i}
+              {...f}
+              onRemove={onRemove ? () => onRemove(f, i) : undefined}
+            />
           ))}
         </div>
       )}

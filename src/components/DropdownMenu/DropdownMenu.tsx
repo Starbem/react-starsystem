@@ -73,12 +73,20 @@ function renderEntries(
     const key = `${keyPrefix}-${index}`
 
     if (entry.type === 'separator') {
-      return <RadixDropdownMenu.Separator key={key} className="my-[4px] h-px bg-ink-200 dark:bg-neutral-900" />
+      return (
+        <RadixDropdownMenu.Separator
+          key={key}
+          className="my-[4px] h-px bg-ink-200 dark:bg-neutral-900"
+        />
+      )
     }
 
     if (entry.type === 'label') {
       return (
-        <RadixDropdownMenu.Label key={key} className="px-[8px] py-[4px] text-[12px] font-medium text-ink-500 dark:text-neutral-400">
+        <RadixDropdownMenu.Label
+          key={key}
+          className="px-[8px] py-[4px] text-[12px] font-medium text-ink-500 dark:text-neutral-400"
+        >
           {entry.label}
         </RadixDropdownMenu.Label>
       )
@@ -94,7 +102,12 @@ function renderEntries(
           className={ITEM_CLASSES}
         >
           <RadixDropdownMenu.ItemIndicator className="inline-flex size-[14px] items-center justify-center">
-            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-[12px]">
+            <svg
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-[12px]"
+            >
               <path
                 d="M11.6667 3.5L5.25 9.91667L2.33334 7"
                 stroke="currentColor"
@@ -118,7 +131,12 @@ function renderEntries(
               {entry.icon}
               {entry.label}
             </span>
-            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-[12px]">
+            <svg
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-[12px]"
+            >
               <path
                 d="M5.25 3.5L9.91667 7L5.25 10.5"
                 stroke="currentColor"

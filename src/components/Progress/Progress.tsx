@@ -48,7 +48,10 @@ export function Progress({
   return (
     <div className={cn('w-full', className)} {...rest}>
       <div
-        className={cn('w-full overflow-hidden rounded-full bg-ink-100 dark:bg-ink-700', SIZE_TRACK[size])}
+        className={cn(
+          'w-full overflow-hidden rounded-full bg-ink-100 dark:bg-ink-700',
+          SIZE_TRACK[size],
+        )}
         role="progressbar"
         aria-valuenow={indeterminate ? undefined : value}
         aria-valuemax={max}
@@ -106,7 +109,11 @@ export function ProgressCircle({
   const offset = indeterminate ? circ * 0.7 : circ * (1 - pct / 100)
   return (
     <span
-      className={cn('relative inline-flex items-center justify-center', indeterminate && 'animate-spin', className)}
+      className={cn(
+        'relative inline-flex items-center justify-center',
+        indeterminate && 'animate-spin',
+        className,
+      )}
       style={{ width: size, height: size }}
       role="progressbar"
       aria-valuenow={indeterminate ? undefined : Math.round(pct)}
@@ -116,7 +123,14 @@ export function ProgressCircle({
       {...rest}
     >
       <svg width={size} height={size}>
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" strokeWidth={thickness} className="stroke-ink-100" />
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={r}
+          fill="none"
+          strokeWidth={thickness}
+          className="stroke-ink-100"
+        />
         <circle
           cx={size / 2}
           cy={size / 2}

@@ -72,7 +72,9 @@ describe('FileUploader', () => {
   })
 
   it('has no a11y violations', async () => {
-    const { container } = render(<FileUploader files={[{ name: 'a.pdf', size: 1000, done: true }]} />)
+    const { container } = render(
+      <FileUploader files={[{ name: 'a.pdf', size: 1000, done: true }]} />,
+    )
     // @ts-expect-error -- axe() is not typed in the default vitest-axe module
     expect(await axe(container)).toHaveNoViolations()
   })

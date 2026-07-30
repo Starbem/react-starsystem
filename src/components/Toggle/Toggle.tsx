@@ -102,7 +102,10 @@ export function Toggle({
             </span>
           )}
           {supportingText && (
-            <p id={descId} className="font-['Funnel_Display'] text-[16px] leading-[24px] text-neutral-500 dark:text-neutral-400">
+            <p
+              id={descId}
+              className="font-['Funnel_Display'] text-[16px] leading-[24px] text-neutral-500 dark:text-neutral-400"
+            >
               {supportingText}
             </p>
           )}

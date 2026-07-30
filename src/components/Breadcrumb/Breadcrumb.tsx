@@ -25,7 +25,10 @@ const DEFAULT_SEPARATOR = (
   </svg>
 )
 
-function collapseItems(items: BreadcrumbItem[], maxItems?: number): Array<BreadcrumbItem | 'ellipsis'> {
+function collapseItems(
+  items: BreadcrumbItem[],
+  maxItems?: number,
+): Array<BreadcrumbItem | 'ellipsis'> {
   if (!maxItems || maxItems <= 0 || items.length <= maxItems) return items
 
   const visibleAtEnd = Math.max(maxItems - 1, 1)
@@ -33,7 +36,12 @@ function collapseItems(items: BreadcrumbItem[], maxItems?: number): Array<Breadc
   return [items[0], 'ellipsis', ...tail]
 }
 
-export function Breadcrumb({ items, separator = DEFAULT_SEPARATOR, maxItems, className }: BreadcrumbProps) {
+export function Breadcrumb({
+  items,
+  separator = DEFAULT_SEPARATOR,
+  maxItems,
+  className,
+}: BreadcrumbProps) {
   const collapsed = collapseItems(items, maxItems)
   const lastIndex = items.length - 1
 
@@ -69,7 +77,9 @@ export function Breadcrumb({ items, separator = DEFAULT_SEPARATOR, maxItems, cla
                   aria-current={isLast ? 'page' : undefined}
                   className={cn(
                     'truncate max-w-[200px]',
-                    isLast ? 'text-ink-900 font-medium dark:text-white' : 'text-ink-500 dark:text-neutral-400',
+                    isLast
+                      ? 'text-ink-900 font-medium dark:text-white'
+                      : 'text-ink-500 dark:text-neutral-400',
                   )}
                 >
                   {entry.label}

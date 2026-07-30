@@ -11,7 +11,14 @@ export interface TopBarProps {
   className?: string
 }
 
-export function TopBar({ start, center, end, sticky = false, bordered = false, className }: TopBarProps) {
+export function TopBar({
+  start,
+  center,
+  end,
+  sticky = false,
+  bordered = false,
+  className,
+}: TopBarProps) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {

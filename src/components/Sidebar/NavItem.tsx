@@ -50,11 +50,16 @@ function NavItemRow({ item, collapsed }: { item: NavItemConfig; collapsed?: bool
         'flex w-full items-center gap-[8px] rounded-sm px-[10px] py-[8px] text-[14px] font-medium outline-none',
         'text-ink-700 hover:bg-ink-100 focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
         'dark:text-ink-300 dark:hover:bg-neutral-900',
-        item.active && 'bg-primary-lightest text-primary-base hover:bg-primary-lightest dark:bg-neutral-1000 dark:hover:bg-neutral-1000',
+        item.active &&
+          'bg-primary-lightest text-primary-base hover:bg-primary-lightest dark:bg-neutral-1000 dark:hover:bg-neutral-1000',
         collapsed && 'justify-center px-0',
       )}
     >
-      {item.icon && <span className="shrink-0 inline-flex items-center justify-center size-[20px]">{item.icon}</span>}
+      {item.icon && (
+        <span className="shrink-0 inline-flex items-center justify-center size-[20px]">
+          {item.icon}
+        </span>
+      )}
       {!collapsed && <span className="flex-1 truncate text-left">{item.label}</span>}
       {!collapsed && item.badge}
     </Tag>
@@ -88,10 +93,14 @@ export function NavItem({ item, collapsed = false }: NavItemProps) {
         className={cn(
           'flex w-full items-center gap-[8px] rounded-sm px-[10px] py-[8px] text-[14px] font-medium outline-none',
           'text-ink-700 hover:bg-ink-100 focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
-        'dark:text-ink-300 dark:hover:bg-neutral-900',
+          'dark:text-ink-300 dark:hover:bg-neutral-900',
         )}
       >
-        {item.icon && <span className="shrink-0 inline-flex items-center justify-center size-[20px]">{item.icon}</span>}
+        {item.icon && (
+          <span className="shrink-0 inline-flex items-center justify-center size-[20px]">
+            {item.icon}
+          </span>
+        )}
         <span className="flex-1 truncate text-left">{item.label}</span>
         {item.badge}
         <ChevronIcon open={open} />

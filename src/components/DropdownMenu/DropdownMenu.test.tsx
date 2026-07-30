@@ -6,7 +6,9 @@ import { DropdownMenu } from './DropdownMenu'
 
 describe('DropdownMenu', () => {
   it('does not render items initially', () => {
-    render(<DropdownMenu trigger={<button type="button">Abrir</button>} items={[{ label: 'Editar' }]} />)
+    render(
+      <DropdownMenu trigger={<button type="button">Abrir</button>} items={[{ label: 'Editar' }]} />,
+    )
     expect(screen.queryByText('Editar')).not.toBeInTheDocument()
   })
 
@@ -57,7 +59,11 @@ describe('DropdownMenu', () => {
     const user = userEvent.setup()
     const onSelect = vi.fn()
     render(
-      <DropdownMenu trigger={<button type="button">Abrir</button>} onSelect={onSelect} items={[{ label: 'Editar' }]} />,
+      <DropdownMenu
+        trigger={<button type="button">Abrir</button>}
+        onSelect={onSelect}
+        items={[{ label: 'Editar' }]}
+      />,
     )
     await user.click(screen.getByRole('button', { name: 'Abrir' }))
     await user.click(await screen.findByRole('menuitem', { name: 'Editar' }))
@@ -121,11 +127,15 @@ describe('DropdownMenu', () => {
 
   it('closes when Escape is pressed', async () => {
     const user = userEvent.setup()
-    render(<DropdownMenu trigger={<button type="button">Abrir</button>} items={[{ label: 'Editar' }]} />)
+    render(
+      <DropdownMenu trigger={<button type="button">Abrir</button>} items={[{ label: 'Editar' }]} />,
+    )
     await user.click(screen.getByRole('button', { name: 'Abrir' }))
     await screen.findByRole('menuitem', { name: 'Editar' })
     await user.keyboard('{Escape}')
-    await waitFor(() => expect(screen.queryByRole('menuitem', { name: 'Editar' })).not.toBeInTheDocument())
+    await waitFor(() =>
+      expect(screen.queryByRole('menuitem', { name: 'Editar' })).not.toBeInTheDocument(),
+    )
   })
 
   it('has no a11y violations', async () => {

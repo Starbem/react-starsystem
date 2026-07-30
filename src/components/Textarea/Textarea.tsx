@@ -7,17 +7,19 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
   error?: string
 }
 
-export function Textarea({
-  label, hint, error,
-  className, disabled, id,
-  ...props
-}: TextareaProps) {
+export function Textarea({ label, hint, error, className, disabled, id, ...props }: TextareaProps) {
   const isError = Boolean(error)
   const hintText = error ?? hint
   const hintId = hintText && id ? `${id}-hint` : undefined
 
   return (
-    <div className={cn('flex flex-col gap-[6px] items-start w-full', disabled && 'opacity-60', className)}>
+    <div
+      className={cn(
+        'flex flex-col gap-[6px] items-start w-full',
+        disabled && 'opacity-60',
+        className,
+      )}
+    >
       <div
         className={cn(
           'flex flex-col gap-[4px] overflow-hidden px-[14px] py-[10px] rounded-lg w-full border',

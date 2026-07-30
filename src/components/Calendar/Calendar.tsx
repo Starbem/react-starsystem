@@ -12,13 +12,27 @@ export interface CalendarProps {
 }
 
 const MONTHS_PT = [
-  'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-  'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
+  'Janeiro',
+  'Fevereiro',
+  'Março',
+  'Abril',
+  'Maio',
+  'Junho',
+  'Julho',
+  'Agosto',
+  'Setembro',
+  'Outubro',
+  'Novembro',
+  'Dezembro',
 ]
 const WEEKDAYS_PT = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
 
 function isSameDay(a: Date, b: Date): boolean {
-  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
+  return (
+    a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate()
+  )
 }
 
 function daysInMonth(year: number, month: number): number {
@@ -29,13 +43,22 @@ function firstWeekday(year: number, month: number): number {
   return new Date(year, month, 1).getDay()
 }
 
-export function Calendar({ initialMonth, initialYear, selected, markedDays = [], onSelect, className }: CalendarProps) {
+export function Calendar({
+  initialMonth,
+  initialYear,
+  selected,
+  markedDays = [],
+  onSelect,
+  className,
+}: CalendarProps) {
   const now = new Date()
   const [mode, setMode] = useState<'days' | 'months' | 'years'>('days')
   // Falls back to `selected`'s month/year (not just "today") so a popover
   // opened on an already-selected date shows the right month immediately.
   const [viewMonth, setViewMonth] = useState(initialMonth ?? selected?.getMonth() ?? now.getMonth())
-  const [viewYear, setViewYear] = useState(initialYear ?? selected?.getFullYear() ?? now.getFullYear())
+  const [viewYear, setViewYear] = useState(
+    initialYear ?? selected?.getFullYear() ?? now.getFullYear(),
+  )
 
   function goToMonth(delta: number) {
     let month = viewMonth + delta
@@ -60,12 +83,29 @@ export function Calendar({ initialMonth, initialYear, selected, markedDays = [],
   const days = Array.from({ length: total }, (_, i) => i + 1)
 
   return (
-    <div className={cn('inline-flex flex-col gap-[12px] p-[16px] rounded-lg bg-white border border-ink-200 dark:bg-ink-900 dark:border-neutral-900', className)}>
+    <div
+      className={cn(
+        'inline-flex flex-col gap-[12px] p-[16px] rounded-lg bg-white border border-ink-200 dark:bg-ink-900 dark:border-neutral-900',
+        className,
+      )}
+    >
       <div className="flex items-center justify-between">
         <button
           type="button"
-          aria-label={mode === 'days' ? 'Mês anterior' : mode === 'months' ? 'Ano anterior' : 'Década anterior'}
-          onClick={() => (mode === 'days' ? goToMonth(-1) : mode === 'months' ? setViewYear(viewYear - 1) : goToYearBlock(-1))}
+          aria-label={
+            mode === 'days'
+              ? 'Mês anterior'
+              : mode === 'months'
+                ? 'Ano anterior'
+                : 'Década anterior'
+          }
+          onClick={() =>
+            mode === 'days'
+              ? goToMonth(-1)
+              : mode === 'months'
+                ? setViewYear(viewYear - 1)
+                : goToYearBlock(-1)
+          }
           className="inline-flex items-center justify-center size-[32px] rounded-full text-ink-700 hover:bg-ink-100 dark:text-ink-300 dark:hover:bg-neutral-900"
         >
           <Icon name="chevron_left" size={20} />
@@ -82,8 +122,16 @@ export function Calendar({ initialMonth, initialYear, selected, markedDays = [],
         </button>
         <button
           type="button"
-          aria-label={mode === 'days' ? 'Próximo mês' : mode === 'months' ? 'Próximo ano' : 'Próxima década'}
-          onClick={() => (mode === 'days' ? goToMonth(1) : mode === 'months' ? setViewYear(viewYear + 1) : goToYearBlock(1))}
+          aria-label={
+            mode === 'days' ? 'Próximo mês' : mode === 'months' ? 'Próximo ano' : 'Próxima década'
+          }
+          onClick={() =>
+            mode === 'days'
+              ? goToMonth(1)
+              : mode === 'months'
+                ? setViewYear(viewYear + 1)
+                : goToYearBlock(1)
+          }
           className="inline-flex items-center justify-center size-[32px] rounded-full text-ink-700 hover:bg-ink-100 dark:text-ink-300 dark:hover:bg-neutral-900"
         >
           <Icon name="chevron_right" size={20} />
@@ -121,7 +169,10 @@ export function Calendar({ initialMonth, initialYear, selected, markedDays = [],
                   {isMarked && (
                     <span
                       data-marked="true"
-                      className={cn('absolute bottom-[2px] size-[4px] rounded-full', isSelected ? 'bg-white' : 'bg-primary-base')}
+                      className={cn(
+                        'absolute bottom-[2px] size-[4px] rounded-full',
+                        isSelected ? 'bg-white' : 'bg-primary-base',
+                      )}
                     />
                   )}
                 </button>

@@ -151,7 +151,11 @@ export function LineChart({
       <div className="flex gap-2">
         {yAxis && <YAxis min={min} max={max} rows={rows} pad={pad} format={yTickFormat} />}
         <div className="relative flex-1" onMouseMove={onMove} onMouseLeave={() => setHover(null)}>
-          <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{ height, width: '100%' }}>
+          <svg
+            viewBox={`0 0 ${W} ${H}`}
+            preserveAspectRatio="none"
+            style={{ height, width: '100%' }}
+          >
             {grid &&
               Array.from({ length: rows + 1 }).map((_, i) => {
                 const y = pad + (i * (H - pad * 2)) / rows
@@ -180,7 +184,15 @@ export function LineChart({
             <path d={line} fill="none" style={{ stroke: color }} strokeWidth="2" />
             {showDots &&
               pts.map((p, i) => (
-                <circle key={i} cx={p.x} cy={p.y} r="3.5" fill="white" strokeWidth="2" style={{ stroke: color }} />
+                <circle
+                  key={i}
+                  cx={p.x}
+                  cy={p.y}
+                  r="3.5"
+                  fill="white"
+                  strokeWidth="2"
+                  style={{ stroke: color }}
+                />
               ))}
           </svg>
           {hp && (
@@ -189,7 +201,9 @@ export function LineChart({
               style={{ left: `${(hp.x / W) * 100}%`, top: hp.y }}
             >
               <span>{data[hover as number]}</span>
-              {labels[hover as number] && <span className="ml-1 opacity-70">{labels[hover as number]}</span>}
+              {labels[hover as number] && (
+                <span className="ml-1 opacity-70">{labels[hover as number]}</span>
+              )}
             </div>
           )}
         </div>
@@ -262,7 +276,8 @@ export function BarChart({
   }
   const hoverDatum = hover != null ? data[hover] : null
   const hoverX = hover != null ? pad + hover * colW + bw / 2 : 0
-  const hoverY = hover != null ? H - botPad - (hoverDatum ? (hoverDatum.value / max) * plotH : 0) : 0
+  const hoverY =
+    hover != null ? H - botPad - (hoverDatum ? (hoverDatum.value / max) * plotH : 0) : 0
 
   return (
     <div className={cn('w-full', className)} {...rest}>
@@ -278,7 +293,11 @@ export function BarChart({
           </div>
         )}
         <div className="relative flex-1" onMouseMove={onMove} onMouseLeave={() => setHover(null)}>
-          <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{ height, width: '100%' }}>
+          <svg
+            viewBox={`0 0 ${W} ${H}`}
+            preserveAspectRatio="none"
+            style={{ height, width: '100%' }}
+          >
             {grid &&
               Array.from({ length: rows + 1 }).map((_, i) => {
                 const y = pad + (i * plotH) / rows
@@ -299,7 +318,14 @@ export function BarChart({
               const y = H - botPad - bh
               return (
                 <g key={i}>
-                  <rect x={x} y={y} width={bw} height={bh} rx="6" style={{ fill: d.color ?? PALETTE[i % PALETTE.length] }} />
+                  <rect
+                    x={x}
+                    y={y}
+                    width={bw}
+                    height={bh}
+                    rx="6"
+                    style={{ fill: d.color ?? PALETTE[i % PALETTE.length] }}
+                  />
                   {showValues && (
                     <text
                       x={x + bw / 2}
@@ -375,7 +401,10 @@ export function DonutChart({
   ).items
   return (
     <div className={cn('flex items-center gap-5 flex-wrap', className)} {...rest}>
-      <span className="relative inline-flex items-center justify-center" style={{ width: size, height: size }}>
+      <span
+        className="relative inline-flex items-center justify-center"
+        style={{ width: size, height: size }}
+      >
         <svg width={size} height={size}>
           <circle
             cx={size / 2}
@@ -414,7 +443,9 @@ export function DonutChart({
                 {centerValue}
               </span>
             )}
-            {centerLabel && <span className="text-[12px] text-ink-500 dark:text-ink-300">{centerLabel}</span>}
+            {centerLabel && (
+              <span className="text-[12px] text-ink-500 dark:text-ink-300">{centerLabel}</span>
+            )}
           </span>
         )}
       </span>

@@ -71,7 +71,9 @@ function ItemButton({
       onClick={() => onSelect(item.id)}
       className={cn(
         'flex items-center rounded-lg transition-colors',
-        layout === 'bottom' ? 'flex-1 flex-col gap-0.5 py-2 text-center' : 'w-full gap-3 px-3 py-2.5',
+        layout === 'bottom'
+          ? 'flex-1 flex-col gap-0.5 py-2 text-center'
+          : 'w-full gap-3 px-3 py-2.5',
         layout === 'rail' && 'justify-center px-0',
         active
           ? 'bg-primary-base text-neutral-25'
@@ -88,7 +90,10 @@ function ItemButton({
       </span>
       {layout !== 'rail' && (
         <span
-          className={cn('truncate', layout === 'bottom' ? 'text-[11px] leading-[14px]' : 'text-[14px] leading-[20px]')}
+          className={cn(
+            'truncate',
+            layout === 'bottom' ? 'text-[11px] leading-[14px]' : 'text-[14px] leading-[20px]',
+          )}
         >
           {item.label}
         </span>
@@ -133,7 +138,12 @@ function SidebarBody({
             <ul className="flex flex-col gap-1">
               {g.items.map((it) => (
                 <li key={it.id}>
-                  <ItemButton item={it} active={value === it.id} layout={layout} onSelect={onSelect} />
+                  <ItemButton
+                    item={it}
+                    active={value === it.id}
+                    layout={layout}
+                    onSelect={onSelect}
+                  />
                 </li>
               ))}
             </ul>
@@ -146,13 +156,23 @@ function SidebarBody({
             <ul className="flex flex-col gap-1">
               {footerItems.map((it) => (
                 <li key={it.id}>
-                  <ItemButton item={it} active={value === it.id} layout={layout} onSelect={onSelect} />
+                  <ItemButton
+                    item={it}
+                    active={value === it.id}
+                    layout={layout}
+                    onSelect={onSelect}
+                  />
                 </li>
               ))}
             </ul>
           )}
           {user && (
-            <div className={cn('flex items-center gap-2 px-3 py-2', layout === 'rail' && 'justify-center px-0')}>
+            <div
+              className={cn(
+                'flex items-center gap-2 px-3 py-2',
+                layout === 'rail' && 'justify-center px-0',
+              )}
+            >
               <Avatar name={user.name} src={user.avatarSrc} size="sm" />
               {layout === 'full' && (
                 <div className="min-w-0">
@@ -160,7 +180,9 @@ function SidebarBody({
                     {user.name}
                   </p>
                   {user.sub && (
-                    <p className="truncate text-[12px] leading-[16px] text-ink-500 dark:text-ink-300">{user.sub}</p>
+                    <p className="truncate text-[12px] leading-[16px] text-ink-500 dark:text-ink-300">
+                      {user.sub}
+                    </p>
                   )}
                 </div>
               )}
@@ -301,7 +323,13 @@ export function Menu({
         )}
       >
         {items.map((it) => (
-          <ItemButton key={it.id} item={it} active={value === it.id} layout="bottom" onSelect={select} />
+          <ItemButton
+            key={it.id}
+            item={it}
+            active={value === it.id}
+            layout="bottom"
+            onSelect={select}
+          />
         ))}
       </nav>
     )
@@ -332,7 +360,13 @@ export function Menu({
           className="fixed inset-x-0 bottom-0 z-40 flex items-stretch border-t border-ink-200 bg-white dark:border-ink-700 dark:bg-ink-900"
         >
           {items.map((it) => (
-            <ItemButton key={it.id} item={it} active={value === it.id} layout="bottom" onSelect={select} />
+            <ItemButton
+              key={it.id}
+              item={it}
+              active={value === it.id}
+              layout="bottom"
+              onSelect={select}
+            />
           ))}
         </nav>
       )}

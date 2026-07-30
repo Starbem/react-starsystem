@@ -13,7 +13,9 @@ describe('Pagination', () => {
   it('renders all page numbers when total fits without ellipsis', () => {
     render(<Pagination page={1} total={5} onChange={() => {}} />)
     const full = within(screen.getByTestId('pagination-full'))
-    ;['1', '2', '3', '4', '5'].forEach((page) => expect(full.getByRole('button', { name: page })).toBeInTheDocument())
+    ;['1', '2', '3', '4', '5'].forEach((page) =>
+      expect(full.getByRole('button', { name: page })).toBeInTheDocument(),
+    )
     expect(full.queryByText('…')).not.toBeInTheDocument()
   })
 

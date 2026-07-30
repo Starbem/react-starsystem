@@ -3,7 +3,8 @@ import { useSyncExternalStore } from 'react'
 import { cn } from '../../utils/cn'
 
 export type ToastVariant = 'info' | 'success' | 'warning' | 'error'
-export type ToastPosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center'
+export type ToastPosition =
+  'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center'
 
 export interface ToastOptions {
   title?: string
@@ -122,9 +123,15 @@ function ToastRoot({ item }: { item: ToastItem }) {
       )}
     >
       <div className="flex flex-col gap-[4px]">
-        {title && <RadixToast.Title className="font-medium text-[14px] leading-[20px]">{title}</RadixToast.Title>}
+        {title && (
+          <RadixToast.Title className="font-medium text-[14px] leading-[20px]">
+            {title}
+          </RadixToast.Title>
+        )}
         {description && (
-          <RadixToast.Description className="text-[14px] leading-[20px]">{description}</RadixToast.Description>
+          <RadixToast.Description className="text-[14px] leading-[20px]">
+            {description}
+          </RadixToast.Description>
         )}
       </div>
       <RadixToast.Close
@@ -134,7 +141,12 @@ function ToastRoot({ item }: { item: ToastItem }) {
           'hover:opacity-70 focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
         )}
       >
-        <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-[14px]">
+        <svg
+          viewBox="0 0 14 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="size-[14px]"
+        >
           <path
             d="M10.5 3.5L3.5 10.5M3.5 3.5L10.5 10.5"
             stroke="currentColor"

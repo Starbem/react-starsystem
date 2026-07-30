@@ -22,7 +22,12 @@ export function Sidebar({ items, collapsed = false, header, footer, className }:
       )}
     >
       {header && <div className={cn('px-[4px]', collapsed && 'px-0')}>{header}</div>}
-      <ul className={cn('flex flex-1 flex-col gap-[4px]', collapsed ? 'items-center w-full' : 'w-full')}>
+      <ul
+        className={cn(
+          'flex flex-1 flex-col gap-[4px]',
+          collapsed ? 'items-center w-full' : 'w-full',
+        )}
+      >
         {items.map((item, index) => (
           <li key={`${item.label}-${index}`} className="w-full">
             <NavItem item={item} collapsed={collapsed} />

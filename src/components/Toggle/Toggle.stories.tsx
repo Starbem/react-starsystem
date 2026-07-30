@@ -27,7 +27,14 @@ export const Checked: Story = {
 export const WithSupportingText: Story = {
   render: (args) => {
     const [checked, setChecked] = useState(false)
-    return <Toggle {...args} checked={checked} onChange={setChecked} supportingText="Get notified about updates." />
+    return (
+      <Toggle
+        {...args}
+        checked={checked}
+        onChange={setChecked}
+        supportingText="Get notified about updates."
+      />
+    )
   },
 }
 

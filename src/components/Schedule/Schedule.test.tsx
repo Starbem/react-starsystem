@@ -5,7 +5,14 @@ import { axe } from 'vitest-axe'
 import { Schedule, type ScheduleEvent } from './Schedule'
 
 const EVENTS: ScheduleEvent[] = [
-  { id: '1', date: '2026-07-29', start: '09:00', end: '09:30', title: 'Consulta Dra. Ana', meet: true },
+  {
+    id: '1',
+    date: '2026-07-29',
+    start: '09:00',
+    end: '09:30',
+    title: 'Consulta Dra. Ana',
+    meet: true,
+  },
   { id: '2', date: '2026-07-29', start: '23:00', end: '23:30', title: 'Fora do horário visível' },
 ]
 

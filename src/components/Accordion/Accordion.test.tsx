@@ -40,15 +40,24 @@ describe('Accordion', () => {
 
   it('respects defaultValue for single type', () => {
     render(<Accordion items={ITEMS} type="single" defaultValue="b" />)
-    expect(screen.getByRole('button', { name: 'Pergunta B' })).toHaveAttribute('aria-expanded', 'true')
+    expect(screen.getByRole('button', { name: 'Pergunta B' })).toHaveAttribute(
+      'aria-expanded',
+      'true',
+    )
   })
 
   it('closes the previously open item when another is opened (type=single)', async () => {
     const user = userEvent.setup()
     render(<Accordion items={ITEMS} type="single" defaultValue="a" />)
     await user.click(screen.getByRole('button', { name: 'Pergunta B' }))
-    expect(screen.getByRole('button', { name: 'Pergunta A' })).toHaveAttribute('aria-expanded', 'false')
-    expect(screen.getByRole('button', { name: 'Pergunta B' })).toHaveAttribute('aria-expanded', 'true')
+    expect(screen.getByRole('button', { name: 'Pergunta A' })).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    )
+    expect(screen.getByRole('button', { name: 'Pergunta B' })).toHaveAttribute(
+      'aria-expanded',
+      'true',
+    )
   })
 
   it('allows multiple items open at once (type=multiple)', async () => {
@@ -56,15 +65,31 @@ describe('Accordion', () => {
     render(<Accordion items={ITEMS} type="multiple" />)
     await user.click(screen.getByRole('button', { name: 'Pergunta A' }))
     await user.click(screen.getByRole('button', { name: 'Pergunta B' }))
-    expect(screen.getByRole('button', { name: 'Pergunta A' })).toHaveAttribute('aria-expanded', 'true')
-    expect(screen.getByRole('button', { name: 'Pergunta B' })).toHaveAttribute('aria-expanded', 'true')
+    expect(screen.getByRole('button', { name: 'Pergunta A' })).toHaveAttribute(
+      'aria-expanded',
+      'true',
+    )
+    expect(screen.getByRole('button', { name: 'Pergunta B' })).toHaveAttribute(
+      'aria-expanded',
+      'true',
+    )
   })
 
   it('does not toggle a disabled item', async () => {
     const user = userEvent.setup()
-    render(<Accordion items={[...ITEMS.slice(0, 2), { value: 'd', trigger: 'Pergunta D', content: 'D', disabled: true }]} />)
+    render(
+      <Accordion
+        items={[
+          ...ITEMS.slice(0, 2),
+          { value: 'd', trigger: 'Pergunta D', content: 'D', disabled: true },
+        ]}
+      />,
+    )
     await user.click(screen.getByRole('button', { name: 'Pergunta D' }))
-    expect(screen.getByRole('button', { name: 'Pergunta D' })).toHaveAttribute('aria-expanded', 'false')
+    expect(screen.getByRole('button', { name: 'Pergunta D' })).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    )
   })
 
   it('navigates triggers with arrow keys', async () => {

@@ -74,9 +74,19 @@ export const Auto: Story = {
   render: () => {
     const [tab, setTab] = useState('home')
     return (
-      <div style={{ display: 'flex', height: 480, resize: 'horizontal', overflow: 'auto', border: '1px dashed #ccc' }}>
+      <div
+        style={{
+          display: 'flex',
+          height: 480,
+          resize: 'horizontal',
+          overflow: 'auto',
+          border: '1px dashed #ccc',
+        }}
+      >
         <Menu items={ITEMS} value={tab} onChange={setTab} />
-        <main style={{ flex: 1, padding: 24 }}>Redimensione a caixa (resize horizontal) para ver a troca sidebar↔bottom</main>
+        <main style={{ flex: 1, padding: 24 }}>
+          Redimensione a caixa (resize horizontal) para ver a troca sidebar↔bottom
+        </main>
       </div>
     )
   },

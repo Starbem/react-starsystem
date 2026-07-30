@@ -151,40 +151,80 @@ export function Pagination({
   return (
     <nav aria-label="pagination" className={cn('flex items-center', className)} {...rest}>
       <div data-testid="pagination-compact" className="flex items-center gap-[4px] sm:hidden">
-        <NavButton label="Página anterior" disabled={!canGoPrev} pill={pill} onClick={() => onChange(page - 1)}>
+        <NavButton
+          label="Página anterior"
+          disabled={!canGoPrev}
+          pill={pill}
+          onClick={() => onChange(page - 1)}
+        >
           <ChevronLeft />
         </NavButton>
         <span className="px-[8px] text-[14px] text-ink-700 dark:text-ink-300">
           Página {page} de {total}
         </span>
-        <NavButton label="Próxima página" disabled={!canGoNext} pill={pill} onClick={() => onChange(page + 1)}>
+        <NavButton
+          label="Próxima página"
+          disabled={!canGoNext}
+          pill={pill}
+          onClick={() => onChange(page + 1)}
+        >
           <ChevronRight />
         </NavButton>
       </div>
 
       <div data-testid="pagination-full" className="hidden items-center gap-[4px] sm:flex">
         {showFirstLast && (
-          <NavButton label="Primeira página" disabled={!canGoPrev} pill={pill} onClick={() => onChange(1)}>
+          <NavButton
+            label="Primeira página"
+            disabled={!canGoPrev}
+            pill={pill}
+            onClick={() => onChange(1)}
+          >
             «
           </NavButton>
         )}
-        <NavButton label="Página anterior" disabled={!canGoPrev} pill={pill} onClick={() => onChange(page - 1)}>
+        <NavButton
+          label="Página anterior"
+          disabled={!canGoPrev}
+          pill={pill}
+          onClick={() => onChange(page - 1)}
+        >
           <ChevronLeft />
         </NavButton>
         {entries.map((entry, index) =>
           entry === ELLIPSIS ? (
-            <span key={`ellipsis-${index}`} aria-hidden="true" className="inline-flex size-[36px] items-center justify-center text-neutral-400 dark:text-ink-500">
+            <span
+              key={`ellipsis-${index}`}
+              aria-hidden="true"
+              className="inline-flex size-[36px] items-center justify-center text-neutral-400 dark:text-ink-500"
+            >
               …
             </span>
           ) : (
-            <PageButton key={entry} page={entry} active={entry === page} pill={pill} onClick={() => onChange(entry)} />
+            <PageButton
+              key={entry}
+              page={entry}
+              active={entry === page}
+              pill={pill}
+              onClick={() => onChange(entry)}
+            />
           ),
         )}
-        <NavButton label="Próxima página" disabled={!canGoNext} pill={pill} onClick={() => onChange(page + 1)}>
+        <NavButton
+          label="Próxima página"
+          disabled={!canGoNext}
+          pill={pill}
+          onClick={() => onChange(page + 1)}
+        >
           <ChevronRight />
         </NavButton>
         {showFirstLast && (
-          <NavButton label="Última página" disabled={!canGoNext} pill={pill} onClick={() => onChange(total)}>
+          <NavButton
+            label="Última página"
+            disabled={!canGoNext}
+            pill={pill}
+            onClick={() => onChange(total)}
+          >
             »
           </NavButton>
         )}

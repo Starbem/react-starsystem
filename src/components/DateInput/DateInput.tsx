@@ -23,8 +23,18 @@ export interface DateInputProps {
 }
 
 const MONTHS_PT = [
-  'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-  'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
+  'Janeiro',
+  'Fevereiro',
+  'Março',
+  'Abril',
+  'Maio',
+  'Junho',
+  'Julho',
+  'Agosto',
+  'Setembro',
+  'Outubro',
+  'Novembro',
+  'Dezembro',
 ]
 
 const SIZE_CLASSES: Record<NonNullable<DateInputProps['size']>, string> = {
@@ -95,7 +105,9 @@ export function DateInput({
   const [internalDate, setInternalDate] = useState<Date | null>(defaultValue ?? null)
   const currentDate = isControlled ? value : internalDate
   const [text, setText] = useState(currentDate ? formatDate(currentDate, format) : '')
-  const [lastFormattedText, setLastFormattedText] = useState(currentDate ? formatDate(currentDate, format) : '')
+  const [lastFormattedText, setLastFormattedText] = useState(
+    currentDate ? formatDate(currentDate, format) : '',
+  )
   const [invalid, setInvalid] = useState(false)
   const [open, setOpen] = useState(false)
   const popoverRef = useRef<HTMLDivElement>(null)
@@ -195,13 +207,25 @@ export function DateInput({
         </button>
         {open && (
           <div className="absolute z-10 mt-[4px]">
-            <Calendar selected={currentDate ?? undefined} markedDays={markedDays} onSelect={handleSelect} />
+            <Calendar
+              selected={currentDate ?? undefined}
+              markedDays={markedDays}
+              onSelect={handleSelect}
+            />
           </div>
         )}
       </div>
-      {showError && <span id={messageId} className="text-[12px] text-error-base">{errorMessage}</span>}
+      {showError && (
+        <span id={messageId} className="text-[12px] text-error-base">
+          {errorMessage}
+        </span>
+      )}
       {!showError && success && <span className="text-[12px] text-success-base">{success}</span>}
-      {!showError && !success && hint && <span id={messageId} className="text-[12px] text-ink-500 dark:text-neutral-400">{hint}</span>}
+      {!showError && !success && hint && (
+        <span id={messageId} className="text-[12px] text-ink-500 dark:text-neutral-400">
+          {hint}
+        </span>
+      )}
     </div>
   )
 }

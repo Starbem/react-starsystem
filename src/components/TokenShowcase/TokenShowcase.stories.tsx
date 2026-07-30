@@ -10,7 +10,13 @@ export default meta
 
 type Story = StoryObj
 
-const SwatchRow = ({ label, palette }: { label: string; palette: Record<string | number, string> }) => (
+const SwatchRow = ({
+  label,
+  palette,
+}: {
+  label: string
+  palette: Record<string | number, string>
+}) => (
   <div style={{ marginBottom: 24 }}>
     <h3 style={{ marginBottom: 8, fontSize: 14, fontFamily: 'system-ui' }}>{label}</h3>
     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -66,9 +72,7 @@ export const Typography: Story = {
 
 export const Elevation: Story = {
   render: () => (
-    <div
-      style={{ display: 'flex', gap: 24, flexWrap: 'wrap', padding: 40, background: '#f9f9f9' }}
-    >
+    <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', padding: 40, background: '#f9f9f9' }}>
       {(Object.entries(shadows) as [string, string][]).map(([name, shadow]) => (
         <div
           key={name}

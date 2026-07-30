@@ -72,7 +72,7 @@ export function Select({
   const resolvedId = id ?? reactId
   const listboxId = `${resolvedId}-listbox`
   const labelId = label ? `${resolvedId}-label` : undefined
-  const hintId = (error || hint) ? `${resolvedId}-hint` : undefined
+  const hintId = error || hint ? `${resolvedId}-hint` : undefined
 
   const isError = Boolean(error)
   const hintText = error ?? hint
@@ -142,7 +142,10 @@ export function Select({
   }
 
   return (
-    <div ref={rootRef} className={cn('flex flex-col gap-[6px] items-start w-full relative', className)}>
+    <div
+      ref={rootRef}
+      className={cn('flex flex-col gap-[6px] items-start w-full relative', className)}
+    >
       {label && (
         <label
           id={labelId}
@@ -201,7 +204,12 @@ export function Select({
               {selectedOption ? selectedOption.label : placeholder}
             </span>
           </span>
-          <span className={cn('shrink-0 text-neutral-500 dark:text-neutral-400', disabled && 'text-neutral-300 dark:text-ink-600')}>
+          <span
+            className={cn(
+              'shrink-0 text-neutral-500 dark:text-neutral-400',
+              disabled && 'text-neutral-300 dark:text-ink-600',
+            )}
+          >
             {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
           </span>
         </button>

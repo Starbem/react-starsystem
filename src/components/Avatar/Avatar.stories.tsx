@@ -9,7 +9,9 @@ export default meta
 type Story = StoryObj<typeof Avatar>
 
 export const WithImage: Story = {
-  render: () => <Avatar src="https://i.pravatar.cc/150?img=12" alt="Julio Sousa" name="Julio Sousa" />,
+  render: () => (
+    <Avatar src="https://i.pravatar.cc/150?img=12" alt="Julio Sousa" name="Julio Sousa" />
+  ),
 }
 
 export const WithInitials: Story = {
@@ -21,7 +23,9 @@ export const FallbackIcon: Story = {
 }
 
 export const BrokenImageFallsBackToInitials: Story = {
-  render: () => <Avatar src="https://invalid.example/broken.jpg" alt="José Tenório" name="José Tenório" />,
+  render: () => (
+    <Avatar src="https://invalid.example/broken.jpg" alt="José Tenório" name="José Tenório" />
+  ),
 }
 
 export const Sizes: Story = {

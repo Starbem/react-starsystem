@@ -30,8 +30,18 @@ export interface ScheduleProps {
 }
 
 const MONTHS_PT = [
-  'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-  'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
+  'Janeiro',
+  'Fevereiro',
+  'Março',
+  'Abril',
+  'Maio',
+  'Junho',
+  'Julho',
+  'Agosto',
+  'Setembro',
+  'Outubro',
+  'Novembro',
+  'Dezembro',
 ]
 const DOW_PT = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']
 
@@ -85,12 +95,17 @@ export function Schedule({
   function headerTitle(): string {
     if (title) return title
     if (view === 'month') return `${MONTHS_PT[activeDate.getMonth()]} ${activeDate.getFullYear()}`
-    if (view === 'week') return `Semana de ${activeDate.getDate()} de ${MONTHS_PT[activeDate.getMonth()].toLowerCase()}`
+    if (view === 'week')
+      return `Semana de ${activeDate.getDate()} de ${MONTHS_PT[activeDate.getMonth()].toLowerCase()}`
     return `${activeDate.getDate()} de ${MONTHS_PT[activeDate.getMonth()].toLowerCase()} de ${activeDate.getFullYear()}`
   }
 
   const navLabels =
-    view === 'day' ? { prev: 'Dia anterior', next: 'Próximo dia' } : view === 'week' ? { prev: 'Semana anterior', next: 'Próxima semana' } : { prev: 'Mês anterior', next: 'Próximo mês' }
+    view === 'day'
+      ? { prev: 'Dia anterior', next: 'Próximo dia' }
+      : view === 'week'
+        ? { prev: 'Semana anterior', next: 'Próxima semana' }
+        : { prev: 'Mês anterior', next: 'Próximo mês' }
 
   function renderEvent(event: ScheduleEvent) {
     const top = (toMinutes(event.start) - startHour * 60) * (hourHeight / 60)
@@ -100,7 +115,12 @@ export function Schedule({
         key={event.id}
         type="button"
         onClick={() => onEventClick?.(event)}
-        style={{ top, height, backgroundColor: event.bg ?? '#FFF1E0', borderColor: event.color ?? '#FF5100' }}
+        style={{
+          top,
+          height,
+          backgroundColor: event.bg ?? '#FFF1E0',
+          borderColor: event.color ?? '#FF5100',
+        }}
         className="absolute left-[4px] right-[4px] rounded-sm border-l-4 px-[8px] py-[4px] text-left overflow-hidden"
       >
         <p className="text-[12px] font-medium text-ink-900 truncate">{event.title}</p>
@@ -128,7 +148,11 @@ export function Schedule({
     return (
       <div className="relative" style={{ height: hours.length * hourHeight }}>
         {hours.map((h) => (
-          <div key={h} className="absolute left-0 right-0 border-t border-ink-200 dark:border-neutral-900 text-[11px] text-neutral-400 pl-[4px]" style={{ top: (h - startHour) * hourHeight }}>
+          <div
+            key={h}
+            className="absolute left-0 right-0 border-t border-ink-200 dark:border-neutral-900 text-[11px] text-neutral-400 pl-[4px]"
+            style={{ top: (h - startHour) * hourHeight }}
+          >
             {String(h).padStart(2, '0')}:00
           </div>
         ))}
@@ -138,16 +162,31 @@ export function Schedule({
   }
 
   return (
-    <div className={cn('flex flex-col gap-[12px] rounded-lg bg-white border border-ink-200 p-[16px] dark:bg-ink-900 dark:border-neutral-900', className)}>
+    <div
+      className={cn(
+        'flex flex-col gap-[12px] rounded-lg bg-white border border-ink-200 p-[16px] dark:bg-ink-900 dark:border-neutral-900',
+        className,
+      )}
+    >
       <div className="flex items-center justify-between">
-        <button type="button" aria-label={navLabels.prev} onClick={() => navigate(-1)} className="inline-flex items-center justify-center size-[32px] rounded-full hover:bg-ink-100 dark:hover:bg-neutral-900">
+        <button
+          type="button"
+          aria-label={navLabels.prev}
+          onClick={() => navigate(-1)}
+          className="inline-flex items-center justify-center size-[32px] rounded-full hover:bg-ink-100 dark:hover:bg-neutral-900"
+        >
           <Icon name="chevron_left" size={20} />
         </button>
         <span className="inline-flex items-center gap-[6px] font-medium text-[14px] text-ink-900 dark:text-white">
           <Icon name="schedule" size={18} />
           {headerTitle()}
         </span>
-        <button type="button" aria-label={navLabels.next} onClick={() => navigate(1)} className="inline-flex items-center justify-center size-[32px] rounded-full hover:bg-ink-100 dark:hover:bg-neutral-900">
+        <button
+          type="button"
+          aria-label={navLabels.next}
+          onClick={() => navigate(1)}
+          className="inline-flex items-center justify-center size-[32px] rounded-full hover:bg-ink-100 dark:hover:bg-neutral-900"
+        >
           <Icon name="chevron_right" size={20} />
         </button>
       </div>
@@ -158,7 +197,12 @@ export function Schedule({
             key={v}
             type="button"
             onClick={() => onViewChange?.(v)}
-            className={cn('px-[10px] py-[4px] rounded-sm', view === v ? 'bg-primary-base text-white' : 'text-ink-500 hover:bg-ink-100 dark:text-neutral-400 dark:hover:bg-neutral-900')}
+            className={cn(
+              'px-[10px] py-[4px] rounded-sm',
+              view === v
+                ? 'bg-primary-base text-white'
+                : 'text-ink-500 hover:bg-ink-100 dark:text-neutral-400 dark:hover:bg-neutral-900',
+            )}
           >
             {v === 'day' ? 'Dia' : v === 'week' ? 'Semana' : 'Mês'}
           </button>
@@ -205,7 +249,10 @@ export function Schedule({
           return (
             <div className="grid grid-cols-7 gap-[4px]">
               {DOW_PT.map((d) => (
-                <span key={d} className="text-center text-[11px] text-ink-500 dark:text-neutral-400">
+                <span
+                  key={d}
+                  className="text-center text-[11px] text-ink-500 dark:text-neutral-400"
+                >
                   {d}
                 </span>
               ))}
@@ -214,14 +261,19 @@ export function Schedule({
                 const iso = toISODate(new Date(year, month, day))
                 const dayEvents = events.filter((e) => e.date === iso)
                 return (
-                  <div key={day} className="min-h-[64px] rounded-sm border border-ink-200 dark:border-neutral-900 p-[4px] text-[11px]">
+                  <div
+                    key={day}
+                    className="min-h-[64px] rounded-sm border border-ink-200 dark:border-neutral-900 p-[4px] text-[11px]"
+                  >
                     <span className="text-ink-900 dark:text-white">{day}</span>
                     {dayEvents.slice(0, 2).map((e) => (
                       <p key={e.id} className="truncate text-primary-base">
                         • {e.title}
                       </p>
                     ))}
-                    {dayEvents.length > 2 && <p className="text-neutral-400">+{dayEvents.length - 2}</p>}
+                    {dayEvents.length > 2 && (
+                      <p className="text-neutral-400">+{dayEvents.length - 2}</p>
+                    )}
                   </div>
                 )
               })}

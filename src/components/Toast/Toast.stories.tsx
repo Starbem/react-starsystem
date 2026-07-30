@@ -14,7 +14,9 @@ export const Playground: Story = {
       <button
         type="button"
         className="rounded-[8px] bg-[#DBEAFE] text-[#1E40AF] px-3 py-2 text-sm font-medium"
-        onClick={() => toast.info({ title: 'Info', description: 'Essa é uma notificação informativa.' })}
+        onClick={() =>
+          toast.info({ title: 'Info', description: 'Essa é uma notificação informativa.' })
+        }
       >
         Disparar info
       </button>
@@ -28,14 +30,18 @@ export const Playground: Story = {
       <button
         type="button"
         className="rounded-[8px] bg-[#FEF3C7] text-[#92400E] px-3 py-2 text-sm font-medium"
-        onClick={() => toast.warning({ title: 'Atenção', description: 'Verifique os dados informados.' })}
+        onClick={() =>
+          toast.warning({ title: 'Atenção', description: 'Verifique os dados informados.' })
+        }
       >
         Disparar warning
       </button>
       <button
         type="button"
         className="rounded-[8px] bg-[#FFE1E1] text-[#B42318] px-3 py-2 text-sm font-medium"
-        onClick={() => toast.error({ title: 'Erro', description: 'Algo deu errado.', showProgress: true })}
+        onClick={() =>
+          toast.error({ title: 'Erro', description: 'Algo deu errado.', showProgress: true })
+        }
       >
         Disparar error com progresso
       </button>
@@ -65,7 +71,14 @@ export const WithProgressBar: Story = {
       <button
         type="button"
         className="rounded-[8px] bg-[#E8E8E8] text-[#393939] px-3 py-2 text-sm font-medium"
-        onClick={() => toast.success({ title: 'Salvo', description: 'Alterações salvas.', showProgress: true, duration: 4000 })}
+        onClick={() =>
+          toast.success({
+            title: 'Salvo',
+            description: 'Alterações salvas.',
+            showProgress: true,
+            duration: 4000,
+          })
+        }
       >
         Disparar toast com progresso
       </button>

@@ -42,7 +42,11 @@ describe('Table', () => {
   it('sorts rows ascending then descending when a sortable header is clicked', async () => {
     const user = userEvent.setup()
     render(<Table columns={COLUMNS} data={DATA} getRowId={(row) => row.id} />)
-    const getNames = () => screen.getAllByRole('row').slice(1).map((row) => row.textContent)
+    const getNames = () =>
+      screen
+        .getAllByRole('row')
+        .slice(1)
+        .map((row) => row.textContent)
 
     await user.click(screen.getByRole('button', { name: /Nome/ }))
     expect(getNames()[0]).toContain('Ana')
@@ -52,7 +56,9 @@ describe('Table', () => {
   })
 
   it('shows skeleton rows when loading', () => {
-    const { container } = render(<Table columns={COLUMNS} data={[]} loading getRowId={(row: Row) => row.id} />)
+    const { container } = render(
+      <Table columns={COLUMNS} data={[]} loading getRowId={(row: Row) => row.id} />,
+    )
     expect(container.querySelectorAll('tbody tr')).toHaveLength(5)
     expect(screen.queryByText('Carlos')).not.toBeInTheDocument()
   })
@@ -64,7 +70,12 @@ describe('Table', () => {
 
   it('shows a custom empty state when provided', () => {
     render(
-      <Table columns={COLUMNS} data={[]} getRowId={(row: Row) => row.id} emptyState={<p>Sem dados por aqui</p>} />,
+      <Table
+        columns={COLUMNS}
+        data={[]}
+        getRowId={(row: Row) => row.id}
+        emptyState={<p>Sem dados por aqui</p>}
+      />,
     )
     expect(screen.getByText('Sem dados por aqui')).toBeInTheDocument()
   })
@@ -116,7 +127,9 @@ describe('Table', () => {
   })
 
   it('has no a11y violations', async () => {
-    const { container } = render(<Table columns={COLUMNS} data={DATA} getRowId={(row) => row.id} selectable />)
+    const { container } = render(
+      <Table columns={COLUMNS} data={DATA} getRowId={(row) => row.id} selectable />,
+    )
     // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
     expect(await axe(container)).toHaveNoViolations()
   })

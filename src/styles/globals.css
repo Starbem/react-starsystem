@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&display=swap');
-@import "tailwindcss";
+@import 'tailwindcss';
 @source "../components";
 
 /* Class-based dark mode (opt-in): consumers toggle it by adding/removing
@@ -14,205 +14,235 @@
    display, headings, UI, body, labels and captions. */
 @theme {
   /* Typography — font family */
-  --font-family-display: "Funnel Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-family-body:    "Funnel Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family-display:
+    'Funnel Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  --font-family-body:
+    'Funnel Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
 
   /* Typography — font size */
-  --font-size-display-lg: 3.25rem;  /* 52px */
-  --font-size-h1:         2.25rem;  /* 36px */
-  --font-size-h2:         1.875rem; /* 30px */
-  --font-size-h3:         1.5rem;   /* 24px */
-  --font-size-h4:         1.375rem; /* 22px */
-  --font-size-body-lg:    1.125rem; /* 18px — DS "subtitle-lg" */
-  --font-size-body:       1rem;     /* 16px — DS "subtitle-md" */
-  --font-size-body-sm:    0.875rem; /* 14px — DS "subtitle-sm" */
-  --font-size-caption:    0.75rem;  /* 12px */
-  --font-size-overline:   0.625rem; /* 10px */
+  --font-size-display-lg: 3.25rem; /* 52px */
+  --font-size-h1: 2.25rem; /* 36px */
+  --font-size-h2: 1.875rem; /* 30px */
+  --font-size-h3: 1.5rem; /* 24px */
+  --font-size-h4: 1.375rem; /* 22px */
+  --font-size-body-lg: 1.125rem; /* 18px — DS "subtitle-lg" */
+  --font-size-body: 1rem; /* 16px — DS "subtitle-md" */
+  --font-size-body-sm: 0.875rem; /* 14px — DS "subtitle-sm" */
+  --font-size-caption: 0.75rem; /* 12px */
+  --font-size-overline: 0.625rem; /* 10px */
 
   /* Typography — font weight */
-  --font-weight-light:     300;
-  --font-weight-regular:   400;
-  --font-weight-medium:    500;
-  --font-weight-semibold:  600;
-  --font-weight-bold:      700;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
   --font-weight-extrabold: 800;
 
   /* Typography — line height */
-  --line-height-tight:   1.2;
-  --line-height-snug:    1.35;
-  --line-height-base:    1.5;
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.35;
+  --line-height-base: 1.5;
   --line-height-relaxed: 1.75;
 
   /* Brand anchors */
-  --color-brand-orange: #FF5100;
-  --color-brand-purple: #7F56D9;
-  --color-brand-pink:   #ED2E98;
-  --color-brand-yellow: #FFDA44;
+  --color-brand-orange: #ff5100;
+  --color-brand-purple: #7f56d9;
+  --color-brand-pink: #ed2e98;
+  --color-brand-yellow: #ffda44;
 
   /* Primary palette — orange (principal brand & UI color) */
-  --color-primary-base:     #FF5100;
-  --color-primary-light:    #FF9353;
-  --color-primary-lighter:  #FFC992;
-  --color-primary-lightest: #FFF1E0;
-  --color-primary-dark:     #D03700;
-  --color-primary-darker:   #A31B00;
-  --color-primary-darkest:  #900700;
+  --color-primary-base: #ff5100;
+  --color-primary-light: #ff9353;
+  --color-primary-lighter: #ffc992;
+  --color-primary-lightest: #fff1e0;
+  --color-primary-dark: #d03700;
+  --color-primary-darker: #a31b00;
+  --color-primary-darkest: #900700;
 
   /* Secondary palette — purple (the interactive color) */
-  --color-secondary-base:     #7F56D9;
-  --color-secondary-light:    #AE8EF1;
-  --color-secondary-lighter:  #D1B4F6;
-  --color-secondary-lightest: #F3E9FC;
-  --color-secondary-dark:     #5A40B5;
-  --color-secondary-darker:   #461FAE;
-  --color-secondary-darkest:  #18176B;
+  --color-secondary-base: #7f56d9;
+  --color-secondary-light: #ae8ef1;
+  --color-secondary-lighter: #d1b4f6;
+  --color-secondary-lightest: #f3e9fc;
+  --color-secondary-dark: #5a40b5;
+  --color-secondary-darker: #461fae;
+  --color-secondary-darkest: #18176b;
 
   /* Terciary palette — pink/magenta (Figma spelling preserved) */
-  --color-terciary-base:     #ED2E98;
-  --color-terciary-light:    #F263A6;
-  --color-terciary-lighter:  #F68FAF;
-  --color-terciary-lightest: #FFF3E3;
-  --color-terciary-dark:     #C01857;
-  --color-terciary-darker:   #930620;
-  --color-terciary-darkest:  #7C0008;
+  --color-terciary-base: #ed2e98;
+  --color-terciary-light: #f263a6;
+  --color-terciary-lighter: #f68faf;
+  --color-terciary-lightest: #fff3e3;
+  --color-terciary-dark: #c01857;
+  --color-terciary-darker: #930620;
+  --color-terciary-darkest: #7c0008;
 
   /* Neutral palette */
-  --color-neutral-white:  #FFFFFF;
-  --color-neutral-25:     #F7F7F7;
-  --color-neutral-50:     #EFEFEF;
-  --color-neutral-100:    #E2E2E2;
-  --color-neutral-200:    #CFCFCF;
-  --color-neutral-300:    #B6B6B6;
-  --color-neutral-400:    #9C9C9C;
-  --color-neutral-500:    #808080;
-  --color-neutral-600:    #656565;
-  --color-neutral-700:    #4D4D4D;
-  --color-neutral-800:    #393939;
-  --color-neutral-900:    #2C2C2C;
-  --color-neutral-1000:   #272727;
-  --color-neutral-black:  #000000;
+  --color-neutral-white: #ffffff;
+  --color-neutral-25: #f7f7f7;
+  --color-neutral-50: #efefef;
+  --color-neutral-100: #e2e2e2;
+  --color-neutral-200: #cfcfcf;
+  --color-neutral-300: #b6b6b6;
+  --color-neutral-400: #9c9c9c;
+  --color-neutral-500: #808080;
+  --color-neutral-600: #656565;
+  --color-neutral-700: #4d4d4d;
+  --color-neutral-800: #393939;
+  --color-neutral-900: #2c2c2c;
+  --color-neutral-1000: #272727;
+  --color-neutral-black: #000000;
 
   /* Ink — cool near-blacks used for text & UI chrome */
   --color-ink-900: #101828;
-  --color-ink-800: #1C1B1F;
+  --color-ink-800: #1c1b1f;
   --color-ink-700: #344054;
   --color-ink-600: #475467;
   --color-ink-500: #667085;
-  --color-ink-300: #D0D5DD;
-  --color-ink-200: #EAECF0;
-  --color-ink-100: #F2F4F7;
-  --color-ink-50:  #F9FAFB;
+  --color-ink-300: #d0d5dd;
+  --color-ink-200: #eaecf0;
+  --color-ink-100: #f2f4f7;
+  --color-ink-50: #f9fafb;
 
   /* Semantic states */
-  --color-error-lightest: #FFEDE7;
-  --color-error-lighter:  #FFBDAE;
-  --color-error-light:    #FF867E;
-  --color-error-base:     #FF4242;
-  --color-error-dark:     #CE2329;
-  --color-error-darker:   #9A0912;
-  --color-error-darkest:  #7E0108;
+  --color-error-lightest: #ffede7;
+  --color-error-lighter: #ffbdae;
+  --color-error-light: #ff867e;
+  --color-error-base: #ff4242;
+  --color-error-dark: #ce2329;
+  --color-error-darker: #9a0912;
+  --color-error-darkest: #7e0108;
 
-  --color-warning-lightest: #FEF8E9;
-  --color-warning-lighter:  #FBE3B3;
-  --color-warning-light:    #F9C486;
-  --color-warning-base:     #F8A04D;
-  --color-warning-dark:     #CE7734;
-  --color-warning-darker:   #A2491A;
-  --color-warning-darkest:  #8D2B0E;
+  --color-warning-lightest: #fef8e9;
+  --color-warning-lighter: #fbe3b3;
+  --color-warning-light: #f9c486;
+  --color-warning-base: #f8a04d;
+  --color-warning-dark: #ce7734;
+  --color-warning-darker: #a2491a;
+  --color-warning-darkest: #8d2b0e;
 
-  --color-success-lightest: #E3F6EF;
-  --color-success-lighter:  #9FE1C5;
-  --color-success-light:    #67D097;
-  --color-success-base:     #1FBA5D;
-  --color-success-dark:     #189443;
-  --color-success-darker:   #116D28;
-  --color-success-darkest:  #0E5A19;
+  --color-success-lightest: #e3f6ef;
+  --color-success-lighter: #9fe1c5;
+  --color-success-light: #67d097;
+  --color-success-base: #1fba5d;
+  --color-success-dark: #189443;
+  --color-success-darker: #116d28;
+  --color-success-darkest: #0e5a19;
 
   /* Semantic aliases — use these in product UI over raw scale steps */
-  --color-primary:        var(--color-primary-base);
-  --color-primary-hover:  var(--color-primary-dark);
-  --color-primary-press:  var(--color-primary-darker);
+  --color-primary: var(--color-primary-base);
+  --color-primary-hover: var(--color-primary-dark);
+  --color-primary-press: var(--color-primary-darker);
   --color-primary-subtle: var(--color-primary-lightest);
 
-  --color-secondary:        var(--color-secondary-base);
-  --color-secondary-hover:  var(--color-secondary-dark);
-  --color-secondary-press:  var(--color-secondary-darker);
+  --color-secondary: var(--color-secondary-base);
+  --color-secondary-hover: var(--color-secondary-dark);
+  --color-secondary-press: var(--color-secondary-darker);
   --color-secondary-subtle: var(--color-secondary-lightest);
 
-  --color-accent:        var(--color-brand-pink);
+  --color-accent: var(--color-brand-pink);
   --color-accent-subtle: var(--color-terciary-lightest);
 
-  --text-primary:   var(--color-ink-900);
+  --text-primary: var(--color-ink-900);
   --text-secondary: var(--color-ink-600);
-  --text-tertiary:  var(--color-ink-500);
-  --text-on-brand:  #FFFFFF;
-  --text-disabled:  var(--color-neutral-400);
-  --text-link:      var(--color-secondary-base);
+  --text-tertiary: var(--color-ink-500);
+  --text-on-brand: #ffffff;
+  --text-disabled: var(--color-neutral-400);
+  --text-link: var(--color-secondary-base);
 
-  --surface-page:    var(--color-ink-50);
-  --surface-card:    #FFFFFF;
-  --surface-sunken:  var(--color-ink-100);
+  --surface-page: var(--color-ink-50);
+  --surface-card: #ffffff;
+  --surface-sunken: var(--color-ink-100);
   --surface-inverse: var(--color-ink-800);
 
-  --border-subtle:  var(--color-ink-200);
+  --border-subtle: var(--color-ink-200);
   --border-default: var(--color-ink-300);
-  --border-strong:  var(--color-neutral-400);
-  --border-focus:   var(--color-primary-base);
+  --border-strong: var(--color-neutral-400);
+  --border-focus: var(--color-primary-base);
 
   /* Border radius */
   --radius-none: 0;
-  --radius-xs:   4px;
-  --radius-sm:   8px;
-  --radius-md:   12px;
-  --radius-lg:   16px;   /* default button/control radius */
-  --radius-xl:   24px;
-  --radius-2xl:  32px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px; /* default button/control radius */
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
   --radius-full: 9999px;
 
   /* Elevation shadows */
   --shadow-elevation-00: none;
-  --shadow-elevation-01: 0px 1px 2px 0px rgba(16,24,40,0.05);
-  --shadow-elevation-02: 0px 1px 3px 0px rgba(16,24,40,0.10), 0px 1px 2px 0px rgba(16,24,40,0.06);
-  --shadow-elevation-03: 0px 4px 8px -2px rgba(16,24,40,0.10), 0px 2px 4px -2px rgba(16,24,40,0.06);
-  --shadow-elevation-04: 0px 12px 16px -4px rgba(16,24,40,0.08), 0px 4px 6px -2px rgba(16,24,40,0.03);
-  --shadow-elevation-05: 0px 20px 24px -4px rgba(16,24,40,0.08), 0px 8px 8px -4px rgba(16,24,40,0.03);
-  --shadow-elevation-06: 0px 24px 48px -12px rgba(12,17,29,0.18);
-  --shadow-elevation-07: 0px 32px 64px -12px rgba(12,17,29,0.14);
+  --shadow-elevation-01: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  --shadow-elevation-02:
+    0px 1px 3px 0px rgba(16, 24, 40, 0.1), 0px 1px 2px 0px rgba(16, 24, 40, 0.06);
+  --shadow-elevation-03:
+    0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
+  --shadow-elevation-04:
+    0px 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03);
+  --shadow-elevation-05:
+    0px 20px 24px -4px rgba(16, 24, 40, 0.08), 0px 8px 8px -4px rgba(16, 24, 40, 0.03);
+  --shadow-elevation-06: 0px 24px 48px -12px rgba(12, 17, 29, 0.18);
+  --shadow-elevation-07: 0px 32px 64px -12px rgba(12, 17, 29, 0.14);
   /* Lib-only extensions — no DS equivalent, kept as-is (may already be in use) */
-  --shadow-elevation-secondary: 0 4px 16px rgba(237,46,152,0.32);
-  --shadow-elevation-hover-secondary: 0 4px 24px rgba(237,46,152,0.48);
+  --shadow-elevation-secondary: 0 4px 16px rgba(237, 46, 152, 0.32);
+  --shadow-elevation-hover-secondary: 0 4px 24px rgba(237, 46, 152, 0.48);
   /* Soft brand glow — highlighted/focused surfaces */
-  --shadow-brand: 0px 1px 8px 0px rgba(21,55,96,0.10);
+  --shadow-brand: 0px 1px 8px 0px rgba(21, 55, 96, 0.1);
   /* Focus ring — orange, matches the principal interactive color */
-  --ring-focus: 0px 0px 0px 4px rgba(255,81,0,0.20);
+  --ring-focus: 0px 0px 0px 4px rgba(255, 81, 0, 0.2);
 }
 
 /* Toast auto-dismiss progress bar */
 @keyframes toast-progress {
-  from { transform: scaleX(1); }
-  to   { transform: scaleX(0); }
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
 }
 
 /* Skeleton wave shimmer */
 @keyframes skeleton-wave {
-  from { transform: translateX(-100%); }
-  to   { transform: translateX(100%); }
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 
 /* Progress linear bar — indeterminate slide */
 @keyframes progress-indeterminate {
-  0%   { transform: translateX(-60%) scaleX(0.4); }
-  50%  { transform: translateX(20%) scaleX(0.6); }
-  100% { transform: translateX(100%) scaleX(0.4); }
+  0% {
+    transform: translateX(-60%) scaleX(0.4);
+  }
+  50% {
+    transform: translateX(20%) scaleX(0.6);
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.4);
+  }
 }
 
 /* Accordion expand/collapse */
 @keyframes accordion-expand {
-  from { height: 0; }
-  to   { height: var(--radix-accordion-content-height); }
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
 }
 
 @keyframes accordion-collapse {
-  from { height: var(--radix-accordion-content-height); }
-  to   { height: 0; }
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
 }

@@ -19,7 +19,8 @@ const SIZE_CLASSES: Record<'sm' | 'md' | 'lg', string> = {
 const COLOR_CLASSES: Record<SpinnerColor, string> = {
   brand: 'border-primary-base/25 border-t-primary-base',
   white: 'border-white/30 border-t-white',
-  muted: 'border-neutral-400/25 border-t-neutral-400 dark:border-ink-500/25 dark:border-t-neutral-400',
+  muted:
+    'border-neutral-400/25 border-t-neutral-400 dark:border-ink-500/25 dark:border-t-neutral-400',
 }
 
 const COLOR_FILL_CLASSES: Record<SpinnerColor, string> = {
@@ -69,14 +70,21 @@ const DOT_DELAYS = [0, 150, 300]
 
 export function Dots({ color = 'brand', className }: DotsProps) {
   return (
-    <span role="status" aria-label="Carregando" className={cn('inline-flex items-center gap-[4px]', className)}>
+    <span
+      role="status"
+      aria-label="Carregando"
+      className={cn('inline-flex items-center gap-[4px]', className)}
+    >
       {DOT_DELAYS.map((delay) => (
         <span
           key={delay}
           data-dot
           aria-hidden="true"
           style={{ animationDelay: `${delay}ms` }}
-          className={cn('size-[6px] rounded-full animate-bounce motion-reduce:!animate-none', COLOR_FILL_CLASSES[color])}
+          className={cn(
+            'size-[6px] rounded-full animate-bounce motion-reduce:!animate-none',
+            COLOR_FILL_CLASSES[color],
+          )}
         />
       ))}
     </span>

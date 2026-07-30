@@ -106,9 +106,18 @@ export const ToneAccent: Story = {
 }
 
 export const CardVariant: Story = {
-  render: () => <Radio value="a" variant="card" label="Card radio" supportingText="Tile-style selectable card" />,
+  render: () => (
+    <Radio
+      value="a"
+      variant="card"
+      label="Card radio"
+      supportingText="Tile-style selectable card"
+    />
+  ),
 }
 
 export const ErrorState: Story = {
-  render: () => <Radio value="a" error label="Errored radio" supportingText="This field is required" />,
+  render: () => (
+    <Radio value="a" error label="Errored radio" supportingText="This field is required" />
+  ),
 }

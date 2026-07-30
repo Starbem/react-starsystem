@@ -73,7 +73,11 @@ export const WithCheckbox: Story = {
     const [checked, setChecked] = useState(false)
     return (
       <FormField label="Terms" required helperText="You must accept to continue.">
-        <Checkbox label="I agree to the terms and conditions" checked={checked} onChange={setChecked} />
+        <Checkbox
+          label="I agree to the terms and conditions"
+          checked={checked}
+          onChange={setChecked}
+        />
       </FormField>
     )
   },
@@ -85,7 +89,12 @@ export const WithRadio: Story = {
     return (
       <FormField label="Billing cycle">
         <div className="flex flex-col gap-3">
-          <Radio value="monthly" label="Monthly" checked={value === 'monthly'} onSelect={setValue} />
+          <Radio
+            value="monthly"
+            label="Monthly"
+            checked={value === 'monthly'}
+            onSelect={setValue}
+          />
         </div>
       </FormField>
     )
@@ -130,13 +139,26 @@ export const AllCompositions: Story = {
           />
         </FormField>
         <FormField label="Terms" required>
-          <Checkbox label="I agree to the terms and conditions" checked={checked} onChange={setChecked} />
+          <Checkbox
+            label="I agree to the terms and conditions"
+            checked={checked}
+            onChange={setChecked}
+          />
         </FormField>
         <FormField label="Billing cycle">
-          <Radio value="monthly" label="Monthly" checked={radioValue === 'monthly'} onSelect={setRadioValue} />
+          <Radio
+            value="monthly"
+            label="Monthly"
+            checked={radioValue === 'monthly'}
+            onSelect={setRadioValue}
+          />
         </FormField>
         <FormField label="Notifications">
-          <Toggle label="Enable notifications" checked={toggleChecked} onChange={setToggleChecked} />
+          <Toggle
+            label="Enable notifications"
+            checked={toggleChecked}
+            onChange={setToggleChecked}
+          />
         </FormField>
       </div>
     )

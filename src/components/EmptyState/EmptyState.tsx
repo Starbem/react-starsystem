@@ -72,7 +72,12 @@ export function EmptyState({
       <h3 className={cn('text-neutral-1000 dark:text-white', TITLE_SIZE_CLASSES[size])}>{title}</h3>
 
       {description && (
-        <p className={cn('max-w-sm text-neutral-600 dark:text-neutral-400', DESCRIPTION_SIZE_CLASSES[size])}>
+        <p
+          className={cn(
+            'max-w-sm text-neutral-600 dark:text-neutral-400',
+            DESCRIPTION_SIZE_CLASSES[size],
+          )}
+        >
           {description}
         </p>
       )}

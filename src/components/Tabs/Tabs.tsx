@@ -80,7 +80,11 @@ export function Tabs({
       value={value}
       onValueChange={onChange}
       orientation={orientation}
-      className={cn('flex', orientation === 'vertical' ? 'flex-row gap-[24px]' : 'flex-col', className)}
+      className={cn(
+        'flex',
+        orientation === 'vertical' ? 'flex-row gap-[24px]' : 'flex-col',
+        className,
+      )}
     >
       <RadixTabs.List
         className={cn(

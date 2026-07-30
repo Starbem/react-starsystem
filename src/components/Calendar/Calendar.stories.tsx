@@ -17,7 +17,9 @@ export const WithSelection: Story = {
   render: () => {
     function Demo() {
       const [selected, setSelected] = useState<Date | undefined>(new Date(2026, 6, 15))
-      return <Calendar initialMonth={6} initialYear={2026} selected={selected} onSelect={setSelected} />
+      return (
+        <Calendar initialMonth={6} initialYear={2026} selected={selected} onSelect={setSelected} />
+      )
     }
     return <Demo />
   },

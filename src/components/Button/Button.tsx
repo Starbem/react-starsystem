@@ -37,15 +37,14 @@ type ButtonAsAnchor = { as: 'a' } & ButtonSharedProps &
 export type ButtonProps = ButtonAsButton | ButtonAsAnchor
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary:
-    'bg-primary-base border border-primary-base text-neutral-25 shadow-elevation-01',
+  primary: 'bg-primary-base border border-primary-base text-neutral-25 shadow-elevation-01',
   secondary: 'bg-transparent border border-primary-base text-primary-base',
   outline:
     'bg-neutral-25 border border-neutral-300 text-neutral-800 shadow-elevation-01 dark:bg-neutral-900 dark:border-ink-700 dark:text-ink-100',
   ghost: 'bg-neutral-100 border-0 text-neutral-500 dark:bg-ink-700 dark:text-neutral-400',
-  danger:
-    'bg-error-base border border-error-base text-neutral-25 shadow-elevation-01',
-  tertiary: 'bg-transparent border-0 text-primary-dark hover:bg-primary-lightest disabled:text-neutral-400',
+  danger: 'bg-error-base border border-error-base text-neutral-25 shadow-elevation-01',
+  tertiary:
+    'bg-transparent border-0 text-primary-dark hover:bg-primary-lightest disabled:text-neutral-400',
   link: 'bg-transparent border-0 text-primary-base underline-offset-4 hover:underline hover:text-primary-darker p-0! rounded-none',
   glass:
     'bg-gradient-to-br from-white/55 to-white/25 text-primary-darker border border-white/60 backdrop-blur-[12px] shadow-elevation-03 hover:from-white/70 hover:to-white/40',
@@ -78,14 +77,7 @@ function Spinner() {
       viewBox="0 0 24 24"
       aria-hidden="true"
     >
-      <circle
-        className="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        strokeWidth="4"
-      />
+      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
       <path
         className="opacity-75"
         fill="currentColor"

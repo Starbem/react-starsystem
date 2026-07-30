@@ -48,7 +48,9 @@ describe('Avatar', () => {
   })
 
   it('has no a11y violations', async () => {
-    const { container } = render(<Avatar src="https://example.com/avatar.jpg" alt="Julio Sousa" status="online" />)
+    const { container } = render(
+      <Avatar src="https://example.com/avatar.jpg" alt="Julio Sousa" status="online" />,
+    )
     // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
     expect(await axe(container)).toHaveNoViolations()
   })

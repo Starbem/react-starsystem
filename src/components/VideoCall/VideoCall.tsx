@@ -27,7 +27,13 @@ export interface VideoCallProps {
 function Tile({ src, alt, className }: { src?: string; alt: string; className?: string }) {
   return (
     <div className={cn('relative overflow-hidden bg-ink-800 rounded-lg', className)}>
-      {src ? <img src={src} alt={alt} className="size-full object-cover" /> : <div className="size-full flex items-center justify-center text-ink-500 text-[13px]">Sem vídeo</div>}
+      {src ? (
+        <img src={src} alt={alt} className="size-full object-cover" />
+      ) : (
+        <div className="size-full flex items-center justify-center text-ink-500 text-[13px]">
+          Sem vídeo
+        </div>
+      )}
     </div>
   )
 }
@@ -70,7 +76,12 @@ export function VideoCall({
 
   if (status === 'connecting') {
     return (
-      <div className={cn('flex flex-col items-center justify-center gap-[16px] rounded-lg bg-ink-800 p-[32px] text-white', className)}>
+      <div
+        className={cn(
+          'flex flex-col items-center justify-center gap-[16px] rounded-lg bg-ink-800 p-[32px] text-white',
+          className,
+        )}
+      >
         <Avatar name={name} size="xl" />
         <div className="text-center">
           <p className="font-medium">{name}</p>
@@ -79,7 +90,12 @@ export function VideoCall({
         <Spinner size="md" color="white" label="Conectando..." />
         <p className="text-[13px] text-neutral-400">Conectando...</p>
         {onEnd && (
-          <button type="button" aria-label="Cancelar chamada" onClick={onEnd} className="rounded-full bg-error-base px-[16px] py-[8px] text-[13px]">
+          <button
+            type="button"
+            aria-label="Cancelar chamada"
+            onClick={onEnd}
+            className="rounded-full bg-error-base px-[16px] py-[8px] text-[13px]"
+          >
             Cancelar
           </button>
         )}
@@ -89,7 +105,12 @@ export function VideoCall({
 
   if (status === 'ended') {
     return (
-      <div className={cn('flex flex-col items-center justify-center gap-[12px] rounded-lg bg-ink-800 p-[32px] text-white', className)}>
+      <div
+        className={cn(
+          'flex flex-col items-center justify-center gap-[12px] rounded-lg bg-ink-800 p-[32px] text-white',
+          className,
+        )}
+      >
         <Avatar name={name} size="xl" />
         <p className="font-medium">Consulta encerrada</p>
       </div>
@@ -101,7 +122,11 @@ export function VideoCall({
       {layout === 'spotlight' ? (
         <div className="relative">
           <Tile src={remoteSrc} alt={name} className="w-full aspect-video" />
-          <Tile src={selfSrc} alt="Você" className="absolute bottom-[12px] right-[12px] w-[96px] aspect-video ring-2 ring-white/20" />
+          <Tile
+            src={selfSrc}
+            alt="Você"
+            className="absolute bottom-[12px] right-[12px] w-[96px] aspect-video ring-2 ring-white/20"
+          />
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-[8px]">
@@ -111,7 +136,9 @@ export function VideoCall({
       )}
 
       {caption && (
-        <p className="absolute bottom-[80px] left-1/2 -translate-x-1/2 rounded-sm bg-black/60 px-[12px] py-[4px] text-[13px]">{caption}</p>
+        <p className="absolute bottom-[80px] left-1/2 -translate-x-1/2 rounded-sm bg-black/60 px-[12px] py-[4px] text-[13px]">
+          {caption}
+        </p>
       )}
 
       <div className="flex items-center justify-between mt-[8px] px-[4px]">
@@ -127,7 +154,10 @@ export function VideoCall({
           type="button"
           aria-label={micOn ? 'Desativar microfone' : 'Ativar microfone'}
           onClick={toggleMic}
-          className={cn('inline-flex items-center justify-center size-[44px] rounded-full', micOn ? 'bg-white/10 hover:bg-white/20' : 'bg-white text-ink-900')}
+          className={cn(
+            'inline-flex items-center justify-center size-[44px] rounded-full',
+            micOn ? 'bg-white/10 hover:bg-white/20' : 'bg-white text-ink-900',
+          )}
         >
           <Icon name={micOn ? 'mic' : 'mic_off'} size={20} />
         </button>
@@ -135,20 +165,38 @@ export function VideoCall({
           type="button"
           aria-label={cameraOn ? 'Desativar câmera' : 'Ativar câmera'}
           onClick={toggleCamera}
-          className={cn('inline-flex items-center justify-center size-[44px] rounded-full', cameraOn ? 'bg-white/10 hover:bg-white/20' : 'bg-white text-ink-900')}
+          className={cn(
+            'inline-flex items-center justify-center size-[44px] rounded-full',
+            cameraOn ? 'bg-white/10 hover:bg-white/20' : 'bg-white text-ink-900',
+          )}
         >
           <Icon name={cameraOn ? 'videocam' : 'videocam_off'} size={20} />
         </button>
-        <button type="button" aria-label="Encerrar chamada" onClick={onEnd} className="inline-flex items-center justify-center size-[44px] rounded-full bg-error-base">
+        <button
+          type="button"
+          aria-label="Encerrar chamada"
+          onClick={onEnd}
+          className="inline-flex items-center justify-center size-[44px] rounded-full bg-error-base"
+        >
           <Icon name="call_end" size={20} />
         </button>
         {onChat && (
-          <button type="button" aria-label="Chat" onClick={onChat} className="inline-flex items-center justify-center size-[44px] rounded-full bg-white/10 hover:bg-white/20">
+          <button
+            type="button"
+            aria-label="Chat"
+            onClick={onChat}
+            className="inline-flex items-center justify-center size-[44px] rounded-full bg-white/10 hover:bg-white/20"
+          >
             <Icon name="chat_bubble" size={20} />
           </button>
         )}
         {onMore && (
-          <button type="button" aria-label="Mais opções" onClick={onMore} className="inline-flex items-center justify-center size-[44px] rounded-full bg-white/10 hover:bg-white/20">
+          <button
+            type="button"
+            aria-label="Mais opções"
+            onClick={onMore}
+            className="inline-flex items-center justify-center size-[44px] rounded-full bg-white/10 hover:bg-white/20"
+          >
             <Icon name="more_horiz" size={20} />
           </button>
         )}

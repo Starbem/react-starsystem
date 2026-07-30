@@ -53,9 +53,27 @@ export const WithLeadingIcon: Story = {
     label: 'Email',
     placeholder: 'olivia@untitledui.com',
     leadingIcon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <polyline points="22,6 12,13 2,6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <polyline
+          points="22,6 12,13 2,6"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
   },
@@ -65,9 +83,15 @@ export const WithTrailingIcon: Story = {
   args: {
     placeholder: 'Search...',
     trailingIcon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="2"/>
-        <path d="m21 21-4.35-4.35" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="2" />
+        <path d="m21 21-4.35-4.35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       </svg>
     ),
   },
@@ -84,8 +108,18 @@ export const AllStates: Story = {
     <div className="flex flex-col gap-6 p-4 max-w-sm">
       <Input placeholder="Placeholder (no label)" />
       <Input label="Email" placeholder="olivia@untitledui.com" />
-      <Input label="Email" placeholder="olivia@untitledui.com" hint="This is a hint text." id="all-hint" />
-      <Input label="Email" placeholder="olivia@untitledui.com" error="This email is already taken." id="all-error" />
+      <Input
+        label="Email"
+        placeholder="olivia@untitledui.com"
+        hint="This is a hint text."
+        id="all-hint"
+      />
+      <Input
+        label="Email"
+        placeholder="olivia@untitledui.com"
+        error="This email is already taken."
+        id="all-error"
+      />
       <Input label="Email" placeholder="olivia@untitledui.com" disabled />
     </div>
   ),

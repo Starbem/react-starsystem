@@ -48,9 +48,12 @@ const TONE_ICON_COLOR: Record<CheckboxTone, string> = {
 }
 
 const TONE_HOVER_SHADOW: Record<CheckboxTone, string> = {
-  primary: 'hover:shadow-[0px_0px_12px_0px_rgba(255,81,0,0.35)] dark:hover:shadow-[0px_0px_12px_0px_rgba(255,81,0,0.5)]',
-  success: 'hover:shadow-[0px_0px_12px_0px_rgba(31,186,93,0.35)] dark:hover:shadow-[0px_0px_12px_0px_rgba(31,186,93,0.5)]',
-  accent: 'hover:shadow-[0px_0px_12px_0px_rgba(237,46,152,0.35)] dark:hover:shadow-[0px_0px_12px_0px_rgba(237,46,152,0.5)]',
+  primary:
+    'hover:shadow-[0px_0px_12px_0px_rgba(255,81,0,0.35)] dark:hover:shadow-[0px_0px_12px_0px_rgba(255,81,0,0.5)]',
+  success:
+    'hover:shadow-[0px_0px_12px_0px_rgba(31,186,93,0.35)] dark:hover:shadow-[0px_0px_12px_0px_rgba(31,186,93,0.5)]',
+  accent:
+    'hover:shadow-[0px_0px_12px_0px_rgba(237,46,152,0.35)] dark:hover:shadow-[0px_0px_12px_0px_rgba(237,46,152,0.5)]',
 }
 
 const ERROR_HOVER_SHADOW =
@@ -130,9 +133,16 @@ export function Checkbox({
           disabled
             ? 'bg-neutral-100 border-neutral-200 cursor-not-allowed dark:bg-ink-700 dark:border-neutral-800'
             : isActive
-              ? cn('bg-neutral-25 cursor-pointer dark:bg-neutral-900', activeBorder, error ? ERROR_HOVER_SHADOW : TONE_HOVER_SHADOW[tone])
+              ? cn(
+                  'bg-neutral-25 cursor-pointer dark:bg-neutral-900',
+                  activeBorder,
+                  error ? ERROR_HOVER_SHADOW : TONE_HOVER_SHADOW[tone],
+                )
               : error
-                ? cn('bg-neutral-25 border-error-base cursor-pointer dark:bg-neutral-900', ERROR_HOVER_SHADOW)
+                ? cn(
+                    'bg-neutral-25 border-error-base cursor-pointer dark:bg-neutral-900',
+                    ERROR_HOVER_SHADOW,
+                  )
                 : cn(
                     'bg-neutral-25 border-neutral-300 hover:border-primary-base cursor-pointer dark:bg-neutral-900 dark:border-ink-700',
                     TONE_HOVER_SHADOW.primary,
@@ -140,12 +150,27 @@ export function Checkbox({
         )}
       >
         {isActive && (
-          <span className={cn('absolute', ICON_INSET[size], disabled ? 'text-neutral-200 dark:text-ink-600' : activeIconColor)}>
+          <span
+            className={cn(
+              'absolute',
+              ICON_INSET[size],
+              disabled ? 'text-neutral-200 dark:text-ink-600' : activeIconColor,
+            )}
+          >
             {indeterminate ? <IndeterminateIcon /> : <CheckIcon />}
           </span>
         )}
       </span>
-      {name && <input type="checkbox" name={name} value={value} checked={checked} readOnly className="hidden" />}
+      {name && (
+        <input
+          type="checkbox"
+          name={name}
+          value={value}
+          checked={checked}
+          readOnly
+          className="hidden"
+        />
+      )}
     </span>
   )
 

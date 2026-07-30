@@ -12,12 +12,20 @@ describe('Message', () => {
   })
 
   it('renders delivery ticks only for outgoing messages', () => {
-    render(<Message side="out" status="read" data-testid="msg">Lida</Message>)
+    render(
+      <Message side="out" status="read" data-testid="msg">
+        Lida
+      </Message>,
+    )
     expect(screen.getByTestId('msg-tick')).toBeInTheDocument()
   })
 
   it('does not render ticks for incoming messages even with a status', () => {
-    render(<Message side="in" status="read" data-testid="msg">Recebida</Message>)
+    render(
+      <Message side="in" status="read" data-testid="msg">
+        Recebida
+      </Message>,
+    )
     expect(screen.queryByTestId('msg-tick')).not.toBeInTheDocument()
   })
 

@@ -70,18 +70,14 @@ describe('Button', () => {
   })
 
   it('renders with left icon when iconLeft prop is provided', () => {
-    render(
-      <Button iconLeft={<span>📍</span>}>With Icon</Button>
-    )
+    render(<Button iconLeft={<span>📍</span>}>With Icon</Button>)
     const button = screen.getByRole('button')
     expect(button).toBeInTheDocument()
     expect(screen.getByText('📍')).toBeInTheDocument()
   })
 
   it('renders with right icon when iconRight prop is provided', () => {
-    render(
-      <Button iconRight={<span>📍</span>}>With Icon</Button>
-    )
+    render(<Button iconRight={<span>📍</span>}>With Icon</Button>)
     const button = screen.getByRole('button')
     expect(button).toBeInTheDocument()
     expect(screen.getByText('📍')).toBeInTheDocument()
@@ -91,7 +87,7 @@ describe('Button', () => {
     render(
       <Button iconOnly={true}>
         <span>🔔</span>
-      </Button>
+      </Button>,
     )
     const button = screen.getByRole('button')
     expect(button).toBeInTheDocument()

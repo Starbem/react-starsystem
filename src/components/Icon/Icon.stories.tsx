@@ -16,8 +16,8 @@ const meta: Meta<typeof Icon> = {
         Material Symbols
       </a>{' '}
       (variante Rounded, sempre em espessura 200). O link acima mostra todos os nomes de ícone
-      disponíveis para uso — qualquer nome de lá funciona no componente <code>Icon</code>. Um
-      subset curado também pode ser explorado em <strong>Icons/Gallery</strong> no menu ao lado.
+      disponíveis para uso — qualquer nome de lá funciona no componente <code>Icon</code>. Um subset
+      curado também pode ser explorado em <strong>Icons/Gallery</strong> no menu ao lado.
     </>
   ),
   args: { name: 'home' },

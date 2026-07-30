@@ -60,7 +60,11 @@ export function FilterChip({
         </span>
       )}
       {dropdown && (
-        <Icon name="keyboard_arrow_down" size={18} className={cn('transition-transform', open && 'rotate-180')} />
+        <Icon
+          name="keyboard_arrow_down"
+          size={18}
+          className={cn('transition-transform', open && 'rotate-180')}
+        />
       )}
     </>
   )
@@ -78,7 +82,13 @@ export function FilterChip({
 
   if (!removable) {
     return (
-      <button type="button" aria-pressed={selected} disabled={disabled} className={selectButtonClassName} {...rest}>
+      <button
+        type="button"
+        aria-pressed={selected}
+        disabled={disabled}
+        className={selectButtonClassName}
+        {...rest}
+      >
         {content}
       </button>
     )
@@ -86,7 +96,13 @@ export function FilterChip({
 
   return (
     <span className={cn('inline-flex items-center gap-1', className)}>
-      <button type="button" aria-pressed={selected} disabled={disabled} className={selectButtonClassName} {...rest}>
+      <button
+        type="button"
+        aria-pressed={selected}
+        disabled={disabled}
+        className={selectButtonClassName}
+        {...rest}
+      >
         {content}
       </button>
       <button
@@ -110,7 +126,10 @@ export interface FilterOption {
   disabled?: boolean
 }
 
-export interface FilterBarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'> {
+export interface FilterBarProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'onChange' | 'defaultValue'
+> {
   options: FilterOption[]
   value?: string | string[] | null
   defaultValue?: string | string[] | null
@@ -141,7 +160,8 @@ export function FilterBar({
   const [internal, setInternal] = useState<string | string[] | null>(init)
   const sel = value !== undefined ? value : internal
 
-  const isOn = (id: string) => (effMode === 'single' ? sel === id : Array.isArray(sel) && sel.includes(id))
+  const isOn = (id: string) =>
+    effMode === 'single' ? sel === id : Array.isArray(sel) && sel.includes(id)
 
   const toggle = (id: string) => {
     let next: string | string[] | null
@@ -178,7 +198,9 @@ export function FilterBar({
           variant={isSeg ? 'outline' : variant}
           tone={tone}
           size={size}
-          className={isSeg ? 'rounded-none border-0 first:rounded-l-full last:rounded-r-full' : undefined}
+          className={
+            isSeg ? 'rounded-none border-0 first:rounded-l-full last:rounded-r-full' : undefined
+          }
           onClick={() => toggle(opt.id)}
         />
       ))}

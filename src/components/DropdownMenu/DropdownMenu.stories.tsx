@@ -60,8 +60,22 @@ export const WithLabelsAndBadges: Story = {
       items={[
         { type: 'label', label: 'Canais' },
         { label: 'Email', badge: <Badge size="sm">Ativo</Badge> },
-        { label: 'WhatsApp', badge: <Badge size="sm" variant="warning">Pendente</Badge> },
-        { label: 'Push', badge: <Badge size="sm" variant="error">Inativo</Badge> },
+        {
+          label: 'WhatsApp',
+          badge: (
+            <Badge size="sm" variant="warning">
+              Pendente
+            </Badge>
+          ),
+        },
+        {
+          label: 'Push',
+          badge: (
+            <Badge size="sm" variant="error">
+              Inativo
+            </Badge>
+          ),
+        },
       ]}
     />
   ),
@@ -76,8 +90,18 @@ function CheckboxDemo() {
       trigger={<Button variant="outline">Exibição</Button>}
       items={[
         { type: 'label', label: 'Colunas' },
-        { type: 'checkbox-item', label: 'Avatares', checked: showAvatars, onCheckedChange: setShowAvatars },
-        { type: 'checkbox-item', label: 'Status', checked: showStatus, onCheckedChange: setShowStatus },
+        {
+          type: 'checkbox-item',
+          label: 'Avatares',
+          checked: showAvatars,
+          onCheckedChange: setShowAvatars,
+        },
+        {
+          type: 'checkbox-item',
+          label: 'Status',
+          checked: showStatus,
+          onCheckedChange: setShowStatus,
+        },
       ]}
     />
   )

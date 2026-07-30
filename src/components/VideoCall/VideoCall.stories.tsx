@@ -11,7 +11,15 @@ type Story = StoryObj<typeof VideoCall>
 export const Live: Story = {
   render: () => (
     <div className="max-w-[480px]">
-      <VideoCall status="live" name="Dra. Luciana Martins" specialty="Dermatologia" timer="05:21" onEnd={() => {}} onChat={() => {}} onMore={() => {}} />
+      <VideoCall
+        status="live"
+        name="Dra. Luciana Martins"
+        specialty="Dermatologia"
+        timer="05:21"
+        onEnd={() => {}}
+        onChat={() => {}}
+        onMore={() => {}}
+      />
     </div>
   ),
 }
@@ -27,7 +35,12 @@ export const Grid: Story = {
 export const Connecting: Story = {
   render: () => (
     <div className="max-w-[480px]">
-      <VideoCall status="connecting" name="Dra. Luciana Martins" specialty="Dermatologia" onEnd={() => {}} />
+      <VideoCall
+        status="connecting"
+        name="Dra. Luciana Martins"
+        specialty="Dermatologia"
+        onEnd={() => {}}
+      />
     </div>
   ),
 }

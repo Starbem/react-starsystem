@@ -10,7 +10,10 @@ type Story = StoryObj<typeof Chart>
 
 export const LineChartDefault: Story = {
   render: () => (
-    <LineChart data={[12, 18, 15, 22, 19, 26, 24]} labels={['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom']} />
+    <LineChart
+      data={[12, 18, 15, 22, 19, 26, 24]}
+      labels={['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom']}
+    />
   ),
 }
 
@@ -47,8 +50,20 @@ export const UnifiedEntry: Story = {
   render: () => (
     <div className="flex flex-col gap-6">
       <Chart type="line" data={[12, 18, 15, 22]} />
-      <Chart type="bar" data={[{ label: 'Jan', value: 8 }, { label: 'Fev', value: 14 }]} />
-      <Chart type="donut" segments={[{ label: 'A', value: 60 }, { label: 'B', value: 40 }]} />
+      <Chart
+        type="bar"
+        data={[
+          { label: 'Jan', value: 8 },
+          { label: 'Fev', value: 14 },
+        ]}
+      />
+      <Chart
+        type="donut"
+        segments={[
+          { label: 'A', value: 60 },
+          { label: 'B', value: 40 },
+        ]}
+      />
     </div>
   ),
 }

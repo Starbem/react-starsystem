@@ -63,7 +63,9 @@ export const Sticky: Story = {
       <TopBar sticky bordered start={<Logo />} center="Role a página" end={<Avatar />} />
       <div className="p-[16px] flex flex-col gap-[12px] text-[14px]">
         {Array.from({ length: 20 }, (_, index) => (
-          <p key={index}>Linha de conteúdo {index + 1} para demonstrar o scroll shadow do TopBar sticky.</p>
+          <p key={index}>
+            Linha de conteúdo {index + 1} para demonstrar o scroll shadow do TopBar sticky.
+          </p>
         ))}
       </div>
     </div>

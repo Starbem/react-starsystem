@@ -10,9 +10,21 @@ export default meta
 type Story = StoryObj<typeof Tabs>
 
 const ITEMS = [
-  { value: 'overview', label: 'Visão geral', content: <p className="text-[14px]">Conteúdo de visão geral.</p> },
-  { value: 'activity', label: 'Atividade', content: <p className="text-[14px]">Conteúdo de atividade.</p> },
-  { value: 'settings', label: 'Configurações', content: <p className="text-[14px]">Conteúdo de configurações.</p> },
+  {
+    value: 'overview',
+    label: 'Visão geral',
+    content: <p className="text-[14px]">Conteúdo de visão geral.</p>,
+  },
+  {
+    value: 'activity',
+    label: 'Atividade',
+    content: <p className="text-[14px]">Conteúdo de atividade.</p>,
+  },
+  {
+    value: 'settings',
+    label: 'Configurações',
+    content: <p className="text-[14px]">Conteúdo de configurações.</p>,
+  },
 ]
 
 export const Line: Story = {

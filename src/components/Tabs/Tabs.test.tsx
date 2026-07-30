@@ -57,7 +57,14 @@ describe('Tabs', () => {
 
   it('does not switch to a disabled tab', async () => {
     const user = userEvent.setup()
-    render(<Tabs items={[...ITEMS.slice(0, 2), { value: 'd', label: 'Aba D', content: <p>D</p>, disabled: true }]} />)
+    render(
+      <Tabs
+        items={[
+          ...ITEMS.slice(0, 2),
+          { value: 'd', label: 'Aba D', content: <p>D</p>, disabled: true },
+        ]}
+      />,
+    )
     await user.click(screen.getByRole('tab', { name: 'Aba D' }))
     expect(screen.queryByText('D')).not.toBeInTheDocument()
   })
@@ -106,7 +113,13 @@ describe('Tabs', () => {
     render(
       <Tabs
         items={[
-          { value: 'a', label: 'Inbox', icon: <span data-testid="tab-icon" />, count: 3, content: 'x' },
+          {
+            value: 'a',
+            label: 'Inbox',
+            icon: <span data-testid="tab-icon" />,
+            count: 3,
+            content: 'x',
+          },
         ]}
       />,
     )
@@ -133,9 +146,7 @@ describe('Tabs', () => {
   })
 
   it('renders enclosed variant', () => {
-    render(
-      <Tabs variant="enclosed" items={[{ value: 'a', label: 'A', content: 'x' }]} />,
-    )
+    render(<Tabs variant="enclosed" items={[{ value: 'a', label: 'A', content: 'x' }]} />)
     expect(screen.getByRole('tab')).toHaveClass('rounded-full')
   })
 

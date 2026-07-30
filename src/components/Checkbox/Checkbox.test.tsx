@@ -139,7 +139,9 @@ describe('Checkbox', () => {
 
   it('renders card variant wrapper in error color when unchecked and errored', () => {
     render(<Checkbox variant="card" error label="Errored card" onChange={() => {}} />)
-    expect(screen.getByText('Errored card').closest('[data-checkbox-card]')).toHaveClass('border-error-base')
+    expect(screen.getByText('Errored card').closest('[data-checkbox-card]')).toHaveClass(
+      'border-error-base',
+    )
   })
 })
 
