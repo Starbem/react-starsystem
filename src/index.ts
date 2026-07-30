@@ -123,6 +123,9 @@ export type { VideoCallProps } from './components/VideoCall'
 export { Progress, ProgressCircle } from './components/Progress'
 export type { ProgressProps, ProgressCircleProps, ProgressTone } from './components/Progress'
 
+export { FilterBar, FilterChip } from './components/FilterBar'
+export type { FilterBarProps, FilterChipProps, FilterOption, FilterTone } from './components/FilterBar'
+
 // Design tokens
 export { colors } from './tokens/colors'
 export type { Colors } from './tokens/colors'
