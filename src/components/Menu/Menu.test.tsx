@@ -153,6 +153,21 @@ describe('Menu — drawer', () => {
     expect(screen.getByRole('button', { name: 'Fechar menu', hidden: true })).toBeInTheDocument()
   })
 
+  it('marks the closed panel inert so its content cannot receive focus', () => {
+    render(<Menu present="drawer" items={ITEMS} value="home" />)
+    const navs = screen.getAllByRole('navigation', { hidden: true })
+    const drawerNav = navs.find((n) => n.getAttribute('aria-label') === 'Navegação')
+    expect(drawerNav).toHaveAttribute('inert')
+  })
+
+  it('removes inert once the panel is open', async () => {
+    render(<Menu present="drawer" items={ITEMS} value="home" />)
+    await userEvent.click(screen.getByRole('button', { name: 'Abrir menu' }))
+    const navs = screen.getAllByRole('navigation', { hidden: true })
+    const drawerNav = navs.find((n) => n.getAttribute('aria-label') === 'Navegação')
+    expect(drawerNav).not.toHaveAttribute('inert')
+  })
+
   it('has no a11y violations when open', async () => {
     const { container } = render(<Menu present="drawer" items={ITEMS} value="home" />)
     await userEvent.click(screen.getByRole('button', { name: 'Abrir menu' }))

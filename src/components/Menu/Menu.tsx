@@ -236,6 +236,7 @@ export function Menu({
         <nav
           aria-label="Navegação"
           aria-hidden={!open}
+          {...(!open ? { inert: true } : {})}
           className={cn(
             'fixed inset-y-0 left-0 z-50 flex w-[260px] flex-col bg-white transition-transform duration-200 dark:bg-ink-900',
             open ? 'translate-x-0' : '-translate-x-full',
