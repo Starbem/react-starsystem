@@ -162,4 +162,78 @@ describe('Select', () => {
     // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
     expect(await axe(container)).toHaveNoViolations()
   })
+
+  it('applies outline variant classes by default', () => {
+    render(<Select options={OPTIONS} />)
+    expect(screen.getByRole('combobox')).toHaveClass('border-neutral-300')
+  })
+
+  it('applies filled variant classes', () => {
+    render(<Select options={OPTIONS} variant="filled" />)
+    expect(screen.getByRole('combobox')).toHaveClass('bg-ink-100')
+  })
+
+  it('applies underline variant classes', () => {
+    render(<Select options={OPTIONS} variant="underline" />)
+    expect(screen.getByRole('combobox')).toHaveClass('border-b')
+  })
+
+  it('applies sm size classes to the selected/placeholder text', () => {
+    render(<Select options={OPTIONS} size="sm" />)
+    expect(screen.getByText('Select...')).toHaveClass('text-[14px]')
+  })
+
+  it('applies lg size classes to the selected/placeholder text', () => {
+    render(<Select options={OPTIONS} size="lg" />)
+    expect(screen.getByText('Select...')).toHaveClass('text-[17px]')
+  })
+
+  it('trigger no longer carries the old fixed h-[56px] height class', () => {
+    render(<Select options={OPTIONS} />)
+    expect(screen.getByRole('combobox')).not.toHaveClass('h-[56px]')
+  })
+
+  it('trigger background is white, not the old gray', () => {
+    render(<Select options={OPTIONS} />)
+    expect(screen.getByRole('combobox')).toHaveClass('bg-white')
+    expect(screen.getByRole('combobox')).not.toHaveClass('bg-neutral-25')
+  })
+
+  it('popover menu background is white, not the old gray', async () => {
+    render(<Select options={OPTIONS} />)
+    await userEvent.click(screen.getByRole('combobox'))
+    const listbox = screen.getByRole('listbox')
+    expect(listbox).toHaveClass('bg-white')
+    expect(listbox).not.toHaveClass('bg-neutral-25')
+  })
+
+  it('renders success text when provided', () => {
+    render(<Select options={OPTIONS} id="sel-ok" success="Great choice" />)
+    expect(screen.getByText('Great choice')).toBeInTheDocument()
+  })
+
+  it('error overrides success when both are provided', () => {
+    render(<Select options={OPTIONS} success="Success text" error="Error text" />)
+    expect(screen.getByText('Error text')).toBeInTheDocument()
+    expect(screen.queryByText('Success text')).not.toBeInTheDocument()
+  })
+
+  it('applies success border classes to the trigger', () => {
+    render(<Select options={OPTIONS} success="ok" />)
+    expect(screen.getByRole('combobox')).toHaveClass('border-success-base')
+  })
+
+  it('renders a success icon in the hint row', () => {
+    render(<Select options={OPTIONS} id="sel-ok-icon" success="Great choice" />)
+    const hint = screen.getByText('Great choice').closest('p')
+    expect(hint?.querySelector('.material-symbols-rounded')).toHaveTextContent('check_circle')
+  })
+
+  it('has no a11y violations with success state', async () => {
+    const { container } = render(
+      <Select id="sel-a11y-success" label="Team member" success="Great choice" options={OPTIONS} />,
+    )
+    // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
+    expect(await axe(container)).toHaveNoViolations()
+  })
 })
