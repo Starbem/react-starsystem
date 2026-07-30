@@ -57,6 +57,12 @@ describe('FilterChip', () => {
     expect(screen.getByRole('button', { name: 'Remover filtro' })).toBeDisabled()
   })
 
+  it('disables both the select button and the remove button when disabled + removable', () => {
+    render(<FilterChip label="Dermatologia" removable disabled onRemove={() => {}} />)
+    expect(screen.getByRole('button', { name: 'Dermatologia' })).toBeDisabled()
+    expect(screen.getByRole('button', { name: 'Remover filtro' })).toBeDisabled()
+  })
+
   it('has no a11y violations', async () => {
     const { container } = render(<FilterChip label="Online" selected />)
     // @ts-expect-error -- axe() is not typed in the default vitest-axe module
