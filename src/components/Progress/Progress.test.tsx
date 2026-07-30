@@ -51,6 +51,12 @@ describe('Progress', () => {
     const { container: large } = render(<Progress value={50} size="lg" />)
     expect(large.querySelector('[role="progressbar"]')).toHaveClass('h-[12px]')
   })
+
+  it('applies a dark-mode track background class', () => {
+    const { container } = render(<Progress value={50} />)
+    const track = container.querySelector('[role="progressbar"]')
+    expect(track).toHaveClass('dark:bg-ink-700')
+  })
 })
 
 describe('ProgressCircle', () => {

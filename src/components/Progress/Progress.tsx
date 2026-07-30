@@ -48,7 +48,7 @@ export function Progress({
   return (
     <div className={cn('w-full', className)} {...rest}>
       <div
-        className={cn('w-full overflow-hidden rounded-full bg-ink-100', SIZE_TRACK[size])}
+        className={cn('w-full overflow-hidden rounded-full bg-ink-100 dark:bg-ink-700', SIZE_TRACK[size])}
         role="progressbar"
         aria-valuenow={indeterminate ? undefined : value}
         aria-valuemax={max}
