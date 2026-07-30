@@ -69,11 +69,40 @@ export const WithError: Story = {
   },
 }
 
+export const WithSuccess: Story = {
+  args: {
+    id: 'member-ok',
+    label: 'Team member',
+    success: 'Great choice.',
+    value: 'olivia',
+  },
+}
+
 export const Disabled: Story = {
   args: {
     label: 'Team member',
     disabled: true,
   },
+}
+
+export const OutlineVariant: Story = {
+  args: { id: 'member-outline', label: 'Team member', variant: 'outline' },
+}
+
+export const FilledVariant: Story = {
+  args: { id: 'member-filled', label: 'Team member', variant: 'filled' },
+}
+
+export const UnderlineVariant: Story = {
+  args: { id: 'member-underline', label: 'Team member', variant: 'underline' },
+}
+
+export const SmallSize: Story = {
+  args: { id: 'member-sm', label: 'Team member', size: 'sm' },
+}
+
+export const LargeSize: Story = {
+  args: { id: 'member-lg', label: 'Team member', size: 'lg' },
 }
 
 export const ManyOptions: Story = {
@@ -117,8 +146,23 @@ export const AllStates: Story = {
         </div>
 
         <div>
+          <h3 className="text-sm font-semibold mb-2">With Success</h3>
+          <Select {...args} id="all-success" label="Team member" success="Great choice." value="olivia" />
+        </div>
+
+        <div>
           <h3 className="text-sm font-semibold mb-2">Disabled</h3>
           <Select {...args} label="Team member" disabled />
+        </div>
+
+        <div>
+          <h3 className="text-sm font-semibold mb-2">Filled</h3>
+          <Select {...args} id="all-filled" label="Team member" variant="filled" />
+        </div>
+
+        <div>
+          <h3 className="text-sm font-semibold mb-2">Underline</h3>
+          <Select {...args} id="all-underline" label="Team member" variant="underline" />
         </div>
       </div>
     )
