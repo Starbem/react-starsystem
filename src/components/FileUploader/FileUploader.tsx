@@ -2,6 +2,7 @@ import { useRef, useState, type HTMLAttributes } from 'react'
 import { cn } from '../../utils/cn'
 import { Button } from '../Button'
 import { Icon } from '../Icon'
+import { Progress } from '../Progress'
 
 function fmtSize(bytes?: number) {
   if (bytes == null) return ''
@@ -68,8 +69,8 @@ export function FileItem({ name, size, progress, done, error, thumb, onRemove }:
           )}
         </p>
         {progress != null && !done && !error && (
-          <div className="mt-1 h-[4px] w-full overflow-hidden rounded-full bg-ink-100 dark:bg-ink-700">
-            <div className="h-full rounded-full bg-primary-base" style={{ width: `${progress}%` }} />
+          <div className="mt-1">
+            <Progress value={progress} size="sm" label={`Enviando ${name}`} />
           </div>
         )}
       </div>
