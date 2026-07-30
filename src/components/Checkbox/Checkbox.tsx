@@ -47,6 +47,15 @@ const TONE_ICON_COLOR: Record<CheckboxTone, string> = {
   accent: 'text-terciary-base',
 }
 
+const TONE_HOVER_SHADOW: Record<CheckboxTone, string> = {
+  primary: 'hover:shadow-[0px_0px_12px_0px_rgba(255,81,0,0.35)] dark:hover:shadow-[0px_0px_12px_0px_rgba(255,81,0,0.5)]',
+  success: 'hover:shadow-[0px_0px_12px_0px_rgba(31,186,93,0.35)] dark:hover:shadow-[0px_0px_12px_0px_rgba(31,186,93,0.5)]',
+  accent: 'hover:shadow-[0px_0px_12px_0px_rgba(237,46,152,0.35)] dark:hover:shadow-[0px_0px_12px_0px_rgba(237,46,152,0.5)]',
+}
+
+const ERROR_HOVER_SHADOW =
+  'hover:shadow-[0px_0px_12px_0px_rgba(255,66,66,0.35)] dark:hover:shadow-[0px_0px_12px_0px_rgba(255,66,66,0.5)]'
+
 function CheckIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" className="size-full">
@@ -121,10 +130,13 @@ export function Checkbox({
           disabled
             ? 'bg-neutral-100 border-neutral-200 cursor-not-allowed dark:bg-ink-700 dark:border-neutral-800'
             : isActive
-              ? cn('bg-neutral-25 hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer dark:bg-neutral-900', activeBorder)
+              ? cn('bg-neutral-25 cursor-pointer dark:bg-neutral-900', activeBorder, error ? ERROR_HOVER_SHADOW : TONE_HOVER_SHADOW[tone])
               : error
-                ? 'bg-neutral-25 border-error-base hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer dark:bg-neutral-900'
-                : 'bg-neutral-25 border-neutral-300 hover:border-primary-base hover:shadow-[0px_0px_12px_0px_rgba(255,169,71,0.4)] cursor-pointer dark:bg-neutral-900 dark:border-ink-700',
+                ? cn('bg-neutral-25 border-error-base cursor-pointer dark:bg-neutral-900', ERROR_HOVER_SHADOW)
+                : cn(
+                    'bg-neutral-25 border-neutral-300 hover:border-primary-base cursor-pointer dark:bg-neutral-900 dark:border-ink-700',
+                    TONE_HOVER_SHADOW.primary,
+                  ),
         )}
       >
         {isActive && (

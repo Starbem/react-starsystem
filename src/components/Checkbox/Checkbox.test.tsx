@@ -28,6 +28,24 @@ describe('Checkbox', () => {
     expect(handleChange).toHaveBeenCalledWith(true)
   })
 
+  it('uses a tone-matched hover shadow for the success tone', () => {
+    const { container } = render(<Checkbox checked tone="success" />)
+    const box = container.querySelector('[role="checkbox"]')
+    expect(box?.className).toMatch(/hover:shadow-\[0px_0px_12px_0px_rgba\(31,186,93/)
+  })
+
+  it('uses a tone-matched hover shadow for the accent tone', () => {
+    const { container } = render(<Checkbox checked tone="accent" />)
+    const box = container.querySelector('[role="checkbox"]')
+    expect(box?.className).toMatch(/hover:shadow-\[0px_0px_12px_0px_rgba\(237,46,152/)
+  })
+
+  it('uses the primary-orange hover shadow by default', () => {
+    const { container } = render(<Checkbox checked />)
+    const box = container.querySelector('[role="checkbox"]')
+    expect(box?.className).toMatch(/hover:shadow-\[0px_0px_12px_0px_rgba\(255,81,0/)
+  })
+
   it('calls onChange when clicking the label text', async () => {
     const handleChange = vi.fn()
     render(<Checkbox label="Accept terms" checked={false} onChange={handleChange} />)
