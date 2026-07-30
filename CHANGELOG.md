@@ -1,5 +1,11 @@
 # @starbemtech/react-starsystem
 
+## 1.0.1
+
+### Patch Changes
+
+- 4c0dd73: Remove the `Chart` component family (`Chart`, `Sparkline`, `LineChart`, `BarChart`, `DonutChart`) and their types (`ChartProps`, `SparklineProps`, `LineChartProps`, `BarChartProps`, `BarDatum`, `DonutChartProps`, `DonutSegment`). Charting is out of scope for this design system — consuming apps should use a dedicated charting library instead.
+
 ## 1.0.0
 
 ### Major Changes

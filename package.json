@@ -1,6 +1,6 @@
 {
   "name": "@starbemtech/react-starsystem",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "packageManager": "pnpm@11.13.1",
   "description": "Starbem Star System — React component library",
   "license": "MIT",
