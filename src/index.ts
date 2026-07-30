@@ -30,6 +30,9 @@ export type { FormFieldProps } from './components/FormField'
 export { Badge } from './components/Badge'
 export type { BadgeProps, BadgeVariant } from './components/Badge'
 
+export { Tag } from './components/Tag'
+export type { TagProps } from './components/Tag'
+
 export { Alert } from './components/Alert'
 export type { AlertProps } from './components/Alert'
 
