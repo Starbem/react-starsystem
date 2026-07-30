@@ -137,4 +137,33 @@ describe('Input', () => {
     // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
     expect(await axe(container)).toHaveNoViolations()
   })
+
+  it('renders success text when provided', () => {
+    render(<Input id="email-ok" success="Email available" />)
+    expect(screen.getByText('Email available')).toBeInTheDocument()
+  })
+
+  it('error overrides success when both are provided', () => {
+    render(<Input success="Success text" error="Error text" />)
+    expect(screen.getByText('Error text')).toBeInTheDocument()
+    expect(screen.queryByText('Success text')).not.toBeInTheDocument()
+  })
+
+  it('renders a success icon in the hint row', () => {
+    render(<Input id="email-ok" success="Email available" />)
+    const hint = screen.getByText('Email available').closest('p')
+    expect(hint?.querySelector('.material-symbols-rounded')).toHaveTextContent('check_circle')
+  })
+
+  it('renders an error icon in the hint row', () => {
+    render(<Input id="email-bad" error="Invalid email" />)
+    const hint = screen.getByText('Invalid email').closest('p')
+    expect(hint?.querySelector('.material-symbols-rounded')).toHaveTextContent('error')
+  })
+
+  it('applies success border classes to the field box', () => {
+    render(<Input success="ok" placeholder="x" />)
+    const box = screen.getByPlaceholderText('x').closest('div')?.parentElement
+    expect(box).toHaveClass('border-success-base')
+  })
 })

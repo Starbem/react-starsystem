@@ -1,5 +1,6 @@
 import { type InputHTMLAttributes, type ReactNode } from 'react'
 import { cn } from '../../utils/cn'
+import { Icon } from '../Icon'
 
 export type InputVariant = 'outline' | 'filled' | 'underline'
 export type InputSize = 'sm' | 'md' | 'lg'
@@ -8,6 +9,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   label?: string
   hint?: string
   error?: string
+  success?: string
   variant?: InputVariant
   size?: InputSize
   leadingIcon?: ReactNode
@@ -41,7 +43,7 @@ const SIZE_RADIUS_CLASSES: Record<InputSize, string> = {
 function getFieldColorClasses(
   variant: InputVariant,
   disabled: boolean,
-  state: 'error' | null,
+  state: 'error' | 'success' | null,
 ) {
   if (disabled) {
     return 'border bg-neutral-50 border-neutral-300 cursor-not-allowed dark:bg-neutral-900 dark:border-ink-700'
@@ -53,6 +55,7 @@ function getFieldColorClasses(
       'border-b-neutral-300 hover:border-b-neutral-400 dark:border-b-ink-700 dark:hover:border-b-ink-600',
       'focus-within:border-b-primary-base',
       state === 'error' && 'border-b-error-base focus-within:border-b-error-base',
+      state === 'success' && 'border-b-success-base focus-within:border-b-success-base',
     )
   }
 
@@ -62,6 +65,8 @@ function getFieldColorClasses(
       'focus-within:bg-neutral-25 focus-within:border-primary-base focus-within:shadow-[0_0_0_4px_rgba(255,81,0,0.2)] dark:focus-within:bg-neutral-900',
       state === 'error' &&
         'border-error-base focus-within:border-error-base focus-within:shadow-[0_0_0_4px_rgba(255,66,66,0.2)]',
+      state === 'success' &&
+        'border-success-base focus-within:border-success-base focus-within:shadow-[0_0_0_4px_rgba(31,186,93,0.2)]',
     )
   }
 
@@ -70,6 +75,8 @@ function getFieldColorClasses(
     'focus-within:border-primary-base focus-within:shadow-[0_0_0_4px_rgba(255,81,0,0.2)]',
     state === 'error' &&
       'border-error-base focus-within:border-error-base focus-within:shadow-[0_0_0_4px_rgba(255,66,66,0.2)]',
+    state === 'success' &&
+      'border-success-base focus-within:border-success-base focus-within:shadow-[0_0_0_4px_rgba(31,186,93,0.2)]',
   )
 }
 
@@ -77,6 +84,7 @@ export function Input({
   label,
   hint,
   error,
+  success,
   variant = 'outline',
   size = 'md',
   leadingIcon,
@@ -87,8 +95,9 @@ export function Input({
   ...props
 }: InputProps) {
   const isError = Boolean(error)
-  const state: 'error' | null = isError ? 'error' : null
-  const hintText = error ?? hint
+  const isSuccess = !isError && Boolean(success)
+  const state: 'error' | 'success' | null = isError ? 'error' : isSuccess ? 'success' : null
+  const hintText = error ?? success ?? hint
   const hintId = hintText && id ? `${id}-hint` : undefined
   const isUnderlineShape = variant === 'underline' && !disabled
 
@@ -146,10 +155,16 @@ export function Input({
         <p
           id={hintId}
           className={cn(
-            "font-['Funnel_Display'] text-[14px] leading-[20px] tracking-[0.1px] w-full",
-            isError ? 'text-error-base' : 'text-neutral-500 dark:text-neutral-400',
+            "font-['Funnel_Display'] text-[14px] leading-[20px] tracking-[0.1px] w-full flex items-center gap-[4px]",
+            isError
+              ? 'text-error-base'
+              : isSuccess
+                ? 'text-success-dark dark:text-success-light'
+                : 'text-neutral-500 dark:text-neutral-400',
           )}
         >
+          {isError && <Icon name="error" size={15} />}
+          {isSuccess && <Icon name="check_circle" size={15} />}
           {hintText}
         </p>
       )}
