@@ -42,9 +42,14 @@ const SIZE_RADIUS_CLASSES: Record<InputSize, string> = {
   lg: 'rounded-lg',
 }
 
-function InputAffix({ children }: { children: ReactNode }) {
+function InputAffix({ children, side }: { children: ReactNode; side: 'prefix' | 'suffix' }) {
   return (
-    <span className="shrink-0 flex items-center px-[12px] bg-neutral-50 text-neutral-600 text-[14px] font-medium border-neutral-200 dark:bg-ink-800 dark:text-ink-300 dark:border-ink-700 select-none">
+    <span
+      className={cn(
+        'shrink-0 flex items-center px-[12px] bg-neutral-50 text-neutral-600 text-[14px] font-medium border-neutral-200 dark:bg-ink-800 dark:text-ink-300 dark:border-ink-700 select-none',
+        side === 'prefix' ? 'border-r' : 'border-l',
+      )}
+    >
       {children}
     </span>
   )
@@ -130,7 +135,7 @@ export function Input({
           getFieldColorClasses(variant, Boolean(disabled), state),
         )}
       >
-        {prefix && <InputAffix>{prefix}</InputAffix>}
+        {prefix && <InputAffix side="prefix">{prefix}</InputAffix>}
         <div
           className={cn(
             'flex flex-1 min-w-0 items-center gap-[8px]',
@@ -163,7 +168,7 @@ export function Input({
             </span>
           )}
         </div>
-        {suffix && <InputAffix>{suffix}</InputAffix>}
+        {suffix && <InputAffix side="suffix">{suffix}</InputAffix>}
       </div>
       {hintText && (
         <p

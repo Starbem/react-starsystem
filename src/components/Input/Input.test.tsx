@@ -183,4 +183,16 @@ describe('Input', () => {
     expect(screen.getByText('BRL')).toBeInTheDocument()
     expect(screen.getByPlaceholderText('0,00')).toBeInTheDocument()
   })
+
+  it('prefix affix has border-r divider', () => {
+    render(<Input prefix="R$" placeholder="0,00" />)
+    const prefixElement = screen.getByText('R$')
+    expect(prefixElement).toHaveClass('border-r')
+  })
+
+  it('suffix affix has border-l divider', () => {
+    render(<Input suffix="BRL" placeholder="0,00" />)
+    const suffixElement = screen.getByText('BRL')
+    expect(suffixElement).toHaveClass('border-l')
+  })
 })
