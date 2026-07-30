@@ -241,30 +241,26 @@ export function Menu({
             open ? 'translate-x-0' : '-translate-x-full',
           )}
         >
-          {open && (
-            <>
-              <div className="flex items-center justify-between px-2 py-2">
-                <BrandLockup brand={brand} />
-                <button
-                  type="button"
-                  aria-label="Fechar menu"
-                  onClick={() => setOpen(false)}
-                  className="inline-flex items-center justify-center rounded-lg p-2 text-ink-600 hover:bg-ink-100 dark:text-ink-300 dark:hover:bg-ink-700"
-                >
-                  <Icon name="close" />
-                </button>
-              </div>
-              <SidebarBody
-                groups={groups}
-                layout="full"
-                value={value}
-                onSelect={select}
-                brand={false}
-                user={user}
-                footerItems={footerItems}
-              />
-            </>
-          )}
+          <div className="flex items-center justify-between px-2 py-2">
+            <BrandLockup brand={brand} />
+            <button
+              type="button"
+              aria-label="Fechar menu"
+              onClick={() => setOpen(false)}
+              className="inline-flex items-center justify-center rounded-lg p-2 text-ink-600 hover:bg-ink-100 dark:text-ink-300 dark:hover:bg-ink-700"
+            >
+              <Icon name="close" />
+            </button>
+          </div>
+          <SidebarBody
+            groups={groups}
+            layout="full"
+            value={value}
+            onSelect={select}
+            brand={false}
+            user={user}
+            footerItems={footerItems}
+          />
         </nav>
       </div>
     )

@@ -110,7 +110,8 @@ describe('Menu — drawer', () => {
 
   it('shows the active item label (or title) in the top bar', () => {
     render(<Menu present="drawer" items={ITEMS} value="agenda" />)
-    expect(screen.getByText('Consultas')).toBeInTheDocument()
+    // Look specifically in the header for the active item label (the drawer nav also renders all items now)
+    expect(screen.getByRole('banner').textContent).toContain('Consultas')
   })
 
   it('falls back to the title prop when nothing is active', () => {
@@ -144,6 +145,12 @@ describe('Menu — drawer', () => {
     const navs = screen.getAllByRole('navigation', { hidden: true })
     const drawerNav = navs.find((n) => n.getAttribute('aria-label') === 'Navegação')
     expect(drawerNav).toHaveAttribute('aria-hidden', 'true')
+  })
+
+  it('keeps the panel content in the DOM while closed (so the close animation has something to slide)', () => {
+    render(<Menu present="drawer" items={ITEMS} value="home" />)
+    // The close button is in the DOM but hidden (aria-hidden), so we must explicitly search for hidden elements
+    expect(screen.getByRole('button', { name: 'Fechar menu', hidden: true })).toBeInTheDocument()
   })
 
   it('has no a11y violations when open', async () => {
