@@ -7,20 +7,22 @@ import {
   Drawer,
   DropdownMenu,
   Icon,
+  Menu,
   Sidebar,
   TopBar,
   ToastProvider,
   type DropdownMenuEntry,
+  type MenuItem,
   type NavItemConfig,
 } from '@starbemtech/react-starsystem'
 import { useLocalStorageState } from '../hooks/useLocalStorageState'
 import { useTheme } from '../hooks/useTheme'
 
-const ROUTES: Array<{ label: string; href: string; icon: string }> = [
-  { label: 'Visão geral', href: '/', icon: 'dashboard' },
-  { label: 'Colaboradores', href: '/employees', icon: 'group' },
-  { label: 'Benefícios', href: '/benefits', icon: 'favorite' },
-  { label: 'Configurações', href: '/settings', icon: 'settings' },
+const ROUTES: Array<{ id: string; label: string; href: string; icon: string }> = [
+  { id: 'overview', label: 'Visão geral', href: '/', icon: 'dashboard' },
+  { id: 'employees', label: 'Colaboradores', href: '/employees', icon: 'group' },
+  { id: 'benefits', label: 'Benefícios', href: '/benefits', icon: 'favorite' },
+  { id: 'settings', label: 'Configurações', href: '/settings', icon: 'settings' },
 ]
 
 function useNavItems(): NavItemConfig[] {
@@ -32,6 +34,22 @@ function useNavItems(): NavItemConfig[] {
     onClick: () => navigate(route.href),
     icon: <Icon name={route.icon} size={20} />,
   }))
+}
+
+function useMenuNav(): { items: MenuItem[]; activeId: string; onChange: (id: string) => void } {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const items: MenuItem[] = ROUTES.map((route) => ({
+    id: route.id,
+    label: route.label,
+    icon: route.icon,
+  }))
+  const active = ROUTES.find((route) => route.href === location.pathname)
+  const onChange = (id: string) => {
+    const route = ROUTES.find((r) => r.id === id)
+    if (route) navigate(route.href)
+  }
+  return { items, activeId: active?.id ?? ROUTES[0]!.id, onChange }
 }
 
 function ThemeToggleButton() {
@@ -60,31 +78,40 @@ function ProfileMenu() {
 }
 
 export function DashboardLayout() {
-  const [collapsed, setCollapsed] = useLocalStorageState('starsystem-example-sidebar-collapsed', false)
+  const [collapsed, setCollapsed] = useLocalStorageState(
+    'starsystem-example-sidebar-collapsed',
+    false,
+  )
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const navItems = useNavItems()
+  const menuNav = useMenuNav()
 
   return (
     <>
       <ToastProvider />
       <div className="shell">
         <div className="shell__sidebar">
-          <Sidebar
-            items={navItems}
-            collapsed={collapsed}
-            header={
+          <Menu
+            present={collapsed ? 'rail' : 'sidebar'}
+            items={menuNav.items}
+            value={menuNav.activeId}
+            onChange={menuNav.onChange}
+            brand={
               <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <Icon name="star" fill size={20} />
                 {!collapsed && <strong>Star System</strong>}
               </span>
             }
-            footer={
-              <Button variant="ghost" size="sm" onClick={() => setCollapsed(!collapsed)}>
-                <Icon name={collapsed ? 'chevron_right' : 'chevron_left'} size={18} />
-                {!collapsed && 'Recolher'}
-              </Button>
-            }
           />
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setCollapsed(!collapsed)}
+            className="shell__collapse-toggle"
+          >
+            <Icon name={collapsed ? 'chevron_right' : 'chevron_left'} size={18} />
+            {!collapsed && 'Recolher'}
+          </Button>
         </div>
 
         <Drawer

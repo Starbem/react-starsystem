@@ -10,12 +10,7 @@ body,
 }
 
 body {
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: #fff;
   color: #101828;
 }
@@ -33,7 +28,18 @@ html.dark body {
 }
 
 .shell__sidebar {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.shell__sidebar > :first-child {
+  flex: 1;
+  min-height: 0;
+}
+
+.shell__collapse-toggle {
+  margin: 8px;
 }
 
 @media (max-width: 767px) {
