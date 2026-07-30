@@ -68,8 +68,18 @@ describe('ProgressCircle', () => {
     expect(screen.getByRole('progressbar')).not.toHaveAttribute('aria-valuenow')
   })
 
+  it('sets aria-label from the label prop', () => {
+    render(<ProgressCircle value={72} label="Progresso do exame" />)
+    expect(screen.getByRole('progressbar')).toHaveAttribute('aria-label', 'Progresso do exame')
+  })
+
+  it('has no aria-label when label is not provided', () => {
+    render(<ProgressCircle value={72} />)
+    expect(screen.getByRole('progressbar')).not.toHaveAttribute('aria-label')
+  })
+
   it('has no a11y violations', async () => {
-    const { container } = render(<ProgressCircle value={30} tone="warning" aria-label="Processing" />)
+    const { container } = render(<ProgressCircle value={30} tone="warning" label="Processing" />)
     // @ts-expect-error -- axe() is not typed in the default vitest-axe module
     expect(await axe(container)).toHaveNoViolations()
   })
