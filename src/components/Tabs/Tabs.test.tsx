@@ -114,6 +114,24 @@ describe('Tabs', () => {
     expect(screen.getByText('3')).toBeInTheDocument()
   })
 
+  it('renders a heterogeneous mix of plain, icon+label, and icon+label+count tabs together', () => {
+    render(
+      <Tabs
+        items={[
+          { value: 'plain', label: 'Plain' },
+          { value: 'iconlabel', label: 'Icon+Label', icon: <span data-testid="icon-1" /> },
+          { value: 'full', label: 'Full', icon: <span data-testid="icon-2" />, count: 5 },
+        ]}
+      />,
+    )
+    expect(screen.getByText('Plain')).toBeInTheDocument()
+    expect(screen.getByText('Icon+Label')).toBeInTheDocument()
+    expect(screen.getByTestId('icon-1')).toBeInTheDocument()
+    expect(screen.getByText('Full')).toBeInTheDocument()
+    expect(screen.getByTestId('icon-2')).toBeInTheDocument()
+    expect(screen.getByText('5')).toBeInTheDocument()
+  })
+
   it('renders enclosed variant', () => {
     render(
       <Tabs variant="enclosed" items={[{ value: 'a', label: 'A', content: 'x' }]} />,
