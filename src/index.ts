@@ -3,6 +3,9 @@ import './styles/globals.css'
 export { Icon } from './components/Icon'
 export type { IconProps } from './components/Icon'
 
+export { IconButton } from './components/IconButton'
+export type { IconButtonProps, IconButtonVariant, IconButtonSize } from './components/IconButton'
+
 export { Button } from './components/Button'
 export type { ButtonProps, ButtonVariant, ButtonSize } from './components/Button'
 
