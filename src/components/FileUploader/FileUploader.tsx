@@ -52,7 +52,7 @@ export function FileItem({ name, size, progress, done, error, thumb, onRemove }:
       </span>
       <div className="min-w-0 flex-1">
         <p className="truncate text-[14px] leading-[20px] font-medium text-ink-900 dark:text-ink-100">{name}</p>
-        <p className="flex items-center gap-1 text-[12px] leading-[16px] text-ink-600 dark:text-ink-400">
+        <p className="flex items-center gap-1 text-[12px] leading-[16px] text-ink-600 dark:text-ink-300">
           {error ? (
             <span className="text-error-base">{error}</span>
           ) : done ? (
@@ -78,7 +78,7 @@ export function FileItem({ name, size, progress, done, error, thumb, onRemove }:
           type="button"
           aria-label="Remover"
           onClick={onRemove}
-          className="inline-flex shrink-0 items-center justify-center rounded-full p-1 text-ink-500 hover:bg-ink-100 dark:text-ink-400 dark:hover:bg-ink-700"
+          className="inline-flex shrink-0 items-center justify-center rounded-full p-1 text-ink-500 hover:bg-ink-100 dark:text-ink-300 dark:hover:bg-ink-700"
         >
           <Icon name="close" size={18} />
         </button>
@@ -137,7 +137,7 @@ export function FileUploader({
           <Button variant="secondary" size="md" iconLeft={<Icon name="upload" />} onClick={open}>
             Escolher arquivo
           </Button>
-          <span className="text-[13px] leading-[18px] text-ink-500 dark:text-ink-400">{hint}</span>
+          <span className="text-[13px] leading-[18px] text-ink-500 dark:text-ink-300">{hint}</span>
           {input}
         </div>
       ) : (
@@ -168,9 +168,9 @@ export function FileUploader({
             error && 'border-error-base dark:border-error-base',
           )}
         >
-          <Icon name="cloud_upload" size={32} className="text-ink-400 dark:text-ink-500" />
+          <Icon name="cloud_upload" size={32} className="text-ink-500 dark:text-ink-300" />
           <span className="text-[14px] leading-[20px] text-ink-700 dark:text-ink-200">{title}</span>
-          <span className="text-[13px] leading-[18px] text-ink-500 dark:text-ink-400">{hint}</span>
+          <span className="text-[13px] leading-[18px] text-ink-500 dark:text-ink-300">{hint}</span>
           {input}
         </div>
       )}
