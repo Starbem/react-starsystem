@@ -80,11 +80,19 @@ export function FilterChip({
       {removable && (
         <span
           role="button"
+          tabIndex={0}
           aria-label="Remover filtro"
           className="inline-flex shrink-0 items-center justify-center rounded-full hover:opacity-70"
           onClick={(e) => {
             e.stopPropagation()
             onRemove?.()
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              e.stopPropagation()
+              onRemove?.()
+            }
           }}
         >
           <Icon name="close" size={16} />
@@ -149,7 +157,13 @@ export function FilterBar({
 
   return (
     <div
-      className={cn('flex items-center gap-2', scroll ? 'overflow-x-auto flex-nowrap' : 'flex-wrap', className)}
+      className={cn(
+        'flex items-center',
+        isSeg
+          ? 'inline-flex overflow-hidden rounded-full border border-neutral-300 divide-x divide-neutral-300 dark:border-ink-700 dark:divide-ink-700'
+          : cn('gap-2', scroll ? 'overflow-x-auto flex-nowrap' : 'flex-wrap'),
+        className,
+      )}
       role="group"
       {...rest}
     >
@@ -164,6 +178,7 @@ export function FilterBar({
           variant={isSeg ? 'outline' : variant}
           tone={tone}
           size={size}
+          className={isSeg ? 'rounded-none border-0 first:rounded-l-full last:rounded-r-full' : undefined}
           onClick={() => toggle(opt.id)}
         />
       ))}

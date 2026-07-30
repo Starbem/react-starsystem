@@ -33,6 +33,17 @@ describe('FilterChip', () => {
     expect(handleRemove).toHaveBeenCalledTimes(1)
   })
 
+  it('calls onRemove when the remove control is activated via keyboard (Enter/Space)', async () => {
+    const handleRemove = vi.fn()
+    render(<FilterChip label="Dermatologia" removable onRemove={handleRemove} />)
+    const removeControl = screen.getByRole('button', { name: 'Remover filtro' })
+    removeControl.focus()
+    await userEvent.keyboard('{Enter}')
+    expect(handleRemove).toHaveBeenCalledTimes(1)
+    await userEvent.keyboard(' ')
+    expect(handleRemove).toHaveBeenCalledTimes(2)
+  })
+
   it('has no a11y violations', async () => {
     const { container } = render(<FilterChip label="Online" selected />)
     // @ts-expect-error -- axe() is not typed in the default vitest-axe module
@@ -76,5 +87,14 @@ describe('FilterBar', () => {
     const { container } = render(<FilterBar options={OPTIONS} />)
     // @ts-expect-error -- axe() is not typed in the default vitest-axe module
     expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('renders segmented chips as a visually connected group', () => {
+    const { container } = render(<FilterBar variant="segmented" options={OPTIONS} />)
+    const group = container.querySelector('[role="group"]')
+    expect(group).not.toBeNull()
+    expect(group?.className).not.toMatch(/(^|\s)gap-/)
+    expect(group?.className).toMatch(/divide-x/)
+    expect(group?.children.length).toBe(OPTIONS.length)
   })
 })
