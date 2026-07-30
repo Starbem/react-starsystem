@@ -4,15 +4,20 @@ import { StoryRenderer } from './StoryRenderer'
 import { TopBar } from '../../src/components/TopBar'
 import { cn } from '../../src/utils/cn'
 import { ThemeToggle } from './ThemeToggle'
+import { LocaleToggle } from './LocaleToggle'
 import type { Theme } from './useTheme'
+import type { Locale, TranslationKey } from './i18n'
 
 export interface DocsLayoutProps {
   onBackToHome: () => void
   theme: Theme
   onToggleTheme: () => void
+  locale: Locale
+  onToggleLocale: () => void
+  t: (key: TranslationKey) => string
 }
 
-export function DocsLayout({ onBackToHome, theme, onToggleTheme }: DocsLayoutProps) {
+export function DocsLayout({ onBackToHome, theme, onToggleTheme, locale, onToggleLocale, t }: DocsLayoutProps) {
   const docs = loadStories()
   const [selectedTitle, setSelectedTitle] = useState(docs[0]?.title ?? '')
 
@@ -34,11 +39,26 @@ export function DocsLayout({ onBackToHome, theme, onToggleTheme }: DocsLayoutPro
             onClick={onBackToHome}
             className="inline-flex items-center rounded-[4px] outline-none focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1"
           >
-            <img src="./brand/starbem-mark.svg" alt="Voltar para a home" className="h-[28px] w-auto" />
+            <img src="./brand/starbem-mark.svg" alt={t('backToHome')} className="h-[28px] w-auto" />
           </button>
         }
         center={<span className="text-[16px] font-medium text-[#101828] dark:text-white">Star System</span>}
-        end={<ThemeToggle theme={theme} onToggle={onToggleTheme} />}
+        end={
+          <div className="flex items-center gap-[4px]">
+            <LocaleToggle
+              locale={locale}
+              onToggle={onToggleLocale}
+              toPtLabel={t('localeToggleToPt')}
+              toEnLabel={t('localeToggleToEn')}
+            />
+            <ThemeToggle
+              theme={theme}
+              onToggle={onToggleTheme}
+              toLightLabel={t('themeToggleToLight')}
+              toDarkLabel={t('themeToggleToDark')}
+            />
+          </div>
+        }
       />
 
       <div className="flex flex-1 overflow-hidden">
@@ -88,7 +108,7 @@ export function DocsLayout({ onBackToHome, theme, onToggleTheme }: DocsLayoutPro
               ))}
             </>
           ) : (
-            <p className="dark:text-[#D0D5DD]">No stories found.</p>
+            <p className="dark:text-[#D0D5DD]">{t('noStoriesFound')}</p>
           )}
         </main>
       </div>

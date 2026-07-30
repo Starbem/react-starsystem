@@ -154,17 +154,6 @@ export type { FileItemProps, FileUploaderProps, UploadFile } from './components/
 export { ListItem } from './components/ListItem'
 export type { ListItemProps } from './components/ListItem'
 
-export { BarChart, Chart, DonutChart, LineChart, Sparkline } from './components/Chart'
-export type {
-  BarChartProps,
-  BarDatum,
-  ChartProps,
-  DonutChartProps,
-  DonutSegment,
-  LineChartProps,
-  SparklineProps,
-} from './components/Chart'
-
 export { Menu } from './components/Menu'
 export type { MenuProps, MenuItem, MenuUser, MenuPresent } from './components/Menu'
 

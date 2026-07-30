@@ -148,7 +148,6 @@ Every component is fully typed — import its prop type alongside the component 
 | `Avatar`, `AvatarGroup` | [`src/components/Avatar`](./src/components/Avatar) |
 | `Accordion` | [`src/components/Accordion`](./src/components/Accordion) |
 | `Divider` | [`src/components/Divider`](./src/components/Divider) |
-| `Chart`, `Sparkline`, `LineChart`, `BarChart`, `DonutChart` | [`src/components/Chart`](./src/components/Chart) |
 
 **Scheduling**
 

@@ -5,6 +5,8 @@ export interface ThemeToggleProps {
   theme: Theme
   onToggle: () => void
   className?: string
+  toLightLabel?: string
+  toDarkLabel?: string
 }
 
 function SunIcon() {
@@ -34,12 +36,18 @@ function MoonIcon() {
   )
 }
 
-export function ThemeToggle({ theme, onToggle, className }: ThemeToggleProps) {
+export function ThemeToggle({
+  theme,
+  onToggle,
+  className,
+  toLightLabel = 'Switch to light theme',
+  toDarkLabel = 'Switch to dark theme',
+}: ThemeToggleProps) {
   return (
     <button
       type="button"
       onClick={onToggle}
-      aria-label={theme === 'dark' ? 'Mudar para tema claro' : 'Mudar para tema escuro'}
+      aria-label={theme === 'dark' ? toLightLabel : toDarkLabel}
       className={cn(
         'inline-flex size-[32px] items-center justify-center rounded-[8px] text-[#344054] outline-none transition-colors',
         'hover:bg-[#F2F4F7] focus-visible:ring-2 focus-visible:ring-[#FF5100] focus-visible:ring-offset-1',
