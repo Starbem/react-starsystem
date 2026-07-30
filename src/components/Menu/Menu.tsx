@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { cn } from '../../utils/cn'
 import { Icon } from '../Icon'
 import { Avatar } from '../Avatar'
@@ -35,11 +35,9 @@ function groupBySection(items: MenuItem[]) {
   const groups: { section: string; items: MenuItem[] }[] = []
   for (const it of items) {
     const sec = it.section ?? ''
-    let g = groups.find((x) => x.section === sec)
-    if (!g) {
-      g = { section: sec, items: [] }
-      groups.push(g)
-    }
+    const last = groups[groups.length - 1]
+    const g = last && last.section === sec ? last : { section: sec, items: [] }
+    if (g !== last) groups.push(g)
     g.items.push(it)
   }
   return groups
@@ -186,7 +184,21 @@ export function Menu({
   className,
 }: MenuProps) {
   const [open, setOpen] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [wide, setWide] = useState(true)
   const groups = groupBySection(items)
+
+  useEffect(() => {
+    if (typeof ResizeObserver === 'undefined') return
+    const el = containerRef.current
+    if (!el) return
+    const observer = new ResizeObserver((entries) => {
+      const width = entries[0]?.contentRect.width
+      if (width != null) setWide(width >= 640)
+    })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   const select = (id: string) => {
     onChange?.(id)
@@ -298,33 +310,35 @@ export function Menu({
     )
   }
 
-  // present === 'auto': both layouts render; @container + @[640px]: toggles which is visible.
+  // present === 'auto': a ResizeObserver on the wrapper picks sidebar vs bottom layout —
+  // only one real <nav> is ever mounted, so it stays in the accessibility tree.
   return (
-    <div className={cn('@container flex h-full', className)}>
-      <nav
-        aria-label="Navegação"
-        aria-hidden
-        className="hidden h-full w-[260px] flex-col border-r border-ink-200 bg-white py-2 @[640px]:flex dark:border-ink-700 dark:bg-ink-900"
-      >
-        <SidebarBody
-          groups={groups}
-          layout="full"
-          value={value}
-          onSelect={select}
-          brand={brand}
-          user={user}
-          footerItems={footerItems}
-        />
-      </nav>
-      <nav
-        aria-label="Navegação"
-        aria-hidden
-        className="fixed inset-x-0 bottom-0 z-40 flex items-stretch border-t border-ink-200 bg-white @[640px]:hidden dark:border-ink-700 dark:bg-ink-900"
-      >
-        {items.map((it) => (
-          <ItemButton key={it.id} item={it} active={value === it.id} layout="bottom" onSelect={select} />
-        ))}
-      </nav>
+    <div ref={containerRef} className={cn('h-full', className)}>
+      {wide ? (
+        <nav
+          aria-label="Navegação"
+          className="flex h-full w-[260px] flex-col border-r border-ink-200 bg-white py-2 dark:border-ink-700 dark:bg-ink-900"
+        >
+          <SidebarBody
+            groups={groups}
+            layout="full"
+            value={value}
+            onSelect={select}
+            brand={brand}
+            user={user}
+            footerItems={footerItems}
+          />
+        </nav>
+      ) : (
+        <nav
+          aria-label="Navegação"
+          className="fixed inset-x-0 bottom-0 z-40 flex items-stretch border-t border-ink-200 bg-white dark:border-ink-700 dark:bg-ink-900"
+        >
+          {items.map((it) => (
+            <ItemButton key={it.id} item={it} active={value === it.id} layout="bottom" onSelect={select} />
+          ))}
+        </nav>
+      )}
     </div>
   )
 }

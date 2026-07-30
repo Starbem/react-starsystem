@@ -155,9 +155,28 @@ describe('Menu — drawer', () => {
 })
 
 describe('Menu — auto', () => {
-  it('renders both a container-query wrapper and both internal navs', () => {
-    const { container } = render(<Menu items={ITEMS} value="home" />)
-    expect(container.querySelector('.\\@container')).toBeInTheDocument()
-    expect(screen.getAllByRole('navigation', { hidden: true })).toHaveLength(2)
+  // jsdom has no ResizeObserver, so `wide` stays at its default `true`,
+  // making `auto` deterministically render the sidebar layout in tests.
+  it('renders exactly one nav', () => {
+    render(<Menu items={ITEMS} value="home" />)
+    expect(screen.getAllByRole('navigation')).toHaveLength(1)
+  })
+
+  it('shows the sidebar layout by default', () => {
+    render(<Menu items={ITEMS} value="home" />)
+    expect(screen.getByText('Início')).toBeInTheDocument()
+    expect(screen.getByText('starbem')).toBeInTheDocument()
+  })
+})
+
+describe('Menu — section grouping', () => {
+  it('keeps non-contiguous same-name sections as separate groups, in order', () => {
+    const items = [
+      { id: 'a', label: 'A', icon: 'home', section: 'Principal' },
+      { id: 'b', label: 'B', icon: 'chat_bubble', section: 'Outros' },
+      { id: 'c', label: 'C', icon: 'person', section: 'Principal' },
+    ]
+    render(<Menu present="sidebar" items={items} value="a" />)
+    expect(screen.getAllByText('Principal')).toHaveLength(2)
   })
 })
