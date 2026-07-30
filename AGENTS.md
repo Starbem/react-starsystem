@@ -11,6 +11,8 @@ pnpm dev              # watch mode (incremental rebuild)
 pnpm typecheck        # tsc --noEmit (type validation)
 pnpm lint             # ESLint (eslint src only)
 pnpm lint:fix         # ESLint --fix (auto-fix violations)
+pnpm format           # Prettier --write (auto-format src)
+pnpm format:check     # Prettier --check (CI's formatting gate — does NOT run as part of `pnpm lint`)
 pnpm docs:dev         # start the component docs site (localhost:5173, or next free port)
 pnpm docs:build       # build the static docs site → docs-site/dist/
 pnpm test             # vitest run (unit tests, all *.test.tsx)
@@ -19,7 +21,7 @@ pnpm test <file>      # run one test file, e.g. pnpm test Button.test.tsx
 pnpm changeset        # add a changeset entry for the current change (run locally, not in CI)
 ```
 
-**Before every commit, run:** `pnpm lint && pnpm typecheck && pnpm build` — all three must be green. Also run the relevant `pnpm test <file>` for anything touched, and the full `pnpm test` before finishing a task/PR.
+**Before every commit, run:** `pnpm lint && pnpm format:check && pnpm typecheck && pnpm build` — all four must be green. `pnpm lint` alone does NOT catch formatting drift (`format:check` is a separate CI job, added in `55e1c12`, not part of `eslint src`) — a commit that's lint-clean can still fail CI on formatting alone. If `format:check` fails, run `pnpm format` and re-check before committing. Also run the relevant `pnpm test <file>` for anything touched, and the full `pnpm test` before finishing a task/PR.
 
 ## Architecture
 
@@ -112,7 +114,7 @@ Uses [Changesets](https://github.com/changesets/changesets):
 
 Three workflows in `.github/workflows/`, all using `pnpm/action-setup@v4`:
 
-- **`ci.yml`** — every push/PR to `main`: install, lint, typecheck, build, test.
+- **`ci.yml`** — every push/PR to `main`: install, lint, format:check, typecheck, build, test.
 - **`docs.yml`** — every push to `main`: builds `docs-site/` and deploys to GitHub Pages.
 - **`publish.yml`** — on `v*` tag push: builds and publishes to npm (see Versioning & Publishing above).
 
