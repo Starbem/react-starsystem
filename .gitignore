@@ -4,4 +4,6 @@ dist/
 .DS_Store
 coverage/
 .worktrees/
-pnpm-workspace.yaml
+example/*.tsbuildinfo
+example/vite.config.js
+example/vite.config.d.ts
