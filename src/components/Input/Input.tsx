@@ -5,7 +5,7 @@ import { Icon } from '../Icon'
 export type InputVariant = 'outline' | 'filled' | 'underline'
 export type InputSize = 'sm' | 'md' | 'lg'
 
-export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix' | 'suffix'> {
   label?: string
   hint?: string
   error?: string
@@ -14,6 +14,8 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   size?: InputSize
   leadingIcon?: ReactNode
   trailingIcon?: ReactNode
+  prefix?: ReactNode
+  suffix?: ReactNode
 }
 
 const SIZE_TEXT_CLASSES: Record<InputSize, string> = {
@@ -38,6 +40,14 @@ const SIZE_RADIUS_CLASSES: Record<InputSize, string> = {
   sm: 'rounded-sm',
   md: 'rounded-md',
   lg: 'rounded-lg',
+}
+
+function InputAffix({ children }: { children: ReactNode }) {
+  return (
+    <span className="shrink-0 flex items-center px-[12px] bg-neutral-50 text-neutral-600 text-[14px] font-medium border-neutral-200 dark:bg-ink-800 dark:text-ink-300 dark:border-ink-700 select-none">
+      {children}
+    </span>
+  )
 }
 
 function getFieldColorClasses(
@@ -89,6 +99,8 @@ export function Input({
   size = 'md',
   leadingIcon,
   trailingIcon,
+  prefix,
+  suffix,
   className,
   disabled,
   id,
@@ -118,6 +130,7 @@ export function Input({
           getFieldColorClasses(variant, Boolean(disabled), state),
         )}
       >
+        {prefix && <InputAffix>{prefix}</InputAffix>}
         <div
           className={cn(
             'flex flex-1 min-w-0 items-center gap-[8px]',
@@ -150,6 +163,7 @@ export function Input({
             </span>
           )}
         </div>
+        {suffix && <InputAffix>{suffix}</InputAffix>}
       </div>
       {hintText && (
         <p

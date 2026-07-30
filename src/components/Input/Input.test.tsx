@@ -166,4 +166,21 @@ describe('Input', () => {
     const box = screen.getByPlaceholderText('x').closest('div')?.parentElement
     expect(box).toHaveClass('border-success-base')
   })
+
+  it('renders prefix', () => {
+    render(<Input prefix="R$" placeholder="0,00" />)
+    expect(screen.getByText('R$')).toBeInTheDocument()
+  })
+
+  it('renders suffix', () => {
+    render(<Input suffix="BRL" placeholder="0,00" />)
+    expect(screen.getByText('BRL')).toBeInTheDocument()
+  })
+
+  it('renders both prefix and suffix alongside the input', () => {
+    render(<Input prefix="R$" suffix="BRL" placeholder="0,00" />)
+    expect(screen.getByText('R$')).toBeInTheDocument()
+    expect(screen.getByText('BRL')).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('0,00')).toBeInTheDocument()
+  })
 })
