@@ -74,7 +74,7 @@ export function Toggle({
           'focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-2',
           TRACK_SIZE[size],
           disabled ? 'cursor-not-allowed' : 'cursor-pointer',
-          checked ? 'bg-secondary-darker' : 'bg-neutral-100 dark:bg-ink-700',
+          checked ? 'bg-primary-base' : 'bg-neutral-100 dark:bg-ink-700',
         )}
       >
         <span

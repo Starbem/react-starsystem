@@ -77,7 +77,7 @@ function getFieldColorClasses(
   if (variant === 'filled') {
     return cn(
       'border border-transparent bg-ink-100 hover:bg-ink-50 dark:bg-ink-700 dark:hover:bg-ink-600',
-      'focus-within:bg-neutral-25 focus-within:border-primary-base focus-within:shadow-[0_0_0_4px_rgba(255,81,0,0.2)] dark:focus-within:bg-neutral-900',
+      'focus-within:bg-white focus-within:border-primary-base focus-within:shadow-[0_0_0_4px_rgba(255,81,0,0.2)] dark:focus-within:bg-ink-900',
       state === 'error' &&
         'border-error-base focus-within:border-error-base focus-within:shadow-[0_0_0_4px_rgba(255,66,66,0.2)]',
       state === 'success' &&
@@ -86,7 +86,7 @@ function getFieldColorClasses(
   }
 
   return cn(
-    'border bg-neutral-25 border-neutral-300 hover:border-neutral-400 shadow-elevation-01 dark:bg-neutral-900 dark:border-ink-700 dark:hover:border-ink-600',
+    'border bg-white border-neutral-300 hover:border-neutral-400 shadow-elevation-01 dark:bg-ink-900 dark:border-ink-700 dark:hover:border-ink-600',
     'focus-within:border-primary-base focus-within:shadow-[0_0_0_4px_rgba(255,81,0,0.2)]',
     state === 'error' &&
       'border-error-base focus-within:border-error-base focus-within:shadow-[0_0_0_4px_rgba(255,66,66,0.2)]',
