@@ -121,7 +121,7 @@ export function AvatarGroup({ children, max, size = 'md', className }: AvatarGro
     <div className={cn('flex items-center -space-x-[8px]', className)}>
       {visible.map((child, index) =>
         isValidElement<AvatarProps>(child) && child.type === Avatar
-          ? cloneElement(child, { key: index, size, ring: true })
+          ? cloneElement(child, { key: index, size, ring: child.props.ring ?? true })
           : child,
       )}
       {overflow > 0 && (

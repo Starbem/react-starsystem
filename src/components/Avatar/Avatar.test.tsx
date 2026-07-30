@@ -159,4 +159,22 @@ describe('AvatarGroup', () => {
     expect(child).not.toHaveClass('size-[48px]')
     expect(child).not.toHaveClass('ring-2')
   })
+
+  it('forces ring=true on children by default', () => {
+    const { container } = render(
+      <AvatarGroup>
+        <Avatar name="Ana" />
+      </AvatarGroup>,
+    )
+    expect(container.querySelector('.ring-2')).toBeInTheDocument()
+  })
+
+  it('respects an explicit ring={false} on a child Avatar', () => {
+    const { container } = render(
+      <AvatarGroup>
+        <Avatar name="Ana" ring={false} />
+      </AvatarGroup>,
+    )
+    expect(container.querySelector('.ring-2')).not.toBeInTheDocument()
+  })
 })
