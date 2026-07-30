@@ -1,5 +1,13 @@
 # starsystem-example-dashboard
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies [5baa862]
+- Updated dependencies [0f45761]
+  - @starbemtech/react-starsystem@1.1.0
+
 ## 0.0.2
 
 ### Patch Changes
