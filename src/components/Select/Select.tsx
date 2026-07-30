@@ -1,11 +1,24 @@
 import { useEffect, useRef, useState, useCallback, useId, type KeyboardEvent } from 'react'
 import { cn } from '../../utils/cn'
+import { Icon } from '../Icon'
+import {
+  type FieldVariant,
+  type FieldSize,
+  FIELD_SIZE_TEXT_CLASSES,
+  FIELD_SIZE_PADDING_Y_CLASSES,
+  FIELD_SIZE_PADDING_X_CLASSES,
+  FIELD_SIZE_RADIUS_CLASSES,
+  getFieldColorClasses,
+} from '../shared/fieldStyles'
 
 export interface SelectOption {
   value: string
   label: string
   disabled?: boolean
 }
+
+export type SelectVariant = FieldVariant
+export type SelectSize = FieldSize
 
 export interface SelectProps {
   options: SelectOption[]
@@ -21,6 +34,9 @@ export interface SelectProps {
   label?: string
   hint?: string
   error?: string
+  success?: string
+  variant?: SelectVariant
+  size?: SelectSize
   disabled?: boolean
   id?: string
   name?: string
@@ -59,6 +75,9 @@ export function Select({
   label,
   hint,
   error,
+  success,
+  variant = 'outline',
+  size = 'md',
   disabled,
   id,
   name,
@@ -72,10 +91,13 @@ export function Select({
   const resolvedId = id ?? reactId
   const listboxId = `${resolvedId}-listbox`
   const labelId = label ? `${resolvedId}-label` : undefined
-  const hintId = error || hint ? `${resolvedId}-hint` : undefined
 
   const isError = Boolean(error)
-  const hintText = error ?? hint
+  const isSuccess = !isError && Boolean(success)
+  const state: 'error' | 'success' | null = isError ? 'error' : isSuccess ? 'success' : null
+  const hintText = error ?? success ?? hint
+  const hintId = hintText ? `${resolvedId}-hint` : undefined
+  const isUnderlineShape = variant === 'underline' && !disabled
   const selectedOption = options.find((o) => o.value === value)
   const enabledOptions = options.filter((o) => !o.disabled)
 
@@ -178,22 +200,20 @@ export function Select({
           }}
           onKeyDown={handleTriggerKeyDown}
           className={cn(
-            'flex gap-[8px] items-center w-full h-[56px] px-[16px] py-[8px] rounded-lg border text-left',
+            'flex gap-[8px] items-center w-full text-left',
             'outline-none transition-colors',
             'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-2',
-            disabled
-              ? 'bg-neutral-50 border-neutral-300 cursor-not-allowed dark:bg-neutral-900 dark:border-ink-700'
-              : isError
-                ? 'bg-neutral-25 border-error-base shadow-elevation-01 dark:bg-neutral-900'
-                : isOpen
-                  ? 'bg-neutral-25 border-secondary-lighter shadow-elevation-01 dark:bg-neutral-900'
-                  : 'bg-neutral-25 border-neutral-300 shadow-elevation-01 dark:bg-neutral-900 dark:border-ink-700',
+            !isUnderlineShape && FIELD_SIZE_RADIUS_CLASSES[size],
+            !isUnderlineShape && FIELD_SIZE_PADDING_X_CLASSES[size],
+            FIELD_SIZE_PADDING_Y_CLASSES[size],
+            getFieldColorClasses(variant, Boolean(disabled), state),
           )}
         >
           <span className="flex flex-col flex-1 min-w-0 justify-center">
             <span
               className={cn(
-                "font-['Funnel_Display'] text-[16px] leading-[24px] truncate",
+                "font-['Funnel_Display'] truncate",
+                FIELD_SIZE_TEXT_CLASSES[size],
                 disabled
                   ? 'text-neutral-300 dark:text-ink-600'
                   : selectedOption
@@ -227,7 +247,7 @@ export function Select({
             }
             tabIndex={-1}
             onKeyDown={handleListKeyDown}
-            className="absolute top-full left-0 w-full mt-[8px] bg-neutral-25 border border-neutral-100 rounded-lg shadow-[0px_4px_16px_2px_rgba(70,31,174,0.10)] py-[4px] max-h-[320px] overflow-y-auto z-50 outline-none dark:bg-neutral-900 dark:border-ink-700"
+            className="absolute top-full left-0 w-full mt-[8px] bg-white border border-neutral-100 rounded-lg shadow-[0px_4px_16px_2px_rgba(70,31,174,0.10)] py-[4px] max-h-[320px] overflow-y-auto z-50 outline-none dark:bg-ink-900 dark:border-ink-700"
           >
             {options.map((option, idx) => {
               const isSelected = option.value === value
@@ -276,10 +296,16 @@ export function Select({
         <p
           id={hintId}
           className={cn(
-            "font-['Funnel_Display'] text-[14px] leading-[20px] tracking-[0.1px] w-full",
-            isError ? 'text-error-base' : 'text-neutral-500 dark:text-neutral-400',
+            "font-['Funnel_Display'] text-[14px] leading-[20px] tracking-[0.1px] w-full flex items-center gap-[4px]",
+            isError
+              ? 'text-error-base'
+              : isSuccess
+                ? 'text-success-dark dark:text-success-light'
+                : 'text-neutral-500 dark:text-neutral-400',
           )}
         >
+          {isError && <Icon name="error" size={15} />}
+          {isSuccess && <Icon name="check_circle" size={15} />}
           {hintText}
         </p>
       )}
