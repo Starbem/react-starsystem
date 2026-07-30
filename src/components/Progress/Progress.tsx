@@ -83,6 +83,7 @@ export interface ProgressCircleProps extends HTMLAttributes<HTMLSpanElement> {
   tone?: ProgressTone
   showValue?: boolean
   indeterminate?: boolean
+  label?: string
   children?: ReactNode
 }
 
@@ -94,6 +95,7 @@ export function ProgressCircle({
   tone = 'primary',
   showValue = true,
   indeterminate = false,
+  label,
   className,
   children,
   ...rest
@@ -110,6 +112,7 @@ export function ProgressCircle({
       aria-valuenow={indeterminate ? undefined : Math.round(pct)}
       aria-valuemax={max}
       aria-valuemin={0}
+      {...(label && { 'aria-label': label })}
       {...rest}
     >
       <svg width={size} height={size}>

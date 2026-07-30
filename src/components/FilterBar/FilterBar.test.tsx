@@ -26,22 +26,35 @@ describe('FilterChip', () => {
     expect(screen.getByText('12')).toBeInTheDocument()
   })
 
-  it('calls onRemove without toggling selection when removable', async () => {
+  it('renders two sibling buttons when removable, not nested', () => {
+    const { container } = render(<FilterChip label="Dermatologia" removable onRemove={() => {}} />)
+    const buttons = container.querySelectorAll('button')
+    expect(buttons).toHaveLength(2)
+    expect(buttons[0]!.contains(buttons[1]!)).toBe(false)
+    expect(buttons[1]!.contains(buttons[0]!)).toBe(false)
+  })
+
+  it('calls onRemove when the remove button is clicked, without toggling selection', async () => {
+    const handleRemove = vi.fn()
+    const handleClick = vi.fn()
+    render(<FilterChip label="Dermatologia" removable onRemove={handleRemove} onClick={handleClick} />)
+    await userEvent.click(screen.getByRole('button', { name: 'Remover filtro' }))
+    expect(handleRemove).toHaveBeenCalledTimes(1)
+    expect(handleClick).not.toHaveBeenCalled()
+  })
+
+  it('calls onRemove when the remove button is activated via keyboard (native button semantics)', async () => {
     const handleRemove = vi.fn()
     render(<FilterChip label="Dermatologia" removable onRemove={handleRemove} />)
-    await userEvent.click(screen.getByRole('button', { name: 'Remover filtro' }))
+    const removeButton = screen.getByRole('button', { name: 'Remover filtro' })
+    removeButton.focus()
+    await userEvent.keyboard('{Enter}')
     expect(handleRemove).toHaveBeenCalledTimes(1)
   })
 
-  it('calls onRemove when the remove control is activated via keyboard (Enter/Space)', async () => {
-    const handleRemove = vi.fn()
-    render(<FilterChip label="Dermatologia" removable onRemove={handleRemove} />)
-    const removeControl = screen.getByRole('button', { name: 'Remover filtro' })
-    removeControl.focus()
-    await userEvent.keyboard('{Enter}')
-    expect(handleRemove).toHaveBeenCalledTimes(1)
-    await userEvent.keyboard(' ')
-    expect(handleRemove).toHaveBeenCalledTimes(2)
+  it('disables the remove button when the chip is disabled', () => {
+    render(<FilterChip label="Dermatologia" removable disabled onRemove={() => {}} />)
+    expect(screen.getByRole('button', { name: 'Remover filtro' })).toBeDisabled()
   })
 
   it('has no a11y violations', async () => {
@@ -96,5 +109,17 @@ describe('FilterBar', () => {
     expect(group?.className).not.toMatch(/(^|\s)gap-/)
     expect(group?.className).toMatch(/divide-x/)
     expect(group?.children.length).toBe(OPTIONS.length)
+  })
+
+  it('disables a chip when its option is marked disabled', () => {
+    render(<FilterBar options={[{ id: 'a', label: 'A', disabled: true }, ...OPTIONS]} />)
+    expect(screen.getByRole('button', { name: 'A' })).toBeDisabled()
+  })
+
+  it('deselects the active chip when re-clicked in segmented mode', async () => {
+    const handleChange = vi.fn()
+    render(<FilterBar variant="segmented" options={OPTIONS} defaultValue="online" onChange={handleChange} />)
+    await userEvent.click(screen.getByText('Online'))
+    expect(handleChange).toHaveBeenCalledWith(null)
   })
 })

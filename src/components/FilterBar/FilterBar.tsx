@@ -49,23 +49,8 @@ export function FilterChip({
   children,
   ...rest
 }: FilterChipProps) {
-  return (
-    <button
-      type="button"
-      aria-pressed={selected}
-      disabled={disabled}
-      className={cn(
-        'inline-flex items-center rounded-full border font-medium transition-colors',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
-        'disabled:pointer-events-none disabled:opacity-50',
-        SIZE_CLASSES[size],
-        selected
-          ? cn(TONE_SELECTED[tone], variant === 'solid' && 'border-transparent')
-          : 'bg-neutral-25 border-neutral-300 text-neutral-800 dark:bg-neutral-900 dark:border-ink-700 dark:text-ink-100',
-        className,
-      )}
-      {...rest}
-    >
+  const content = (
+    <>
       {selected && !icon && !dropdown && <Icon name="check" size={18} />}
       {icon && <Icon name={icon} size={18} />}
       <span>{label || children}</span>
@@ -77,28 +62,43 @@ export function FilterChip({
       {dropdown && (
         <Icon name="keyboard_arrow_down" size={18} className={cn('transition-transform', open && 'rotate-180')} />
       )}
-      {removable && (
-        <span
-          role="button"
-          tabIndex={0}
-          aria-label="Remover filtro"
-          className="inline-flex shrink-0 items-center justify-center rounded-full hover:opacity-70"
-          onClick={(e) => {
-            e.stopPropagation()
-            onRemove?.()
-          }}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault()
-              e.stopPropagation()
-              onRemove?.()
-            }
-          }}
-        >
-          <Icon name="close" size={16} />
-        </span>
-      )}
-    </button>
+    </>
+  )
+
+  const selectButtonClassName = cn(
+    'inline-flex items-center rounded-full border font-medium transition-colors',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
+    'disabled:pointer-events-none disabled:opacity-50',
+    SIZE_CLASSES[size],
+    selected
+      ? cn(TONE_SELECTED[tone], variant === 'solid' && 'border-transparent')
+      : 'bg-neutral-25 border-neutral-300 text-neutral-800 dark:bg-neutral-900 dark:border-ink-700 dark:text-ink-100',
+    !removable && className,
+  )
+
+  if (!removable) {
+    return (
+      <button type="button" aria-pressed={selected} disabled={disabled} className={selectButtonClassName} {...rest}>
+        {content}
+      </button>
+    )
+  }
+
+  return (
+    <span className={cn('inline-flex items-center gap-1', className)}>
+      <button type="button" aria-pressed={selected} disabled={disabled} className={selectButtonClassName} {...rest}>
+        {content}
+      </button>
+      <button
+        type="button"
+        aria-label="Remover filtro"
+        disabled={disabled}
+        onClick={() => onRemove?.()}
+        className="inline-flex shrink-0 items-center justify-center rounded-full p-1 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1 disabled:pointer-events-none disabled:opacity-50"
+      >
+        <Icon name="close" size={16} />
+      </button>
+    </span>
   )
 }
 

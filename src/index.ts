@@ -143,6 +143,9 @@ export type {
   SparklineProps,
 } from './components/Chart'
 
+export { Menu } from './components/Menu'
+export type { MenuProps, MenuItem, MenuUser, MenuPresent } from './components/Menu'
+
 // Design tokens
 export { colors } from './tokens/colors'
 export type { Colors } from './tokens/colors'

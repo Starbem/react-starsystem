@@ -24,7 +24,8 @@ export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>
   size?: IconButtonSize
   pill?: boolean
   fill?: boolean
-  label?: string
+  /** Accessible label (also used as the title/tooltip). Required — this is an icon-only control with no visible text. */
+  label: string
 }
 
 export function IconButton({

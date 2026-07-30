@@ -27,6 +27,17 @@ describe('FileItem', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Remover' }))
     expect(handleRemove).toHaveBeenCalledTimes(1)
   })
+
+  it('renders an accessible progressbar when progress is set and not done/error', () => {
+    render(<FileItem name="foto-pele.jpg" size={1200000} progress={60} />)
+    const bar = screen.getByRole('progressbar')
+    expect(bar).toHaveAttribute('aria-valuenow', '60')
+  })
+
+  it('does not render a progressbar once done', () => {
+    render(<FileItem name="foto-pele.jpg" size={1200000} progress={100} done />)
+    expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
+  })
 })
 
 describe('FileUploader', () => {

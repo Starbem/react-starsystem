@@ -47,4 +47,29 @@ describe('IconButton', () => {
     // @ts-expect-error -- axe() is not typed in the default vitest-axe module
     expect(await axe(container)).toHaveNoViolations()
   })
+
+  it('applies the sm size padding', () => {
+    render(<IconButton icon="close" label="Fechar" size="sm" />)
+    expect(screen.getByRole('button')).toHaveClass('p-[6px]')
+  })
+
+  it('applies the lg size padding', () => {
+    render(<IconButton icon="close" label="Fechar" size="lg" />)
+    expect(screen.getByRole('button')).toHaveClass('p-[10px]')
+  })
+
+  it('renders the filled icon glyph when fill is true', () => {
+    render(<IconButton icon="close" label="Fechar" fill />)
+    const icon = screen.getByRole('button').querySelector('.material-symbols-rounded')
+    expect(icon?.getAttribute('style')).toContain("'FILL' 1")
+  })
+
+  it('disables the button and blocks clicks', async () => {
+    const handleClick = vi.fn()
+    render(<IconButton icon="close" label="Fechar" disabled onClick={handleClick} />)
+    const button = screen.getByRole('button')
+    expect(button).toBeDisabled()
+    await userEvent.click(button)
+    expect(handleClick).not.toHaveBeenCalled()
+  })
 })
