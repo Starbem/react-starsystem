@@ -138,6 +138,18 @@ describe('Input', () => {
     expect(await axe(container)).toHaveNoViolations()
   })
 
+  it('has no a11y violations with success state', async () => {
+    const { container } = render(<Input id="email-a11y-success" label="Email" success="Email available" />)
+    // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
+    expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('has no a11y violations with prefix and error', async () => {
+    const { container } = render(<Input id="value-a11y-error" label="Value" prefix="R$" error="Invalid value" />)
+    // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
+    expect(await axe(container)).toHaveNoViolations()
+  })
+
   it('renders success text when provided', () => {
     render(<Input id="email-ok" success="Email available" />)
     expect(screen.getByText('Email available')).toBeInTheDocument()
