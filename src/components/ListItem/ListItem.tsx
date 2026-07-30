@@ -31,7 +31,7 @@ export function ListItem({
       className={cn(
         'flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors',
         'hover:bg-ink-100 dark:hover:bg-ink-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-1',
-        active && 'bg-primary-lightest dark:bg-primary-darker',
+        active && 'bg-primary-lightest dark:bg-neutral-1000',
         className,
       )}
       {...extraProps}
@@ -40,12 +40,12 @@ export function ListItem({
       {leading}
       <span className="min-w-0 flex-1">
         {title && <p className="truncate text-[14px] leading-[20px] font-medium text-ink-900 dark:text-ink-100">{title}</p>}
-        {subtitle && <p className="truncate text-[13px] leading-[18px] text-ink-500 dark:text-ink-400">{subtitle}</p>}
+        {subtitle && <p className="truncate text-[13px] leading-[18px] text-ink-500 dark:text-ink-300">{subtitle}</p>}
       </span>
       {(trailing || trailingIcon) && (
         <span className="flex shrink-0 items-center gap-2">
           {trailing}
-          {trailingIcon && <Icon name={trailingIcon} className="text-ink-400 dark:text-ink-600" />}
+          {trailingIcon && <Icon name={trailingIcon} className="text-ink-500 dark:text-ink-300" />}
         </span>
       )}
     </Component>

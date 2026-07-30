@@ -45,6 +45,23 @@ describe('ListItem', () => {
     expect(handleClick).toHaveBeenCalledTimes(1)
   })
 
+  it('default button has type="button"', () => {
+    render(<ListItem title="Dra. Ana Lima" />)
+    expect(screen.getByRole('button')).toHaveAttribute('type', 'button')
+  })
+
+  it('renders as a div when as="div"', () => {
+    const { container } = render(<ListItem as="div" title="Dra. Ana Lima" />)
+    const divElement = container.querySelector('div')
+    expect(divElement).toBeInTheDocument()
+  })
+
+  it('renders as a list item when as="li"', () => {
+    const { container } = render(<ListItem as="li" title="Dra. Ana Lima" />)
+    const liElement = container.querySelector('li')
+    expect(liElement).toBeInTheDocument()
+  })
+
   it('has no a11y violations', async () => {
     const { container } = render(<ListItem title="Dra. Ana Lima" subtitle="Dermatologia" />)
     // @ts-expect-error -- axe() is not typed in the default vitest-axe module
