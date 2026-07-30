@@ -93,6 +93,7 @@ Every component is fully typed — import its prop type alongside the component 
 | Component | Source |
 |---|---|
 | `Button` | [`src/components/Button`](./src/components/Button) |
+| `IconButton` | [`src/components/IconButton`](./src/components/IconButton) |
 | `Input` | [`src/components/Input`](./src/components/Input) |
 | `Textarea` | [`src/components/Textarea`](./src/components/Textarea) |
 | `Select` | [`src/components/Select`](./src/components/Select) |
@@ -100,16 +101,20 @@ Every component is fully typed — import its prop type alongside the component 
 | `Radio`, `RadioGroup` | [`src/components/Radio`](./src/components/Radio) |
 | `Toggle` | [`src/components/Toggle`](./src/components/Toggle) |
 | `FormField` | [`src/components/FormField`](./src/components/FormField) |
+| `FilterBar`, `FilterChip` | [`src/components/FilterBar`](./src/components/FilterBar) |
+| `FileUploader`, `FileItem` | [`src/components/FileUploader`](./src/components/FileUploader) |
 
 **Feedback**
 
 | Component | Source |
 |---|---|
 | `Badge` | [`src/components/Badge`](./src/components/Badge) |
+| `Tag` | [`src/components/Tag`](./src/components/Tag) |
 | `Alert` | [`src/components/Alert`](./src/components/Alert) |
 | `ToastProvider`, `toast` | [`src/components/Toast`](./src/components/Toast) |
 | `Skeleton` | [`src/components/Skeleton`](./src/components/Skeleton) |
-| `Spinner` | [`src/components/Spinner`](./src/components/Spinner) |
+| `Spinner`, `Dots` | [`src/components/Spinner`](./src/components/Spinner) |
+| `Progress`, `ProgressCircle` | [`src/components/Progress`](./src/components/Progress) |
 | `EmptyState` | [`src/components/EmptyState`](./src/components/EmptyState) |
 
 **Overlay**
@@ -128,6 +133,7 @@ Every component is fully typed — import its prop type alongside the component 
 |---|---|
 | `TopBar` | [`src/components/TopBar`](./src/components/TopBar) |
 | `Sidebar`, `NavItem` | [`src/components/Sidebar`](./src/components/Sidebar) |
+| `Menu` | [`src/components/Menu`](./src/components/Menu) |
 | `Tabs` | [`src/components/Tabs`](./src/components/Tabs) |
 | `Breadcrumb` | [`src/components/Breadcrumb`](./src/components/Breadcrumb) |
 | `Pagination` | [`src/components/Pagination`](./src/components/Pagination) |
@@ -138,9 +144,26 @@ Every component is fully typed — import its prop type alongside the component 
 |---|---|
 | `Table` | [`src/components/Table`](./src/components/Table) |
 | `Card` | [`src/components/Card`](./src/components/Card) |
+| `ListItem` | [`src/components/ListItem`](./src/components/ListItem) |
 | `Avatar`, `AvatarGroup` | [`src/components/Avatar`](./src/components/Avatar) |
 | `Accordion` | [`src/components/Accordion`](./src/components/Accordion) |
 | `Divider` | [`src/components/Divider`](./src/components/Divider) |
+| `Chart`, `Sparkline`, `LineChart`, `BarChart`, `DonutChart` | [`src/components/Chart`](./src/components/Chart) |
+
+**Scheduling**
+
+| Component | Source |
+|---|---|
+| `Calendar` | [`src/components/Calendar`](./src/components/Calendar) |
+| `DateInput` | [`src/components/DateInput`](./src/components/DateInput) |
+| `Schedule` | [`src/components/Schedule`](./src/components/Schedule) |
+
+**Telehealth**
+
+| Component | Source |
+|---|---|
+| `Message`, `TypingMessage`, `MessageDay`, `SystemMessage`, `MessageList` | [`src/components/Message`](./src/components/Message) |
+| `VideoCall` | [`src/components/VideoCall`](./src/components/VideoCall) |
 
 **Accessibility:** every component ships a `vitest-axe` test asserting zero WCAG 2.1 AA violations — see each component's `.test.tsx`.
 
@@ -154,10 +177,10 @@ Tokens are exported as typed constants and CSS custom properties:
 import { colors, spacing, borderRadius, fontFamily, fontSize, fontWeight, lineHeight, shadows } from '@starbemtech/react-starsystem'
 
 colors.primary.base    // '#FF5100'
-colors.secondary.base  // '#8660EC'
-borderRadius.md        // '16px'
+colors.secondary.base  // '#7F56D9'
+borderRadius.md        // '12px'
 fontFamily.display     // '"Funnel Display", sans-serif'
-fontSize.h1            // '2.5rem'
+fontSize.h1            // '2.25rem'
 shadows.elevation02    // '0 2px 4px rgba(0,0,0,0.12)'
 ```
 

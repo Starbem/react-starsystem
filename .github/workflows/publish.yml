@@ -79,7 +79,7 @@ jobs:
             printf -- "---\n\n"
             printf "### 📦 Install\n\`\`\`bash\npnpm add @starbemtech/react-starsystem@%s\n\`\`\`\n\n" "$VERSION"
             printf "### 🚀 Basic usage\n\`\`\`typescript\nimport { Button } from '@starbemtech/react-starsystem'\nimport '@starbemtech/react-starsystem/style.css'\n\`\`\`\n\n"
-            printf "### 🎨 Design Tokens\n\`\`\`typescript\nimport { colors, fontFamily, fontSize, spacing, borderRadius } from '@starbemtech/react-starsystem'\n\n// colors\ncolors.primary.base   // #FF5100\ncolors.secondary.base // #8660EC\ncolors.terciary.base  // #ED2E98\n\`\`\`\n"
+            printf "### 🎨 Design Tokens\n\`\`\`typescript\nimport { colors, fontFamily, fontSize, spacing, borderRadius } from '@starbemtech/react-starsystem'\n\n// colors\ncolors.primary.base   // #FF5100\ncolors.secondary.base // #7F56D9\ncolors.terciary.base  // #ED2E98\n\`\`\`\n"
           } > release-body.md
 
       - name: Create GitHub Release

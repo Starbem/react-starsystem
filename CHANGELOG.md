@@ -1,5 +1,48 @@
 # @starbemtech/react-starsystem
 
+## 1.0.0
+
+### Major Changes
+
+- 22c6d8f: Fix 11 existing components to match the Starbem Design System reference kit's public API. This is a breaking release — see the full list below before upgrading.
+
+  **Button**: added variants `tertiary`, `link`, `glass`, `glass-dark`, `glass-brand` (9 total); added `size="xl"`; added `pill` and `block` props; added polymorphic `as="a"` rendering (disabled semantics become `aria-disabled` for the anchor branch).
+
+  **Checkbox** / **Radio**: added `tone` ("primary" | "success" | "accent"), `variant="card"` (tile layout), `error`, and `size="lg"`.
+
+  **Select**: no prop changes — `onChange`'s value-callback contract is now documented via JSDoc to avoid confusion with a native change event handler.
+
+  **Avatar**: added `size="2xl"`; `status` is now `boolean | "online" | "offline" | "away"` instead of a closed enum; `alt` is no longer required when `src` is set (falls back to `name`); added `shape`, `icon` fallback, and `ring` props. **AvatarGroup** now takes `children` (`<Avatar>` elements) instead of an `avatars` array — the `AvatarGroupItem` type is removed.
+
+  **Modal**: `title` type changed from `string` to `ReactNode`; added `present` ("auto" | "center" | "sheet" — responsive bottom-sheet layout), `tone`, `icon`, and `align`.
+
+  **Tabs**: `TabItem.content` is now optional (Tabs can be used as a pure tab-bar with no panel, matching the DS — existing usage with content on every item is unaffected); added `TabItem.icon`, `TabItem.count`, `variant="enclosed"`, `size`, and `block`.
+
+  **Badge**: variant `"default"` is renamed to `"neutral"`; added variants `"primary"`, `"accent"`, `"solid"`; added `dot`; now spreads extra HTML attributes (`onClick`, `data-*`, `aria-*`, etc.) onto the root element.
+
+  **Spinner**: `size` now also accepts a `number` (pixel diameter) in addition to `"sm" | "md" | "lg"`; added `thickness`; `label` is no longer a required prop (defaults to `"Carregando"`). Added a new `Dots` component (three-dot inline loader).
+
+  **Tooltip**: added `tone` ("dark" | "light" | "brand") and a "rich" layout via the new `title` prop (renders `title` + `content` as two lines).
+
+  **Pagination**: renamed `currentPage` → `page`, `totalPages` → `total`, `onPageChange` → `onChange` to match the DS; added `pill`; now spreads extra HTML attributes onto the root `<nav>`.
+
+  Migration: update every `Pagination` and `AvatarGroup` usage per the renames above (`Table`'s `pagination` prop follows automatically via its `PaginationProps` type). Every other change is additive — no other call site changes are required to keep compiling.
+
+### Minor Changes
+
+- 94472b0: Correct design tokens against the Starbem Design System reference kit: fix secondary color (`#7F56D9`), fix neutral-1000 (`#272727`), add `ink` color ramp, add `error`/`warning`/`success` semantic color scales, add semantic color aliases, switch body font from Inter to Funnel Display (single-typeface system), fix h1/h2/h4 font sizes, add `overline` size and per-size `typeScale` (line-height + letter-spacing), add `space-40`, rescale border-radius (`sm` 8px, `md` 12px, `lg` 16px, `xl` 24px, `2xl` 32px), fix elevation shadow values to multi-layer DS values, add `shadowBrand` and `ringFocus` tokens, and load the missing Funnel Display `@import`.
+
+  Note: these are token corrections only — component implementations still use hardcoded Tailwind arbitrary values (hex/px) instead of consuming these tokens, so no visual change ships in this release. Component migration is tracked separately.
+
+- f2416f8: Add responsive `Menu` navigation component (sidebar/rail/bottom/drawer/auto, container-query driven). Also fixes: ProgressCircle now accepts a `label` prop wired to `aria-label`; IconButton's `label` prop is now required (was optional but functionally mandatory); FilterChip's remove control is now a real sibling button instead of nested inside the chip's own button; FileUploader's inline upload progress bar now reuses the `Progress` component (adds proper ARIA progressbar semantics).
+- 41fac7d: Add 7 new components: Progress/ProgressCircle, Tag, IconButton, FilterBar/FilterChip, FileUploader/FileItem, ListItem, and Chart (Sparkline/LineChart/BarChart/DonutChart). All built directly against existing design tokens — no hardcoded colors.
+- c7c4adc: Add 5 new telehealth-domain components: `Calendar` (month date picker), `DateInput` (text field + calendar popover), `Schedule` (day/week/month agenda with video-consultation chips), `Message` (chat bubbles + `TypingMessage`/`MessageDay`/`SystemMessage`/`MessageList`), and `VideoCall` (video-consultation surface with spotlight/grid layout and live/connecting/ended states).
+
+### Patch Changes
+
+- dc6b276: Tech debt cleanup: Progress track now has a dark-mode background color; Menu's drawer panel content stays mounted while closed so the close animation actually slides, and the closed panel is now marked `inert` to prevent keyboard focus on hidden controls; AvatarGroup now respects an explicit `ring` prop on child Avatars instead of always forcing it to `true`; Checkbox's hover shadow is now tone-aware and dark-mode-aware (previously a single hardcoded amber color regardless of tone). Also added test coverage for FilterChip's disabled propagation, Tabs' mixed-content rendering, and Spinner's combined size+thickness behavior. No public API changes.
+- 75d5ac8: Migrate all existing components from hardcoded hex/px/shadow values to design tokens defined in the `@theme` block (colors, radius, elevation shadows). No API or behavior change — visual-only, aligning components with the corrected Starbem Design System tokens (secondary color, radius scale, shadow elevations) from the earlier token-correction release. A handful of values with no DS equivalent (two Button glass-variant glows, the Checkbox/Radio focus glow, the Select focus glow) remain hardcoded and are tracked as known technical debt.
+
 ## 0.3.0
 
 ### Minor Changes
