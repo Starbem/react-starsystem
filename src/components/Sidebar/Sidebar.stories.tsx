@@ -69,13 +69,13 @@ function Logo() {
   return <span className="text-[16px] font-semibold text-[#FF5100] px-[4px]">Starbem</span>
 }
 
-function UserFooter() {
+function UserFooter({ collapsed }: { collapsed?: boolean }) {
   return (
     <div className="flex items-center gap-[8px] px-[4px] py-[8px]">
-      <div className="size-[28px] rounded-full bg-[#FFD4BF] flex items-center justify-center text-[11px] font-medium text-[#101828]">
+      <div className="size-[28px] shrink-0 rounded-full bg-[#FFD4BF] flex items-center justify-center text-[11px] font-medium text-[#101828]">
         JS
       </div>
-      <span className="text-[13px] font-medium truncate">Julio Sousa</span>
+      {!collapsed && <span className="text-[13px] font-medium truncate">Julio Sousa</span>}
     </div>
   )
 }
@@ -85,7 +85,7 @@ export const Expanded: Story = {
 }
 
 export const Collapsed: Story = {
-  render: () => <Sidebar collapsed items={ITEMS} header={<Logo />} footer={<UserFooter />} />,
+  render: () => <Sidebar collapsed items={ITEMS} header={<Logo />} footer={<UserFooter collapsed />} />,
 }
 
 export const WithSubMenuOpenByDefault: Story = {
