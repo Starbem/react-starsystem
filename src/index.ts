@@ -126,6 +126,9 @@ export type { ProgressProps, ProgressCircleProps, ProgressTone } from './compone
 export { FilterBar, FilterChip } from './components/FilterBar'
 export type { FilterBarProps, FilterChipProps, FilterOption, FilterTone } from './components/FilterBar'
 
+export { FileItem, FileUploader } from './components/FileUploader'
+export type { FileItemProps, FileUploaderProps, UploadFile } from './components/FileUploader'
+
 // Design tokens
 export { colors } from './tokens/colors'
 export type { Colors } from './tokens/colors'
