@@ -236,6 +236,7 @@ export function BarChart({
   grid = true,
   yAxis = true,
   yTickFormat,
+  tooltip = true,
   className,
   ...rest
 }: BarChartProps) {
@@ -245,10 +246,23 @@ export function BarChart({
   const gap = 12
   const botPad = 36
   const rows = 4
+  const [hover, setHover] = useState<number | null>(null)
   const max = niceMax(Math.max(...data.map((d) => d.value), 1))
   const plotH = H - pad - botPad
   const bw = (W - pad * 2 - gap * (data.length - 1)) / data.length
   const colW = bw + gap
+
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!tooltip || data.length === 0) return
+    const rect = e.currentTarget.getBoundingClientRect()
+    const f = (e.clientX - rect.left) / rect.width
+    const xInViewBox = f * W
+    const idx = Math.floor((xInViewBox - pad) / colW)
+    setHover(Math.max(0, Math.min(data.length - 1, idx)))
+  }
+  const hoverDatum = hover != null ? data[hover] : null
+  const hoverX = hover != null ? pad + hover * colW + bw / 2 : 0
+  const hoverY = hover != null ? H - botPad - (hoverDatum ? (hoverDatum.value / max) * plotH : 0) : 0
 
   return (
     <div className={cn('w-full', className)} {...rest}>
@@ -263,50 +277,61 @@ export function BarChart({
             ))}
           </div>
         )}
-        <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{ height, width: '100%' }}>
-          {grid &&
-            Array.from({ length: rows + 1 }).map((_, i) => {
-              const y = pad + (i * plotH) / rows
+        <div className="relative flex-1" onMouseMove={onMove} onMouseLeave={() => setHover(null)}>
+          <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{ height, width: '100%' }}>
+            {grid &&
+              Array.from({ length: rows + 1 }).map((_, i) => {
+                const y = pad + (i * plotH) / rows
+                return (
+                  <line
+                    key={i}
+                    x1={pad}
+                    y1={y}
+                    x2={W - pad}
+                    y2={y}
+                    className="stroke-ink-100 dark:stroke-ink-700"
+                  />
+                )
+              })}
+            {data.map((d, i) => {
+              const bh = (d.value / max) * plotH
+              const x = pad + i * colW
+              const y = H - botPad - bh
               return (
-                <line
-                  key={i}
-                  x1={pad}
-                  y1={y}
-                  x2={W - pad}
-                  y2={y}
-                  className="stroke-ink-100 dark:stroke-ink-700"
-                />
-              )
-            })}
-          {data.map((d, i) => {
-            const bh = (d.value / max) * plotH
-            const x = pad + i * colW
-            const y = H - botPad - bh
-            return (
-              <g key={i}>
-                <rect x={x} y={y} width={bw} height={bh} rx="6" style={{ fill: d.color ?? PALETTE[i % PALETTE.length] }} />
-                {showValues && (
+                <g key={i}>
+                  <rect x={x} y={y} width={bw} height={bh} rx="6" style={{ fill: d.color ?? PALETTE[i % PALETTE.length] }} />
+                  {showValues && (
+                    <text
+                      x={x + bw / 2}
+                      y={y - 6}
+                      textAnchor="middle"
+                      className="fill-ink-900 text-[11px] dark:fill-ink-100"
+                    >
+                      {d.value}
+                    </text>
+                  )}
                   <text
                     x={x + bw / 2}
-                    y={y - 6}
+                    y={H - botPad + 18}
                     textAnchor="middle"
-                    className="fill-ink-900 text-[11px] dark:fill-ink-100"
+                    className="fill-ink-500 text-[11px] dark:fill-ink-300"
                   >
-                    {d.value}
+                    {d.label}
                   </text>
-                )}
-                <text
-                  x={x + bw / 2}
-                  y={H - botPad + 18}
-                  textAnchor="middle"
-                  className="fill-ink-500 text-[11px] dark:fill-ink-300"
-                >
-                  {d.label}
-                </text>
-              </g>
-            )
-          })}
-        </svg>
+                </g>
+              )
+            })}
+          </svg>
+          {hoverDatum && (
+            <div
+              className="pointer-events-none absolute top-0 rounded-md bg-ink-900 px-2 py-1 text-[11px] text-white dark:bg-ink-700"
+              style={{ left: `${(hoverX / W) * 100}%`, top: hoverY }}
+            >
+              <span>{hoverDatum.value}</span>
+              <span className="ml-1 opacity-70">{hoverDatum.label}</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

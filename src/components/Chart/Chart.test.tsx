@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { axe } from 'vitest-axe'
 import { BarChart, Chart, DonutChart, LineChart, Sparkline } from './Chart'
@@ -35,6 +35,28 @@ describe('BarChart', () => {
     render(<BarChart data={[{ label: 'Jan', value: 8 }, { label: 'Fev', value: 14 }]} />)
     expect(screen.getByText('Jan')).toBeInTheDocument()
     expect(screen.getByText('Fev')).toBeInTheDocument()
+  })
+
+  it('does not leak the tooltip prop onto the root DOM element', () => {
+    const { container } = render(
+      <BarChart data={[{ label: 'Jan', value: 8 }]} tooltip={false} />,
+    )
+    expect(container.firstChild).not.toHaveAttribute('tooltip')
+  })
+
+  it('shows a hover tooltip with the bar value and label on mouse move', () => {
+    const { container } = render(
+      <BarChart
+        data={[{ label: 'Jan', value: 8 }, { label: 'Fev', value: 14 }]}
+        showValues={false}
+      />,
+    )
+    const hoverArea = container.querySelector('.relative.flex-1') as HTMLElement
+    hoverArea.getBoundingClientRect = () =>
+      ({ left: 0, top: 0, right: 360, bottom: 200, width: 360, height: 200, x: 0, y: 0, toJSON: () => {} }) as DOMRect
+    fireEvent.mouseMove(hoverArea, { clientX: 300 })
+    expect(screen.getByText('14')).toBeInTheDocument()
+    expect(screen.getAllByText('Fev').length).toBeGreaterThan(0)
   })
 })
 
