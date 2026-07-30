@@ -110,4 +110,16 @@ describe('FilterBar', () => {
     expect(group?.className).toMatch(/divide-x/)
     expect(group?.children.length).toBe(OPTIONS.length)
   })
+
+  it('disables a chip when its option is marked disabled', () => {
+    render(<FilterBar options={[{ id: 'a', label: 'A', disabled: true }, ...OPTIONS]} />)
+    expect(screen.getByRole('button', { name: 'A' })).toBeDisabled()
+  })
+
+  it('deselects the active chip when re-clicked in segmented mode', async () => {
+    const handleChange = vi.fn()
+    render(<FilterBar variant="segmented" options={OPTIONS} defaultValue="online" onChange={handleChange} />)
+    await userEvent.click(screen.getByText('Online'))
+    expect(handleChange).toHaveBeenCalledWith(null)
+  })
 })

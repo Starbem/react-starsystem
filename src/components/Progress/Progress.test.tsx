@@ -44,6 +44,13 @@ describe('Progress', () => {
     // @ts-expect-error -- axe() is not typed in the default vitest-axe module
     expect(await axe(container)).toHaveNoViolations()
   })
+
+  it('applies the sm and lg track height classes', () => {
+    const { container: small } = render(<Progress value={50} size="sm" />)
+    expect(small.querySelector('[role="progressbar"]')).toHaveClass('h-[4px]')
+    const { container: large } = render(<Progress value={50} size="lg" />)
+    expect(large.querySelector('[role="progressbar"]')).toHaveClass('h-[12px]')
+  })
 })
 
 describe('ProgressCircle', () => {

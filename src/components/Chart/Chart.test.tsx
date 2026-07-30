@@ -78,6 +78,11 @@ describe('DonutChart', () => {
     render(<DonutChart segments={[{ label: 'Concluídas', value: 78 }, { label: 'Pendentes', value: 22 }]} />)
     expect(screen.getByText('78%')).toBeInTheDocument()
   })
+
+  it('hides the legend when legend is false', () => {
+    render(<DonutChart segments={[{ label: 'Concluídas', value: 78 }]} legend={false} />)
+    expect(screen.queryByText('Concluídas')).not.toBeInTheDocument()
+  })
 })
 
 describe('Chart', () => {
@@ -89,6 +94,17 @@ describe('Chart', () => {
   it('dispatches to BarChart when type="bar"', () => {
     const { container } = render(<Chart type="bar" data={[{ label: 'Jan', value: 8 }]} />)
     expect(container.querySelectorAll('rect').length).toBe(1)
+  })
+
+  it('dispatches to Sparkline when type="sparkline"', () => {
+    const { container } = render(<Chart type="sparkline" data={[1, 2, 3]} />)
+    expect(container.querySelector('svg')).toBeInTheDocument()
+    expect(container.querySelectorAll('circle').length).toBe(0)
+  })
+
+  it('dispatches to DonutChart when type="donut"', () => {
+    const { container } = render(<Chart type="donut" segments={[{ label: 'A', value: 1 }]} />)
+    expect(container.querySelectorAll('circle').length).toBe(2)
   })
 
   it('has no a11y violations', async () => {
