@@ -6,16 +6,13 @@ import tseslint from 'typescript-eslint'
 import prettier from 'eslint-config-prettier'
 
 export default tseslint.config(
-  { ignores: ['dist', 'docs-site/dist', 'example', '*.config.*'] },
+  { ignores: ['dist', 'docs-site/dist', '*.config.*'] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
-      parserOptions: {
-        tsconfigRootDir: new URL('.', import.meta.url).pathname,
-      },
     },
     plugins: {
       'react-hooks': reactHooks,

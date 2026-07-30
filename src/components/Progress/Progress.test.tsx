@@ -17,6 +17,12 @@ describe('Progress', () => {
     expect(fill).toHaveStyle({ width: '100%' })
   })
 
+  it('clamps the fill width at 0 percent for negative values', () => {
+    const { container } = render(<Progress value={-10} />)
+    const fill = container.querySelector('[data-progress-fill]')
+    expect(fill).toHaveStyle({ width: '0%' })
+  })
+
   it('shows the label and rounded percentage when showValue is set', () => {
     render(<Progress value={64.6} label="Perfil completo" showValue />)
     expect(screen.getByText('Perfil completo')).toBeInTheDocument()
@@ -63,7 +69,7 @@ describe('ProgressCircle', () => {
   })
 
   it('has no a11y violations', async () => {
-    const { container } = render(<ProgressCircle value={30} tone="warning" />)
+    const { container } = render(<ProgressCircle value={30} tone="warning" aria-label="Processing" />)
     // @ts-expect-error -- axe() is not typed in the default vitest-axe module
     expect(await axe(container)).toHaveNoViolations()
   })

@@ -31,7 +31,6 @@ export interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
   tone?: ProgressTone
   size?: 'sm' | 'md' | 'lg'
   indeterminate?: boolean
-  'aria-label'?: string
 }
 
 export function Progress({
@@ -54,7 +53,7 @@ export function Progress({
         aria-valuenow={indeterminate ? undefined : value}
         aria-valuemax={max}
         aria-valuemin={0}
-        aria-label={label || 'Progress'}
+        {...(label && { 'aria-label': label })}
       >
         <div
           data-progress-fill
@@ -85,7 +84,6 @@ export interface ProgressCircleProps extends HTMLAttributes<HTMLSpanElement> {
   showValue?: boolean
   indeterminate?: boolean
   children?: ReactNode
-  'aria-label'?: string
 }
 
 export function ProgressCircle({
@@ -112,7 +110,6 @@ export function ProgressCircle({
       aria-valuenow={indeterminate ? undefined : Math.round(pct)}
       aria-valuemax={max}
       aria-valuemin={0}
-      aria-label="Progress"
       {...rest}
     >
       <svg width={size} height={size}>
