@@ -29,6 +29,21 @@ describe('Spinner', () => {
     expect(container.firstChild).toHaveClass('size-[32px]')
   })
 
+  it('lets an explicit thickness override a preset size', () => {
+    const { container } = render(<Spinner label="Carregando" size="lg" thickness={6} />)
+    const spinner = container.firstChild as HTMLElement
+    expect(spinner).toHaveClass('size-[32px]')
+    expect(spinner.style.borderWidth).toBe('6px')
+  })
+
+  it('applies both a numeric size and a custom thickness together', () => {
+    const { container } = render(<Spinner label="Carregando" size={40} thickness={6} />)
+    const spinner = container.firstChild as HTMLElement
+    expect(spinner.style.width).toBe('40px')
+    expect(spinner.style.height).toBe('40px')
+    expect(spinner.style.borderWidth).toBe('6px')
+  })
+
   it('applies brand color classes by default', () => {
     const { container } = render(<Spinner label="Carregando" />)
     expect(container.firstChild).toHaveClass('border-t-primary-base')
