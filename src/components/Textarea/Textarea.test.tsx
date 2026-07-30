@@ -158,4 +158,53 @@ describe('Textarea', () => {
     // @ts-expect-error vitest-axe matcher types not compatible with this vitest version
     expect(await axe(container)).toHaveNoViolations()
   })
+
+  it('does not render counter without showCount', () => {
+    render(<Textarea maxLength={10} placeholder="x" />)
+    expect(screen.queryByText(/\/10/)).not.toBeInTheDocument()
+  })
+
+  it('does not render counter without maxLength even if showCount is true', () => {
+    render(<Textarea showCount placeholder="x" />)
+    expect(screen.queryByText(/\/\d+/)).not.toBeInTheDocument()
+  })
+
+  it('renders counter in n/max format for an uncontrolled field with defaultValue', () => {
+    render(<Textarea showCount maxLength={10} defaultValue="hi" placeholder="x" />)
+    expect(screen.getByText('2/10')).toBeInTheDocument()
+  })
+
+  it('updates counter as the user types (uncontrolled)', async () => {
+    render(<Textarea showCount maxLength={10} placeholder="x" />)
+    expect(screen.getByText('0/10')).toBeInTheDocument()
+    await userEvent.type(screen.getByPlaceholderText('x'), 'hello')
+    expect(screen.getByText('5/10')).toBeInTheDocument()
+  })
+
+  it('updates counter from a controlled value on rerender', () => {
+    const { rerender } = render(
+      <Textarea showCount maxLength={10} value="ab" onChange={() => {}} placeholder="x" />,
+    )
+    expect(screen.getByText('2/10')).toBeInTheDocument()
+    rerender(<Textarea showCount maxLength={10} value="abcd" onChange={() => {}} placeholder="x" />)
+    expect(screen.getByText('4/10')).toBeInTheDocument()
+  })
+
+  it('renders counter alone (right-aligned) when there is no hint text', () => {
+    render(<Textarea showCount maxLength={10} defaultValue="ab" placeholder="x" />)
+    expect(screen.getByText('2/10')).toBeInTheDocument()
+  })
+
+  it('renders both hint and counter together', () => {
+    render(<Textarea showCount maxLength={10} defaultValue="ab" hint="Keep it short" placeholder="x" />)
+    expect(screen.getByText('Keep it short')).toBeInTheDocument()
+    expect(screen.getByText('2/10')).toBeInTheDocument()
+  })
+
+  it('still calls the consumer onChange when a counter is shown (uncontrolled)', async () => {
+    const handler = vi.fn()
+    render(<Textarea showCount maxLength={10} onChange={handler} placeholder="x" />)
+    await userEvent.type(screen.getByPlaceholderText('x'), 'a')
+    expect(handler).toHaveBeenCalled()
+  })
 })

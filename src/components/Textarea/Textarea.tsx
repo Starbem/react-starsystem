@@ -1,4 +1,4 @@
-import { type TextareaHTMLAttributes } from 'react'
+import { useState, type ChangeEvent, type TextareaHTMLAttributes } from 'react'
 import { cn } from '../../utils/cn'
 import { Icon } from '../Icon'
 import {
@@ -21,6 +21,7 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
   success?: string
   variant?: TextareaVariant
   size?: TextareaSize
+  showCount?: boolean
 }
 
 export function Textarea({
@@ -30,11 +31,31 @@ export function Textarea({
   success,
   variant = 'outline',
   size = 'md',
+  showCount = false,
   className,
   disabled,
   id,
+  value,
+  defaultValue,
+  maxLength,
+  onChange,
   ...props
 }: TextareaProps) {
+  const isControlled = value !== undefined
+  const [uncontrolledLength, setUncontrolledLength] = useState(
+    typeof defaultValue === 'string' ? defaultValue.length : 0,
+  )
+
+  function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
+    if (!isControlled) {
+      setUncontrolledLength(e.target.value.length)
+    }
+    onChange?.(e)
+  }
+
+  const length = isControlled ? String(value).length : uncontrolledLength
+  const showCounter = showCount && maxLength != null
+
   const isError = Boolean(error)
   const isSuccess = !isError && Boolean(success)
   const state: 'error' | 'success' | null = isError ? 'error' : isSuccess ? 'success' : null
@@ -43,7 +64,7 @@ export function Textarea({
   const isUnderlineShape = variant === 'underline' && !disabled
 
   return (
-    <div className={cn('flex flex-col gap-[6px] items-start w-full', className)}>
+    <div className={cn('flex flex-col gap-[6px] items-start w-full', disabled && 'opacity-60', className)}>
       {label && (
         <label
           htmlFor={id}
@@ -66,6 +87,10 @@ export function Textarea({
           disabled={disabled}
           aria-invalid={isError || undefined}
           aria-describedby={hintId}
+          value={value}
+          defaultValue={defaultValue}
+          maxLength={maxLength}
+          onChange={handleChange}
           className={cn(
             "bg-transparent outline-none font-['Funnel_Display'] w-full resize-y min-h-[96px]",
             FIELD_SIZE_TEXT_CLASSES[size],
@@ -76,22 +101,31 @@ export function Textarea({
           {...props}
         />
       </div>
-      {hintText && (
-        <p
-          id={hintId}
-          className={cn(
-            "font-['Funnel_Display'] text-[14px] leading-[20px] tracking-[0.1px] w-full flex items-center gap-[4px]",
-            isError
-              ? 'text-error-base'
-              : isSuccess
-                ? 'text-success-dark dark:text-success-light'
-                : 'text-neutral-500 dark:text-neutral-400',
+      {(hintText || showCounter) && (
+        <div className="flex items-center justify-between gap-[8px] w-full">
+          {hintText && (
+            <p
+              id={hintId}
+              className={cn(
+                "font-['Funnel_Display'] text-[14px] leading-[20px] tracking-[0.1px] flex items-center gap-[4px]",
+                isError
+                  ? 'text-error-base'
+                  : isSuccess
+                    ? 'text-success-dark dark:text-success-light'
+                    : 'text-neutral-500 dark:text-neutral-400',
+              )}
+            >
+              {isError && <Icon name="error" size={15} />}
+              {isSuccess && <Icon name="check_circle" size={15} />}
+              {hintText}
+            </p>
           )}
-        >
-          {isError && <Icon name="error" size={15} />}
-          {isSuccess && <Icon name="check_circle" size={15} />}
-          {hintText}
-        </p>
+          {showCounter && (
+            <span className="font-['Funnel_Display'] text-[12px] text-neutral-400 dark:text-ink-500 tabular-nums shrink-0 ml-auto">
+              {length}/{maxLength}
+            </span>
+          )}
+        </div>
       )}
     </div>
   )
