@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, useNavigate } from 'react-router-dom'
+import { HashRouter, Routes, Route, useNavigate } from 'react-router'
 import { Home } from './Home'
 import { DocsLayout } from './DocsLayout'
 import { useTheme } from './useTheme'
