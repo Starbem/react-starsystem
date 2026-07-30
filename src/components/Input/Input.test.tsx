@@ -20,6 +20,55 @@ describe('Input', () => {
     expect(screen.getByText('Email')).toBeInTheDocument()
   })
 
+  it('renders the label above the field, not inside the bordered box', () => {
+    render(<Input label="Email" id="email-label-pos" />)
+    const label = screen.getByText('Email')
+    const fieldBox = screen.getByRole('textbox').closest('div')
+    // The label must be a sibling of the field box, not a descendant of it.
+    expect(fieldBox?.contains(label)).toBe(false)
+  })
+
+  it('applies outline variant classes by default', () => {
+    render(<Input placeholder="x" />)
+    const box = screen.getByPlaceholderText('x').closest('div')?.parentElement
+    expect(box).toHaveClass('border-neutral-300')
+  })
+
+  it('applies filled variant classes', () => {
+    render(<Input variant="filled" placeholder="x" />)
+    const box = screen.getByPlaceholderText('x').closest('div')?.parentElement
+    expect(box).toHaveClass('bg-ink-100')
+  })
+
+  it('applies underline variant classes', () => {
+    render(<Input variant="underline" placeholder="x" />)
+    const box = screen.getByPlaceholderText('x').closest('div')?.parentElement
+    expect(box).toHaveClass('border-b')
+  })
+
+  it('applies sm size classes', () => {
+    render(<Input size="sm" placeholder="x" />)
+    expect(screen.getByPlaceholderText('x')).toHaveClass('text-[14px]')
+  })
+
+  it('applies lg size classes', () => {
+    render(<Input size="lg" placeholder="x" />)
+    expect(screen.getByPlaceholderText('x')).toHaveClass('text-[17px]')
+  })
+
+  it('defaults to md size with the corrected padding/radius', () => {
+    render(<Input placeholder="x" />)
+    const box = screen.getByPlaceholderText('x').closest('div')?.parentElement
+    expect(box).toHaveClass('rounded-md')
+  })
+
+  it('disabled renders the flat box shape even with underline variant', () => {
+    render(<Input variant="underline" disabled placeholder="x" />)
+    const box = screen.getByPlaceholderText('x').closest('div')?.parentElement
+    expect(box).not.toHaveClass('rounded-none')
+    expect(box).toHaveClass('bg-neutral-50')
+  })
+
   it('renders hint text when provided', () => {
     render(<Input hint="This is a hint" />)
     expect(screen.getByText('This is a hint')).toBeInTheDocument()
