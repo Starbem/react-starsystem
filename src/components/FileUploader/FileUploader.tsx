@@ -37,8 +37,13 @@ export interface FileItemProps extends UploadFile {
 export function FileItem({ name, size, progress, done, error, thumb, onRemove }: FileItemProps) {
   const ext = (name || '').split('.').pop()?.toLowerCase() ?? ''
   return (
-    <div className={cn('flex items-center gap-3 rounded-lg border border-ink-200 p-3', error && 'border-error-base')}>
-      <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-md bg-ink-100">
+    <div
+      className={cn(
+        'flex items-center gap-3 rounded-lg border border-ink-200 p-3 dark:border-ink-700',
+        error && 'border-error-base dark:border-error-base',
+      )}
+    >
+      <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-md bg-ink-100 dark:bg-ink-700">
         {thumb ? (
           <img src={thumb} alt="" className="size-full rounded-md object-cover" />
         ) : (
@@ -46,8 +51,8 @@ export function FileItem({ name, size, progress, done, error, thumb, onRemove }:
         )}
       </span>
       <div className="min-w-0 flex-1">
-        <p className="truncate text-[14px] leading-[20px] font-medium text-ink-900">{name}</p>
-        <p className="flex items-center gap-1 text-[12px] leading-[16px] text-ink-600">
+        <p className="truncate text-[14px] leading-[20px] font-medium text-ink-900 dark:text-ink-100">{name}</p>
+        <p className="flex items-center gap-1 text-[12px] leading-[16px] text-ink-600 dark:text-ink-400">
           {error ? (
             <span className="text-error-base">{error}</span>
           ) : done ? (
@@ -63,7 +68,7 @@ export function FileItem({ name, size, progress, done, error, thumb, onRemove }:
           )}
         </p>
         {progress != null && !done && !error && (
-          <div className="mt-1 h-[4px] w-full overflow-hidden rounded-full bg-ink-100">
+          <div className="mt-1 h-[4px] w-full overflow-hidden rounded-full bg-ink-100 dark:bg-ink-700">
             <div className="h-full rounded-full bg-primary-base" style={{ width: `${progress}%` }} />
           </div>
         )}
@@ -73,7 +78,7 @@ export function FileItem({ name, size, progress, done, error, thumb, onRemove }:
           type="button"
           aria-label="Remover"
           onClick={onRemove}
-          className="inline-flex shrink-0 items-center justify-center rounded-full p-1 text-ink-500 hover:bg-ink-100"
+          className="inline-flex shrink-0 items-center justify-center rounded-full p-1 text-ink-500 hover:bg-ink-100 dark:text-ink-400 dark:hover:bg-ink-700"
         >
           <Icon name="close" size={18} />
         </button>
@@ -132,14 +137,13 @@ export function FileUploader({
           <Button variant="secondary" size="md" iconLeft={<Icon name="upload" />} onClick={open}>
             Escolher arquivo
           </Button>
-          <span className="text-[13px] leading-[18px] text-ink-500">{hint}</span>
+          <span className="text-[13px] leading-[18px] text-ink-500 dark:text-ink-400">{hint}</span>
           {input}
         </div>
       ) : (
         <div
           role="button"
           tabIndex={0}
-          aria-label={title}
           onClick={open}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
@@ -158,17 +162,15 @@ export function FileUploader({
             handle(e.dataTransfer.files)
           }}
           className={cn(
-            'flex flex-col items-center gap-2 rounded-lg border-2 border-dashed border-ink-300 p-8 text-center outline-none',
+            'flex flex-col items-center gap-2 rounded-lg border-2 border-dashed border-ink-300 p-8 text-center outline-none dark:border-ink-700',
             'focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-2',
             drag && 'border-primary-base bg-primary-lightest',
-            error && 'border-error-base',
+            error && 'border-error-base dark:border-error-base',
           )}
         >
-          <Icon name="cloud_upload" size={32} className="text-ink-400" />
-          <span className="text-[14px] leading-[20px] text-ink-700">
-            <b className="font-semibold">Clique para enviar</b> ou arraste aqui
-          </span>
-          <span className="text-[13px] leading-[18px] text-ink-500">{hint}</span>
+          <Icon name="cloud_upload" size={32} className="text-ink-400 dark:text-ink-500" />
+          <span className="text-[14px] leading-[20px] text-ink-700 dark:text-ink-200">{title}</span>
+          <span className="text-[13px] leading-[18px] text-ink-500 dark:text-ink-400">{hint}</span>
           {input}
         </div>
       )}

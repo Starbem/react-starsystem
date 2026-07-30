@@ -35,6 +35,11 @@ describe('FileUploader', () => {
     expect(screen.getByText('Clique para enviar', { exact: false })).toBeInTheDocument()
   })
 
+  it('renders a custom title as visible text', () => {
+    render(<FileUploader title="Envie seu comprovante" />)
+    expect(screen.getByText('Envie seu comprovante')).toBeInTheDocument()
+  })
+
   it('renders the compact button when variant is compact', () => {
     render(<FileUploader variant="compact" />)
     expect(screen.getByRole('button', { name: 'Escolher arquivo' })).toBeInTheDocument()
