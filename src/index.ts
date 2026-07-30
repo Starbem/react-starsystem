@@ -129,6 +129,9 @@ export type { FilterBarProps, FilterChipProps, FilterOption, FilterTone } from '
 export { FileItem, FileUploader } from './components/FileUploader'
 export type { FileItemProps, FileUploaderProps, UploadFile } from './components/FileUploader'
 
+export { ListItem } from './components/ListItem'
+export type { ListItemProps } from './components/ListItem'
+
 // Design tokens
 export { colors } from './tokens/colors'
 export type { Colors } from './tokens/colors'
